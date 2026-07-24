@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="2026年9月24日至10月4日，伊斯坦布尔、卡帕多奇亚、卡什与土耳其地中海海岸双人旅行攻略。">
+  <title>土耳其 11 日旅行手册｜卡什·热气球·D400 自驾</title>
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <style>
+    :root {
+      --ink: #18323a;
+      --muted: #65787c;
+      --paper: #f6f1e7;
+      --card: rgba(255, 255, 255, .88);
+      --sea: #087f8c;
+      --sea-dark: #075b66;
+      --sun: #e99645;
+      --sand: #dfc79d;
+      --line: rgba(24, 50, 58, .13);
+      --shadow: 0 18px 50px rgba(18, 57, 64, .12);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 5%, rgba(233, 150, 69, .18), transparent 22rem),
+        linear-gradient(180deg, #f9f5ed 0%, #f3efe6 100%);
+      font-family: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+    }
+    img { display: block; width: 100%; object-fit: cover; }
+    a { color: inherit; }
+    button { font: inherit; }
+
+    .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--sea);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: clamp(38px, 7vw, 78px); line-height: 1.02; letter-spacing: -.045em; }
+    h2 { margin-bottom: 22px; font-size: clamp(28px, 4vw, 44px); line-height: 1.15; letter-spacing: -.025em; }
+    h3 { margin-bottom: 10px; font-size: 20px; line-height: 1.35; }
+    .lead { max-width: 760px; color: #405a60; font-size: clamp(17px, 2.2vw, 21px); }
+    .muted { color: var(--muted); }
+    .small { font-size: 13px; }
+    .section { padding: 72px 0 8px; scroll-margin-top: 76px; }
+
+    .map-layout { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, .65fr); gap: 18px; align-items: stretch; }
+    .map-shell { position: relative; overflow: hidden; min-height: 620px; border: 1px solid var(--line); border-radius: var(--radius); background: #dce9e6; box-shadow: var(--shadow); }
+    #trip-map { width: 100%; min-height: 620px; height: 100%; }
+    .map-controls { position: absolute; z-index: 500; top: 14px; left: 54px; display: flex; gap: 7px; padding: 6px; border: 1px solid rgba(24,50,58,.14); border-radius: 14px; background: rgba(255,255,255,.92); box-shadow: 0 8px 24px rgba(18,57,64,.13); }
+    .map-controls button { padding: 7px 11px; border: 0; border-radius: 9px; color: var(--ink); background: transparent; cursor: pointer; font-size: 13px; font-weight: 800; }
+    .map-controls button.active { color: white; background: var(--sea); }
+    .route-pin { display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid white; border-radius: 50%; color: white; background: var(--sea); box-shadow: 0 3px 10px rgba(11,65,72,.34); font-size: 12px; font-weight: 900; }
+    .leaflet-popup-content { min-width: 190px; margin: 14px 16px; color: var(--ink); font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; line-height: 1.5; }
+    .leaflet-popup-content strong { display: block; margin-bottom: 4px; font-size: 15px; }
+    .leaflet-popup-content a { color: var(--sea-dark); font-weight: 800; }
+    .map-side { display: flex; flex-direction: column; gap: 10px; }
+    .leg-card { padding: 15px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
+    .leg-card strong { display: block; }
+    .leg-card .leg-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; color: var(--muted); font-size: 13px; }
+    .mode-icon { display: inline-grid; place-items: center; width: 25px; height: 25px; margin-right: 7px; border-radius: 8px; color: white; background: var(--sea); font-size: 12px; }
+    .map-note { padding: 14px 16px; border-radius: 15px; color: #5f4b32; background: #fff2df; font-size: 13px; }
+
+    .duration-grid { display: grid; gap: 11px; }
+    .duration-row { display: grid; grid-template-columns: 86px minmax(180px, 1.05fr) minmax(190px, 1.25fr) 90px 90px; gap: 10px; align-items: center; padding: 13px 15px; border-bottom: 1px solid var(--line); }
+    .duration-row.header { color: var(--muted); font-size: 12px; font-weight: 800; letter-spacing: .06em; }
+    .duration-date { color: var(--sea-dark); font-weight: 900; }
+    .duration-place strong { display: block; }
+    .duration-place small, .duration-transit small { color: var(--muted); }
+    .time-pill { display: inline-flex; align-items: center; justify-content: center; min-height: 34px; padding: 5px 9px; border-radius: 10px; color: var(--sea-dark); background: rgba(8,127,140,.09); font-size: 13px; font-weight: 850; text-align: center; }
+
+    .restaurant-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .restaurant { display: flex; flex-direction: column; padding: 21px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: 0 10px 28px rgba(18,57,64,.08); }
+    .restaurant-loc { margin-bottom: 7px; color: var(--sun); font-size: 12px; font-weight: 900; letter-spacing: .08em; }
+    .restaurant p { margin-bottom: 10px; color: var(--muted); font-size: 14px; }
+    .restaurant-tags { display: flex; flex-wrap: wrap; gap: 7px; margin: auto 0 13px; }
+    .restaurant-tags span { padding: 5px 8px; border-radius: 8px; color: #425d63; background: rgba(8,127,140,.08); font-size: 12px; font-weight: 750; }
+    .restaurant-footer { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13px; }
+    .restaurant-footer a { color: var(--sea-dark); font-weight: 850; }
+
+    .practical-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .practical-item { padding: 22px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,255,255,.72); }
+    .practical-item h3 { color: var(--sea-dark); }
+    .practical-item ul { margin: 0; padding-left: 20px; }
+    .practical-item li + li { margin-top: 7px; }
+
+    .risk-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 18px; align-items: start; }
+    .risk-panel { padding: 26px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); box-shadow: var(--shadow); }
+    .risk-label { display: inline-flex; margin-bottom: 12px; padding: 5px 10px; border-radius: 999px; color: white; background: var(--sun); font-size: 12px; font-weight: 850; letter-spacing: .07em; }
+    .decision-track { display: grid; gap: 0; margin-top: 18px; }
+    .decision-step { position: relative; display: grid; grid-template-columns: 52px 1fr; gap: 13px; padding: 0 0 20px; }
+    .decision-step:not(:last-child)::after { content: ""; position: absolute; top: 34px; bottom: 0; left: 17px; width: 2px; background: rgba(8,127,140,.22); }
+    .decision-time { position: relative; z-index: 1; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; color: white; background: var(--sea); font-size: 11px; font-weight: 900; }
+    .decision-copy strong { display: block; color: var(--sea-dark); }
+    .decision-copy p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+    .risk-list { display: grid; gap: 11px; margin: 16px 0 0; padding: 0; list-style: none; }
+    .risk-list li { padding: 13px 14px; border-left: 3px solid var(--sea); border-radius: 0 12px 12px 0; background: rgba(8,127,140,.07); }
+    .risk-list strong { display: block; }
+    .priority-flow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .priority-flow span { display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px; border-radius: 11px; background: rgba(223,199,157,.26); font-size: 13px; font-weight: 800; }
+    .priority-flow b { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: white; background: var(--sea); font-size: 11px; }
+    .risk-foot { margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+
+    .hero {
+      position: relative;
+      min-height: 86vh;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      color: white;
+      background: #123943;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(7, 35, 42, .92) 0%, rgba(7, 35, 42, .58) 46%, rgba(7, 35, 42, .14) 100%),
+        linear-gradient(0deg, rgba(7, 35, 42, .72) 0%, transparent 60%);
+      z-index: 1;
+    }
+    .hero-bg { position: absolute; inset: 0; height: 100%; }
+    .hero-content { position: relative; z-index: 2; padding: 128px 0 62px; }
+    .hero .eyebrow { color: #ffd6a1; }
+    .hero h1 { max-width: 900px; margin-bottom: 22px; }
+    .hero .lead { color: rgba(255,255,255,.86); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 7px 13px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 999px;
+      background: rgba(255,255,255,.09);
+      backdrop-filter: blur(10px);
+      font-size: 14px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 10px 18px;
+      border: 0;
+      border-radius: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 750;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #17323a; background: #ffd59f; }
+    .btn-ghost { color: white; border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.08); }
+
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(249, 245, 237, .88);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner { display: flex; gap: 8px; padding: 11px 0; overflow-x: auto; scrollbar-width: none; }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-inner a {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: #496269;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .nav-inner a:hover { color: white; background: var(--sea); }
+
+    .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .summary-card, .panel, .day {
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+    .summary-card { padding: 23px; border-radius: 20px; }
+    .summary-card strong { display: block; margin-bottom: 5px; color: var(--sea-dark); font-size: 30px; line-height: 1.1; }
+
+    .route {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      overflow-x: auto;
+      padding: 16px 0 4px;
+      color: #3e5a60;
+      font-size: 14px;
+      font-weight: 750;
+      scrollbar-width: none;
+    }
+    .route::-webkit-scrollbar { display: none; }
+    .route span { flex: 0 0 auto; padding: 8px 12px; border-radius: 12px; background: rgba(8,127,140,.08); }
+    .route i { color: var(--sun); font-style: normal; }
+
+    .days { display: grid; gap: 24px; }
+    .day { display: grid; grid-template-columns: 150px 1fr; overflow: hidden; border-radius: var(--radius); }
+    .day-head { padding: 24px 18px; color: white; background: var(--sea-dark); }
+    .day-head .date { font-size: 30px; font-weight: 900; line-height: 1; }
+    .day-head .weekday { margin-top: 8px; opacity: .72; font-size: 13px; }
+    .day-head .sleep { margin-top: 20px; font-size: 13px; line-height: 1.5; }
+    .day-body { padding: 18px; }
+    .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+    .slot { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: #fff; }
+    .slot img { aspect-ratio: 16 / 9; }
+    .slot-text { padding: 15px; }
+    .slot-time { display: block; margin-bottom: 5px; color: var(--sun); font-size: 12px; font-weight: 900; letter-spacing: .1em; }
+    .slot p { margin-bottom: 0; color: #52696e; font-size: 14px; }
+    .slot.slot-plain { display: flex; align-items: center; background: linear-gradient(135deg, rgba(8,127,140,.09), rgba(233,150,69,.09)); }
+    .slot.slot-plain .slot-text { padding: 20px 18px; }
+    .why { margin: 14px 2px 0; padding: 12px 14px; border-radius: 13px; color: #496269; background: rgba(223,199,157,.22); font-size: 14px; }
+
+    .panel { padding: 27px; border-radius: var(--radius); }
+    .booking-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .booking-list { margin: 16px 0 0; padding-left: 20px; }
+    .booking-list li + li { margin-top: 8px; }
+    .price { color: var(--sea-dark); font-size: 28px; font-weight: 900; }
+    .callout { margin-top: 18px; padding: 18px; border-left: 4px solid var(--sun); border-radius: 0 14px 14px 0; background: rgba(233,150,69,.11); }
+
+    .stay-table, .budget-table { width: 100%; border-collapse: collapse; }
+    .stay-table th, .stay-table td, .budget-table th, .budget-table td {
+      padding: 13px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    .stay-table th, .budget-table th { color: var(--muted); font-size: 12px; letter-spacing: .06em; }
+    .budget-table td:last-child, .budget-table th:last-child { text-align: right; }
+    .budget-total td { color: var(--sea-dark); font-size: 18px; font-weight: 900; background: rgba(8,127,140,.07); }
+    .budget-wrap { display: grid; grid-template-columns: 1.25fr .75fr; gap: 18px; }
+    .big-number { margin: 8px 0; color: var(--sea-dark); font-size: clamp(40px, 6vw, 68px); font-weight: 950; line-height: 1; letter-spacing: -.05em; }
+    .paid-note { display: inline-block; margin-top: 8px; padding: 7px 10px; border-radius: 9px; color: #8e561c; background: #fff1dc; font-size: 13px; font-weight: 750; }
+
+    .check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .check-item { display: flex; gap: 11px; align-items: flex-start; padding: 14px; border: 1px solid var(--line); border-radius: 15px; background: white; }
+    .check-item input { width: 19px; height: 19px; margin-top: 3px; accent-color: var(--sea); }
+    .check-item label { cursor: pointer; }
+
+    footer { margin-top: 72px; padding: 40px 0 52px; color: rgba(255,255,255,.78); background: #143941; }
+    footer strong { color: white; }
+
+    @media (max-width: 900px) {
+      .summary-grid, .booking-grid { grid-template-columns: repeat(2, 1fr); }
+      .budget-wrap, .risk-grid { grid-template-columns: 1fr; }
+      .map-layout { grid-template-columns: 1fr; }
+      .map-shell, #trip-map { min-height: 520px; }
+      .map-side { display: grid; grid-template-columns: repeat(2, 1fr); }
+      .restaurant-grid { grid-template-columns: repeat(2, 1fr); }
+      .duration-row { grid-template-columns: 70px minmax(170px,1fr) minmax(170px,1fr) 82px; }
+      .duration-row > :last-child { display: none; }
+      .day { grid-template-columns: 1fr; }
+      .day-head { display: flex; align-items: center; gap: 18px; }
+      .day-head .sleep { margin: 0 0 0 auto; text-align: right; }
+      .slots { grid-template-columns: 1fr; }
+      .slot { display: grid; grid-template-columns: minmax(130px, .7fr) 1fr; }
+      .slot img { height: 100%; aspect-ratio: auto; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 22px, 1180px); }
+      .hero { min-height: 78vh; }
+      .hero-content { padding-bottom: 38px; }
+      .summary-grid, .booking-grid, .check-grid { grid-template-columns: 1fr; }
+      .map-shell, #trip-map { min-height: 480px; }
+      .map-controls { left: 48px; right: 10px; overflow-x: auto; }
+      .map-side, .restaurant-grid, .practical-grid { grid-template-columns: 1fr; }
+      .duration-grid { overflow-x: auto; }
+      .duration-row { min-width: 720px; grid-template-columns: 78px 190px 230px 85px 85px; }
+      .duration-row > :last-child { display: block; }
+      .summary-card { padding: 19px; }
+      .section { padding-top: 54px; }
+      .panel { padding: 20px; }
+      .day-body { padding: 11px; }
+      .slot { grid-template-columns: 1fr; }
+      .slot img { aspect-ratio: 16 / 9; }
+      .stay-table { min-width: 720px; }
+      .table-scroll { overflow-x: auto; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 12mm; }
+      body { background: white; font-size: 10pt; }
+      .hero { min-height: 0; height: 170mm; break-after: page; }
+      .sticky-nav, .hero-actions, .check-grid { display: none !important; }
+      .section { padding: 12mm 0 0; }
+      .summary-card, .panel, .day { box-shadow: none; }
+      .day { break-inside: avoid; margin-bottom: 8mm; }
+      .slots { grid-template-columns: repeat(3, 1fr); }
+      .slot { display: block; }
+      .slot img { aspect-ratio: 16/9; }
+      a { text-decoration: none; }
+      footer { background: white; color: #555; border-top: 1px solid #ddd; }
+      footer strong { color: #222; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <img class="hero-bg" src="guide-images/kas-theatre.jpg" alt="卡什古剧场面向地中海的景色">
+    <div class="wrap hero-content">
+      <p class="eyebrow">Türkiye · 24 Sep — 4 Oct 2026</p>
+      <h1>卡什、热气球<br>与地中海公路</h1>
+      <p class="lead">两个人的 11 日土耳其旅行手册。以卡什慢游为主线，在卡帕多奇亚为热气球保留两次机会，只租车行驶最值得开的 D400 海岸段。</p>
+      <div class="hero-meta">
+        <span class="chip">2 人 · 10 晚</span>
+        <span class="chip">4 天海岸自驾</span>
+        <span class="chip">推荐预算约 ¥36,000</span>
+        <span class="chip">国际机票已付 ¥12,628</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#itinerary">查看每日行程</a>
+        <button class="btn btn-ghost" type="button" onclick="window.print()">打印 / 保存 PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sticky-nav" aria-label="页面导航">
+    <div class="wrap nav-inner">
+      <a href="#map">路线地图</a>
+      <a href="#overview">总览</a>
+      <a href="#contingency">风险预案</a>
+      <a href="#itinerary">每日行程</a>
+      <a href="#durations">时间与路程</a>
+      <a href="#restaurants">沿途餐厅</a>
+      <a href="#stays">住宿</a>
+      <a href="#transport">航班与租车</a>
+      <a href="#budget">预算</a>
+      <a href="#practical">实用信息</a>
+      <a href="#checklist">下单清单</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section" id="map">
+      <div class="wrap">
+        <p class="eyebrow">Interactive route map</p>
+        <h2>先看地图，再看每天怎么走</h2>
+        <p class="lead">地图中的实线是 D400 自驾路线，虚线是境内航班。点击编号可以查看建议停留时间和附近用餐点；地图导航链接会打开对应地点。</p>
+        <div class="map-layout">
+          <div class="map-shell">
+            <div id="trip-map" role="img" aria-label="伊斯坦布尔、卡帕多奇亚、安塔利亚、卡什、Kekova、Patara、厄吕代尼兹及达拉曼的旅行路线地图"></div>
+            <div class="map-controls" aria-label="地图范围">
+              <button type="button" class="active" id="map-all">全程路线</button>
+              <button type="button" id="map-coast">海岸自驾</button>
+              <button type="button" id="map-kas">卡什周边</button>
+            </div>
+          </div>
+          <aside class="map-side">
+            <div class="leg-card"><strong><span class="mode-icon">✈</span>伊斯坦布尔 → 卡帕多奇亚</strong><div class="leg-meta"><span>飞行约 1小时20分</span><span>机场接送 40–75分</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">✈</span>Kayseri → 安塔利亚</strong><div class="leg-meta"><span>飞行约 1小时20分</span><span>主案 9/29 早班</span><span>Plan B 9/28 晚班</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">🚗</span>AYT → Myra → 卡什</strong><div class="leg-meta"><span>约 201 km</span><span>纯驾驶 2小时47分</span><span>实际预留 3.5小时</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">⛵</span>卡什 → Kekova → 卡什</strong><div class="leg-meta"><span>拼船约 8–9小时</span><span>通常无需当天开车</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">🚗</span>卡什 → Patara → 费特希耶</strong><div class="leg-meta"><span>经停全段约 142 km</span><span>纯驾驶约 2小时30分</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">🚗</span>费特希耶 → DLM</strong><div class="leg-meta"><span>约 50 km</span><span>纯驾驶约 50分</span><span>还车日预留 1.5小时</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">✈</span>Dalaman → 伊斯坦布尔</strong><div class="leg-meta"><span>飞行约 1小时25分</span><span>优先落地 IST</span></div></div>
+            <div class="map-note">地图时间为无停车、无拍照、无堵车的路线计算；正式日程已经额外加入约 20%–30% 缓冲。</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="wrap">
+        <p class="eyebrow">Trip at a glance</p>
+        <h2>不全国开车，把时间留给真正重要的地方</h2>
+        <p class="lead">这版按“卡什慢游”定稿——放弃了 Çıralı、Phaselis、Olympos 的完整海岸版本，因为那样会把卡什压缩到 2 晚，9 月 30 日还要赶在日落前抵达剧场。</p>
+        <div class="summary-grid">
+          <article class="summary-card"><strong>2 次</strong><span>热气球起飞机会<br><small class="muted">9/27 首选，9/28 顺延</small></span></article>
+          <article class="summary-card"><strong>3 晚</strong><span>连续住在卡什<br><small class="muted">古剧场日落＋Kekova</small></span></article>
+          <article class="summary-card"><strong>约 420 km</strong><span>主线预计自驾里程<br><small class="muted">安塔利亚取、达拉曼还</small></span></article>
+          <article class="summary-card"><strong>¥2.35万</strong><span>预计尚待支付<br><small class="muted">不含已付国际机票</small></span></article>
+        </div>
+        <div class="route" aria-label="旅行路线">
+          <span>伊斯坦布尔</span><i>→</i><span>格雷梅</span><i>✈</i><span>安塔利亚</span><i>🚗</i><span>Myra</span><i>→</i><span>卡什</span><i>→</i><span>Kekova</span><i>→</i><span>Patara</span><i>→</i><span>厄吕代尼兹</span><i>✈</i><span>伊斯坦布尔</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contingency">
+      <div class="wrap">
+        <p class="eyebrow">Risk control &amp; Plan B</p>
+        <h2>先保核心体验，再按时间主动删减</h2>
+        <p class="lead">真正需要预案的是 9/29 跨区移动和 10/2 多站自驾。下面分两层看：先是订票阶段怎么选，再是当天到了现场怎么执行——这是两个不同时间点的问题，不要混着读。</p>
+        <div class="risk-grid">
+          <article class="risk-panel">
+            <span class="risk-label">9/29 · 订票阶段怎么选</span>
+            <h3>默认订当天早班，订不到才改前一晚飞</h3>
+            <ul class="risk-list">
+              <li><strong>Plan A（默认）：</strong>订 9/29 当天 ASR→AYT 直飞，优先选 11:30 前落地的班次。</li>
+              <li><strong>订不到合适直飞：</strong>先查 9/28 下午／晚间直飞；仍没有则选同一订单的 ASR→IST／SAW→AYT 联程，以 9/29 14:00 前到达安塔利亚为门槛。</li>
+              <li><strong>Plan B（更稳，可选）：</strong>9/28 第二次热气球结束后就飞 ASR→AYT，住机场附近；牺牲 Paşabağ／红谷，换 9/29 一整天从容开车。</li>
+            </ul>
+            <p class="risk-foot">格雷梅→AYT 陆路约 493 km、纯驾驶约 6小时15分，实际需 7–8 小时，不作为临时补救。<a href="https://www.directflights.com/ASR-AYT" target="_blank" rel="noopener">查看直飞航线 ↗</a></p>
+          </article>
+
+          <article class="risk-panel">
+            <span class="risk-label">9/29 · 当天到了 AYT 怎么执行</span>
+            <h3>离开机场的时间决定当天版本</h3>
+            <div class="decision-track">
+              <div class="decision-step"><div class="decision-time">12:30前</div><div class="decision-copy"><strong>执行 Myra 完整版</strong><p>AYT → Myra，游览 1 小时，再开约 45 km 到卡什。</p></div></div>
+              <div class="decision-step"><div class="decision-time">12:30–15:30</div><div class="decision-copy"><strong>取消 Myra 游览</strong><p>仍沿同一路线经过 Demre，但不停景点，直接开往卡什；不为“打卡”增加夜间山路。</p></div></div>
+              <div class="decision-step"><div class="decision-time">15:30 后</div><div class="decision-copy"><strong>疲劳或恶劣天气：机场住宿</strong><p>9/30 07:30 出发，经 Myra 中午到卡什；删掉老城上午，仍保住古剧场日落。</p></div></div>
+            </div>
+          </article>
+
+          <article class="risk-panel">
+            <span class="risk-label">天气依赖 · 心理预期</span>
+            <h3>保证到达正确地点，不保证晚霞</h3>
+            <ul class="risk-list">
+              <li><strong>热气球两天都取消</strong>接受退款，改地下城＋陶艺＋土耳其浴；不以同样受风况影响的滑翔伞作为保证性替代。</li>
+              <li><strong>卡什古剧场多云</strong>仍看海景和蓝调时刻；若下雨或临时关闭，10/1 游船早归后再尝试。</li>
+              <li><strong>厄吕代尼兹多云</strong>保留泻湖景观，不为追晚霞改动 10/3 返程航班。</li>
+            </ul>
+          </article>
+
+          <article class="risk-panel">
+            <span class="risk-label">10/2 · 删减顺序</span>
+            <h3>时间不够就砍，Kalkan 先砍</h3>
+            <p class="small muted" style="margin:-6px 0 0">编号＝舍弃优先级，数字越大越先砍；1、2 是必须保住的核心，不砍。</p>
+            <div class="priority-flow"><span><b>1</b>安全驾驶</span><span><b>2</b>厄吕代尼兹</span><span><b>3</b>Patara古城</span><span><b>4</b>Kaputaş</span><span><b>5</b>Kalkan</span></div>
+            <p class="small muted" style="margin:16px 0 0">当天时间门槛（和上面的舍弃顺序是两件事）：</p>
+            <ul class="risk-list">
+              <li><strong>10:00</strong>最迟离开 Kaputaş。</li>
+              <li><strong>Kalkan</strong>只做 30 分钟外带午餐；没有停车位直接跳过。</li>
+              <li><strong>12:30 后才到 Patara</strong>只看古城，不去沙滩；最迟 15:15 离开。</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="itinerary">
+      <div class="wrap">
+        <p class="eyebrow">Day by day</p>
+        <h2>方案 B · 每日上午、下午与晚上</h2>
+        <div class="days">
+          <article class="day">
+            <header class="day-head"><div><div class="date">09.24</div><div class="weekday">周四 · Day 1</div></div><div class="sleep">住：伊斯坦布尔<br>Airbnb</div></header>
+            <div class="day-body">
+              <div class="slots">
+                <div class="slot"><img src="guide-images/istanbul-hagia-sophia.jpg" alt="伊斯坦布尔圣索菲亚"><div class="slot-text"><span class="slot-time">上午</span><h3>抵达伊斯坦布尔</h3><p>11:25 抵达 IST，入境、取行李并前往 Sultanahmet。</p></div></div>
+                <div class="slot"><img src="guide-images/blue-mosque.jpg" alt="伊斯坦布尔蓝色清真寺"><div class="slot-text"><span class="slot-time">下午</span><h3>蓝色清真寺</h3><p>入住后只走苏丹艾哈迈德广场，不购买限时博物馆票。</p></div></div>
+                <div class="slot"><img src="guide-images/istanbul-hagia-sophia.jpg" alt="圣索菲亚外观"><div class="slot-text"><span class="slot-time">晚上</span><h3>屋顶晚餐</h3><p>选择能看到圣索菲亚与蓝色清真寺的屋顶餐厅。</p></div></div>
+              </div>
+              <p class="why"><strong>这样安排：</strong>国际长途飞行后的第一天不塞景点，避免入境或堵车导致预约作废。</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <header class="day-head"><div><div class="date">09.25</div><div class="weekday">周五 · Day 2</div></div><div class="sleep">住：伊斯坦布尔<br>Airbnb</div></header>
+            <div class="day-body">
+              <div class="slots">
+                <div class="slot"><img src="guide-images/istanbul-hagia-sophia.jpg" alt="圣索菲亚"><div class="slot-text"><span class="slot-time">上午</span><h3>圣索菲亚＋托普卡帕</h3><p>08:30 开始，避开旅行团高峰；托普卡帕预留约 2.5 小时。</p></div></div>
+                <div class="slot"><img src="guide-images/basilica-cistern.jpg" alt="地下水宫"><div class="slot-text"><span class="slot-time">下午</span><h3>地下水宫</h3><p>之后根据体力决定是否去大巴扎，不强行塞满。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">晚上</span><h3>博斯普鲁斯渡轮</h3><p>乘公共渡轮看日落与城市天际线，在亚洲区吃晚饭。</p></div></div>
+              </div>
+              <p class="why"><strong>这样安排：</strong>核心收费景点集中在一天完成，第二天可以安心离开伊斯坦布尔。</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <header class="day-head"><div><div class="date">09.26</div><div class="weekday">周六 · Day 3</div></div><div class="sleep">住：格雷梅<br>民宿 / 洞穴酒店</div></header>
+            <div class="day-body">
+              <div class="slots">
+                <div class="slot"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚地貌"><div class="slot-text"><span class="slot-time">上午</span><h3>飞往卡帕多奇亚</h3><p>首选 IST→NAV；如果价格差距明显，可比较 SAW→ASR。</p></div></div>
+                <div class="slot"><img src="guide-images/uchisar-panorama.jpg" alt="乌奇萨全景"><div class="slot-text"><span class="slot-time">下午</span><h3>乌奇萨＋鸽子谷</h3><p>用全景观景台建立对卡帕多奇亚地形的认识。</p></div></div>
+                <div class="slot"><img src="guide-images/goreme-open-air.jpg" alt="格雷梅岩石建筑"><div class="slot-text"><span class="slot-time">晚上</span><h3>格雷梅镇中心</h3><p>确认次日热气球接人时间，早睡，不参加夜间 ATV。</p></div></div>
+              </div>
+              <p class="why"><strong>这样安排：</strong>抵达日不安排必须准时到达的高价活动。</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <header class="day-head"><div><div class="date">09.27</div><div class="weekday">周日 · Day 4</div></div><div class="sleep">住：格雷梅<br>民宿 / 洞穴酒店</div></header>
+            <div class="day-body">
+              <div class="slots">
+                <div class="slot"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚热气球"><div class="slot-text"><span class="slot-time">清晨</span><h3>第一次热气球机会</h3><p>约 04:30 接人，选择正规运营方 16～24 人篮。</p></div></div>
+                <div class="slot"><img src="guide-images/goreme-open-air.jpg" alt="格雷梅露天博物馆"><div class="slot-text"><span class="slot-time">上午</span><h3>早餐、休息＋露天博物馆</h3><p>热气球后先回房休息，约 10:30 入场；游览 2～2.5 小时。</p></div></div>
+                <div class="slot"><img src="guide-images/uchisar-panorama.jpg" alt="卡帕多奇亚谷地休息日"><div class="slot-text"><span class="slot-time">下午</span><h3>午餐＋回酒店休息</h3><p>不再塞入地下城，结束全程最长的清晨后保留午睡和自由活动。</p></div></div>
+              </div>
+              <p class="why"><strong>体力预期：</strong>这是全程最早起的一天。热气球飞成后只保留露天博物馆；若取消，仍按原时间起床，下午也不要“补满”行程。</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <header class="day-head"><div><div class="date">09.28</div><div class="weekday">周一 · Day 5</div></div><div class="sleep">主案：格雷梅<br>Plan B：AYT机场</div></header>
+            <div class="day-body">
+              <div class="slots">
+                <div class="slot"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚热气球群"><div class="slot-text"><span class="slot-time">清晨</span><h3>热气球顺延日</h3><p>如果 9/27 取消，今天第二次尝试；不要重复预付两家公司。</p></div></div>
+                <div class="slot"><img src="guide-images/underground-city.jpg" alt="卡帕多奇亚地下城"><div class="slot-text"><span class="slot-time">上午 / 中午</span><h3>地下城半日</h3><p>Kaymaklı 或 Derinkuyu 二选一；若当天飞热气球，早餐休息后再出发。</p></div></div>
+                <div class="slot"><img src="guide-images/pasabag.jpg" alt="帕夏贝精灵烟囱"><div class="slot-text"><span class="slot-time">下午</span><h3>Paşabağ 或休息</h3><p>仅在体力充足且不用提前飞 AYT 时增加；不再叠加红谷长徒步。</p></div></div>
+              </div>
+              <p class="why"><strong>两种版本：</strong>首日已飞成＝地下城＋Paşabağ；今天才飞＝地下城和 Paşabağ 二选一。若采用最稳 Plan B，下午结束后飞 AYT 并住机场附近。</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <header class="day-head"><div><div class="date">09.29</div><div class="weekday">周二 · Day 6</div></div><div class="sleep">住：卡什<br>Airbnb</div></header>
+            <div class="day-body">
+              <div class="slots">
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">上午</span><h3>ASR→AYT</h3><p>从格雷梅前往 Kayseri 机场，乘直飞安塔利亚的航班。</p></div></div>
+                <div class="slot"><img src="guide-images/myra-rock-tombs.jpg" alt="Myra 岩墓"><div class="slot-text"><span class="slot-time">下午</span><h3>取车＋Myra</h3><p>安塔利亚机场取车，沿 D400 前往 Myra 看岩墓与古剧场。</p></div></div>
+                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什海岸"><div class="slot-text"><span class="slot-time">晚上</span><h3>抵达卡什</h3><p>入住后只逛老城、吃晚饭，不把今天当作剧场日落日。</p></div></div>
+              </div>
+              <p class="why"><strong>执行门槛：</strong>12:30 前驶离 AYT 才游 Myra；12:30～15:30 直接去卡什；更晚、疲劳或天气恶劣则住机场，次日早走。详见上方“风险预案”。</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <header class="day-head"><div><div class="date">09.30</div><div class="weekday">周三 · Day 7</div></div><div class="sleep">住：卡什<br>Airbnb</div></header>
+            <div class="day-body">
+              <div class="slots">
+                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什古剧场"><div class="slot-text"><span class="slot-time">上午</span><h3>卡什老城慢逛</h3><p>Uzun Çarşı 长街、狮子墓、港口；不用开车。</p></div></div>
+                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什海岸"><div class="slot-text"><span class="slot-time">下午</span><h3>海边休息</h3><p>游泳、咖啡或回房午休，不在日落前安排远途景点。</p></div></div>
+                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什古剧场面向地中海"><div class="slot-text"><span class="slot-time">日落</span><h3>卡什古剧场</h3><p>当天查询日落时间，提前 45～60 分钟步行抵达。</p></div></div>
+              </div>
+              <p class="why"><strong>核心锚点：</strong>这一天不赶路。多云仍去看海景与蓝调时刻；若下雨或临时关闭，10/1 游船早归后作为第二次机会。</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <header class="day-head"><div><div class="date">10.01</div><div class="weekday">周四 · Day 8</div></div><div class="sleep">住：卡什<br>Airbnb</div></header>
+            <div class="day-body">
+              <div class="slots">
+                <div class="slot"><img src="guide-images/kekova.jpg" alt="Kekova 水下古城"><div class="slot-text"><span class="slot-time">上午</span><h3>Kekova 出海</h3><p>约 08:30 从卡什或 Üçağız 登船，选含午餐的拼船。</p></div></div>
+                <div class="slot"><img src="guide-images/kekova.jpg" alt="Kekova 海湾与遗迹"><div class="slot-text"><span class="slot-time">下午</span><h3>水下古城＋Simena</h3><p>船上俯看遗址；游泳安排在遗址水域之外的海湾。</p></div></div>
+                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什港口附近"><div class="slot-text"><span class="slot-time">晚上</span><h3>返回卡什</h3><p>港口附近吃海鲜，留出整理行李的时间。</p></div></div>
+              </div>
+              <p class="why"><strong>这样安排：</strong>Kekova 值得完整一天，不压缩成两小时“打卡”项目。</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <header class="day-head"><div><div class="date">10.02</div><div class="weekday">周五 · Day 9</div></div><div class="sleep">住：费特希耶<br>民宿 / 小酒店</div></header>
+            <div class="day-body">
+              <div class="slots">
+                <div class="slot"><img src="guide-images/kaputas-beach.jpg" alt="Kaputaş 海滩"><div class="slot-text"><span class="slot-time">上午</span><h3>Kaputaş 海滩</h3><p>08:00 出发，最迟 10:00 离开；Kalkan 只外带午餐，无停车位直接跳过。</p></div></div>
+                <div class="slot"><img src="guide-images/patara.jpg" alt="Patara 海滩"><div class="slot-text"><span class="slot-time">下午</span><h3>Patara 古城优先</h3><p>12:30 后才抵达则取消沙滩，只看遗址；无论如何最迟 15:15 离开。</p></div></div>
+                <div class="slot"><img src="guide-images/oludeniz.jpg" alt="厄吕代尼兹蓝色泻湖"><div class="slot-text"><span class="slot-time">日落</span><h3>厄吕代尼兹</h3><p>看蓝色泻湖日落，之后入住费特希耶。</p></div></div>
+              </div>
+              <p class="why"><strong>删减顺序：</strong>先删 Kalkan，再删 Patara 沙滩；保留安全天亮驾驶、厄吕代尼兹、Patara 古城。多云也不改变返程结构。</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <header class="day-head"><div><div class="date">10.03</div><div class="weekday">周六 · Day 10</div></div><div class="sleep">住：IST 机场附近<br>接送酒店</div></header>
+            <div class="day-body">
+              <div class="slots">
+                <div class="slot"><img src="guide-images/oludeniz.jpg" alt="费特希耶海岸"><div class="slot-text"><span class="slot-time">上午</span><h3>费特希耶码头早餐</h3><p>不安排完整游船；留足还车与加油时间。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">下午</span><h3>DLM→IST</h3><p>达拉曼还车，优先选择直飞 IST 而非 SAW 的航班。</p></div></div>
+                <div class="slot"><img src="guide-images/istanbul-hagia-sophia.jpg" alt="伊斯坦布尔"><div class="slot-text"><span class="slot-time">晚上</span><h3>机场附近住宿</h3><p>住 Arnavutköy 接送酒店，次日从 IST 离境。</p></div></div>
+              </div>
+              <p class="why"><strong>这样安排：</strong>国际航班前一晚回到伊斯坦布尔，避免国内航班延误导致国际段误机。</p>
+            </div>
+          </article>
+
+          <article class="day">
+            <header class="day-head"><div><div class="date">10.04</div><div class="weekday">周日 · Day 11</div></div><div class="sleep">返程日</div></header>
+            <div class="day-body">
+              <div class="slots">
+                <div class="slot"><img src="guide-images/istanbul-hagia-sophia.jpg" alt="伊斯坦布尔城市景观"><div class="slot-text"><span class="slot-time">上午</span><h3>早餐＋退房</h3><p>搭酒店接送前往 IST，建议 10:00 前抵达航站楼。</p></div></div>
+                <div class="slot"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚热气球，旅程回顾"><div class="slot-text"><span class="slot-time">13:20</span><h3>飞往北京</h3><p>登机前回望这十天：伊斯坦布尔的清真寺、卡帕多奇亚的热气球、卡什的地中海。国际航班起飞，次日抵达北京。</p></div></div>
+                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什古剧场，旅程回顾"><div class="slot-text"><span class="slot-time">留白</span><h3>不安排城市活动</h3><p>机场住宿的价值，就是不用承担伊斯坦布尔早高峰风险——把最后的从容留给这趟旅行本身。</p></div></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="durations">
+      <div class="wrap">
+        <p class="eyebrow">Time & distance matrix</p>
+        <h2>每个点玩多久、上一段要走多久</h2>
+        <p class="lead">“路程”按正常路线估算；自驾段同时给出纯驾驶时间和实际建议预留。景区时间已经包含基本拍照，但不包含正式用餐。</p>
+        <div class="panel duration-grid">
+          <div class="duration-row header"><div>日期</div><div>地点</div><div>从上一点出发</div><div>建议游玩</div><div>最晚离开</div></div>
+          <div class="duration-row"><div class="duration-date">9/24</div><div class="duration-place"><strong>苏丹艾哈迈德广场</strong><small>蓝色清真寺外围＋街区</small></div><div class="duration-transit"><strong>IST → 老城约 50 km</strong><small>出租/接送 60–90 分钟</small></div><div><span class="time-pill">2–3小时</span></div><div>19:00</div></div>
+          <div class="duration-row"><div class="duration-date">9/25</div><div class="duration-place"><strong>圣索菲亚</strong><small>游客区与外围</small></div><div class="duration-transit"><strong>住宿步行</strong><small>约 5–15 分钟</small></div><div><span class="time-pill">1.5小时</span></div><div>10:00</div></div>
+          <div class="duration-row"><div class="duration-date">9/25</div><div class="duration-place"><strong>托普卡帕宫</strong><small>含后宫建议时间</small></div><div class="duration-transit"><strong>步行约 5 分钟</strong><small>排队另预留 20 分钟</small></div><div><span class="time-pill">2.5–3小时</span></div><div>13:15</div></div>
+          <div class="duration-row"><div class="duration-date">9/25</div><div class="duration-place"><strong>地下水宫</strong><small>含拍照</small></div><div class="duration-transit"><strong>步行约 12 分钟</strong><small>午餐后进入</small></div><div><span class="time-pill">45–60分</span></div><div>16:00</div></div>
+          <div class="duration-row"><div class="duration-date">9/25</div><div class="duration-place"><strong>博斯普鲁斯渡轮</strong><small>Eminönü → Kadıköy</small></div><div class="duration-transit"><strong>电车/步行 20–30 分</strong><small>包含候船缓冲</small></div><div><span class="time-pill">1.5–2小时</span></div><div>按船班</div></div>
+          <div class="duration-row"><div class="duration-date">9/26</div><div class="duration-place"><strong>乌奇萨＋鸽子谷</strong><small>全景与短步行</small></div><div class="duration-transit"><strong>NAV → 格雷梅约 40 km</strong><small>接送约 40–50 分钟</small></div><div><span class="time-pill">2–2.5小时</span></div><div>18:30</div></div>
+          <div class="duration-row"><div class="duration-date">9/27</div><div class="duration-place"><strong>热气球</strong><small>接送、早餐、飞行、庆祝</small></div><div class="duration-transit"><strong>酒店接送包含</strong><small>约 04:30 出发</small></div><div><span class="time-pill">3–4小时</span></div><div>约 08:30</div></div>
+          <div class="duration-row"><div class="duration-date">9/27</div><div class="duration-place"><strong>格雷梅露天博物馆</strong><small>岩窟教堂群</small></div><div class="duration-transit"><strong>格雷梅中心约 2 km</strong><small>车程 5–10 分钟</small></div><div><span class="time-pill">2–2.5小时</span></div><div>13:00</div></div>
+          <div class="duration-row"><div class="duration-date">9/27</div><div class="duration-place"><strong>午餐＋酒店休息</strong><small>不再安排地下城</small></div><div class="duration-transit"><strong>露天博物馆 → 格雷梅约 2 km</strong><small>车程 5–10 分钟</small></div><div><span class="time-pill">下午留白</span></div><div>自由</div></div>
+          <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>Kaymaklı/Derinkuyu</strong><small>二选一地下城</small></div><div class="duration-transit"><strong>约 30–40 km</strong><small>单程 35–50 分钟</small></div><div><span class="time-pill">含交通4小时</span></div><div>14:30</div></div>
+          <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>Paşabağ 或休息</strong><small>仅体力足够时增加</small></div><div class="duration-transit"><strong>格雷梅 → Paşabağ约 7 km</strong><small>车程约 15 分钟</small></div><div><span class="time-pill">1.5小时</span></div><div>17:30</div></div>
+          <div class="duration-row"><div class="duration-date">9/29</div><div class="duration-place"><strong>Myra 古城</strong><small>岩墓＋古剧场</small></div><div class="duration-transit"><strong>AYT → Myra 157 km</strong><small>纯驾驶2小时05分；实际2.5小时</small></div><div><span class="time-pill">1–1.5小时</span></div><div>17:00</div></div>
+          <div class="duration-row"><div class="duration-date">9/29</div><div class="duration-place"><strong>抵达卡什</strong><small>入住＋老城晚餐</small></div><div class="duration-transit"><strong>Myra → 卡什 45 km</strong><small>纯驾驶42分；实际约1小时</small></div><div><span class="time-pill">2小时</span></div><div>不设硬点</div></div>
+          <div class="duration-row"><div class="duration-date">9/30</div><div class="duration-place"><strong>卡什老城＋古剧场</strong><small>老城、港口、狮子墓、日落</small></div><div class="duration-transit"><strong>全程步行</strong><small>当天不开车</small></div><div><span class="time-pill">合计5–6小时</span></div><div>日落后</div></div>
+          <div class="duration-row"><div class="duration-date">10/1</div><div class="duration-place"><strong>Kekova＋Simena</strong><small>水下古城与游泳</small></div><div class="duration-transit"><strong>卡什港出发</strong><small>若 Üçağız 出发则单程约50分车程</small></div><div><span class="time-pill">8–9小时</span></div><div>约 18:00</div></div>
+          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>Kaputaş 海滩</strong><small>观景＋下海</small></div><div class="duration-transit"><strong>卡什 → Kaputaş 20 km</strong><small>纯驾驶18分；预留30分</small></div><div><span class="time-pill">1.5小时</span></div><div>10:30</div></div>
+          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>Kalkan（可跳过）</strong><small>仅外带午餐</small></div><div class="duration-transit"><strong>Kaputaş → Kalkan 6 km</strong><small>约 10–15 分钟</small></div><div><span class="time-pill">最多30分</span></div><div>11:00</div></div>
+          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>Patara 古城＋沙滩</strong><small>遗址优先，沙滩次之</small></div><div class="duration-transit"><strong>Kalkan → Patara 15 km</strong><small>约 20–25 分钟</small></div><div><span class="time-pill">2.5小时</span></div><div>15:15</div></div>
+          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>厄吕代尼兹</strong><small>泻湖与日落</small></div><div class="duration-transit"><strong>Patara → Ölüdeniz 84 km</strong><small>纯驾驶1小时27分；实际1小时45分</small></div><div><span class="time-pill">1.5小时</span></div><div>日落后</div></div>
+          <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>费特希耶码头</strong><small>早餐＋短逛</small></div><div class="duration-transit"><strong>Ölüdeniz → Fethiye 17 km</strong><small>约 25–35 分钟</small></div><div><span class="time-pill">1–1.5小时</span></div><div>09:30</div></div>
+          <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>Dalaman 还车</strong><small>加油、验车、拍照</small></div><div class="duration-transit"><strong>Fethiye → DLM 50 km</strong><small>纯驾驶49分；预留1小时10分</small></div><div><span class="time-pill">还车30–45分</span></div><div>航班前2.5小时</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="restaurants">
+      <div class="wrap">
+        <p class="eyebrow">Eat along the route</p>
+        <h2>每个停留点附近，真正顺路的餐厅</h2>
+        <p class="lead">按你“不想顿顿烤肉、预算不要太高”的要求筛选。价格为两人、不喝酒的规划区间；土耳其通胀较快，进店后先看菜单。</p>
+        <div class="restaurant-grid">
+          <article class="restaurant"><div class="restaurant-loc">伊斯坦布尔 · Sirkeci</div><h3>Balkan Lokantası</h3><p>历史区最实用的家常菜馆，柜台指菜；适合圣索菲亚或地下水宫之后午餐。</p><div class="restaurant-tags"><span>豆饭</span><span>炖茄子</span><span>扁豆汤</span><span>非烤肉</span></div><div class="restaurant-footer"><strong>两人 ₺800–1,300</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Balkan+Lokantasi+Sirkeci" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">伊斯坦布尔 · Kadıköy</div><h3>Çiya Sofrası</h3><p>渡轮到亚洲区后的地方菜选择；从冷菜柜挑蔬菜、豆类和一份主菜即可。</p><div class="restaurant-tags"><span>安纳托利亚家常菜</span><span>蔬菜小菜</span><span>可共享</span></div><div class="restaurant-footer"><strong>两人 ₺2,000–3,000</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Ciya+Sofrasi+Kadikoy" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">格雷梅</div><h3>Seten Restaurant</h3><p>2026 米其林推荐，景观与传统菜兼顾；只安排一顿稍正式的卡帕多奇亚晚餐。</p><div class="restaurant-tags"><span>Mantı饺子</span><span>汤</span><span>当地蔬菜</span><span>建议预约</span></div><div class="restaurant-footer"><strong>两人 ₺2,000–3,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Seten+Restaurant+Goreme" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">Ürgüp · 地下城日顺路</div><h3>Tık Tık Kadın Emeği</h3><p>女性合作社经营的传统家常菜，米其林推荐；比洞穴景观餐厅更符合你的口味。</p><div class="restaurant-tags"><span>家常炖菜</span><span>汤</span><span>蔬菜</span><span>非烤肉</span></div><div class="restaurant-footer"><strong>两人 ₺1,000–1,800</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Tik+Tik+Kadin+Emegi+Urgup" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">Uçhisar</div><h3>Saklı Konak</h3><p>适合乌奇萨结束后吃午餐；点汤、Mantı和一道蔬菜即可，不必点完整烤肉套餐。</p><div class="restaurant-tags"><span>当地菜</span><span>Mantı</span><span>室内休息</span></div><div class="restaurant-footer"><strong>两人 ₺1,400–2,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Sakli+Konak+Restaurant+Uchisar" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">Myra · Demre</div><h3>Demre İpek Restaurant</h3><p>Myra 游览前后的便捷选择；Demre 的家常菜和 Pide 通常比卡什、Kalkan便宜。</p><div class="restaurant-tags"><span>酿青椒</span><span>橄榄油蔬菜</span><span>Pide</span><span>快速午餐</span></div><div class="restaurant-footer"><strong>两人 ₺700–1,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Demre+Ipek+Restaurant" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">卡什 · 老城北侧</div><h3>Bi Lokma</h3><p>家庭式土耳其菜，汤、米饭、蔬菜、饺子选择比海港餐厅全面；作为卡什日常正餐首选。</p><div class="restaurant-tags"><span>汤饭</span><span>土耳其饺子</span><span>素食选择</span><span>可预约</span></div><div class="restaurant-footer"><strong>两人 ₺1,200–1,900</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Bi+Lokma+Kas" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">卡什 · 古剧场日落后</div><h3>Ruhi Bey Meyhanesi</h3><p>全程唯一一顿正式海鲜；只点两款 Meze、一条鱼和沙拉，不点酒和大拼盘。</p><div class="restaurant-tags"><span>Meze</span><span>本地鱼</span><span>酥皮虾可选</span><span>建议预约</span></div><div class="restaurant-footer"><strong>两人 ₺2,500–4,000</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Ruhi+Bey+Meyhanesi+Kas" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">Kekova / Üçağız</div><h3>Hassan Restaurant</h3><p>只有选择 Üçağız 上船且游船不含午餐时才考虑；若船票已含午餐，不必重复消费。</p><div class="restaurant-tags"><span>海边</span><span>鱼类</span><span>价格先问</span><span>可跳过</span></div><div class="restaurant-footer"><strong>两人 ₺1,800–3,000</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Hassan+Restaurant+Kekova" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">Kaputaş / Kalkan</div><h3>不在海滩吃正餐</h3><p>Kaputaş 只有简单小卖部；带水和水果，在 Kalkan 找 Pide 店外带，不进港口景观餐厅；没有停车位直接跳过。</p><div class="restaurant-tags"><span>Pide</span><span>扁豆汤</span><span>Ayran</span><span>最多30分钟</span></div><div class="restaurant-footer"><strong>两人 ₺700–1,100</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=pide+Kalkan+Turkey" target="_blank" rel="noopener">附近搜索 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">Patara · Gelemiş村</div><h3>Durak Lokantası</h3><p>适合从古城出来后简单吃，价格级别低于 Kalkan；如果时间紧，也可只买 Gözleme。</p><div class="restaurant-tags"><span>家常菜</span><span>Gözleme</span><span>便宜</span><span>可外带</span></div><div class="restaurant-footer"><strong>两人 ₺700–1,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Durak+Lokantasi+Patara" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">厄吕代尼兹</div><h3>Kumsal Pide</h3><p>泻湖日落前后的低负担选择；两人点一份 Pide、一碗汤和沙拉，不用去海滨西餐厅。</p><div class="restaurant-tags"><span>Pide</span><span>汤</span><span>轻晚餐</span><span>经济</span></div><div class="restaurant-footer"><strong>两人 ₺700–1,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Kumsal+Pide+Oludeniz" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">费特希耶 · Paspatur</div><h3>Nefis Pide</h3><p>还车前一晚或次日早餐后的简单正餐；比鱼市场更符合预算，也不需要复杂称重和加工。</p><div class="restaurant-tags"><span>Pide</span><span>Lahmacun</span><span>快速</span><span>经济</span></div><div class="restaurant-footer"><strong>两人 ₺700–1,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Nefis+Pide+Paspatur+Fethiye" target="_blank" rel="noopener">地图 ↗</a></div></article>
+        </div>
+        <div class="callout"><strong>每天用餐逻辑：</strong>Airbnb 自备简单早餐；午餐用 Lokanta、汤、Pide 或 Gözleme；晚餐才坐下来吃。Kekova船餐已经包含就不要再订岸上午餐。全程正式海鲜仅卡什一顿，餐饮仍可控制在两人约 ¥2,200～2,800。</div>
+      </div>
+    </section>
+
+    <section class="section" id="stays">
+      <div class="wrap">
+        <p class="eyebrow">Where to stay</p>
+        <h2>Airbnb 为主，一晚过渡城市住小酒店</h2>
+        <div class="panel table-scroll">
+          <table class="stay-table">
+            <thead><tr><th>地点</th><th>晚数</th><th>推荐区域</th><th>合理总价</th><th>关键筛选</th></tr></thead>
+            <tbody>
+              <tr><td><strong>伊斯坦布尔</strong></td><td>2</td><td>Sultanahmet / Cankurtaran</td><td>¥700～1,100</td><td>步行到圣索菲亚；自助入住；行李寄存</td></tr>
+              <tr><td><strong>格雷梅</strong></td><td>3</td><td>Göreme 镇中心</td><td>¥1,100～1,600</td><td>有露台；步行到餐厅；热气球可接送</td></tr>
+              <tr><td><strong>安塔利亚机场（Plan B）</strong></td><td>0 / 1</td><td>AYT 机场接送范围</td><td>¥350～550</td><td>仅替换 9/28 格雷梅一晚；确认深夜接送</td></tr>
+              <tr><td><strong>卡什</strong></td><td>3</td><td>古剧场—老城之间</td><td>¥1,100～1,700</td><td>步行到剧场；停车明确；不要住半岛深处</td></tr>
+              <tr><td><strong>费特希耶</strong></td><td>1</td><td>Karagözler / 老城码头</td><td>¥350～550</td><td>一晚优先小酒店，避免高额清洁费</td></tr>
+              <tr><td><strong>IST 机场附近</strong></td><td>1</td><td>Arnavutköy</td><td>¥600～850</td><td>确认接送时间、价格与航站楼集合点</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout"><strong>Airbnb 比价口径：</strong>必须填写准确日期和 2 位房客，再看最后付款页的整段总价；夜价之外还可能有一次性清洁费、平台服务费和税费。安塔利亚机场 Plan B 是替换一晚格雷梅住宿，不是额外增加第 11 晚。</div>
+      </div>
+    </section>
+
+    <section class="section" id="transport">
+      <div class="wrap">
+        <p class="eyebrow">Flights &amp; road trip</p>
+        <h2>三段境内航班＋四天 D400 自驾</h2>
+        <div class="booking-grid">
+          <article class="panel">
+            <p class="eyebrow">Domestic flights</p>
+            <h3>境内航班</h3>
+            <div class="price">¥2,800～3,500</div>
+            <ul class="booking-list">
+              <li>三段均按每人至少 20kg 托运行李比价</li>
+              <li>9/26：IST→NAV；裸票不计入候选</li>
+              <li>9/29：ASR→AYT，直飞且首选 11:30 前落地</li>
+              <li>10/3：DLM→IST，不选 SAW，含托运行李</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <p class="eyebrow">Car rental</p>
+            <h3>Cizgi / Enterprise</h3>
+            <div class="price">¥2,800～3,500</div>
+            <ul class="booking-list">
+              <li>9/29 安塔利亚机场取车</li>
+              <li>10/3 达拉曼机场还车</li>
+              <li>自动挡紧凑型，含加强保险</li>
+              <li>必须确认异地还车费</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <p class="eyebrow">Road cost</p>
+            <h3>油费与停车</h3>
+            <div class="price">¥500～700</div>
+            <ul class="booking-list">
+              <li>主线约 393 公里，含绕行按 420～460 公里</li>
+              <li>汽油约 30～35 升</li>
+              <li>另含停车、HGS 与补油误差</li>
+            </ul>
+          </article>
+        </div>
+        <div class="callout"><strong>驾照确认模板：</strong>邮件明确写明持“香港正式驾驶执照原件＋香港运输署签发的国际驾驶许可证（IDP）”，要求租车公司书面确认接受，并同时确认押金、保险免责额、轮胎/玻璃/底盘保障及 Dalaman 精确还车位置。</div>
+      </div>
+    </section>
+
+    <section class="section" id="budget">
+      <div class="wrap">
+        <p class="eyebrow">Budget for two</p>
+        <h2>两人全部费用，目标控制在 3.6 万左右</h2>
+        <div class="budget-wrap">
+          <div class="panel table-scroll">
+            <table class="budget-table">
+              <thead><tr><th>项目</th><th>两人预算</th></tr></thead>
+              <tbody>
+                <tr><td>北京—伊斯坦布尔国际往返机票</td><td>¥12,628（已付）</td></tr>
+                <tr><td>10 晚住宿</td><td>¥3,850～5,800</td></tr>
+                <tr><td>土耳其境内 3 段飞机</td><td>¥2,800～3,500</td></tr>
+                <tr><td>4 天租车＋保险＋异地还车</td><td>¥2,800～3,500</td></tr>
+                <tr><td>油费、停车与 HGS</td><td>¥500～700</td></tr>
+                <tr><td>卡帕多奇亚热气球</td><td>¥2,800～3,300</td></tr>
+                <tr><td>Kekova 拼船</td><td>¥800～900</td></tr>
+                <tr><td>其他门票与地下城</td><td>¥2,700～3,500</td></tr>
+                <tr><td>10 天餐饮</td><td>¥2,200～2,800</td></tr>
+                <tr><td>两人旅行保险</td><td>¥460～740</td></tr>
+                <tr><td>机场接送与城市交通</td><td>¥700～950</td></tr>
+                <tr><td>两人 eSIM</td><td>¥120～220</td></tr>
+                <tr class="budget-total"><td>两人全程预计</td><td>¥32,400～38,500</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <aside class="panel">
+            <p class="eyebrow">Recommended cap</p>
+            <h3>建议控制线</h3>
+            <div class="big-number">¥36,000</div>
+            <p class="muted">这个预算保留热气球、Kekova、卡什古剧场、地下城和海岸自驾，不需要靠夜巴或青旅压价。</p>
+            <span class="paid-note">其中 ¥12,628 国际机票已经支付</span>
+            <p style="margin-top:20px"><strong>预计尚待支付</strong><br><span class="price">约 ¥23,400</span></p>
+            <p class="small muted">购物、滑翔伞、私人游艇及大额纪念品未计入。</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="practical">
+      <div class="wrap">
+        <p class="eyebrow">Practical guide for Hong Kong travellers</p>
+        <h2>证件、驾驶、付款、天气与安全</h2>
+        <div class="practical-grid">
+          <article class="practical-item"><h3>护照与签证</h3><ul><li>持香港特区护照，旅游停留 90 天内目前免签。</li><li>持 BN(O) 护照并非同一规则，需要按土耳其官方要求办理电子签证。</li><li>护照身份不同，务必以实际使用的旅行证件核对。</li><li>出发时护照有效期距回程日建议至少还有 6 个月；临近有效期务必先换发再订票。</li></ul><p class="small"><a href="https://www.mfa.gov.tr/yabancilarin-tabi-oldugu-vize-rejimi.tr.mfa" target="_blank" rel="noopener">土耳其外交部签证规则 ↗</a></p></article>
+          <article class="practical-item"><h3>香港驾照</h3><ul><li>建议带香港正式驾驶执照原件＋香港运输署签发的 IDP。</li><li>IDP 有效期为签发日起 1 年；申请时需符合香港运输署资格。</li><li>另带护照、主驾驶人实体信用卡；最终以租车公司书面确认为准。</li></ul><p class="small"><a href="https://www.td.gov.hk/en/public_services/licences_and_permits/driving_licences/how_to_apply_for_a_driving_licence/general_information_on_driving_licence/index.html" target="_blank" rel="noopener">香港运输署 IDP 说明 ↗</a></p></article>
+          <article class="practical-item"><h3>旅行保险</h3><ul><li>两人 11 日单次全球保障预留 HK$500～800（约 ¥460～740）。</li><li>至少比较海外医疗 HK$100 万以上、医疗运送、旅程改道、行李延误和个人责任。</li><li>核对热气球是否属于承保娱乐活动；滑翔伞必须另行确认。租车自负额保障不能代替租车公司的 CDW。</li></ul><p class="small"><a href="https://www.consumer.org.hk/sc/article/582-travel-insurance/582-travel-insurance-study-overview" target="_blank" rel="noopener">香港消委会旅保比较提醒 ↗</a></p></article>
+          <article class="practical-item"><h3>D400 驾驶</h3><ul><li>土耳其靠右行驶，卡什老城道路狭窄，不要开车进核心步行区。</li><li>山海路段弯道多，天黑后不赶路；Kaputaş 停车位有限，必须早到。</li><li>取还车时录制车身、轮胎、玻璃、油量和里程；保留加油小票。</li></ul></article>
+          <article class="practical-item"><h3>付款与现金</h3><ul><li>酒店、租车和较大餐厅可刷卡；小店、停车、市场和部分船家准备现金。</li><li>刷卡机询问币种时选择 TRY，不选择人民币或港币动态换汇。</li><li>鱼类按公斤计价时，先确认整条鱼的总价再下单。</li></ul></article>
+          <article class="practical-item"><h3>9月底穿衣</h3><ul><li>伊斯坦布尔：薄外套＋防雨层；海风时体感偏凉。</li><li>卡帕多奇亚清晨：羽绒背心或抓绒、长裤；热气球集合时温度最低。</li><li>卡什海岸：短袖为主，带防晒、水鞋和一件晚间薄外套。</li></ul></article>
+          <article class="practical-item"><h3>网络与离线准备</h3><ul><li>出发前装 eSIM；同时下载 Google Maps 土耳其离线区域。</li><li>保存租车、住宿、热气球和游船确认单截图。</li><li>本攻略地图需联网加载底图，但路线、时间表和图片可离线阅读。</li></ul></article>
+          <article class="practical-item"><h3>插头与充电</h3><ul><li>土耳其使用 C / F 型两圆脚插座，230V；香港 G 型插头需要转换器。</li><li>手机、相机和电脑充电器标有 100–240V 时只需转换插头。</li><li>吹风机等大功率设备必须检查电压标签，不要只靠插头转换。</li></ul><p class="small"><a href="https://blog.turkishairlines.com/en/a-guide-to-plugs-and-sockets-by-country/" target="_blank" rel="noopener">土耳其航空插座说明 ↗</a></p></article>
+          <article class="practical-item"><h3>紧急联系方式</h3><ul><li>土耳其警察、救护、消防统一拨 112。</li><li>香港入境处境外 24 小时求助：+852 1868，也可向 (852) 1868 发送 WhatsApp。</li><li>中国驻土耳其使馆领保：+90 538 821 5530；驻伊斯坦布尔总领馆：+90 531 338 9459。</li></ul><p class="small"><a href="https://www.immd.gov.hk/eng/services/Assistance_Outside_Hong_Kong.html" target="_blank" rel="noopener">香港入境处境外协助 ↗</a>　<a href="https://www.112.gov.tr/" target="_blank" rel="noopener">土耳其 112 ↗</a></p></article>
+          <article class="practical-item"><h3>热气球与游船</h3><ul><li>热气球天气取消应全额退款或顺延，不同时预付两家公司。</li><li>Kekova确认从卡什还是 Üçağız 出发、午餐是否包含、Simena停留多久。</li><li>游船日带防晒、帽子、水、泳衣和防水袋。</li></ul></article>
+          <article class="practical-item"><h3>卡什古剧场</h3><ul><li>官方资料确认剧场位于卡什主广场以西约 500 米，但未提供稳定的独立开放时间和票价。</li><li>不要把“全天免费”当作已确认事实；可能因活动、维护或现场管理临时变化。</li><li>出发前一周请住宿方确认开放时间、收费、活动占用和日落后离场方式。</li></ul><p class="small"><a href="https://www.ktb.gov.tr/EN-36176/where-to-visit.html" target="_blank" rel="noopener">土耳其文化旅游部资料 ↗</a></p></article>
+          <article class="practical-item"><h3>出发前一周复核</h3><ul><li>9/29 ASR→AYT 航班时间、直飞状态及三段托运行李额度。</li><li>9/30 卡什实际日落、古剧场开放状态和天气。</li><li>景点开放日、餐厅营业日、道路施工及租车门店交接点。</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="checklist">
+      <div class="wrap">
+        <p class="eyebrow">Before booking</p>
+        <h2>推荐下单顺序</h2>
+        <div class="panel">
+          <div class="check-grid">
+            <div class="check-item"><input id="c1" type="checkbox"><label for="c1"><strong>1. 查 9/29 ASR→AYT</strong><br><span class="muted small">先确认直飞班期，再锁定跨地区路线。</span></label></div>
+            <div class="check-item"><input id="c2" type="checkbox"><label for="c2"><strong>2. 订 9/27 热气球</strong><br><span class="muted small">确认天气取消可退款或自动顺延至 9/28。</span></label></div>
+            <div class="check-item"><input id="c3" type="checkbox"><label for="c3"><strong>3. 订三段境内机票</strong><br><span class="muted small">三段均按每人至少 20kg 托运行李的最终价比较。</span></label></div>
+            <div class="check-item"><input id="c4" type="checkbox"><label for="c4"><strong>4. 锁定卡什住宿</strong><br><span class="muted small">先保证剧场步行距离和停车，再考虑海景。</span></label></div>
+            <div class="check-item"><input id="c5" type="checkbox"><label for="c5"><strong>5. 书面确认租车</strong><br><span class="muted small">香港驾照＋IDP、保险、押金、异地还车全部确认。</span></label></div>
+            <div class="check-item"><input id="c6" type="checkbox"><label for="c6"><strong>6. 购买旅行保险</strong><br><span class="muted small">核对医疗运送、改道、热气球及租车自负额条款。</span></label></div>
+            <div class="check-item"><input id="c7" type="checkbox"><label for="c7"><strong>7. 预订其余住宿</strong><br><span class="muted small">Airbnb 看最终结算总价；比较 9/28 AYT 机场 Plan B。</span></label></div>
+            <div class="check-item"><input id="c8" type="checkbox"><label for="c8"><strong>8. 预订 Kekova 拼船</strong><br><span class="muted small">确认出发港、午餐、Simena 停留与取消政策。</span></label></div>
+            <div class="check-item"><input id="c9" type="checkbox"><label for="c9"><strong>9. 出发前一周复核</strong><br><span class="muted small">航班、行李、日落、古剧场开放、天气、道路与餐厅营业。</span></label></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <strong>土耳其 11 日旅行手册</strong>
+      <p class="small">行程日期：2026 年 9 月 24 日—10 月 4 日。价格为 2026 年 7 月制定行程时的两人规划区间，不等同于锁价订单；付款前请重新核对含税价格、行李、取消规则、餐厅营业时间和异地还车费用。</p>
+      <p class="small">路线距离来自 OSRM 道路计算；地图国界数据来自 Natural Earth，经 world-atlas 提供并随页面本地加载。餐厅优先参考 2026 米其林名单、当地政府/旅游资料及近期营业信息，但季节性营业可能调整。</p>
+      <p class="small">页面图片保存在同目录下的 guide-images 文件夹中。移动本 HTML 时，请同时移动该文件夹。</p>
+    </div>
+  </footer>
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="vendor/topojson/topojson-client.min.js"></script>
+  <script>
+    (function () {
+      const mapEl = document.getElementById('trip-map');
+      if (!mapEl || typeof L === 'undefined') {
+        if (mapEl) mapEl.innerHTML = '<div style="padding:24px">互动地图需要联网加载。下方“时间与路程”仍可离线使用。</div>';
+        return;
+      }
+      mapEl.textContent = '';
+      const map = L.map('trip-map', { scrollWheelZoom: false, zoomControl: true });
+      map.createPane('country-map');
+      map.getPane('country-map').style.zIndex = 200;
+      map.getPane('country-map').style.pointerEvents = 'none';
+      map.attributionControl.setPrefix(false);
+      map.attributionControl.addAttribution('Country geometry: Natural Earth / world-atlas');
+      fetch('data/countries-110m.json')
+        .then((response) => {
+          if (!response.ok) throw new Error('map data unavailable');
+          return response.json();
+        })
+        .then((world) => {
+          if (typeof topojson === 'undefined') return;
+          const countries = topojson.feature(world, world.objects.countries);
+          L.geoJSON(countries, {
+            pane: 'country-map',
+            interactive: false,
+            style: (feature) => ({
+              color: feature.id === '792' ? '#5f7f7a' : '#a7b9b5',
+              weight: feature.id === '792' ? 1.8 : .8,
+              fillColor: feature.id === '792' ? '#d5e5dc' : '#edf2ed',
+              fillOpacity: feature.id === '792' ? .8 : .5
+            })
+          }).addTo(map);
+        })
+        .catch(() => {
+          mapEl.classList.add('map-data-fallback');
+        });
+
+      const points = [
+        {n:1, name:'伊斯坦布尔历史区', lat:41.0086, lng:28.9802, stay:'2晚', time:'历史区 1.5天', food:'Balkan Lokantası / Çiya Sofrası'},
+        {n:2, name:'格雷梅', lat:38.6431, lng:34.8289, stay:'3晚', time:'热气球＋陆地景点 2.5天', food:'Seten / Tık Tık'},
+        {n:3, name:'乌奇萨', lat:38.6307, lng:34.8050, stay:'不换酒店', time:'2–2.5小时', food:'Saklı Konak'},
+        {n:4, name:'Paşabağ', lat:38.6777, lng:34.8520, stay:'不换酒店', time:'1.5小时', food:'回格雷梅吃'},
+        {n:5, name:'Kaymaklı地下城', lat:38.4603, lng:34.7517, stay:'半日团', time:'含交通约4小时', food:'Ürgüp家常菜'},
+        {n:6, name:'安塔利亚机场取车', lat:36.8999, lng:30.8012, stay:'取车约45分钟', time:'自驾起点', food:'机场不吃正餐'},
+        {n:7, name:'Myra / Demre', lat:36.2580, lng:29.9850, stay:'途中停留', time:'1–1.5小时', food:'Demre İpek Restaurant'},
+        {n:8, name:'卡什', lat:36.2019, lng:29.6377, stay:'3晚', time:'老城＋古剧场约5–6小时', food:'Bi Lokma / Ruhi Bey'},
+        {n:9, name:'Kekova / Simena', lat:36.1886, lng:29.8627, stay:'一日游', time:'游船8–9小时', food:'船上午餐 / Hassan可选'},
+        {n:10, name:'Kaputaş海滩', lat:36.2294, lng:29.4486, stay:'途中停留', time:'1.5小时', food:'不在海滩吃正餐'},
+        {n:11, name:'Kalkan', lat:36.2649, lng:29.4141, stay:'可跳过', time:'外带午餐最多30分钟', food:'当地Pide店'},
+        {n:12, name:'Patara', lat:36.2639, lng:29.3182, stay:'途中停留', time:'2.5小时', food:'Durak Lokantası'},
+        {n:13, name:'厄吕代尼兹', lat:36.5490, lng:29.1269, stay:'日落停留', time:'1.5小时', food:'Kumsal Pide'},
+        {n:14, name:'费特希耶', lat:36.6592, lng:29.1263, stay:'1晚', time:'码头1–1.5小时', food:'Nefis Pide'},
+        {n:15, name:'达拉曼机场', lat:36.7126, lng:28.7955, stay:'还车＋飞行', time:'还车30–45分钟', food:'提前在市区吃'}
+      ];
+
+      const markerByNumber = new Map();
+      points.forEach((p) => {
+        const icon = L.divIcon({ className: '', html: '<div class="route-pin">' + p.n + '</div>', iconSize: [28,28], iconAnchor: [14,14] });
+        const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.name + ' Turkey');
+        const marker = L.marker([p.lat,p.lng], {icon}).addTo(map).bindPopup(
+          '<strong>' + p.n + '. ' + p.name + '</strong>' +
+          '<div>' + p.stay + ' · ' + p.time + '</div>' +
+          '<div>吃：' + p.food + '</div>' +
+          '<a href="' + mapsUrl + '" target="_blank" rel="noopener">打开导航 ↗</a>'
+        );
+        markerByNumber.set(p.n, marker);
+      });
+
+      const eastRoadLngLat = [[30.801207,36.899927],[30.809184,36.92688],[30.796166,36.939814],[30.751943,36.925227],[30.738428,36.911132],[30.619307,36.898235],[30.59274,36.819424],[30.572196,36.798371],[30.569456,36.758081],[30.553756,36.733392],[30.568926,36.679707],[30.538256,36.651672],[30.554759,36.630622],[30.540665,36.591629],[30.556052,36.578027],[30.553498,36.542584],[30.530322,36.529947],[30.518557,36.510425],[30.501019,36.508624],[30.429595,36.468573],[30.433138,36.441538],[30.422122,36.409819],[30.381629,36.378649],[30.370537,36.379443],[30.374991,36.348735],[30.332138,36.373608],[30.303809,36.36312],[30.285812,36.366986],[30.273282,36.320347],[30.16398,36.309777],[30.146033,36.297306],[30.151948,36.275282],[30.138398,36.278827],[30.112146,36.247128],[30.08536,36.250875],[30.056665,36.27575],[30.031985,36.255412],[30.009737,36.250335],[29.991599,36.266557],[29.98521,36.258019],[29.951228,36.249549],[29.969109,36.261436],[29.931209,36.268317],[29.866933,36.260395],[29.810738,36.237182],[29.780901,36.252801],[29.757538,36.2535],[29.737412,36.239243],[29.707918,36.23428],[29.673157,36.212803],[29.666436,36.198527],[29.632072,36.207072],[29.637747,36.201915]];
+      const westRoadLngLat = [[29.637747,36.201915],[29.612298,36.208665],[29.5856,36.20136],[29.573772,36.202907],[29.567429,36.210461],[29.548593,36.212779],[29.512455,36.209713],[29.478128,36.21231],[29.448598,36.229375],[29.425139,36.234902],[29.427154,36.246328],[29.414057,36.264946],[29.412623,36.272631],[29.401597,36.269215],[29.387451,36.278815],[29.366182,36.270039],[29.351979,36.287231],[29.32913,36.297137],[29.318509,36.28614],[29.318184,36.263918],[29.31705,36.257959],[29.321746,36.279932],[29.318509,36.28614],[29.329737,36.296808],[29.334898,36.341133],[29.322325,36.376209],[29.327068,36.39024],[29.297918,36.404639],[29.269205,36.411652],[29.273398,36.425165],[29.268704,36.435471],[29.290131,36.44617],[29.288274,36.46409],[29.315361,36.484979],[29.33911,36.519111],[29.34778,36.55763],[29.344877,36.570351],[29.358036,36.611076],[29.352175,36.620058],[29.35542,36.633676],[29.319129,36.643269],[29.29143,36.641562],[29.251046,36.630524],[29.227742,36.632245],[29.18486,36.649126],[29.145538,36.630106],[29.157667,36.583775],[29.145076,36.567965],[29.127919,36.559479],[29.122574,36.550701],[29.126914,36.549008],[29.122153,36.549547],[29.127919,36.559479],[29.145076,36.567965],[29.157687,36.583997],[29.152302,36.59202],[29.150565,36.61519],[29.12582,36.623165],[29.122322,36.656379],[29.126322,36.659207],[29.132053,36.66317],[29.127443,36.677625],[29.080233,36.691966],[29.052707,36.706275],[29.042439,36.706624],[29.036538,36.71524],[29.029669,36.714285],[29.019564,36.745406],[28.999092,36.747418],[28.972193,36.738762],[28.961838,36.742756],[28.963405,36.750924],[28.955383,36.755122],[28.95884,36.758448],[28.943336,36.763054],[28.934743,36.758503],[28.912504,36.765377],[28.869226,36.760443],[28.850055,36.769842],[28.822542,36.795973],[28.810671,36.795106],[28.800069,36.773672],[28.799375,36.755022],[28.80775,36.738864],[28.800778,36.732338],[28.79553,36.712587]];
+      const flip = (arr) => arr.map((c) => [c[1], c[0]]);
+      L.polyline(flip(eastRoadLngLat), {color:'#087f8c', weight:5, opacity:.9}).addTo(map);
+      L.polyline(flip(westRoadLngLat), {color:'#087f8c', weight:5, opacity:.9}).addTo(map);
+      L.polyline([[36.2019,29.6377],[36.1886,29.8627]], {color:'#e99645', weight:3, dashArray:'7 7'}).addTo(map);
+      L.polyline([[41.0086,28.9802],[38.6431,34.8289]], {color:'#e99645', weight:3, dashArray:'10 8'}).addTo(map);
+      L.polyline([[38.6431,34.8289],[36.8999,30.8012]], {color:'#e99645', weight:3, dashArray:'10 8'}).addTo(map);
+      L.polyline([[36.7126,28.7955],[41.0086,28.9802]], {color:'#e99645', weight:3, dashArray:'10 8'}).addTo(map);
+
+      const allBounds = L.latLngBounds(points.map((p) => [p.lat,p.lng]));
+      const coastBounds = L.latLngBounds(points.filter((p) => p.n >= 6).map((p) => [p.lat,p.lng]));
+      const kasBounds = L.latLngBounds(points.filter((p) => p.n >= 7 && p.n <= 12).map((p) => [p.lat,p.lng]));
+      const buttons = [document.getElementById('map-all'), document.getElementById('map-coast'), document.getElementById('map-kas')];
+      function select(button, bounds) {
+        buttons.forEach((b) => b.classList.toggle('active', b === button));
+        map.fitBounds(bounds, {padding:[28,28]});
+      }
+      buttons[0].addEventListener('click', () => select(buttons[0], allBounds));
+      buttons[1].addEventListener('click', () => select(buttons[1], coastBounds));
+      buttons[2].addEventListener('click', () => select(buttons[2], kasBounds));
+      select(buttons[0], allBounds);
+      setTimeout(() => map.invalidateSize(), 80);
+    })();
+  </script>
+</body>
+</html>
