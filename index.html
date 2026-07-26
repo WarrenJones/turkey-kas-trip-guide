@@ -61,12 +61,16 @@
     .map-controls button { padding: 7px 11px; border: 0; border-radius: 9px; color: var(--ink); background: transparent; cursor: pointer; font-size: 13px; font-weight: 800; }
     .map-controls button.active { color: white; background: var(--sea); }
     .route-pin { display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid white; border-radius: 50%; color: white; background: var(--sea); box-shadow: 0 3px 10px rgba(11,65,72,.34); font-size: 12px; font-weight: 900; }
+    .hub-pin { display: grid; place-items: center; min-height: 32px; padding: 5px 10px; border: 2px solid white; border-radius: 999px; color: white; background: var(--sea-dark); box-shadow: 0 4px 14px rgba(11,65,72,.3); font-size: 12px; font-weight: 900; white-space: nowrap; }
     .leaflet-popup-content { min-width: 190px; margin: 14px 16px; color: var(--ink); font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; line-height: 1.5; }
     .leaflet-popup-content strong { display: block; margin-bottom: 4px; font-size: 15px; }
     .leaflet-popup-content a { color: var(--sea-dark); font-weight: 800; }
     .map-side { display: flex; flex-direction: column; gap: 10px; }
     .leg-card { padding: 15px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
     .leg-card strong { display: block; }
+    .leg-date { display: flex; align-items: center; gap: 8px; margin: 9px 0 3px; color: var(--sea-dark); font-size: 12px; font-weight: 850; }
+    .leg-date time { flex: 0 0 auto; padding: 3px 8px; border-radius: 999px; color: white; background: var(--sun); }
+    .leg-date span { color: #496269; }
     .leg-card .leg-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; color: var(--muted); font-size: 13px; }
     .mode-icon { display: inline-grid; place-items: center; width: 25px; height: 25px; margin-right: 7px; border-radius: 8px; color: white; background: var(--sea); font-size: 12px; }
     .map-note { padding: 14px 16px; border-radius: 15px; color: #5f4b32; background: #fff2df; font-size: 13px; }
@@ -357,18 +361,19 @@
             <div id="trip-map" role="img" aria-label="伊斯坦布尔、格雷梅观景台、乌奇萨、红谷、Paşabağ、Zelve、爱情谷、安塔利亚、卡什、Kekova、Patara、厄吕代尼兹及达拉曼的旅行路线地图"></div>
             <div class="map-controls" aria-label="地图范围">
               <button type="button" class="active" id="map-all">全程路线</button>
+              <button type="button" id="map-cappadocia">卡帕多奇亚</button>
               <button type="button" id="map-coast">海岸自驾</button>
               <button type="button" id="map-kas">卡什周边</button>
             </div>
           </div>
           <aside class="map-side">
-            <div class="leg-card"><strong><span class="mode-icon">✈</span>伊斯坦布尔 → 卡帕多奇亚</strong><div class="leg-meta"><span>飞行约 1小时20分</span><span>机场接送 40–75分</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">✈</span>Kayseri → 安塔利亚</strong><div class="leg-meta"><span>飞行约 1小时20分</span><span>主案 9/29 早班</span><span>Plan B 9/28 晚班</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">🚗</span>AYT → Myra → 卡什</strong><div class="leg-meta"><span>约 201 km</span><span>纯驾驶 2小时47分</span><span>实际预留 3.5小时</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">⛵</span>卡什 → Kekova → 卡什</strong><div class="leg-meta"><span>拼船约 8–9小时</span><span>通常无需当天开车</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">🚗</span>卡什 → Patara → 费特希耶</strong><div class="leg-meta"><span>经停全段约 142 km</span><span>纯驾驶约 2小时30分</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">🚗</span>费特希耶 → DLM</strong><div class="leg-meta"><span>约 50 km</span><span>纯驾驶约 50分</span><span>还车日预留 1.5小时</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">✈</span>Dalaman → 伊斯坦布尔</strong><div class="leg-meta"><span>飞行约 1小时25分</span><span>优先落地 IST</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">✈</span>伊斯坦布尔 → 卡帕多奇亚</strong><div class="leg-date"><time datetime="2026-09-26">9/26 周六</time><span>07:45 起飞 · 约11:00到格雷梅</span></div><div class="leg-meta"><span>VF3268 已订</span><span>09:00 到 NAV</span><span>接送约 40–50分</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">✈</span>Kayseri → 安塔利亚</strong><div class="leg-date"><time datetime="2026-09-29">9/29 周二</time><span>首选 11:30 前落地</span></div><div class="leg-meta"><span>飞行约 1小时20分</span><span>Plan B：9/28 晚班</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">🚗</span>AYT → Myra → 卡什</strong><div class="leg-date"><time datetime="2026-09-29">9/29 周二</time><span>12:30 前离开机场才游 Myra</span></div><div class="leg-meta"><span>约 201 km</span><span>纯驾驶 2小时47分</span><span>实际预留 3.5小时</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">⛵</span>卡什 → Kekova → 卡什</strong><div class="leg-date"><time datetime="2026-10-01">10/1 周四</time><span>预计 09:00–18:00</span></div><div class="leg-meta"><span>拼船约 8–9小时</span><span>通常无需当天开车</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">🚗</span>卡什 → Patara → 费特希耶</strong><div class="leg-date"><time datetime="2026-10-02">10/2 周五</time><span>07:30 出发 · 日落后抵达</span></div><div class="leg-meta"><span>经停全段约 142 km</span><span>纯驾驶约 2小时30分</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">🚗</span>费特希耶 → DLM</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>航班前 2.5 小时到机场</span></div><div class="leg-meta"><span>约 50 km</span><span>纯驾驶约 50分</span><span>还车预留 30–45分</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">✈</span>Dalaman → 伊斯坦布尔</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>航班待订</span></div><div class="leg-meta"><span>飞行约 1小时25分</span><span>优先落地 IST</span></div></div>
             <div class="map-note">地图时间为无停车、无拍照、无堵车的路线计算；正式日程已经额外加入约 20%–30% 缓冲。</div>
           </aside>
         </div>
@@ -865,17 +870,31 @@
         {n:19, name:'达拉曼机场', lat:36.7126, lng:28.7955, stay:'还车＋飞行', time:'还车30–45分钟', food:'提前在市区吃'}
       ];
 
+      const hubMarkers = L.layerGroup();
+      const detailMarkers = L.layerGroup();
       const markerByNumber = new Map();
       points.forEach((p) => {
         const icon = L.divIcon({ className: '', html: '<div class="route-pin">' + p.n + '</div>', iconSize: [28,28], iconAnchor: [14,14] });
         const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.name + ' Turkey');
-        const marker = L.marker([p.lat,p.lng], {icon}).addTo(map).bindPopup(
+        const marker = L.marker([p.lat,p.lng], {icon}).addTo(detailMarkers).bindPopup(
           '<strong>' + p.n + '. ' + p.name + '</strong>' +
           '<div>' + p.stay + ' · ' + p.time + '</div>' +
           '<div>吃：' + p.food + '</div>' +
           '<a href="' + mapsUrl + '" target="_blank" rel="noopener">打开导航 ↗</a>'
         );
         markerByNumber.set(p.n, marker);
+      });
+
+      const hubs = [
+        {name:'伊斯坦布尔', dates:'9/24–9/26 · 10/3–10/5', lat:41.0086, lng:28.9802},
+        {name:'卡帕多奇亚', dates:'9/26–9/29', lat:38.6431, lng:34.8289},
+        {name:'D400 海岸线', dates:'9/29–10/3', lat:36.3850, lng:29.5200}
+      ];
+      hubs.forEach((hub) => {
+        const hubIcon = L.divIcon({className:'', html:'<div class="hub-pin">' + hub.name + '</div>', iconSize:[128,32], iconAnchor:[64,16]});
+        L.marker([hub.lat, hub.lng], {icon:hubIcon}).addTo(hubMarkers).bindPopup(
+          '<strong>' + hub.name + '</strong><div>' + hub.dates + '</div><div>放大地图查看具体景点</div>'
+        );
       });
 
       const eastRoadLngLat = [[30.801207,36.899927],[30.809184,36.92688],[30.796166,36.939814],[30.751943,36.925227],[30.738428,36.911132],[30.619307,36.898235],[30.59274,36.819424],[30.572196,36.798371],[30.569456,36.758081],[30.553756,36.733392],[30.568926,36.679707],[30.538256,36.651672],[30.554759,36.630622],[30.540665,36.591629],[30.556052,36.578027],[30.553498,36.542584],[30.530322,36.529947],[30.518557,36.510425],[30.501019,36.508624],[30.429595,36.468573],[30.433138,36.441538],[30.422122,36.409819],[30.381629,36.378649],[30.370537,36.379443],[30.374991,36.348735],[30.332138,36.373608],[30.303809,36.36312],[30.285812,36.366986],[30.273282,36.320347],[30.16398,36.309777],[30.146033,36.297306],[30.151948,36.275282],[30.138398,36.278827],[30.112146,36.247128],[30.08536,36.250875],[30.056665,36.27575],[30.031985,36.255412],[30.009737,36.250335],[29.991599,36.266557],[29.98521,36.258019],[29.951228,36.249549],[29.969109,36.261436],[29.931209,36.268317],[29.866933,36.260395],[29.810738,36.237182],[29.780901,36.252801],[29.757538,36.2535],[29.737412,36.239243],[29.707918,36.23428],[29.673157,36.212803],[29.666436,36.198527],[29.632072,36.207072],[29.637747,36.201915]];
@@ -889,18 +908,31 @@
       L.polyline([[36.7126,28.7955],[41.0086,28.9802]], {color:'#e99645', weight:3, dashArray:'10 8'}).addTo(map);
 
       const allBounds = L.latLngBounds(points.map((p) => [p.lat,p.lng]));
+      const cappadociaBounds = L.latLngBounds(points.filter((p) => p.n >= 2 && p.n <= 9).map((p) => [p.lat,p.lng]));
       const coastBounds = L.latLngBounds(points.filter((p) => p.n >= 10).map((p) => [p.lat,p.lng]));
       const kasBounds = L.latLngBounds(points.filter((p) => p.n >= 11 && p.n <= 16).map((p) => [p.lat,p.lng]));
-      const buttons = [document.getElementById('map-all'), document.getElementById('map-coast'), document.getElementById('map-kas')];
+      const buttons = [document.getElementById('map-all'), document.getElementById('map-cappadocia'), document.getElementById('map-coast'), document.getElementById('map-kas')];
+      function updateMarkerVisibility() {
+        const showDetails = map.getZoom() >= 8;
+        if (showDetails) {
+          if (map.hasLayer(hubMarkers)) map.removeLayer(hubMarkers);
+          if (!map.hasLayer(detailMarkers)) detailMarkers.addTo(map);
+        } else {
+          if (map.hasLayer(detailMarkers)) map.removeLayer(detailMarkers);
+          if (!map.hasLayer(hubMarkers)) hubMarkers.addTo(map);
+        }
+      }
       function select(button, bounds) {
         buttons.forEach((b) => b.classList.toggle('active', b === button));
         map.fitBounds(bounds, {padding:[28,28]});
       }
+      map.on('zoomend', updateMarkerVisibility);
       buttons[0].addEventListener('click', () => select(buttons[0], allBounds));
-      buttons[1].addEventListener('click', () => select(buttons[1], coastBounds));
-      buttons[2].addEventListener('click', () => select(buttons[2], kasBounds));
+      buttons[1].addEventListener('click', () => select(buttons[1], cappadociaBounds));
+      buttons[2].addEventListener('click', () => select(buttons[2], coastBounds));
+      buttons[3].addEventListener('click', () => select(buttons[3], kasBounds));
       select(buttons[0], allBounds);
-      setTimeout(() => map.invalidateSize(), 80);
+      setTimeout(() => { map.invalidateSize(); updateMarkerVisibility(); }, 80);
     })();
   </script>
 </body>
