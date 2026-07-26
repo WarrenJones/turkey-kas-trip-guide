@@ -13,4 +13,7 @@ for (const date of ['2026-09-26', '2026-09-29', '2026-10-01', '2026-10-02', '202
   assert.match(html, new RegExp(`datetime="${date}"`), `route cards should include ${date}`);
 }
 
+assert.doesNotMatch(html, /地下水宫|Basilica Cistern/i, 'the cancelled Basilica Cistern visit must not remain in the guide');
+assert.match(html, /14:40[\s\S]{0,240}博斯普鲁斯短线/, 'September 25 should include the 14:40 short Bosphorus cruise');
+
 console.log('Map marker layering regression test passed');
