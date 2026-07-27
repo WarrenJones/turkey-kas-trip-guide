@@ -49,6 +49,22 @@ assert.match(html, /9\/28[\s\S]{0,360}PC3503[\s\S]{0,180}22:05[\s\S]{0,100}23:25
 assert.match(html, /<div class="date">09\.28<\/div>[\s\S]{0,3600}(?:AYT|Lara)[\s\S]{0,180}(?:住宿|入住)/, 'September 28 should finish at an Antalya or Lara hotel');
 assert.match(html, /<div class="date">09\.26<\/div>[\s\S]{0,2600}<img src="guide-images\/goreme-night\.jpg" alt="格雷梅镇区与洞穴建筑亮灯夜景">[\s\S]{0,220}<span class="slot-time">17:30–19:30<\/span>[\s\S]{0,160}<h3>格雷梅日落观景台＋洞穴镇夜景<\/h3>[\s\S]{0,420}日落后继续停留 30–45 分钟[\s\S]{0,260}天黑后不进入山谷小径/, 'September 26 should explicitly retain the Göreme blue-hour and illuminated cave-town night view with a matching night photograph');
 assert.doesNotMatch(html, /<h3>Paşabağ＋Zelve<\/h3>/, 'the compressed Cappadocia plan should remove the old third-day architecture stop');
+
+const septemberTwentyEighth = html.match(/<div class="date">09\.28<\/div>[\s\S]*?<div class="date">09\.29<\/div>/)?.[0] ?? '';
+assert.match(septemberTwentyEighth, /9\/27[^<]{0,60}取消[\s\S]{0,500}热气球/, 'September 28 should reserve the second balloon attempt only when September 27 is cancelled');
+assert.match(septemberTwentyEighth, /9\/27[^<]{0,60}成功[\s\S]{0,500}Ihlara/, 'September 28 should activate Ihlara only when the first balloon flight succeeds');
+assert.match(septemberTwentyEighth, /guide-images\/ihlara-valley\.jpg/, 'the Ihlara branch should have its own matching photograph');
+assert.match(septemberTwentyEighth, /08:00[\s\S]{0,180}15:00/, 'the Ihlara branch should have a bounded morning-to-afternoon window');
+assert.match(septemberTwentyEighth, /muze\.gov\.tr\/muze-detay\?DistId=IH1&amp;SectionId=IH101/, 'the Ihlara branch should link to the official museum page');
+assert.match(septemberTwentyEighth, /aksaray\.ktb\.gov\.tr\/TR-232541\/ihlara-vadisi39nde-trekking\.html/, 'the Ihlara branch should link to the official trekking information');
+assert.match(septemberTwentyEighth, /私人司机|包车司机/, 'the Ihlara branch should specify controlled private transport');
+assert.doesNotMatch(septemberTwentyEighth, /<h3>爱情谷轻量观景<\/h3>/, 'Love Valley should not remain the formal September 28 fallback');
+
+assert.match(html, /9\/28[\s\S]{0,220}Ihlara[^<]{0,100}4公里[\s\S]{0,520}12:45/, 'the duration matrix should show the short Ihlara route and hard departure time');
+assert.match(html, /name:'Ihlara峡谷（热气球成功分支）'[\s\S]{0,220}time:'9\/28 · 09:30–12:45'/, 'the Cappadocia map should include the conditional Ihlara stop and time');
+assert.match(html, /普通绿线团[\s\S]{0,160}(?:不参加|不要参加|不建议)/, 'the guide should reject an uncontrolled group Green Tour before the airport transfer');
+assert.match(html, /2号[^<]{0,40}(?:主入口|入口)[\s\S]{0,280}出发前一周[\s\S]{0,220}(?:关闭|改走|取消)/, 'the guide should require a final check rather than assuming Ihlara gate 2 remains open');
+assert.match(html, /38\.264252%2C34\.290615/, 'the Ihlara plan should provide an exact Belisırma pickup coordinate');
 assert.match(html, /格雷梅[\s\S]{0,220}<td>2晚<\/td>/, 'the stay table should reduce Göreme to two nights');
 assert.match(html, /安塔利亚机场[\s\S]{0,220}<td>1晚<\/td>/, 'the Antalya airport or Lara night should be fixed, not optional');
 assert.match(html, /<div class="date">10\.03<\/div>[\s\S]{0,3600}Saklıkent[\s\S]{0,900}(?:晚班|傍晚)[\s\S]{0,300}DLM→IST/, 'October 3 should visit Saklıkent before an evening DLM flight');
