@@ -15,5 +15,8 @@ for (const date of ['2026-09-26', '2026-09-29', '2026-10-01', '2026-10-02', '202
 
 assert.doesNotMatch(html, /地下水宫|Basilica Cistern/i, 'the cancelled Basilica Cistern visit must not remain in the guide');
 assert.match(html, /14:40[\s\S]{0,240}博斯普鲁斯短线/, 'September 25 should include the 14:40 short Bosphorus cruise');
+assert.doesNotMatch(html, /Myra|米拉/i, 'the replaced Myra stop must not remain in the guide');
+assert.match(html, /下杜登瀑布/, 'the airport-side Lower Duden waterfall stop should be included');
+assert.match(html, /13:00[\s\S]{0,180}(?:跳过|直接去卡什)/, 'the Duden stop should have a clear skip threshold');
 
 console.log('Map marker layering regression test passed');
