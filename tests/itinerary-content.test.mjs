@@ -27,7 +27,19 @@ assert.match(kasDay, /Limanağzı/, 'September 30 should include a concrete swim
 
 assert.match(html, /Patara 沙丘＋海滩/, 'Patara should prioritize nature for this traveller');
 assert.doesNotMatch(html, /Patara 古城优先/, 'Patara should no longer prioritize architecture');
-assert.match(html, /slots slots-four/, 'the D400 itinerary day should visualize the road plus its three major stops');
+assert.match(html, /slots slots-five/, 'the D400 itinerary day should visualize the road plus its four major natural stops');
+
+const octoberSecond = html.match(/<div class="date">10\.02<\/div>[\s\S]*?<div class="date">10\.03<\/div>/)?.[0] ?? '';
+assert.match(octoberSecond, /蝴蝶谷崖顶观景台/, 'October 2 should include Butterfly Valley viewpoint as a fixed mainline stop');
+assert.match(octoberSecond, /15:50–16:20/, 'Butterfly Valley viewpoint should have a concrete arrival window');
+assert.match(octoberSecond, /guide-images\/butterfly-valley-viewpoint\.jpg/, 'Butterfly Valley viewpoint should have its own matching photograph');
+assert.match(octoberSecond, /fethiye\.gov\.tr\/kelebekler-vadisi/, 'Butterfly Valley viewpoint should link to the local government guide');
+assert.match(octoberSecond, /36\.5002863%2C29\.1281400/, 'Butterfly Valley viewpoint should provide exact-coordinate navigation');
+assert.doesNotMatch(octoberSecond, /蝴蝶谷[^<]{0,80}(?:可选|有空|天气好才去)/, 'Butterfly Valley viewpoint must not be described as optional');
+
+assert.match(html, /name:'蝴蝶谷崖顶观景台（Faralya）'[\s\S]{0,180}stay:'10\/2固定主线'/, 'the route map should include Butterfly Valley as a fixed October 2 stop');
+assert.match(html, /不下谷/, 'the guide should clearly prohibit descending from the cliff viewpoint');
+assert.match(html, /只在[^<]{0,80}(?:合法|明确划出|正规)[^<]{0,40}停车/, 'the viewpoint guide should retain a legal-parking safety rule');
 
 assert.doesNotMatch(html, /guide-images\/oludeniz\.jpg" alt="费特希耶/, 'Fethiye must not reuse the Ölüdeniz image');
 assert.doesNotMatch(html, /guide-images\/cappadocia-balloon\.jpg" alt="卡帕多奇亚地貌"[\s\S]{0,180}SAW→NAV/, 'a flight card must not reuse a balloon photograph');

@@ -241,6 +241,7 @@
     .day-body { padding: 18px; }
     .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
     .slots.slots-four { grid-template-columns: repeat(4, 1fr); }
+    .slots.slots-five { grid-template-columns: repeat(3, 1fr); }
     .slot { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: #fff; }
     .slot img { aspect-ratio: 16 / 9; }
     .slot-text { padding: 15px; }
@@ -305,7 +306,7 @@
       .day-head { display: flex; align-items: center; gap: 18px; }
       .day-head .sleep { margin: 0 0 0 auto; text-align: right; }
       .slots { grid-template-columns: 1fr; }
-      .slots.slots-four { grid-template-columns: repeat(2, 1fr); }
+      .slots.slots-four, .slots.slots-five { grid-template-columns: repeat(2, 1fr); }
       .slot { display: grid; grid-template-columns: minmax(130px, .7fr) 1fr; }
       .slot img { height: 100%; aspect-ratio: auto; }
     }
@@ -326,7 +327,7 @@
       .day-body { padding: 11px; }
       .slot { grid-template-columns: 1fr; }
       .slot img { aspect-ratio: 16 / 9; }
-      .slots.slots-four, .drive-timeline, .drive-rules { grid-template-columns: 1fr; }
+      .slots.slots-four, .slots.slots-five, .drive-timeline, .drive-rules { grid-template-columns: 1fr; }
       .drive-hero { min-height: 320px; }
       .drive-body, .drive-hero-copy { padding: 19px; }
       .stay-table { min-width: 720px; }
@@ -341,7 +342,7 @@
       .section { padding: 12mm 0 0; }
       .summary-card, .panel, .day { box-shadow: none; }
       .day { break-inside: avoid; margin-bottom: 8mm; }
-      .slots { grid-template-columns: repeat(3, 1fr); }
+      .slots, .slots.slots-four, .slots.slots-five { grid-template-columns: repeat(3, 1fr); }
       .slot { display: block; }
       .slot img { aspect-ratio: 16/9; }
       a { text-decoration: none; }
@@ -396,12 +397,13 @@
         <p class="lead">地图中的实线是 D400 自驾路线，虚线是境内航班。点击编号可以查看建议停留时间和附近用餐点；地图导航链接会打开对应地点。</p>
         <div class="map-layout">
           <div class="map-shell">
-            <div id="trip-map" role="img" aria-label="伊斯坦布尔、格雷梅日落夜景、乌奇萨、红谷、爱情谷、下杜登瀑布、卡什、Kekova、Patara、厄吕代尼兹、Saklıkent峡谷及达拉曼的旅行路线地图"></div>
+            <div id="trip-map" role="img" aria-label="伊斯坦布尔、格雷梅日落夜景、乌奇萨、红谷、爱情谷、下杜登瀑布、卡什、Kekova、Patara、蝴蝶谷崖顶观景台、厄吕代尼兹、Saklıkent峡谷及达拉曼的旅行路线地图"></div>
             <div class="map-controls" aria-label="地图范围">
               <button type="button" class="active" id="map-all">全程路线</button>
               <button type="button" id="map-cappadocia">卡帕多奇亚</button>
               <button type="button" id="map-coast">海岸自驾</button>
               <button type="button" id="map-kas">卡什周边</button>
+              <button type="button" id="map-fethiye">费特希耶段</button>
             </div>
           </div>
           <aside class="map-side">
@@ -409,7 +411,7 @@
             <div class="leg-card"><strong><span class="mode-icon">✈</span>开塞利 ASR → 安塔利亚 AYT</strong><div class="leg-date"><time datetime="2026-09-28">9/28 周一</time><span>PC3503 · 22:05–23:25</span></div><div class="leg-meta"><span>NAV 进、ASR 出</span><span>18:30 离开格雷梅</span><span>当晚住 AYT / Lara</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">🚗</span>AYT → 下杜登 → 卡什</strong><div class="leg-date"><time datetime="2026-09-29">9/29 周二</time><span>上午 08:30 取车 · 10:30 前离开瀑布</span></div><div class="leg-meta"><span>下杜登瀑布45–60分</span><span>约203 km</span><span>日落前抵达古剧场</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">⛵</span>卡什 → Kekova → 卡什</strong><div class="leg-date"><time datetime="2026-10-01">10/1 周四</time><span>预计 09:00–18:00</span></div><div class="leg-meta"><span>拼船约 8–9小时</span><span>通常无需当天开车</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">🚗</span>D400：卡什 → Kaputaş → Patara → 厄吕代尼兹</strong><div class="leg-date"><time datetime="2026-10-02">10/2 周五</time><span>07:30 出发 · 日落后抵达</span></div><div class="leg-meta"><span>经停全段约 140 km</span><span>实际驾驶预留 3小时</span><span>最美段：卡什→Kalkan</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">🚗</span>D400：卡什 → Kaputaş → Patara → 蝴蝶谷崖顶 → 厄吕代尼兹</strong><div class="leg-date"><time datetime="2026-10-02">10/2 周五</time><span>13:45 离开 Patara · 18:45 日落</span></div><div class="leg-meta"><span>经停全段约 160 km</span><span>实际驾驶预留 4小时</span><span>Faralya 固定折返约 18 km</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">🚗</span>费特希耶 → Saklıkent → DLM</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>07:15 出发 · 约13:30到机场</span></div><div class="leg-meta"><span>约 135 km</span><span>峡谷游玩 2–2.5小时</span><span>还车预留 45分</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">✈</span>Dalaman → 伊斯坦布尔</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>只订 18:00 后晚班</span></div><div class="leg-meta"><span>飞行约 1小时25分</span><span>优先落地 IST</span><span>峡谷晚点仍有缓冲</span></div></div>
             <div class="map-note">地图时间为无停车、无拍照、无堵车的路线计算；正式日程已经额外加入约 20%–30% 缓冲。</div>
@@ -430,7 +432,7 @@
           <article class="summary-card"><strong>约 500 km</strong><span>含 Saklıkent 的自驾主线<br><small class="muted">安塔利亚取、达拉曼还</small></span></article>
         </div>
         <div class="route" aria-label="旅行路线">
-          <span>伊斯坦布尔</span><i>→</i><span>格雷梅</span><i>✈</i><span>安塔利亚</span><i>🚗</i><span>下杜登</span><i>→</i><span>卡什</span><i>→</i><span>Kekova</span><i>→</i><span>Patara</span><i>→</i><span>厄吕代尼兹</span><i>→</i><span>Saklıkent</span><i>✈</i><span>伊斯坦布尔</span>
+          <span>伊斯坦布尔</span><i>→</i><span>格雷梅</span><i>✈</i><span>安塔利亚</span><i>🚗</i><span>下杜登</span><i>→</i><span>卡什</span><i>→</i><span>Kekova</span><i>→</i><span>Patara</span><i>→</i><span>蝴蝶谷崖顶</span><i>→</i><span>厄吕代尼兹</span><i>→</i><span>Saklıkent</span><i>✈</i><span>伊斯坦布尔</span>
         </div>
       </div>
     </section>
@@ -468,20 +470,23 @@
             <ul class="risk-list">
               <li><strong>热气球两天都取消</strong>接受退款，不再为卡帕多奇亚加住一晚；保留乌奇萨、Aydınkırağı 观景台和红／玫瑰谷，9/28 下午最多加一个爱情谷短停。</li>
               <li><strong>卡什古剧场多云</strong>9/29 仍看海景和蓝调时刻；若取车延误或临时关闭，9/30 从 Limanağzı 早一班返港后再尝试。</li>
+              <li><strong>蝴蝶谷低云或下雨</strong>固定主线也服从安全：能见度差、路面湿滑或没有合法宽阔停车位时不停车，更不靠崖或尝试下谷。</li>
               <li><strong>厄吕代尼兹多云</strong>保留泻湖景观，不为追晚霞改动 10/3 返程航班。</li>
             </ul>
           </article>
 
           <article class="risk-panel">
             <span class="risk-label">10/2 · 删减顺序</span>
-            <h3>时间不够就砍，Kalkan 先砍</h3>
-            <p class="small muted" style="margin:-6px 0 0">编号＝舍弃优先级，数字越大越先砍；1、2 是必须保住的核心，不砍。</p>
-            <div class="priority-flow"><span><b>1</b>安全与天亮驾驶</span><span><b>2</b>D400海岸段</span><span><b>3</b>厄吕代尼兹</span><span><b>4</b>Patara沙丘海滩</span><span><b>5</b>Kalkan</span></div>
+            <h3>蝴蝶谷进入主线，Kalkan 仍然先砍</h3>
+            <p class="small muted" style="margin:-6px 0 0">编号＝当天保留优先级；蝴蝶谷崖顶是计划内固定停靠，但道路和停车安全始终拥有否决权。</p>
+            <div class="priority-flow"><span><b>1</b>安全与天亮驾驶</span><span><b>2</b>D400海岸段</span><span><b>3</b>蝴蝶谷崖顶</span><span><b>4</b>厄吕代尼兹日落</span><span><b>5</b>Patara沙丘海滩</span><span><b>6</b>Kalkan</span></div>
             <p class="small muted" style="margin:16px 0 0">当天时间门槛（和上面的舍弃顺序是两件事）：</p>
             <ul class="risk-list">
-              <li><strong>10:15</strong>最迟离开 Kaputaş。</li>
-              <li><strong>Kalkan</strong>只做 30 分钟外带午餐；没有停车位直接跳过。</li>
-              <li><strong>12:30 后才到 Patara</strong>跳过古城，只看沙丘和海滩；最迟 14:30 离开。</li>
+              <li><strong>10:15</strong>最迟离开 Kaputaş；晚点先从 Kalkan 的 30 分钟外带停留里找时间。</li>
+              <li><strong>Kalkan</strong>没有停车位直接跳过；午餐提前买好，不能把蝴蝶谷的时间用在排队吃饭。</li>
+              <li><strong>12:00 后才到 Patara</strong>跳过古城并缩短海滩；最迟 13:45 离开。</li>
+              <li><strong>16:20 后仍未到观景点</strong>不再找第二个机位；只在合法宽阔位置停 15–20 分钟，16:40 必须离开。</li>
+              <li><strong>安全例外</strong>低云、下雨、司机疲劳或没有合法停车位时直接驶往 Ölüdeniz；“必须加进路线”不等于必须冒险停车。</li>
             </ul>
           </article>
         </div>
@@ -492,26 +497,28 @@
       <div class="wrap">
         <p class="eyebrow">D400 coastal drive</p>
         <h2>D400 不是一个景点，要知道哪一段值得慢下来</h2>
-        <p class="lead">你这趟真正值得专门开的，是<strong>卡什 → Kaputaş → Kalkan</strong>的悬崖海岸段。9/29 的 AYT→卡什主要是长距离转场，不追路边照片；10/2 才是把海景、停车和游玩时间都留出来的 D400 自驾日。</p>
+        <p class="lead">你这趟真正值得专门开的，是<strong>卡什 → Kaputaş → Kalkan</strong>的悬崖海岸段。10/2 主线约 160 km；Patara 之后还会经 Ölüdeniz 南下 Faralya、固定折返蝴蝶谷崖顶，再回厄吕代尼兹等日落。</p>
         <div class="drive-guide">
           <div class="drive-hero">
             <img src="guide-images/d400-kas-kalkan-road.jpg" alt="D400 卡什至 Kalkan 海岸公路">
-            <div class="drive-hero-copy"><h3>最美段：卡什 → Kaputaş → Kalkan</h3><p>连续海景主要集中在卡什以西到 Kalkan；过了 Kalkan 转向 Patara 后会逐渐进入农田与内陆道路，不要把整天 140 多公里都想象成贴海悬崖公路。</p></div>
+            <div class="drive-hero-copy"><h3>最美段：卡什 → Kaputaş → Kalkan</h3><p>连续海景主要集中在卡什以西到 Kalkan；过了 Kalkan 转向 Patara 后会进入农田与内陆道路，最后才在 Faralya 再次回到高崖海景。不要把约 160 km 全部想象成贴海公路。</p></div>
           </div>
           <div class="drive-body">
             <div class="drive-timeline">
               <article class="drive-leg"><span class="drive-km">约20 km · 预留30分钟</span><strong>07:30 卡什 → Kaputaş</strong><p>当天景色最集中的一段。司机只看路，乘客负责拍照；观景必须等正规停车位。</p></article>
               <article class="drive-leg"><span class="drive-km">约10 km · 15分钟</span><strong>10:15 Kaputaş → Kalkan</strong><p>Kaputaş 约有 200 级台阶，停车位少。Kalkan 只停 30 分钟买咖啡或午餐，找不到位就优先跳过。</p></article>
               <article class="drive-leg"><span class="drive-km">约17 km · 20–25分钟</span><strong>10:45 Kalkan → Patara</strong><p>这一段海景减少。你的重点改为沙丘与长海滩，古城只在时间充裕、仍有兴趣时顺路看。</p></article>
-              <article class="drive-leg"><span class="drive-km">约84 km · 实际1小时45分–2小时15分</span><strong>14:30 Patara → Ölüdeniz</strong><p>不再是连续海岸景观。出发前补水、上洗手间；塞车时不为追日落超速。</p></article>
+              <article class="drive-leg"><span class="drive-km">约90 km · 实际预留2小时05分–2小时35分</span><strong>13:45 Patara → 蝴蝶谷崖顶</strong><p>先沿主路接近 Ölüdeniz，再南下 Faralya；这不是 Kalkan→Patara 之间的顺路小停。预计 15:50–16:20 抵达，只停 15–20 分钟。</p></article>
+              <article class="drive-leg"><span class="drive-km">约8 km · 窄弯路预留20–30分钟</span><strong>最迟16:40 蝴蝶谷 → Ölüdeniz</strong><p>沿原路折返，争取 17:10 前停好车；当天预计 18:45 日落，蓝调后再前往费特希耶入住。</p></article>
             </div>
             <div class="drive-rules">
-              <div class="drive-rule"><strong>停车规则</strong>只在停车场或明确划出的停车位停车；不要在弯道、窄路或路肩停车拍照。</div>
+              <div class="drive-rule"><strong>停车规则</strong>蝴蝶谷是天然高崖，不是有护栏的大型观景区；只在合法、宽阔且不妨碍车流的位置停车，不能在弯道或路肩排队等位。</div>
               <div class="drive-rule"><strong>驾驶准备</strong>前一晚在卡什加满油，下载离线地图；带偏光太阳镜，右侧海面反光强。</div>
-              <div class="drive-rule"><strong>晚点处理</strong>先跳过 Kalkan，再缩短 Patara；14:30 后仍未离开 Patara，就接受普通海景，不追逐厄吕代尼兹晚霞。</div>
+              <div class="drive-rule"><strong>崖顶规则</strong>不跨越护栏、不靠崖边自拍、不从 Faralya 绳索陡径下谷。低云、雨天、强风或无合法停车位时，安全否决停靠。</div>
+              <div class="drive-rule"><strong>晚点处理</strong>先跳过 Kalkan 和 Patara 古城，再缩短海滩；13:45 必须离开 Patara。仍晚点就接受日落前停留变短，绝不超速。</div>
             </div>
-            <p class="small muted" style="margin:16px 2px 0">景点依据：Kaputaş 位于 Kaş–Kalkan 公路、峡谷口下方，距卡什约 20 km；Patara 位于 Kaş–Fethiye 公路方向。出发前一周复核道路施工、景区开放和当天日落时间。</p>
-            <div class="authority-links"><a class="authority-link" href="https://goturkiye.com/branding/press-releases/5-best-road-trip-routes-of-turkiye" target="_blank" rel="noopener noreferrer">GoTürkiye · 地中海官方公路路线 ↗</a><a class="authority-link" href="https://goturkiye.com/antalya/touch" target="_blank" rel="noopener noreferrer">GoTürkiye · Kaputaş 与卡什资料 ↗</a></div>
+            <p class="small muted" style="margin:16px 2px 0">景点依据：Kaputaş 位于 Kaş–Kalkan 公路；蝴蝶谷崖顶位于 Faralya / Uzunyurt 方向，官方资料明确提醒下谷路线非常陡。本行程只做崖顶远观，不下谷。出发前一周复核道路施工、降雨、能见度和 18:45 左右的日落时间。</p>
+            <div class="authority-links"><a class="authority-link" href="https://goturkiye.com/branding/press-releases/5-best-road-trip-routes-of-turkiye" target="_blank" rel="noopener noreferrer">GoTürkiye · 地中海官方公路路线 ↗</a><a class="authority-link" href="https://www.fethiye.gov.tr/kelebekler-vadisi" target="_blank" rel="noopener noreferrer">费特希耶政府 · 蝴蝶谷与陡径说明 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=36.5002863%2C29.1281400" target="_blank" rel="noopener noreferrer">蝴蝶谷崖顶精确导航 ↗</a></div>
           </div>
         </div>
       </div>
@@ -621,13 +628,14 @@
           <article class="day">
             <header class="day-head"><div><div class="date">10.02</div><div class="weekday">周五 · Day 9</div></div><div class="sleep">住：费特希耶<br>民宿 / 小酒店</div></header>
             <div class="day-body">
-              <div class="slots slots-four">
+              <div class="slots slots-five">
                 <div class="slot attraction-card"><img src="guide-images/d400-kas-kalkan-road.jpg" alt="D400 卡什至 Kalkan 海岸弯道"><div class="slot-text"><span class="slot-time">07:30–08:00</span><h3>D400 卡什—Kalkan 景观段</h3><p>卡什到 Kaputaş 是当天最值得看的驾驶段；只在正规停车位停车，乘客负责拍照。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/branding/press-releases/5-best-road-trip-routes-of-turkiye" target="_blank" rel="noopener noreferrer">GoTürkiye · 官方公路旅行路线 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/kaputas-beach.jpg" alt="Kaputaş 海滩"><div class="slot-text"><span class="slot-time">08:00–10:15</span><h3>Kaputaş 海滩</h3><p>约 200 级台阶；停车位满就不要在路肩等。Kalkan 只外带午餐，无位直接跳过。</p><div class="authority-links"><a class="authority-link" href="https://www.kas.bel.tr/cardDetay/kaputas-plaj%C4%B1-499" target="_blank" rel="noopener noreferrer">卡什市政府 · Kaputaş ↗</a></div></div></div>
-                <div class="slot attraction-card"><img src="guide-images/patara-dunes.jpg" alt="Patara 沙丘、长海滩与地中海"><div class="slot-text"><span class="slot-time">11:15–14:30</span><h3>Patara 沙丘＋海滩</h3><p>按你的自然偏好，把时间给沙丘、海风和游泳；古城只做有余力时的顺路短看，保护区开放以官网为准。</p><div class="authority-links"><a class="authority-link" href="https://www.kas.bel.tr/cardDetay/patara-plaj%C4%B1-7909" target="_blank" rel="noopener noreferrer">卡什市政府 · Patara ↗</a></div></div></div>
-                <div class="slot attraction-card"><img src="guide-images/oludeniz.jpg" alt="厄吕代尼兹蓝色泻湖"><div class="slot-text"><span class="slot-time">日落</span><h3>厄吕代尼兹＋Babadağ 远景</h3><p>到泻湖看日落后入住费特希耶；若路上晚点，不临时加缆车。Babadağ 只作天气好、提前订票时的可选项。</p><div class="authority-links"><a class="authority-link" href="https://ekotaban.tarimorman.gov.tr/alan/5111" target="_blank" rel="noopener noreferrer">国家公园官方 · Ölüdeniz ↗</a><a class="authority-link" href="https://www.babadagteleferik.com.tr/en/" target="_blank" rel="noopener noreferrer">Babadağ 缆车官网 ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/patara-dunes.jpg" alt="Patara 沙丘、长海滩与地中海"><div class="slot-text"><span class="slot-time">11:15–13:45</span><h3>Patara 沙丘＋海滩</h3><p>按你的自然偏好，把时间给沙丘、海风和游泳；古城只做有余力时的顺路短看。13:45 必须上车，给 Faralya 高崖路留缓冲。</p><div class="authority-links"><a class="authority-link" href="https://www.kas.bel.tr/cardDetay/patara-plaj%C4%B1-7909" target="_blank" rel="noopener noreferrer">卡什市政府 · Patara ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/butterfly-valley-viewpoint.jpg" alt="从 Faralya 崖顶俯瞰蝴蝶谷海湾与地中海"><div class="slot-text"><span class="slot-time">预计15:50–16:20抵达 · 停15–20分</span><h3>蝴蝶谷崖顶观景台（Faralya）</h3><p>这是 10/2 固定主线自然景观；最迟 16:40 离开。只在合法宽阔位置停车，不靠崖自拍、不下谷；雨雾或无安全车位时由安全否决。</p><div class="authority-links"><a class="authority-link" href="https://www.fethiye.gov.tr/kelebekler-vadisi" target="_blank" rel="noopener noreferrer">费特希耶政府 · 蝴蝶谷 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=36.5002863%2C29.1281400" target="_blank" rel="noopener noreferrer">精确坐标导航 ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/oludeniz.jpg" alt="厄吕代尼兹蓝色泻湖"><div class="slot-text"><span class="slot-time">17:10前抵达 · 18:45日落</span><h3>厄吕代尼兹＋Babadağ 远景</h3><p>从 Faralya 沿原路折返，停好车后在泻湖慢走；蓝调约 19:10 后再去费特希耶入住，不临时加缆车。</p><div class="authority-links"><a class="authority-link" href="https://ekotaban.tarimorman.gov.tr/alan/5111" target="_blank" rel="noopener noreferrer">国家公园官方 · Ölüdeniz ↗</a><a class="authority-link" href="https://www.babadagteleferik.com.tr/en/" target="_blank" rel="noopener noreferrer">Babadağ 缆车官网 ↗</a></div></div></div>
               </div>
-              <p class="why"><strong>删减顺序：</strong>先删 Kalkan，再删 Patara 古城；保留安全驾驶、D400 最美段、Patara 沙丘海滩与厄吕代尼兹。14:30 后不再从 Patara 追赶晚霞。</p>
+              <p class="why"><strong>固定主线：</strong>D400、Kaputaş、Patara、蝴蝶谷崖顶与厄吕代尼兹。晚点先删 Kalkan，再删 Patara 古城并缩短海滩；蝴蝶谷已进入正式路线，但雨雾、疲劳和非法停车绝不硬停。</p>
             </div>
           </article>
 
@@ -755,8 +763,9 @@
           <div class="duration-row"><div class="duration-date">10/1</div><div class="duration-place"><strong>Kekova＋Simena</strong><small>水下古城与游泳</small></div><div class="duration-transit"><strong>卡什港出发</strong><small>若 Üçağız 出发则单程约50分车程</small></div><div><span class="time-pill">8–9小时</span></div><div>约 18:00</div></div>
           <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>D400＋Kaputaş</strong><small>海岸驾驶、约200级台阶、下海</small></div><div class="duration-transit"><strong>卡什 → Kaputaş 20 km</strong><small>驾驶预留30分；禁止路肩停车</small></div><div><span class="time-pill">约2小时</span></div><div>10:15</div></div>
           <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>Kalkan（可跳过）</strong><small>仅外带午餐或咖啡</small></div><div class="duration-transit"><strong>Kaputaş → Kalkan 约10 km</strong><small>约 15 分钟</small></div><div><span class="time-pill">最多30分</span></div><div>10:45</div></div>
-          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>Patara 沙丘＋海滩</strong><small>自然优先；古城有余力才看</small></div><div class="duration-transit"><strong>Kalkan → Patara 约17 km</strong><small>约 20–25 分钟</small></div><div><span class="time-pill">2.5–3小时</span></div><div>14:30</div></div>
-          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>厄吕代尼兹</strong><small>泻湖与日落</small></div><div class="duration-transit"><strong>Patara → Ölüdeniz 约84 km</strong><small>实际预留1小时45分–2小时15分</small></div><div><span class="time-pill">1.5–2小时</span></div><div>日落后</div></div>
+          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>Patara 沙丘＋海滩</strong><small>自然优先；古城有余力才看</small></div><div class="duration-transit"><strong>Kalkan → Patara 约17 km</strong><small>约 20–25 分钟</small></div><div><span class="time-pill">约2.5小时</span></div><div>13:45</div></div>
+          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>蝴蝶谷崖顶观景台</strong><small>Faralya 高崖远观；不下谷</small></div><div class="duration-transit"><strong>Patara → 观景台约90 km</strong><small>实际预留2小时05分–2小时35分</small></div><div><span class="time-pill">15–20分钟</span></div><div>16:40</div></div>
+          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>厄吕代尼兹</strong><small>泻湖、18:45日落与蓝调</small></div><div class="duration-transit"><strong>蝴蝶谷崖顶 → Ölüdeniz约8 km</strong><small>窄弯路预留20–30分钟</small></div><div><span class="time-pill">约2小时</span></div><div>约19:10</div></div>
           <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>Saklıkent 峡谷</strong><small>栈道＋当天开放的涉水段</small></div><div class="duration-transit"><strong>费特希耶 → Saklıkent约45 km</strong><small>07:15出发；约50–60分钟</small></div><div><span class="time-pill">2–2.5小时</span></div><div>10:45</div></div>
           <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>Dalaman 还车</strong><small>加油、验车、拍照</small></div><div class="duration-transit"><strong>Saklıkent → DLM约90 km</strong><small>含简单午餐预留2小时30分</small></div><div><span class="time-pill">还车45分</span></div><div>约14:15完成</div></div>
           <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>DLM → IST 晚班</strong><small>只选18:00后直飞</small></div><div class="duration-transit"><strong>还车后进入航站楼</strong><small>至少保留3小时以上缓冲</small></div><div><span class="time-pill">约1小时25分</span></div><div>抵达后住机场</div></div>
@@ -842,8 +851,8 @@
             <h3>油费与停车</h3>
             <div class="price">¥500～700</div>
             <ul class="booking-list">
-              <li>加入 Saklıkent 后主线约 480 公里，含绕行按 500～540 公里</li>
-              <li>汽油约 35～42 升</li>
+              <li>加入 Saklıkent 与 Faralya 折返后主线约 500 公里，含绕行按 520～560 公里</li>
+              <li>汽油约 37～44 升</li>
               <li>另含停车、HGS 与补油误差</li>
             </ul>
           </article>
@@ -865,7 +874,7 @@
                 <tr><td>10 晚住宿（格雷梅2晚＋AYT/Lara1晚）</td><td>¥3,800～5,700</td></tr>
                 <tr><td>土耳其境内 3 段飞机</td><td>¥2,800～3,500</td></tr>
                 <tr><td>5个日历日租车＋保险＋异地还车</td><td>¥2,800～3,500</td></tr>
-                <tr><td>油费、停车与 HGS（约500～540 km）</td><td>¥550～800</td></tr>
+                <tr><td>油费、停车与 HGS（约520～560 km）</td><td>¥550～800</td></tr>
                 <tr><td>卡帕多奇亚热气球</td><td>¥4,500～5,000（两人 €540～580）</td></tr>
                 <tr><td>Kekova 拼船</td><td>¥800～900</td></tr>
                 <tr><td>博斯普鲁斯短线＋Saklıkent等小额门票</td><td>¥900～1,500</td></tr>
@@ -881,7 +890,7 @@
             <p class="eyebrow">Recommended cap</p>
             <h3>建议控制线</h3>
             <div class="big-number">¥38,000</div>
-            <p class="muted">这个预算已删除伊斯坦布尔室内收费建筑和卡帕多奇亚遗址型半日游，保留博斯普鲁斯短线、热气球、红／玫瑰谷、Kekova、卡什古剧场、D400 与 Saklıkent。</p>
+            <p class="muted">这个预算已删除伊斯坦布尔室内收费建筑和卡帕多奇亚遗址型半日游，保留博斯普鲁斯短线、热气球、红／玫瑰谷、Kekova、卡什古剧场、D400、蝴蝶谷崖顶与 Saklıkent。</p>
             <span class="paid-note">其中 ¥12,628 国际机票已经支付</span>
             <p style="margin-top:20px"><strong>预计尚待支付</strong><br><span class="price">约 ¥19,700～25,700</span></p>
             <p class="small muted">购物、滑翔伞、私人游艇及大额纪念品未计入。</p>
@@ -898,7 +907,8 @@
           <article class="practical-item"><h3>护照与签证</h3><ul><li>持香港特区护照，旅游停留 90 天内目前免签。</li><li>持 BN(O) 护照并非同一规则，需要按土耳其官方要求办理电子签证。</li><li>护照身份不同，务必以实际使用的旅行证件核对。</li><li>出发时护照有效期距回程日建议至少还有 6 个月；临近有效期务必先换发再订票。</li></ul><p class="small"><a href="https://www.mfa.gov.tr/yabancilarin-tabi-oldugu-vize-rejimi.tr.mfa" target="_blank" rel="noopener">土耳其外交部签证规则 ↗</a></p></article>
           <article class="practical-item"><h3>香港驾照</h3><ul><li>建议带香港正式驾驶执照原件＋香港运输署签发的 IDP。</li><li>IDP 有效期为签发日起 1 年；申请时需符合香港运输署资格。</li><li>另带护照、主驾驶人实体信用卡；最终以租车公司书面确认为准。</li></ul><p class="small"><a href="https://www.td.gov.hk/en/public_services/licences_and_permits/driving_licences/how_to_apply_for_a_driving_licence/general_information_on_driving_licence/index.html" target="_blank" rel="noopener">香港运输署 IDP 说明 ↗</a></p></article>
           <article class="practical-item"><h3>旅行保险</h3><ul><li>两人 11 日单次全球保障预留 HK$500～800（约 ¥460～740）。</li><li>至少比较海外医疗 HK$100 万以上、医疗运送、旅程改道、行李延误和个人责任。</li><li>核对热气球是否属于承保娱乐活动；滑翔伞必须另行确认。租车自负额保障不能代替租车公司的 CDW。</li></ul><p class="small"><a href="https://www.consumer.org.hk/sc/article/582-travel-insurance/582-travel-insurance-study-overview" target="_blank" rel="noopener">香港消委会旅保比较提醒 ↗</a></p></article>
-          <article class="practical-item"><h3>D400 驾驶</h3><ul><li>土耳其靠右行驶，卡什老城道路狭窄，不要开车进核心步行区。</li><li>山海路段弯道多，天黑后不赶路；Kaputaş 停车位有限，必须早到。</li><li>司机专心看路、乘客负责拍照；不要在弯道和路肩临时停车。</li><li>取还车时录制车身、轮胎、玻璃、油量和里程；保留加油小票。</li></ul></article>
+          <article class="practical-item"><h3>D400 驾驶</h3><ul><li>土耳其靠右行驶，卡什老城道路狭窄，不要开车进核心步行区。</li><li>山海路段弯道多，天黑后不赶路；Kaputaş 停车位有限，必须早到。</li><li>Faralya 最后约 8 km 为窄弯高崖路；司机专心看路、乘客负责拍照。</li><li>取还车时录制车身、轮胎、玻璃、油量和里程；保留加油小票。</li></ul></article>
+          <article class="practical-item"><h3>蝴蝶谷崖顶怎么停</h3><ul><li>导航必须保存精确坐标，避免被同名地点带到 Ölüdeniz 码头或谷底乘船点。</li><li>这里只做崖顶远观，不下谷；官方资料提醒 Faralya 陆路非常陡，部分位置需借助绳索。</li><li>现场没有确认过的大型正规停车场：只在合法、宽阔且不影响车流的位置停车，无位就直接驶离。</li><li>不跨越护栏、不靠崖边自拍；强风、雨雾、低云或司机疲劳时由安全否决。</li></ul><p class="small"><a href="https://www.fethiye.gov.tr/kelebekler-vadisi" target="_blank" rel="noopener noreferrer">费特希耶政府说明 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=36.5002863%2C29.1281400" target="_blank" rel="noopener noreferrer">精确坐标导航 ↗</a></p></article>
           <article class="practical-item"><h3>付款与现金</h3><ul><li>酒店、租车和较大餐厅可刷卡；小店、停车、市场和部分船家准备现金。</li><li>刷卡机询问币种时选择 TRY，不选择人民币或港币动态换汇。</li><li>鱼类按公斤计价时，先确认整条鱼的总价再下单。</li></ul></article>
           <article class="practical-item"><h3>9月底穿衣</h3><ul><li>伊斯坦布尔：薄外套＋防雨层；海风时体感偏凉。</li><li>卡帕多奇亚清晨：羽绒背心或抓绒、长裤；热气球集合时温度最低。</li><li>卡什海岸：短袖为主，带防晒、水鞋和一件晚间薄外套。</li></ul></article>
           <article class="practical-item"><h3>网络与离线准备</h3><ul><li>出发前装 eSIM；同时下载 Google Maps 土耳其离线区域。</li><li>保存租车、住宿、热气球和游船确认单截图。</li><li>本攻略地图需联网加载底图，但路线、时间表和图片可离线阅读。</li></ul></article>
@@ -907,7 +917,7 @@
           <article class="practical-item"><h3>热气球与游船</h3><ul><li>热气球只订 9/27 第一批升空；天气取消应全额退款，改到 9/28 只在仍有余位且运营商书面确认时成立。</li><li>下单前先在 SHGM 名单核对持证运营商，再确认 Göreme 主飞行区、篮筐人数、酒店接送和实际飞行时长。</li><li>Kekova确认从卡什还是 Üçağız 出发、午餐是否包含、Simena停留多久。</li><li>游船日带防晒、帽子、水、泳衣和防水袋。</li></ul><p class="small"><a href="https://web.shgm.gov.tr/en/s/80-balloon-operators" target="_blank" rel="noopener noreferrer">SHGM 持证运营商 ↗</a>　<a href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">卡帕多奇亚官方飞行旗 ↗</a></p></article>
           <article class="practical-item"><h3>卡什古剧场</h3><ul><li>官方资料确认剧场位于卡什主广场以西约 500 米，但未提供稳定的独立开放时间和票价。</li><li>不要把“全天免费”当作已确认事实；可能因活动、维护或现场管理临时变化。</li><li>出发前一周请住宿方确认开放时间、收费、活动占用和日落后离场方式。</li></ul><p class="small"><a href="https://www.ktb.gov.tr/EN-36176/where-to-visit.html" target="_blank" rel="noopener">土耳其文化旅游部资料 ↗</a></p></article>
           <article class="practical-item"><h3>Saklıkent 涉水安全</h3><ul><li>带包脚防滑水鞋，不穿人字拖；手机和证件放防水袋。</li><li>峡谷水位、开放深度和栈道状态每天会变，只走管理方当天开放区域。</li><li>下雨、山洪提示或工作人员封路时立即取消，直接去 DLM，不用“来都来了”冒险。</li></ul><p class="small"><a href="https://ekotaban.tarimorman.gov.tr/alan/49" target="_blank" rel="noopener noreferrer">国家公园官方资料 ↗</a></p></article>
-          <article class="practical-item"><h3>出发前一周复核</h3><ul><li>9/28 PC3503 的 22:05–23:25 时刻、ASR 出发机场及三段托运行李额度。</li><li>9/29 卡什实际日落、古剧场开放状态和天气；9/30 保留第二次机会。</li><li>Saklıkent开放与涉水条件、景点开放日、餐厅营业日、道路施工及租车门店交接点。</li></ul></article>
+          <article class="practical-item"><h3>出发前一周复核</h3><ul><li>9/28 PC3503 的 22:05–23:25 时刻、ASR 出发机场及三段托运行李额度。</li><li>9/29 卡什实际日落、古剧场开放状态和天气；9/30 保留第二次机会。</li><li>10/2 约 18:45 的日落、Faralya 道路施工、降雨、风力和能见度。</li><li>Saklıkent开放与涉水条件、景点开放日、餐厅营业日及租车门店交接点。</li></ul></article>
         </div>
       </div>
     </section>
@@ -927,7 +937,7 @@
             <div class="check-item"><input id="c7" type="checkbox"><label for="c7"><strong>7. 预订其余住宿</strong><br><span class="muted small">Airbnb 看最终结算总价；9/28 固定订可深夜接送的 AYT / Lara 酒店。</span></label></div>
             <div class="check-item"><input id="c8" type="checkbox"><label for="c8"><strong>8. 预订 Kekova 拼船</strong><br><span class="muted small">见“活动预约”第 3 项；确认 09:30 集合、约 18:00 返回、午餐、Simena 停留与取消政策。</span></label></div>
             <div class="check-item"><input id="c9" type="checkbox"><label for="c9"><strong>9. 联系 Limanağzı 海滩</strong><br><span class="muted small">见“活动预约”第 1 项；确认 Nuri’s 接船点、最低消费、15:30～16:00 回程及浮潜装备。</span></label></div>
-            <div class="check-item"><input id="c10" type="checkbox"><label for="c10"><strong>10. 出发前一周复核</strong><br><span class="muted small">航班、行李、日落、古剧场、Limanağzı 班次、Saklıkent 水位、天气、道路与餐厅营业。</span></label></div>
+            <div class="check-item"><input id="c10" type="checkbox"><label for="c10"><strong>10. 出发前一周复核</strong><br><span class="muted small">航班、行李、日落、古剧场、Limanağzı 班次、Faralya 路况与坐标、Saklıkent 水位、天气和餐厅营业。</span></label></div>
           </div>
         </div>
       </div>
@@ -940,7 +950,7 @@
       <p class="small">行程日期：2026 年 9 月 24 日—10 月 4 日。价格为 2026 年 7 月制定行程时的两人规划区间，不等同于锁价订单；付款前请重新核对含税价格、行李、取消规则、餐厅营业时间和异地还车费用。</p>
       <p class="small">路线距离来自 OSRM 道路计算；地图国界数据来自 Natural Earth，经 world-atlas 提供并随页面本地加载。餐厅优先参考 2026 米其林名单、当地政府/旅游资料及近期营业信息，但季节性营业可能调整。</p>
       <p class="small">新增卡帕多奇亚照片来自 Wikimedia Commons：Goreme sunset（Cetintas555）、Cappadocia Red Valley（Kaan Kosemen）、Zelve, Cappadocia 16（Bernard Gagnon）、Valley of Love in Cappadocia（Emre Dokur），按各自 CC 许可使用。页面图片保存在同目录下的 guide-images 文件夹中。</p>
-      <p class="small">本次校正照片同样来自 Wikimedia Commons：Kaş–Kalkan road（Tutku Çetinel，CC BY 3.0）、Kaş harbour（Esginmurat，CC BY-SA 4.0）、Limanağzı（Tugceeakgunn91，CC BY-SA 4.0）、Büyük Çakıl（Dündar Termal Apart，CC BY 3.0）、Patara dunes（Angela Stefanoni，CC BY 3.0）、Kekova/Simena view 与 Kaş sunset（Alexkom000，CC BY 4.0）、Fethiye bay（Alet123，CC BY-SA 4.0）、Saklıkent canyon（Mutlu88，CC BY-SA 4.0）、Üsküdar sunset（Ezzeldin.Elbaksawy，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:G%C3%B6reme_at_Night_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Göreme at Night – 2014.10</a>（rheins，<a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>）。</p>
+      <p class="small">本次校正照片同样来自 Wikimedia Commons：Kaş–Kalkan road（Tutku Çetinel，CC BY 3.0）、Kaş harbour（Esginmurat，CC BY-SA 4.0）、Limanağzı（Tugceeakgunn91，CC BY-SA 4.0）、Büyük Çakıl（Dündar Termal Apart，CC BY 3.0）、Patara dunes（Angela Stefanoni，CC BY 3.0）、Kekova/Simena view 与 Kaş sunset（Alexkom000，CC BY 4.0）、Fethiye bay（Alet123，CC BY-SA 4.0）、Saklıkent canyon（Mutlu88，CC BY-SA 4.0）、Üsküdar sunset（Ezzeldin.Elbaksawy，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:Kelebekler_vadisi.jpg" target="_blank" rel="noopener noreferrer">Kelebekler vadisi</a>（Rotadefterim，<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>）、<a href="https://commons.wikimedia.org/wiki/File:G%C3%B6reme_at_Night_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Göreme at Night – 2014.10</a>（rheins，<a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>）。</p>
     </div>
   </footer>
   <script src="vendor/leaflet/leaflet.js"></script>
@@ -996,10 +1006,11 @@
         {n:11, name:'Kaputaş海滩', lat:36.2294, lng:29.4486, stay:'10/2途中', time:'约2小时', food:'不在海滩吃正餐', source:'https://www.kas.bel.tr/cardDetay/kaputas-plaj%C4%B1-499'},
         {n:12, name:'Kalkan', lat:36.2649, lng:29.4141, stay:'可跳过', time:'外带午餐最多30分钟', food:'当地Pide店', source:'https://goturkiye.com/antalya/touch'},
         {n:13, name:'Patara沙丘＋海滩', lat:36.2639, lng:29.3182, stay:'10/2途中', time:'2.5–3小时', food:'Durak Lokantası', source:'https://www.kas.bel.tr/cardDetay/patara-plaj%C4%B1-7909'},
-        {n:14, name:'厄吕代尼兹', lat:36.5490, lng:29.1269, stay:'10/2日落', time:'1.5–2小时', food:'Kumsal Pide', source:'https://ekotaban.tarimorman.gov.tr/alan/5111'},
-        {n:15, name:'费特希耶', lat:36.6592, lng:29.1263, stay:'1晚', time:'10/2入住', food:'Nefis Pide', source:'https://goturkiye.com/fethiye'},
-        {n:16, name:'Saklıkent峡谷', lat:36.4738, lng:29.4035, stay:'10/3早晨', time:'2–2.5小时', food:'入口Gözleme简餐', source:'https://ekotaban.tarimorman.gov.tr/alan/49'},
-        {n:17, name:'达拉曼机场 DLM', lat:36.7126, lng:28.7955, stay:'还车＋飞行', time:'约13:30到达 · 18:00后起飞', food:'还车前简单午餐'}
+        {n:14, name:'蝴蝶谷崖顶观景台（Faralya）', lat:36.5002863, lng:29.12814, stay:'10/2固定主线', time:'15:50–16:20抵达 · 停15–20分钟', food:'不在此用餐', source:'https://www.fethiye.gov.tr/kelebekler-vadisi', maps:'https://www.google.com/maps/search/?api=1&query=36.5002863%2C29.1281400'},
+        {n:15, name:'厄吕代尼兹', lat:36.5490, lng:29.1269, stay:'10/2日落', time:'17:10前抵达 · 18:45日落', food:'Kumsal Pide', source:'https://ekotaban.tarimorman.gov.tr/alan/5111'},
+        {n:16, name:'费特希耶', lat:36.6592, lng:29.1263, stay:'1晚', time:'10/2入住', food:'Nefis Pide', source:'https://goturkiye.com/fethiye'},
+        {n:17, name:'Saklıkent峡谷', lat:36.4738, lng:29.4035, stay:'10/3早晨', time:'2–2.5小时', food:'入口Gözleme简餐', source:'https://ekotaban.tarimorman.gov.tr/alan/49'},
+        {n:18, name:'达拉曼机场 DLM', lat:36.7126, lng:28.7955, stay:'还车＋飞行', time:'约13:30到达 · 18:00后起飞', food:'还车前简单午餐'}
       ];
 
       const hubMarkers = L.layerGroup();
@@ -1007,7 +1018,7 @@
       const markerByNumber = new Map();
       points.forEach((p) => {
         const icon = L.divIcon({ className: '', html: '<div class="route-pin">' + p.n + '</div>', iconSize: [28,28], iconAnchor: [14,14] });
-        const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.name + ' Turkey');
+        const mapsUrl = p.maps || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.name + ' Turkey'));
         const authorityLink = p.source ? '<a href="' + p.source + '" target="_blank" rel="noopener noreferrer">权威资料 ↗</a> · ' : '';
         const marker = L.marker([p.lat,p.lng], {icon}).addTo(detailMarkers).bindPopup(
           '<strong>' + p.n + '. ' + p.name + '</strong>' +
@@ -1031,7 +1042,7 @@
       });
 
       const eastRoadLngLat = [[30.801207,36.899927],[30.7920,36.8780],[30.7822,36.8500],[30.7480,36.8620],[30.7080,36.8790],[30.6650,36.8910],[30.619307,36.898235],[30.59274,36.819424],[30.572196,36.798371],[30.569456,36.758081],[30.553756,36.733392],[30.568926,36.679707],[30.538256,36.651672],[30.554759,36.630622],[30.540665,36.591629],[30.556052,36.578027],[30.553498,36.542584],[30.530322,36.529947],[30.518557,36.510425],[30.501019,36.508624],[30.429595,36.468573],[30.433138,36.441538],[30.422122,36.409819],[30.381629,36.378649],[30.370537,36.379443],[30.374991,36.348735],[30.332138,36.373608],[30.303809,36.36312],[30.285812,36.366986],[30.273282,36.320347],[30.16398,36.309777],[30.146033,36.297306],[30.151948,36.275282],[30.138398,36.278827],[30.112146,36.247128],[30.08536,36.250875],[30.056665,36.27575],[30.031985,36.255412],[30.009737,36.250335],[29.991599,36.266557],[29.98521,36.258019],[29.951228,36.249549],[29.969109,36.261436],[29.931209,36.268317],[29.866933,36.260395],[29.810738,36.237182],[29.780901,36.252801],[29.757538,36.2535],[29.737412,36.239243],[29.707918,36.23428],[29.673157,36.212803],[29.666436,36.198527],[29.632072,36.207072],[29.637747,36.201915]];
-      const westRoadLngLat = [[29.637747,36.201915],[29.612298,36.208665],[29.5856,36.20136],[29.573772,36.202907],[29.567429,36.210461],[29.548593,36.212779],[29.512455,36.209713],[29.478128,36.21231],[29.448598,36.229375],[29.425139,36.234902],[29.427154,36.246328],[29.414057,36.264946],[29.412623,36.272631],[29.401597,36.269215],[29.387451,36.278815],[29.366182,36.270039],[29.351979,36.287231],[29.32913,36.297137],[29.318509,36.28614],[29.318184,36.263918],[29.31705,36.257959],[29.321746,36.279932],[29.318509,36.28614],[29.329737,36.296808],[29.334898,36.341133],[29.322325,36.376209],[29.327068,36.39024],[29.297918,36.404639],[29.269205,36.411652],[29.273398,36.425165],[29.268704,36.435471],[29.290131,36.44617],[29.288274,36.46409],[29.315361,36.484979],[29.33911,36.519111],[29.34778,36.55763],[29.344877,36.570351],[29.358036,36.611076],[29.352175,36.620058],[29.35542,36.633676],[29.319129,36.643269],[29.29143,36.641562],[29.251046,36.630524],[29.227742,36.632245],[29.18486,36.649126],[29.145538,36.630106],[29.157667,36.583775],[29.145076,36.567965],[29.127919,36.559479],[29.122574,36.550701],[29.126914,36.549008],[29.122153,36.549547],[29.127919,36.559479],[29.145076,36.567965],[29.157687,36.583997],[29.152302,36.59202],[29.150565,36.61519],[29.12582,36.623165],[29.122322,36.656379],[29.126322,36.659207],[29.132053,36.66317],[29.127443,36.677625],[29.080233,36.691966],[29.052707,36.706275],[29.042439,36.706624],[29.036538,36.71524],[29.029669,36.714285],[29.019564,36.745406],[28.999092,36.747418],[28.972193,36.738762],[28.961838,36.742756],[28.963405,36.750924],[28.955383,36.755122],[28.95884,36.758448],[28.943336,36.763054],[28.934743,36.758503],[28.912504,36.765377],[28.869226,36.760443],[28.850055,36.769842],[28.822542,36.795973],[28.810671,36.795106],[28.800069,36.773672],[28.799375,36.755022],[28.80775,36.738864],[28.800778,36.732338],[28.79553,36.712587]];
+      const westRoadLngLat = [[29.637747,36.201915],[29.612298,36.208665],[29.5856,36.20136],[29.573772,36.202907],[29.567429,36.210461],[29.548593,36.212779],[29.512455,36.209713],[29.478128,36.21231],[29.448598,36.229375],[29.425139,36.234902],[29.427154,36.246328],[29.414057,36.264946],[29.412623,36.272631],[29.401597,36.269215],[29.387451,36.278815],[29.366182,36.270039],[29.351979,36.287231],[29.32913,36.297137],[29.318509,36.28614],[29.318184,36.263918],[29.31705,36.257959],[29.321746,36.279932],[29.318509,36.28614],[29.329737,36.296808],[29.334898,36.341133],[29.322325,36.376209],[29.327068,36.39024],[29.297918,36.404639],[29.269205,36.411652],[29.273398,36.425165],[29.268704,36.435471],[29.290131,36.44617],[29.288274,36.46409],[29.315361,36.484979],[29.33911,36.519111],[29.34778,36.55763],[29.344877,36.570351],[29.358036,36.611076],[29.352175,36.620058],[29.35542,36.633676],[29.319129,36.643269],[29.29143,36.641562],[29.251046,36.630524],[29.227742,36.632245],[29.18486,36.649126],[29.145538,36.630106],[29.157667,36.583775],[29.145076,36.567965],[29.127919,36.559479],[29.122574,36.550701],[29.126914,36.549008],[29.127551,36.547536],[29.126295,36.543613],[29.127364,36.543913],[29.126768,36.543296],[29.127290,36.540974],[29.126138,36.538944],[29.126289,36.537064],[29.127047,36.536430],[29.126495,36.532535],[29.128561,36.532427],[29.128868,36.526692],[29.132183,36.523790],[29.132327,36.522911],[29.132211,36.521115],[29.129503,36.519663],[29.131216,36.519737],[29.129920,36.519134],[29.128323,36.519522],[29.125659,36.519023],[29.126587,36.516171],[29.125668,36.515336],[29.126135,36.515018],[29.126928,36.516041],[29.126922,36.517246],[29.126815,36.515064],[29.127461,36.514360],[29.124868,36.502852],[29.125329,36.501968],[29.128326,36.500616],[29.125329,36.501968],[29.124868,36.502852],[29.127461,36.514360],[29.126815,36.515064],[29.126922,36.517246],[29.126928,36.516041],[29.126135,36.515018],[29.125668,36.515336],[29.126587,36.516171],[29.125659,36.519023],[29.128323,36.519522],[29.129920,36.519134],[29.131216,36.519737],[29.129503,36.519663],[29.132211,36.521115],[29.132327,36.522911],[29.132183,36.523790],[29.128868,36.526692],[29.128561,36.532427],[29.126495,36.532535],[29.127047,36.536430],[29.126289,36.537064],[29.126138,36.538944],[29.127290,36.540974],[29.126768,36.543296],[29.127364,36.543913],[29.126295,36.543613],[29.127551,36.547536],[29.126914,36.549008],[29.122153,36.549547],[29.127919,36.559479],[29.145076,36.567965],[29.157687,36.583997],[29.152302,36.59202],[29.150565,36.61519],[29.12582,36.623165],[29.122322,36.656379],[29.126322,36.659207],[29.132053,36.66317],[29.127443,36.677625],[29.080233,36.691966],[29.052707,36.706275],[29.042439,36.706624],[29.036538,36.71524],[29.029669,36.714285],[29.019564,36.745406],[28.999092,36.747418],[28.972193,36.738762],[28.961838,36.742756],[28.963405,36.750924],[28.955383,36.755122],[28.95884,36.758448],[28.943336,36.763054],[28.934743,36.758503],[28.912504,36.765377],[28.869226,36.760443],[28.850055,36.769842],[28.822542,36.795973],[28.810671,36.795106],[28.800069,36.773672],[28.799375,36.755022],[28.80775,36.738864],[28.800778,36.732338],[28.79553,36.712587]];
       const fethiyeIndex = westRoadLngLat.findIndex((c) => c[0] === 29.126322 && c[1] === 36.659207);
       const coastRoadLngLat = westRoadLngLat.slice(0, fethiyeIndex + 1);
       const saklikentRoadLngLat = [[29.126322,36.659207],[29.203505,36.643398],[29.294397,36.641963],[29.367921,36.627381],[29.389532,36.572827],[29.381892,36.547529],[29.403402,36.500053],[29.403566,36.473797],[29.3801,36.528834],[29.342519,36.533026],[29.350892,36.578484],[29.352175,36.620058],[29.321328,36.643129],[29.250464,36.630459],[29.203499,36.64355],[29.143213,36.664354],[29.080233,36.691966],[29.042138,36.70675],[29.019252,36.745535],[28.972193,36.738762],[28.934743,36.758503],[28.869226,36.760443],[28.822542,36.795973],[28.800069,36.773672],[28.795532,36.712595]];
@@ -1049,9 +1060,10 @@
       const cappadociaBounds = L.latLngBounds(points.filter((p) => p.n >= 2 && p.n <= 5).map((p) => [p.lat,p.lng]));
       const coastBounds = L.latLngBounds(points.filter((p) => p.n >= 7).map((p) => [p.lat,p.lng]));
       const kasBounds = L.latLngBounds(points.filter((p) => p.n >= 9 && p.n <= 13).map((p) => [p.lat,p.lng]));
-      const buttons = [document.getElementById('map-all'), document.getElementById('map-cappadocia'), document.getElementById('map-coast'), document.getElementById('map-kas')];
+      const fethiyeBounds = L.latLngBounds(points.filter((p) => p.n >= 14 && p.n <= 16).map((p) => [p.lat,p.lng]));
+      const buttons = [document.getElementById('map-all'), document.getElementById('map-cappadocia'), document.getElementById('map-coast'), document.getElementById('map-kas'), document.getElementById('map-fethiye')];
       function updateMarkerVisibility() {
-        const showDetails = map.getZoom() >= 8;
+        const showDetails = map.getZoom() >= 9;
         if (showDetails) {
           if (map.hasLayer(hubMarkers)) map.removeLayer(hubMarkers);
           if (!map.hasLayer(detailMarkers)) detailMarkers.addTo(map);
@@ -1069,6 +1081,7 @@
       buttons[1].addEventListener('click', () => select(buttons[1], cappadociaBounds));
       buttons[2].addEventListener('click', () => select(buttons[2], coastBounds));
       buttons[3].addEventListener('click', () => select(buttons[3], kasBounds));
+      buttons[4].addEventListener('click', () => select(buttons[4], fethiyeBounds));
       select(buttons[0], allBounds);
       setTimeout(() => { map.invalidateSize(); updateMarkerVisibility(); }, 80);
     })();

@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 
 assert.match(html, /id="map-cappadocia"/, 'map should offer a Cappadocia detail view');
+assert.match(html, /id="map-fethiye"/, 'map should offer a Fethiye and Butterfly Valley detail view');
 assert.match(html, /const hubMarkers = L\.layerGroup\(\)/, 'map should have a city-level marker layer');
 assert.match(html, /const detailMarkers = L\.layerGroup\(\)/, 'map should have a detail marker layer');
 assert.match(html, /map\.on\('zoomend', updateMarkerVisibility\)/, 'marker layers should react to zoom level');
@@ -23,6 +24,12 @@ assert.match(html, /Saklıkent/, 'the map and route cards should include the can
 assert.match(html, /费特希耶\s*→\s*Saklıkent\s*→\s*DLM/, 'the October 3 route card should show the full canyon-to-airport route');
 assert.match(html, /9\/26[\s\S]{0,220}格雷梅日落＋蓝调夜景[\s\S]{0,260}约2小时[\s\S]{0,100}19:30/, 'the duration table should include the restored September 26 night-view window');
 assert.match(html, /name:'格雷梅日落＋夜景（Aydınkırağı）'[\s\S]{0,180}time:'9\/26 · 17:30–19:30'/, 'the Cappadocia map popup should identify the restored night-view stop and time');
+assert.match(html, /name:'蝴蝶谷崖顶观景台（Faralya）'[\s\S]{0,220}lat:36\.5002863[\s\S]{0,80}lng:29\.12814[\s\S]{0,220}stay:'10\/2固定主线'/, 'the coast map should include the exact Butterfly Valley viewpoint as a fixed stop');
+assert.match(html, /maps:'https:\/\/www\.google\.com\/maps\/search\/\?api=1&query=36\.5002863%2C29\.1281400'/, 'the viewpoint popup should override fuzzy name search with exact coordinates');
+assert.match(html, /const mapsUrl = p\.maps \|\|/, 'map popups should honor exact-coordinate navigation overrides');
+assert.match(html, /fethiyeBounds = L\.latLngBounds\(points\.filter\(\(p\) => p\.n >= 14 && p\.n <= 16\)/, 'the map should offer tight bounds for Butterfly Valley, Ölüdeniz and Fethiye');
+assert.match(html, /map\.getZoom\(\) >= 9/, 'nearby Fethiye markers should only appear at a zoom where they can be distinguished');
+assert.match(html, /\[29\.128326,36\.500616\]/, 'the coastal route geometry should visibly reach the Butterfly Valley viewpoint road');
 assert.doesNotMatch(html, /格雷梅3晚/, 'the map should no longer describe a three-night Göreme stay');
 assert.doesNotMatch(html, /9\/29[^<]{0,80}(?:ASR|Kayseri)[^<]{0,20}(?:→|&rarr;)\s*(?:AYT|安塔利亚)/, 'the old September 29 flight date must be removed');
 assert.doesNotMatch(html, /10\/3–10\/5/, 'the Istanbul return hub should end on the October 4 departure date, not the October 5 Beijing arrival date');
