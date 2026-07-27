@@ -115,6 +115,24 @@
     .priority-flow b { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: white; background: var(--sea); font-size: 11px; }
     .risk-foot { margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
 
+    .drive-guide { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); box-shadow: var(--shadow); }
+    .drive-hero { position: relative; min-height: 360px; display: grid; align-items: end; overflow: hidden; color: white; }
+    .drive-hero img { position: absolute; inset: 0; height: 100%; }
+    .drive-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(7,35,42,.9), rgba(7,35,42,.06) 75%); }
+    .drive-hero-copy { position: relative; z-index: 1; max-width: 790px; padding: 28px; }
+    .drive-hero-copy h3 { margin-bottom: 8px; font-size: clamp(25px, 4vw, 38px); }
+    .drive-hero-copy p { margin: 0; color: rgba(255,255,255,.9); }
+    .drive-body { padding: 24px; }
+    .drive-timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .drive-leg { position: relative; padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.78); }
+    .drive-leg::before { content: ""; display: block; width: 34px; height: 4px; margin-bottom: 13px; border-radius: 999px; background: var(--sun); }
+    .drive-leg strong { display: block; margin-bottom: 5px; color: var(--sea-dark); }
+    .drive-km { color: var(--sun); font-size: 13px; font-weight: 900; }
+    .drive-leg p { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+    .drive-rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; margin-top: 16px; }
+    .drive-rule { padding: 14px; border-radius: 14px; color: #405a60; background: rgba(8,127,140,.08); font-size: 13px; }
+    .drive-rule strong { display: block; color: var(--sea-dark); }
+
     .hero {
       position: relative;
       min-height: 86vh;
@@ -222,6 +240,7 @@
     .day-head .sleep { margin-top: 20px; font-size: 13px; line-height: 1.5; }
     .day-body { padding: 18px; }
     .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+    .slots.slots-four { grid-template-columns: repeat(4, 1fr); }
     .slot { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: #fff; }
     .slot img { aspect-ratio: 16 / 9; }
     .slot-text { padding: 15px; }
@@ -273,6 +292,7 @@
       .day-head { display: flex; align-items: center; gap: 18px; }
       .day-head .sleep { margin: 0 0 0 auto; text-align: right; }
       .slots { grid-template-columns: 1fr; }
+      .slots.slots-four { grid-template-columns: repeat(2, 1fr); }
       .slot { display: grid; grid-template-columns: minmax(130px, .7fr) 1fr; }
       .slot img { height: 100%; aspect-ratio: auto; }
     }
@@ -293,6 +313,9 @@
       .day-body { padding: 11px; }
       .slot { grid-template-columns: 1fr; }
       .slot img { aspect-ratio: 16 / 9; }
+      .slots.slots-four, .drive-timeline, .drive-rules { grid-template-columns: 1fr; }
+      .drive-hero { min-height: 320px; }
+      .drive-body, .drive-hero-copy { padding: 19px; }
       .stay-table { min-width: 720px; }
       .table-scroll { overflow-x: auto; }
     }
@@ -316,7 +339,7 @@
 </head>
 <body>
   <header class="hero">
-    <img class="hero-bg" src="guide-images/kas-theatre.jpg" alt="卡什古剧场面向地中海的景色">
+    <img class="hero-bg" src="guide-images/kas-sunset.jpg" alt="卡什海岸与地中海日落">
     <div class="wrap hero-content">
       <p class="eyebrow">Türkiye · 24 Sep — 4 Oct 2026</p>
       <h1>卡什、热气球<br>与地中海公路</h1>
@@ -339,6 +362,7 @@
       <a href="#map">路线地图</a>
       <a href="#overview">总览</a>
       <a href="#contingency">风险预案</a>
+      <a href="#d400-guide">D400自驾</a>
       <a href="#itinerary">每日行程</a>
       <a href="#durations">时间与路程</a>
       <a href="#restaurants">沿途餐厅</a>
@@ -371,7 +395,7 @@
             <div class="leg-card"><strong><span class="mode-icon">✈</span>Kayseri → 安塔利亚</strong><div class="leg-date"><time datetime="2026-09-29">9/29 周二</time><span>首选 11:30 前落地</span></div><div class="leg-meta"><span>飞行约 1小时20分</span><span>Plan B：9/28 晚班</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">🚗</span>AYT → 下杜登 → 卡什</strong><div class="leg-date"><time datetime="2026-09-29">9/29 周二</time><span>13:00 前离开机场才停瀑布</span></div><div class="leg-meta"><span>约 203 km</span><span>纯驾驶约 3小时10分</span><span>含游览预留 4.5小时</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">⛵</span>卡什 → Kekova → 卡什</strong><div class="leg-date"><time datetime="2026-10-01">10/1 周四</time><span>预计 09:00–18:00</span></div><div class="leg-meta"><span>拼船约 8–9小时</span><span>通常无需当天开车</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">🚗</span>卡什 → Patara → 费特希耶</strong><div class="leg-date"><time datetime="2026-10-02">10/2 周五</time><span>07:30 出发 · 日落后抵达</span></div><div class="leg-meta"><span>经停全段约 142 km</span><span>纯驾驶约 2小时30分</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">🚗</span>D400：卡什 → Kaputaş → Patara → 厄吕代尼兹</strong><div class="leg-date"><time datetime="2026-10-02">10/2 周五</time><span>07:30 出发 · 日落后抵达</span></div><div class="leg-meta"><span>经停全段约 140 km</span><span>实际驾驶预留 3小时</span><span>最美段：卡什→Kalkan</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">🚗</span>费特希耶 → DLM</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>航班前 2.5 小时到机场</span></div><div class="leg-meta"><span>约 50 km</span><span>纯驾驶约 50分</span><span>还车预留 30–45分</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">✈</span>Dalaman → 伊斯坦布尔</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>航班待订</span></div><div class="leg-meta"><span>飞行约 1小时25分</span><span>优先落地 IST</span></div></div>
             <div class="map-note">地图时间为无停车、无拍照、无堵车的路线计算；正式日程已经额外加入约 20%–30% 缓冲。</div>
@@ -438,14 +462,42 @@
             <span class="risk-label">10/2 · 删减顺序</span>
             <h3>时间不够就砍，Kalkan 先砍</h3>
             <p class="small muted" style="margin:-6px 0 0">编号＝舍弃优先级，数字越大越先砍；1、2 是必须保住的核心，不砍。</p>
-            <div class="priority-flow"><span><b>1</b>安全驾驶</span><span><b>2</b>厄吕代尼兹</span><span><b>3</b>Patara古城</span><span><b>4</b>Kaputaş</span><span><b>5</b>Kalkan</span></div>
+            <div class="priority-flow"><span><b>1</b>安全与天亮驾驶</span><span><b>2</b>D400海岸段</span><span><b>3</b>厄吕代尼兹</span><span><b>4</b>Patara沙丘海滩</span><span><b>5</b>Kalkan</span></div>
             <p class="small muted" style="margin:16px 0 0">当天时间门槛（和上面的舍弃顺序是两件事）：</p>
             <ul class="risk-list">
-              <li><strong>10:00</strong>最迟离开 Kaputaş。</li>
+              <li><strong>10:15</strong>最迟离开 Kaputaş。</li>
               <li><strong>Kalkan</strong>只做 30 分钟外带午餐；没有停车位直接跳过。</li>
-              <li><strong>12:30 后才到 Patara</strong>只看古城，不去沙滩；最迟 15:15 离开。</li>
+              <li><strong>12:30 后才到 Patara</strong>跳过古城，只看沙丘和海滩；最迟 14:30 离开。</li>
             </ul>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="d400-guide">
+      <div class="wrap">
+        <p class="eyebrow">D400 coastal drive</p>
+        <h2>D400 不是一个景点，要知道哪一段值得慢下来</h2>
+        <p class="lead">你这趟真正值得专门开的，是<strong>卡什 → Kaputaş → Kalkan</strong>的悬崖海岸段。9/29 的 AYT→卡什主要是长距离转场，不追路边照片；10/2 才是把海景、停车和游玩时间都留出来的 D400 自驾日。</p>
+        <div class="drive-guide">
+          <div class="drive-hero">
+            <img src="guide-images/d400-kas-kalkan-road.jpg" alt="D400 卡什至 Kalkan 海岸公路">
+            <div class="drive-hero-copy"><h3>最美段：卡什 → Kaputaş → Kalkan</h3><p>连续海景主要集中在卡什以西到 Kalkan；过了 Kalkan 转向 Patara 后会逐渐进入农田与内陆道路，不要把整天 140 多公里都想象成贴海悬崖公路。</p></div>
+          </div>
+          <div class="drive-body">
+            <div class="drive-timeline">
+              <article class="drive-leg"><span class="drive-km">约20 km · 预留30分钟</span><strong>07:30 卡什 → Kaputaş</strong><p>当天景色最集中的一段。司机只看路，乘客负责拍照；观景必须等正规停车位。</p></article>
+              <article class="drive-leg"><span class="drive-km">约10 km · 15分钟</span><strong>10:15 Kaputaş → Kalkan</strong><p>Kaputaş 约有 200 级台阶，停车位少。Kalkan 只停 30 分钟买咖啡或午餐，找不到位就优先跳过。</p></article>
+              <article class="drive-leg"><span class="drive-km">约17 km · 20–25分钟</span><strong>10:45 Kalkan → Patara</strong><p>这一段海景减少。你的重点改为沙丘与长海滩，古城只在时间充裕、仍有兴趣时顺路看。</p></article>
+              <article class="drive-leg"><span class="drive-km">约84 km · 实际1小时45分–2小时15分</span><strong>14:30 Patara → Ölüdeniz</strong><p>不再是连续海岸景观。出发前补水、上洗手间；塞车时不为追日落超速。</p></article>
+            </div>
+            <div class="drive-rules">
+              <div class="drive-rule"><strong>停车规则</strong>只在停车场或明确划出的停车位停车；不要在弯道、窄路或路肩停车拍照。</div>
+              <div class="drive-rule"><strong>驾驶准备</strong>前一晚在卡什加满油，下载离线地图；带偏光太阳镜，右侧海面反光强。</div>
+              <div class="drive-rule"><strong>晚点处理</strong>先跳过 Kalkan，再缩短 Patara；14:30 后仍未离开 Patara，就接受普通海景，不追逐厄吕代尼兹晚霞。</div>
+            </div>
+            <p class="small muted" style="margin:16px 2px 0">景点依据：Kaputaş 位于 Kaş–Kalkan 公路、峡谷口下方，距卡什约 20 km；Patara 位于 Kaş–Fethiye 公路方向。出发前一周复核道路施工、景区开放和当天日落时间。<a href="https://goturkiye.com/antalya/touch" target="_blank" rel="noopener">GoTürkiye 海岸资料 ↗</a></p>
+          </div>
         </div>
       </div>
     </section>
@@ -459,7 +511,7 @@
             <header class="day-head"><div><div class="date">09.24</div><div class="weekday">周四 · Day 1</div></div><div class="sleep">住：伊斯坦布尔<br>Airbnb</div></header>
             <div class="day-body">
               <div class="slots">
-                <div class="slot"><img src="guide-images/istanbul-hagia-sophia.jpg" alt="伊斯坦布尔圣索菲亚"><div class="slot-text"><span class="slot-time">上午</span><h3>抵达伊斯坦布尔</h3><p>11:25 抵达 IST，入境、取行李并前往 Sultanahmet。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">上午</span><h3>抵达伊斯坦布尔</h3><p>11:25 抵达 IST，入境、取行李并前往 Sultanahmet。交通卡不拿景点图片冒充当天所见。</p></div></div>
                 <div class="slot"><img src="guide-images/blue-mosque.jpg" alt="伊斯坦布尔蓝色清真寺"><div class="slot-text"><span class="slot-time">下午</span><h3>蓝色清真寺</h3><p>入住后只走苏丹艾哈迈德广场，不购买限时博物馆票。</p></div></div>
                 <div class="slot"><img src="guide-images/istanbul-hagia-sophia.jpg" alt="圣索菲亚外观"><div class="slot-text"><span class="slot-time">晚上</span><h3>屋顶晚餐</h3><p>选择能看到圣索菲亚与蓝色清真寺的屋顶餐厅。</p></div></div>
               </div>
@@ -473,7 +525,7 @@
               <div class="slots">
                 <div class="slot"><img src="guide-images/spice-bazaar.jpg" alt="伊斯坦布尔香料市场的香料与干货摊位"><div class="slot-text"><span class="slot-time">10:00–12:30</span><h3>睡醒再逛香料市场</h3><p>不设闹钟赶收费景点；早餐后慢慢逛香料市场和加拉塔桥沿岸，午餐留在 Eminönü。</p></div></div>
                 <div class="slot"><img src="guide-images/bosphorus-sunset.jpg" alt="博斯普鲁斯海峡上的渡轮与城市天际线"><div class="slot-text"><span class="slot-time">13:50到码头 · 14:40开船</span><h3>14:40 博斯普鲁斯短线游船</h3><p>到 Şehir Hatları 官方窗口现场购买 Kısa Boğaz Turu；航程约 2 小时，提前 30–45 分钟候船。</p></div></div>
-                <div class="slot"><img src="guide-images/bosphorus-sunset.jpg" alt="从博斯普鲁斯海峡亚洲岸看伊斯坦布尔日落"><div class="slot-text"><span class="slot-time">17:15后</span><h3>Üsküdar 海边日落＋晚餐</h3><p>游船返回后乘普通渡轮到亚洲区；沿海边散步，在 Kadıköy 或 Üsküdar 吃家常菜。</p></div></div>
+                <div class="slot"><img src="guide-images/uskudar-sunset.jpg" alt="Üsküdar 海边望向博斯普鲁斯海峡日落"><div class="slot-text"><span class="slot-time">17:15后</span><h3>Üsküdar 海边日落＋晚餐</h3><p>游船返回后乘普通渡轮到亚洲区；沿海边散步，在 Kadıköy 或 Üsküdar 吃家常菜。</p></div></div>
               </div>
               <p class="why"><strong>这样安排：</strong>删除室内建筑和限时门票，把国际航班后的恢复时间留足；当天唯一硬时间是 13:50 到 Eminönü 官方码头。</p>
             </div>
@@ -483,9 +535,9 @@
             <header class="day-head"><div><div class="date">09.26</div><div class="weekday">周六 · Day 3</div></div><div class="sleep">住：格雷梅<br>民宿 / 洞穴酒店</div></header>
             <div class="day-body">
               <div class="slots">
-                <div class="slot"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚地貌"><div class="slot-text"><span class="slot-time">07:45–约11:00</span><h3>SAW→NAV（已订）</h3><p>VF3268，09:00 抵达；取行李后乘接送约 40–50 分钟到格雷梅。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">07:45–约11:00</span><h3>SAW→NAV（已订）</h3><p>VF3268，09:00 抵达；取行李后乘接送约 40–50 分钟到格雷梅。</p></div></div>
                 <div class="slot"><img src="guide-images/uchisar-panorama.jpg" alt="乌奇萨与鸽子谷全景"><div class="slot-text"><span class="slot-time">12:30–16:00</span><h3>乌奇萨＋鸽子谷</h3><p>城堡高点看全区地貌，再用鸽子谷短步行连接第一批全景。</p></div></div>
-                <div class="slot"><img src="guide-images/goreme-sunset.jpg" alt="格雷梅日落观景台俯瞰格雷梅"><div class="slot-text"><span class="slot-time">日落前60分钟</span><h3>格雷梅日落观景台</h3><p>步行登上 Sunset Point，俯瞰镇区、洞穴酒店与层叠山谷；日落后再确认热气球接人时间。</p></div></div>
+                <div class="slot"><img src="guide-images/goreme-town-sunset.jpg" alt="夕阳中的格雷梅镇与仙人烟囱"><div class="slot-text"><span class="slot-time">日落前60分钟</span><h3>格雷梅日落观景台</h3><p>步行登上 Sunset Point，俯瞰镇区、洞穴酒店与层叠山谷；日落后再确认热气球接人时间。</p></div></div>
               </div>
               <p class="why"><strong>这样安排：</strong>上午航班已确认，下午立即进入最有辨识度的全景线；观景台是核心点，不再只写“格雷梅镇中心”。</p>
             </div>
@@ -521,7 +573,7 @@
               <div class="slots">
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">上午</span><h3>ASR→AYT</h3><p>从格雷梅前往 Kayseri 机场，乘直飞安塔利亚的航班。</p></div></div>
                 <div class="slot"><img src="guide-images/lower-duden-waterfall.jpg" alt="下杜登瀑布从海崖落入地中海"><div class="slot-text"><span class="slot-time">取车后 · 最多60分钟</span><h3>下杜登瀑布</h3><p>距机场约 14 km；只走陆地观景台，不坐船。13:00 后才离开机场就直接跳过。</p></div></div>
-                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什海岸"><div class="slot-text"><span class="slot-time">晚上</span><h3>抵达卡什</h3><p>入住后只逛老城、吃晚饭，不把今天当作剧场日落日。</p></div></div>
+                <div class="slot"><img src="guide-images/kas-harbor.jpg" alt="卡什港口与临山小镇"><div class="slot-text"><span class="slot-time">晚上</span><h3>抵达卡什</h3><p>入住后只逛港口、吃晚饭，不把今天当作剧场日落日；停车后当天不再开车。</p></div></div>
               </div>
               <p class="why"><strong>执行门槛：</strong>13:00 前驶离 AYT 才停下杜登；13:00～15:30 直接去卡什；更晚、疲劳或天气恶劣则住机场，次日早走。详见上方“风险预案”。</p>
             </div>
@@ -531,11 +583,11 @@
             <header class="day-head"><div><div class="date">09.30</div><div class="weekday">周三 · Day 7</div></div><div class="sleep">住：卡什<br>Airbnb</div></header>
             <div class="day-body">
               <div class="slots">
-                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什古剧场"><div class="slot-text"><span class="slot-time">上午</span><h3>卡什老城慢逛</h3><p>Uzun Çarşı 长街、狮子墓、港口；不用开车。</p></div></div>
-                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什海岸"><div class="slot-text"><span class="slot-time">下午</span><h3>海边休息</h3><p>游泳、咖啡或回房午休，不在日落前安排远途景点。</p></div></div>
-                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什古剧场面向地中海"><div class="slot-text"><span class="slot-time">日落</span><h3>卡什古剧场</h3><p>当天查询日落时间，提前 45～60 分钟步行抵达。</p></div></div>
+                <div class="slot"><img src="guide-images/kas-harbor.jpg" alt="卡什港口、游船与临山老城"><div class="slot-text"><span class="slot-time">08:30–10:00</span><h3>港口＋老城早餐</h3><p>沿港口、Uzun Çarşı 和小巷短逛；狮子墓只顺路看，不把建筑当主角。</p></div></div>
+                <div class="slot"><img src="guide-images/limanagzi.jpg" alt="Limanağzı 海湾清澈水面与游泳区"><div class="slot-text"><span class="slot-time">10:15–15:30</span><h3>Limanağzı 游泳＋浮潜</h3><p>前一晚在卡什港确认季节性水上巴士班次；带泳镜和水鞋，在海湾午餐。海况不佳则改 Büyük Çakıl。</p></div></div>
+                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什古剧场面向地中海"><div class="slot-text"><span class="slot-time">日落前45–60分钟</span><h3>卡什古剧场日落</h3><p>回房冲洗并休息后步行前往；白天图片用于认路，现场重点是海面、岛屿与蓝调时刻。</p></div></div>
               </div>
-              <p class="why"><strong>核心锚点：</strong>这一天不赶路。多云仍去看海景与蓝调时刻；若下雨或临时关闭，10/1 游船早归后作为第二次机会。</p>
+              <p class="why"><strong>为什么这样玩：</strong>上午认识卡什，白天真正下海，晚上完成剧场日落，三段体验不再重复。若更喜欢活动，可用 2.5～4 小时体验潜水替换 Limanağzı；卡什水清、海流相对温和，也适合初学者。多云仍去剧场看蓝调时刻。</p>
             </div>
           </article>
 
@@ -543,9 +595,9 @@
             <header class="day-head"><div><div class="date">10.01</div><div class="weekday">周四 · Day 8</div></div><div class="sleep">住：卡什<br>Airbnb</div></header>
             <div class="day-body">
               <div class="slots">
-                <div class="slot"><img src="guide-images/kekova.jpg" alt="Kekova 水下古城"><div class="slot-text"><span class="slot-time">上午</span><h3>Kekova 出海</h3><p>约 08:30 从卡什或 Üçağız 登船，选含午餐的拼船。</p></div></div>
+                <div class="slot"><img src="guide-images/kekova-bay.jpg" alt="从 Simena 方向俯瞰 Kekova 海湾与游船"><div class="slot-text"><span class="slot-time">08:30–12:30</span><h3>Kekova 海湾出航</h3><p>从卡什出发选完整日船；若从 Üçağız 登船，要另算往返卡什约 50 分钟车程。</p></div></div>
                 <div class="slot"><img src="guide-images/kekova.jpg" alt="Kekova 海湾与遗迹"><div class="slot-text"><span class="slot-time">下午</span><h3>水下古城＋Simena</h3><p>船上俯看遗址；游泳安排在遗址水域之外的海湾。</p></div></div>
-                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什港口附近"><div class="slot-text"><span class="slot-time">晚上</span><h3>返回卡什</h3><p>港口附近吃海鲜，留出整理行李的时间。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">约18:00后</span><h3>返回卡什</h3><p>港口附近吃海鲜，确认次日车辆油量和离线地图，整理泳具与行李。</p></div></div>
               </div>
               <p class="why"><strong>这样安排：</strong>Kekova 值得完整一天，不压缩成两小时“打卡”项目。</p>
             </div>
@@ -554,12 +606,13 @@
           <article class="day">
             <header class="day-head"><div><div class="date">10.02</div><div class="weekday">周五 · Day 9</div></div><div class="sleep">住：费特希耶<br>民宿 / 小酒店</div></header>
             <div class="day-body">
-              <div class="slots">
-                <div class="slot"><img src="guide-images/kaputas-beach.jpg" alt="Kaputaş 海滩"><div class="slot-text"><span class="slot-time">上午</span><h3>Kaputaş 海滩</h3><p>08:00 出发，最迟 10:00 离开；Kalkan 只外带午餐，无停车位直接跳过。</p></div></div>
-                <div class="slot"><img src="guide-images/patara.jpg" alt="Patara 海滩"><div class="slot-text"><span class="slot-time">下午</span><h3>Patara 古城优先</h3><p>12:30 后才抵达则取消沙滩，只看遗址；无论如何最迟 15:15 离开。</p></div></div>
+              <div class="slots slots-four">
+                <div class="slot"><img src="guide-images/d400-kas-kalkan-road.jpg" alt="D400 卡什至 Kalkan 海岸弯道"><div class="slot-text"><span class="slot-time">07:30–08:00</span><h3>D400 海岸段</h3><p>卡什到 Kaputaş 是当天最值得看的驾驶段；只在正规停车位停车，乘客负责拍照。</p></div></div>
+                <div class="slot"><img src="guide-images/kaputas-beach.jpg" alt="Kaputaş 海滩"><div class="slot-text"><span class="slot-time">08:00–10:15</span><h3>Kaputaş 海滩</h3><p>约 200 级台阶；停车位满就不要在路肩等。Kalkan 只外带午餐，无位直接跳过。</p></div></div>
+                <div class="slot"><img src="guide-images/patara-dunes.jpg" alt="Patara 沙丘、长海滩与地中海"><div class="slot-text"><span class="slot-time">11:15–14:30</span><h3>Patara 沙丘＋海滩</h3><p>按你的自然偏好，把时间给沙丘、海风和游泳；古城只做有余力时的顺路短看。</p></div></div>
                 <div class="slot"><img src="guide-images/oludeniz.jpg" alt="厄吕代尼兹蓝色泻湖"><div class="slot-text"><span class="slot-time">日落</span><h3>厄吕代尼兹</h3><p>看蓝色泻湖日落，之后入住费特希耶。</p></div></div>
               </div>
-              <p class="why"><strong>删减顺序：</strong>先删 Kalkan，再删 Patara 沙滩；保留安全天亮驾驶、厄吕代尼兹、Patara 古城。多云也不改变返程结构。</p>
+              <p class="why"><strong>删减顺序：</strong>先删 Kalkan，再删 Patara 古城；保留安全驾驶、D400 最美段、Patara 沙丘海滩与厄吕代尼兹。14:30 后不再从 Patara 追赶晚霞。</p>
             </div>
           </article>
 
@@ -567,9 +620,9 @@
             <header class="day-head"><div><div class="date">10.03</div><div class="weekday">周六 · Day 10</div></div><div class="sleep">住：IST 机场附近<br>接送酒店</div></header>
             <div class="day-body">
               <div class="slots">
-                <div class="slot"><img src="guide-images/oludeniz.jpg" alt="费特希耶海岸"><div class="slot-text"><span class="slot-time">上午</span><h3>费特希耶码头早餐</h3><p>不安排完整游船；留足还车与加油时间。</p></div></div>
+                <div class="slot"><img src="guide-images/fethiye-marina.jpg" alt="费特希耶海湾、帆船与码头"><div class="slot-text"><span class="slot-time">上午</span><h3>费特希耶码头早餐</h3><p>沿海湾看帆船、吃早餐，不安排完整游船；留足还车与加油时间。</p></div></div>
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">下午</span><h3>DLM→IST</h3><p>达拉曼还车，优先选择直飞 IST 而非 SAW 的航班。</p></div></div>
-                <div class="slot"><img src="guide-images/istanbul-hagia-sophia.jpg" alt="伊斯坦布尔"><div class="slot-text"><span class="slot-time">晚上</span><h3>机场附近住宿</h3><p>住 Arnavutköy 接送酒店，次日从 IST 离境。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">晚上</span><h3>机场附近住宿</h3><p>住 Arnavutköy 接送酒店，次日从 IST 离境；这不是景点，因此不再放圣索菲亚图片。</p></div></div>
               </div>
               <p class="why"><strong>这样安排：</strong>国际航班前一晚回到伊斯坦布尔，避免国内航班延误导致国际段误机。</p>
             </div>
@@ -579,9 +632,9 @@
             <header class="day-head"><div><div class="date">10.04</div><div class="weekday">周日 · Day 11</div></div><div class="sleep">返程日</div></header>
             <div class="day-body">
               <div class="slots">
-                <div class="slot"><img src="guide-images/istanbul-hagia-sophia.jpg" alt="伊斯坦布尔城市景观"><div class="slot-text"><span class="slot-time">上午</span><h3>早餐＋退房</h3><p>搭酒店接送前往 IST，建议 10:00 前抵达航站楼。</p></div></div>
-                <div class="slot"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚热气球，旅程回顾"><div class="slot-text"><span class="slot-time">13:20</span><h3>飞往北京</h3><p>登机前回望这十天：伊斯坦布尔的清真寺、卡帕多奇亚的热气球、卡什的地中海。国际航班起飞，次日抵达北京。</p></div></div>
-                <div class="slot"><img src="guide-images/kas-theatre.jpg" alt="卡什古剧场，旅程回顾"><div class="slot-text"><span class="slot-time">留白</span><h3>不安排城市活动</h3><p>机场住宿的价值，就是不用承担伊斯坦布尔早高峰风险——把最后的从容留给这趟旅行本身。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">上午</span><h3>早餐＋退房</h3><p>搭酒店接送前往 IST，建议 10:00 前抵达航站楼。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">13:20</span><h3>飞往北京</h3><p>国际航班起飞，次日抵达北京；返程卡不再用热气球图片冒充当天景点。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">留白</span><h3>不安排城市活动</h3><p>机场住宿的价值，就是不用承担伊斯坦布尔早高峰风险——把最后的从容留给这趟旅行本身。</p></div></div>
               </div>
             </div>
           </article>
@@ -610,12 +663,14 @@
           <div class="duration-row"><div class="duration-date">备选</div><div class="duration-place"><strong>Kaymaklı/Derinkuyu</strong><small>大风、雨雪或历史兴趣时二选一</small></div><div class="duration-transit"><strong>格雷梅约 30–40 km</strong><small>单程 35–50 分钟</small></div><div><span class="time-pill">含交通约4小时</span></div><div>替换户外线</div></div>
           <div class="duration-row"><div class="duration-date">9/29</div><div class="duration-place"><strong>下杜登瀑布</strong><small>海崖陆地观景台</small></div><div class="duration-transit"><strong>AYT → 下杜登约 14 km</strong><small>正常约 20 分钟；取车后直接前往</small></div><div><span class="time-pill">45–60分</span></div><div>14:00</div></div>
           <div class="duration-row"><div class="duration-date">9/29</div><div class="duration-place"><strong>抵达卡什</strong><small>入住＋老城晚餐</small></div><div class="duration-transit"><strong>下杜登 → 卡什约 189 km</strong><small>纯驾驶约2小时50分；实际3–3.5小时</small></div><div><span class="time-pill">2小时</span></div><div>不设硬点</div></div>
-          <div class="duration-row"><div class="duration-date">9/30</div><div class="duration-place"><strong>卡什老城＋古剧场</strong><small>老城、港口、狮子墓、日落</small></div><div class="duration-transit"><strong>全程步行</strong><small>当天不开车</small></div><div><span class="time-pill">合计5–6小时</span></div><div>日落后</div></div>
+          <div class="duration-row"><div class="duration-date">9/30</div><div class="duration-place"><strong>卡什港口＋老城</strong><small>早餐、港口与短巷慢走</small></div><div class="duration-transit"><strong>住宿 → 港口</strong><small>中心区全程步行</small></div><div><span class="time-pill">1.5小时</span></div><div>10:00</div></div>
+          <div class="duration-row"><div class="duration-date">9/30</div><div class="duration-place"><strong>Limanağzı</strong><small>游泳、浮潜与海湾午餐</small></div><div class="duration-transit"><strong>卡什港水上巴士</strong><small>季节班次前一晚现场确认</small></div><div><span class="time-pill">约5小时</span></div><div>15:30返程</div></div>
+          <div class="duration-row"><div class="duration-date">9/30</div><div class="duration-place"><strong>卡什古剧场</strong><small>面海座席与蓝调时刻</small></div><div class="duration-transit"><strong>镇中心步行约 15–20 分</strong><small>日落前 45–60 分钟出发</small></div><div><span class="time-pill">1–1.5小时</span></div><div>日落后</div></div>
           <div class="duration-row"><div class="duration-date">10/1</div><div class="duration-place"><strong>Kekova＋Simena</strong><small>水下古城与游泳</small></div><div class="duration-transit"><strong>卡什港出发</strong><small>若 Üçağız 出发则单程约50分车程</small></div><div><span class="time-pill">8–9小时</span></div><div>约 18:00</div></div>
-          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>Kaputaş 海滩</strong><small>观景＋下海</small></div><div class="duration-transit"><strong>卡什 → Kaputaş 20 km</strong><small>纯驾驶18分；预留30分</small></div><div><span class="time-pill">1.5小时</span></div><div>10:30</div></div>
-          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>Kalkan（可跳过）</strong><small>仅外带午餐</small></div><div class="duration-transit"><strong>Kaputaş → Kalkan 6 km</strong><small>约 10–15 分钟</small></div><div><span class="time-pill">最多30分</span></div><div>11:00</div></div>
-          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>Patara 古城＋沙滩</strong><small>遗址优先，沙滩次之</small></div><div class="duration-transit"><strong>Kalkan → Patara 15 km</strong><small>约 20–25 分钟</small></div><div><span class="time-pill">2.5小时</span></div><div>15:15</div></div>
-          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>厄吕代尼兹</strong><small>泻湖与日落</small></div><div class="duration-transit"><strong>Patara → Ölüdeniz 84 km</strong><small>纯驾驶1小时27分；实际1小时45分</small></div><div><span class="time-pill">1.5小时</span></div><div>日落后</div></div>
+          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>D400＋Kaputaş</strong><small>海岸驾驶、约200级台阶、下海</small></div><div class="duration-transit"><strong>卡什 → Kaputaş 20 km</strong><small>驾驶预留30分；禁止路肩停车</small></div><div><span class="time-pill">约2小时</span></div><div>10:15</div></div>
+          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>Kalkan（可跳过）</strong><small>仅外带午餐或咖啡</small></div><div class="duration-transit"><strong>Kaputaş → Kalkan 约10 km</strong><small>约 15 分钟</small></div><div><span class="time-pill">最多30分</span></div><div>10:45</div></div>
+          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>Patara 沙丘＋海滩</strong><small>自然优先；古城有余力才看</small></div><div class="duration-transit"><strong>Kalkan → Patara 约17 km</strong><small>约 20–25 分钟</small></div><div><span class="time-pill">2.5–3小时</span></div><div>14:30</div></div>
+          <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>厄吕代尼兹</strong><small>泻湖与日落</small></div><div class="duration-transit"><strong>Patara → Ölüdeniz 约84 km</strong><small>实际预留1小时45分–2小时15分</small></div><div><span class="time-pill">1.5–2小时</span></div><div>日落后</div></div>
           <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>费特希耶码头</strong><small>早餐＋短逛</small></div><div class="duration-transit"><strong>Ölüdeniz → Fethiye 17 km</strong><small>约 25–35 分钟</small></div><div><span class="time-pill">1–1.5小时</span></div><div>09:30</div></div>
           <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>Dalaman 还车</strong><small>加油、验车、拍照</small></div><div class="duration-transit"><strong>Fethiye → DLM 50 km</strong><small>纯驾驶49分；预留1小时10分</small></div><div><span class="time-pill">还车30–45分</span></div><div>航班前2.5小时</div></div>
         </div>
@@ -766,7 +821,7 @@
           <article class="practical-item"><h3>护照与签证</h3><ul><li>持香港特区护照，旅游停留 90 天内目前免签。</li><li>持 BN(O) 护照并非同一规则，需要按土耳其官方要求办理电子签证。</li><li>护照身份不同，务必以实际使用的旅行证件核对。</li><li>出发时护照有效期距回程日建议至少还有 6 个月；临近有效期务必先换发再订票。</li></ul><p class="small"><a href="https://www.mfa.gov.tr/yabancilarin-tabi-oldugu-vize-rejimi.tr.mfa" target="_blank" rel="noopener">土耳其外交部签证规则 ↗</a></p></article>
           <article class="practical-item"><h3>香港驾照</h3><ul><li>建议带香港正式驾驶执照原件＋香港运输署签发的 IDP。</li><li>IDP 有效期为签发日起 1 年；申请时需符合香港运输署资格。</li><li>另带护照、主驾驶人实体信用卡；最终以租车公司书面确认为准。</li></ul><p class="small"><a href="https://www.td.gov.hk/en/public_services/licences_and_permits/driving_licences/how_to_apply_for_a_driving_licence/general_information_on_driving_licence/index.html" target="_blank" rel="noopener">香港运输署 IDP 说明 ↗</a></p></article>
           <article class="practical-item"><h3>旅行保险</h3><ul><li>两人 11 日单次全球保障预留 HK$500～800（约 ¥460～740）。</li><li>至少比较海外医疗 HK$100 万以上、医疗运送、旅程改道、行李延误和个人责任。</li><li>核对热气球是否属于承保娱乐活动；滑翔伞必须另行确认。租车自负额保障不能代替租车公司的 CDW。</li></ul><p class="small"><a href="https://www.consumer.org.hk/sc/article/582-travel-insurance/582-travel-insurance-study-overview" target="_blank" rel="noopener">香港消委会旅保比较提醒 ↗</a></p></article>
-          <article class="practical-item"><h3>D400 驾驶</h3><ul><li>土耳其靠右行驶，卡什老城道路狭窄，不要开车进核心步行区。</li><li>山海路段弯道多，天黑后不赶路；Kaputaş 停车位有限，必须早到。</li><li>取还车时录制车身、轮胎、玻璃、油量和里程；保留加油小票。</li></ul></article>
+          <article class="practical-item"><h3>D400 驾驶</h3><ul><li>土耳其靠右行驶，卡什老城道路狭窄，不要开车进核心步行区。</li><li>山海路段弯道多，天黑后不赶路；Kaputaş 停车位有限，必须早到。</li><li>司机专心看路、乘客负责拍照；不要在弯道和路肩临时停车。</li><li>取还车时录制车身、轮胎、玻璃、油量和里程；保留加油小票。</li></ul></article>
           <article class="practical-item"><h3>付款与现金</h3><ul><li>酒店、租车和较大餐厅可刷卡；小店、停车、市场和部分船家准备现金。</li><li>刷卡机询问币种时选择 TRY，不选择人民币或港币动态换汇。</li><li>鱼类按公斤计价时，先确认整条鱼的总价再下单。</li></ul></article>
           <article class="practical-item"><h3>9月底穿衣</h3><ul><li>伊斯坦布尔：薄外套＋防雨层；海风时体感偏凉。</li><li>卡帕多奇亚清晨：羽绒背心或抓绒、长裤；热气球集合时温度最低。</li><li>卡什海岸：短袖为主，带防晒、水鞋和一件晚间薄外套。</li></ul></article>
           <article class="practical-item"><h3>网络与离线准备</h3><ul><li>出发前装 eSIM；同时下载 Google Maps 土耳其离线区域。</li><li>保存租车、住宿、热气球和游船确认单截图。</li><li>本攻略地图需联网加载底图，但路线、时间表和图片可离线阅读。</li></ul></article>
@@ -793,7 +848,7 @@
             <div class="check-item"><input id="c6" type="checkbox"><label for="c6"><strong>6. 购买旅行保险</strong><br><span class="muted small">核对医疗运送、改道、热气球及租车自负额条款。</span></label></div>
             <div class="check-item"><input id="c7" type="checkbox"><label for="c7"><strong>7. 预订其余住宿</strong><br><span class="muted small">Airbnb 看最终结算总价；比较 9/28 AYT 机场 Plan B。</span></label></div>
             <div class="check-item"><input id="c8" type="checkbox"><label for="c8"><strong>8. 预订 Kekova 拼船</strong><br><span class="muted small">确认出发港、午餐、Simena 停留与取消政策。</span></label></div>
-            <div class="check-item"><input id="c9" type="checkbox"><label for="c9"><strong>9. 出发前一周复核</strong><br><span class="muted small">航班、行李、日落、古剧场开放、天气、道路与餐厅营业。</span></label></div>
+            <div class="check-item"><input id="c9" type="checkbox"><label for="c9"><strong>9. 出发前一周复核</strong><br><span class="muted small">航班、行李、日落、古剧场开放、Limanağzı 水上巴士、天气、道路与餐厅营业。</span></label></div>
           </div>
         </div>
       </div>
@@ -806,6 +861,7 @@
       <p class="small">行程日期：2026 年 9 月 24 日—10 月 4 日。价格为 2026 年 7 月制定行程时的两人规划区间，不等同于锁价订单；付款前请重新核对含税价格、行李、取消规则、餐厅营业时间和异地还车费用。</p>
       <p class="small">路线距离来自 OSRM 道路计算；地图国界数据来自 Natural Earth，经 world-atlas 提供并随页面本地加载。餐厅优先参考 2026 米其林名单、当地政府/旅游资料及近期营业信息，但季节性营业可能调整。</p>
       <p class="small">新增卡帕多奇亚照片来自 Wikimedia Commons：Goreme sunset（Cetintas555）、Cappadocia Red Valley（Kaan Kosemen）、Zelve, Cappadocia 16（Bernard Gagnon）、Valley of Love in Cappadocia（Emre Dokur），按各自 CC 许可使用。页面图片保存在同目录下的 guide-images 文件夹中。</p>
+      <p class="small">本次校正照片同样来自 Wikimedia Commons：Kaş–Kalkan road（Tutku Çetinel，CC BY 3.0）、Kaş harbour（Esginmurat，CC BY-SA 4.0）、Limanağzı（Tugceeakgunn91，CC BY-SA 4.0）、Patara dunes（Angela Stefanoni，CC BY 3.0）、Kekova/Simena view 与 Kaş sunset（Alexkom000，CC BY 4.0）、Fethiye bay（Alet123，CC BY-SA 4.0）、Üsküdar sunset（Ezzeldin.Elbaksawy，CC BY-SA 4.0）、Sunset at Göreme Valley（Emrahuygun，CC BY-SA 4.0）。</p>
     </div>
   </footer>
   <script src="vendor/leaflet/leaflet.js"></script>
