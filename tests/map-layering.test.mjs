@@ -20,17 +20,7 @@ assert.doesNotMatch(html, /Myra|米拉/i, 'the replaced Myra stop must not remai
 assert.match(html, /下杜登瀑布/, 'the airport-side Lower Duden waterfall stop should be included');
 assert.match(html, /9\/29[\s\S]{0,260}(?:08:30|上午)[\s\S]{0,260}下杜登瀑布/, 'Lower Duden should be a planned morning stop after the Antalya overnight');
 assert.match(html, /Saklıkent/, 'the map and route cards should include the canyon extension');
-assert.match(html, /10\/3 三选一\s*→\s*DLM/, 'the October 3 route card should show the mutually exclusive nature options');
-assert.match(html, /A Saklıkent[\s\S]{0,120}B Dalyan[\s\S]{0,120}C İztuzu\/DEKAMER/, 'the map side card should identify all three October 3 options');
-assert.match(html, /13:30 前还车完成/, 'the map side card should show the hard car-return deadline');
-assert.match(html, /name:'Dalyan 私船码头'/, 'the map should include the Dalyan private-boat embarkation point');
-assert.match(html, /name:'İztuzu 北端（乘船抵达）'/, 'the map should distinguish the boat-access north end');
-assert.match(html, /name:'İztuzu 公路端＋DEKAMER'/, 'the map should distinguish the road-access beach and rescue centre');
-assert.match(html, /id="map-oct3"/, 'the map should provide a dedicated October 3 detail view');
-assert.match(html, /route-pin route-pin-compact/, 'the three close Dalyan and Iztuzu markers should use compact pins');
-assert.match(html, /const closePointAnchors = new Map\(\[\[17,\[24,24\]\],\[18,\[12,12\]\],\[19,\[0,0\]\]\]\)/, 'the three close markers should be spread outward instead of overlapping');
-assert.match(html, /function setDetailPointFilter\(predicate\)/, 'detail views should filter out unrelated markers');
-assert.match(html, /select\(buttons\[4\], oct3Bounds, true, \(p\) => p\.n >= 15\)/, 'the October 3 view should show only its six relevant markers');
+assert.match(html, /费特希耶\s*→\s*Saklıkent\s*→\s*DLM/, 'the October 3 route card should show the full canyon-to-airport route');
 assert.match(html, /9\/26[\s\S]{0,220}格雷梅日落＋蓝调夜景[\s\S]{0,260}约2小时[\s\S]{0,100}19:30/, 'the duration table should include the restored September 26 night-view window');
 assert.match(html, /name:'格雷梅日落＋夜景（Aydınkırağı）'[\s\S]{0,180}time:'9\/26 · 17:30–19:30'/, 'the Cappadocia map popup should identify the restored night-view stop and time');
 assert.doesNotMatch(html, /格雷梅3晚/, 'the map should no longer describe a three-night Göreme stay');

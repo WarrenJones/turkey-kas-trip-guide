@@ -15,8 +15,6 @@ assert.match(html, /guide-images\/limanagzi\.jpg/, 'the Kaş swimming day should
 assert.match(html, /guide-images\/kekova-bay\.jpg/, 'the Kekova boat day should show a bay or boat view');
 assert.match(html, /guide-images\/patara-dunes\.jpg/, 'Patara should show its beach and dunes');
 assert.match(html, /guide-images\/saklikent-canyon\.jpg/, 'the southern extension should show Saklıkent canyon');
-assert.match(html, /guide-images\/dalyan-reed-delta\.jpg/, 'the Dalyan backup should show the reed delta and boats');
-assert.match(html, /guide-images\/iztuzu-dekamer\.jpg/, 'the road-access backup should show Iztuzu beach and lagoon');
 
 const theatreUses = html.match(/guide-images\/kas-theatre\.jpg/g) ?? [];
 assert.ok(theatreUses.length <= 2, `Kaş theatre photograph should be used at most twice, found ${theatreUses.length}`);
@@ -41,17 +39,7 @@ assert.match(html, /<div class="date">09\.26<\/div>[\s\S]{0,2600}<img src="guide
 assert.doesNotMatch(html, /<h3>Paşabağ＋Zelve<\/h3>/, 'the compressed Cappadocia plan should remove the old third-day architecture stop');
 assert.match(html, /格雷梅[\s\S]{0,220}<td>2晚<\/td>/, 'the stay table should reduce Göreme to two nights');
 assert.match(html, /安塔利亚机场[\s\S]{0,220}<td>1晚<\/td>/, 'the Antalya airport or Lara night should be fixed, not optional');
-assert.match(html, /<div class="date">10\.03<\/div>[\s\S]{0,7000}Saklıkent[\s\S]{0,5000}DLM→IST/, 'October 3 should retain Saklıkent as an option before the evening DLM flight');
-
-const oct3Day = html.match(/<div class="date">10\.03<\/div>[\s\S]*?<div class="date">10\.04<\/div>/)?.[0] ?? '';
-assert.match(oct3Day, /Plan A[\s\S]{0,500}Saklıkent/, 'October 3 should label Saklıkent as Plan A');
-assert.match(oct3Day, /Plan B[\s\S]{0,500}Dalyan[\s\S]{0,350}İztuzu 北端/, 'October 3 should label the early private Dalyan boat as Plan B');
-assert.match(oct3Day, /08:15[\s\S]{0,500}10:45 前回到 Dalyan/, 'Plan B should have a written early-departure and return deadline');
-assert.match(oct3Day, /Plan C[\s\S]{0,500}İztuzu 公路端[\s\S]{0,350}DEKAMER/, 'October 3 should label the road-access beach and rescue centre as Plan C');
-assert.match(oct3Day, /DEKAMER[\s\S]{0,500}10:00–10:40/, 'Plan C should respect the rescue centre opening window');
-assert.match(oct3Day, /10\/3 只执行一个方案/, 'the guide should state that the three October 3 plans are mutually exclusive');
-assert.match(oct3Day, /13:30 前完成[^<]{0,30}还车/, 'all October 3 plans should share a hard car-return deadline');
-assert.doesNotMatch(oct3Day, /Plan B[\s\S]{0,1100}DEKAMER[\s\S]{0,500}Plan C/, 'Plan B should not incorrectly combine the boat-access north end with DEKAMER');
+assert.match(html, /<div class="date">10\.03<\/div>[\s\S]{0,3600}Saklıkent[\s\S]{0,900}(?:晚班|傍晚)[\s\S]{0,300}DLM→IST/, 'October 3 should visit Saklıkent before an evening DLM flight');
 
 function extractDivBlocksByClass(source, className) {
   const classPattern = new RegExp(`<div\\s+[^>]*class="[^"]*\\b${className}\\b[^"]*"[^>]*>`, 'g');
@@ -82,8 +70,5 @@ for (const [index, card] of attractionCards.entries()) {
 assert.match(html, /web\.shgm\.gov\.tr[\s\S]{0,480}shmkapadokya\.kapadokya\.edu\.tr/, 'the balloon card should link both licensed operators and the official flight status');
 assert.match(html, /whc\.unesco\.org\/en\/tentativelists\/1411/, 'Kekova should link to its UNESCO record');
 assert.match(html, /ekotaban\.tarimorman\.gov\.tr\/alan\/49/, 'Saklıkent should link to the national park authority');
-assert.match(html, /ortaca\.gov\.tr\/iztuzu-plaji/, 'Iztuzu should link to the district authority');
-assert.match(html, /dalyanteknetur\.com\/iletisim\.html/, 'the private boat backup should link to the Dalyan boat cooperative contact page');
-assert.match(html, /dekamer\.org\.tr\/contact\.html/, 'the turtle rescue centre should link to its official contact and opening-hours page');
 
 console.log('Itinerary content and image mapping regression test passed');
