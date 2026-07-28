@@ -14,7 +14,7 @@ assert.match(html, /guide-images\/kas-harbor\.jpg/, 'Kaş old town and harbour s
 assert.match(html, /guide-images\/limanagzi\.jpg/, 'the Kaş swimming day should show Limanağzı');
 assert.match(html, /guide-images\/kekova-bay\.jpg/, 'the Kekova boat day should show a bay or boat view');
 assert.match(html, /guide-images\/patara-dunes\.jpg/, 'Patara should show its beach and dunes');
-assert.match(html, /guide-images\/kadikoy-sunset\.jpg/, 'the Istanbul return should show the Kadıköy waterfront at sunset');
+assert.match(html, /guide-images\/moda-coast\.jpg/, 'the Istanbul return should show the newly added Moda waterfront stop');
 
 const theatreUses = html.match(/guide-images\/kas-theatre\.jpg/g) ?? [];
 assert.ok(theatreUses.length <= 2, `Kaş theatre photograph should be used at most twice, found ${theatreUses.length}`);
@@ -78,14 +78,19 @@ assert.match(html, /安塔利亚机场[\s\S]{0,220}<td>1晚<\/td>/, 'the Antalya
 const octoberThird = html.match(/<div class="date">10\.03<\/div>[\s\S]*?<div class="date">10\.04<\/div>/)?.[0] ?? '';
 assert.match(octoberThird, /DLM\s*→\s*SAW/, 'October 3 should fly from DLM to SAW instead of requiring an IST arrival');
 assert.match(octoberThird, /M4[\s\S]{0,120}52\s*分钟/, 'October 3 should state the roughly 52-minute M4 ride from SAW');
-assert.match(octoberThird, /落地到码头[^<]{0,60}100[–-]130\s*分/, 'October 3 should include baggage collection and station access in the SAW-to-Kadıköy timing');
+assert.match(octoberThird, /落地到(?:码头|\s*Kadıköy)[^<]{0,60}100[–-]130\s*分/, 'October 3 should include baggage collection and station access in the SAW-to-Kadıköy timing');
 assert.doesNotMatch(octoberThird, /落地后[^<]{0,40}70[–-]85\s*分/, 'October 3 must not confuse the train ride with the full baggage-inclusive transfer');
-assert.match(octoberThird, /Kadıköy[^<]{0,80}(?:码头|港口)[^<]{0,80}(?:海边|海滨)/, 'October 3 should keep the luggage-friendly Kadıköy pier waterfront stop');
+assert.match(octoberThird, /(?:只留|保留)[^<]{0,40}码头海边＋市场/, 'October 3 should keep the Kadıköy pier waterfront and market as the late-arrival fallback');
 assert.match(octoberThird, /Kadıköy[^<]{0,80}市场/, 'October 3 should keep Kadıköy market as the second compact Asian-side stop');
-assert.match(octoberThird, /(?:随身携带|全程带|不寄存)[^<]{0,40}行李箱|行李箱[^<]{0,40}(?:随身携带|全程带|不寄存)/, 'October 3 should explicitly keep the suitcases with the travellers instead of storing them');
-assert.match(octoberThird, /(?:不走|不去|不安排|取消|跳过)[^<]{0,60}Moda|Moda[^<]{0,60}(?:不走|不去|不安排|取消|跳过|长距离)/, 'October 3 should not require a long suitcase walk to Moda');
+assert.match(octoberThird, /Radical Storage[\s\S]{0,500}20:30/, 'October 3 should name the currently verified Kadıköy storage option and its closing time');
+assert.match(octoberThird, /(?:网上|在线)预订[\s\S]{0,220}(?:具体门店地址在预订后显示|(?:预订|付款)后[^<]{0,40}(?:地址|门店))/, 'October 3 should explain that storage is booked online and the exact shop is disclosed afterwards');
+assert.match(octoberThird, /(?:取件[^<]{0,100}19:45[\s\S]{0,160}20:00|19:45[–-]20:00[^<]{0,40}取件)/, 'October 3 should include a safe luggage collection window before closing');
+assert.match(octoberThird, /Moda[^<]{0,80}(?:海边|海滨|海岸)[\s\S]{0,280}Kadıköy[^<]{0,80}市场/, 'October 3 should use luggage storage to make Moda waterfront and Kadıköy market the two Asian-side experiences');
+assert.match(octoberThird, /guide-images\/moda-coast\.jpg/, 'the Moda stop should use a dedicated matching photograph');
+assert.match(octoberThird, /17:30[^<]{0,100}(?:前|以前)[^<]{0,100}(?:完成寄存|寄存完成)/, 'October 3 should use storage completion by 17:30 as the full-route decision gate');
+assert.match(octoberThird, /18:15[^<]{0,100}(?:后|以后)[\s\S]{0,260}(?:Plan B|备选)[\s\S]{0,180}不寄存/, 'October 3 should retain a no-storage fallback when reaching Kadıköy too late');
 assert.match(octoberThird, /(?:渡轮|轮渡)[\s\S]{0,240}(?:欧洲侧|欧洲区)/, 'October 3 should return to the European side by ferry after the Asian-side visit');
-assert.match(octoberThird, /(?:携带|带着|拖着)[^<]{0,30}行李(?:箱)?[^<]{0,100}(?:渡轮|轮渡)|(?:渡轮|轮渡)[^<]{0,100}(?:携带|带着|拖着)[^<]{0,30}行李(?:箱)?/, 'the evening ferry transfer should explicitly include the travellers carrying their luggage');
+assert.match(octoberThird, /(?:取回|取件)[^<]{0,30}行李(?:箱)?[\s\S]{0,220}(?:渡轮|轮渡)/, 'the evening ferry transfer should explicitly happen after collecting the stored luggage');
 assert.match(octoberThird, /Gayrettepe[\s\S]{0,180}(?:实际\s*M11\s*入口|M11\s*实际入口)/, 'October 3 should stay near a verified Gayrettepe M11 entrance');
 assert.doesNotMatch(octoberThird, /Levent[^<]{0,120}(?:步行|直达)[^<]{0,40}M11/, 'the guide must not imply that ordinary Levent hotels directly walk to M11');
 assert.doesNotMatch(html, /SAW[^<]{0,30}(?:不可选|不能选)|廉航[^<]{0,30}SAW[^<]{0,30}(?:不可选|不能选)/, 'the guide must not categorically reject SAW or a low-cost flight merely for landing there');
@@ -138,6 +143,9 @@ assert.match(html, /web\.shgm\.gov\.tr[\s\S]{0,480}shmkapadokya\.kapadokya\.edu\
 assert.match(html, /whc\.unesco\.org\/en\/tentativelists\/1411/, 'Kekova should link to its UNESCO record');
 assert.match(html, /metro\.istanbul\/en\/Hatlarimiz\/HatDetay\?hat=M4/, 'the SAW transfer should link to the official M4 page');
 assert.match(html, /sehirhatlari\.istanbul\/tr\/seferler\/ic-hatlar\/istanbul-ici-hatlar\/kadikoybesiktas-165/, 'the luggage-friendly ferry transfer should link to the official timetable');
+assert.match(html, /radicalstorage\.com\/luggage-storage\/istanbul\/haydarpasa\/luggage-storage-kadikoy/, 'the guide should link directly to the verified Kadıköy luggage-storage listing');
+assert.match(html, /name:'Kadıköy寄存＋Moda海滨＋市场'[\s\S]{0,500}booking:'https:\/\/radicalstorage\.com\//, 'the return-map stop should store Radical as a booking link rather than mislabel it as navigation');
+assert.match(html, /bookingLink[\s\S]{0,260}预订寄存 ↗/, 'the map popup should label the storage action clearly');
 assert.match(html, /dhmi\.gov\.tr\/sayfalar\/havalimani\/istanbul\/Ulasim\.aspx/i, 'the final IST transfer should link to the airport authority');
 
 console.log('Itinerary content and image mapping regression test passed');
