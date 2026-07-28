@@ -24,11 +24,11 @@ assert.match(html, /下杜登瀑布/, 'the airport-side Lower Duden waterfall st
 assert.match(html, /9\/29[\s\S]{0,260}(?:08:30|上午)[\s\S]{0,260}下杜登瀑布/, 'Lower Duden should be a planned morning stop after the Antalya overnight');
 assert.match(html, /DLM\s*→\s*SAW/, 'the October 3 route card should show the confirmed Dalaman-to-SAW direction');
 assert.match(html, /DLM\s*→\s*SAW[\s\S]{0,320}<time datetime="2026-10-03">10\/3[^<]*<\/time><span>VF3135[^<]*13:40[–—-]15:00[^<]*<\/span>/, 'the October 3 DLM-to-SAW route card should show the confirmed flight number and schedule');
-assert.match(html, /name:'达拉曼机场 DLM'[\s\S]{0,180}10:10[–—-]10:30[^']*还车[\s\S]{0,160}13:40起飞/, 'the DLM map point should show the concrete car-return and flight times');
+assert.match(html, /name:'达拉曼机场 DLM'[\s\S]{0,180}10:30[–—-]10:50[^']*还车[\s\S]{0,120}11:10[^']*航站楼[\s\S]{0,160}13:40起飞/, 'the DLM map point should separate car return, terminal arrival and flight time');
 assert.match(html, /9\/26[\s\S]{0,220}格雷梅日落＋蓝调夜景[\s\S]{0,260}约2小时[\s\S]{0,100}19:30/, 'the duration table should include the restored September 26 night-view window');
 assert.match(html, /name:'格雷梅日落＋夜景（Aydınkırağı）'[\s\S]{0,180}time:'9\/26 · 17:30–19:30'/, 'the Cappadocia map popup should identify the restored night-view stop and time');
 assert.match(html, /name:'Ihlara峡谷（热气球成功分支）'[\s\S]{0,120}lat:38\.253762[\s\S]{0,80}lng:34\.302209[\s\S]{0,220}time:'9\/28 · 09:30–12:45'/, 'the Cappadocia map should include the conditional Ihlara route with the main stair-gate coordinates and time');
-assert.match(html, /热气球\s*\/\s*Ihlara\s*二选一[\s\S]{0,220}9\/28[^<]{0,30}周一[\s\S]{0,280}17:30共同去ASR/, 'the map-side route card should show the September 28 branch and revised airport deadline');
+assert.match(html, /热气球\s*\/\s*Ihlara\s*二选一[\s\S]{0,220}9\/28[^<]{0,30}周一[\s\S]{0,280}18:30共同去ASR/, 'the map-side route card should show the September 28 branch and revised airport deadline');
 assert.match(html, /开塞利 ASR\s*→\s*安塔利亚 AYT[\s\S]{0,320}PC3503[^<]{0,100}(?:已订|已预订)/, 'the map-side flight card should mark PC3503 as booked');
 assert.match(html, /name:'蝴蝶谷崖顶观景台（Faralya）'[\s\S]{0,220}lat:36\.5002863[\s\S]{0,80}lng:29\.12814[\s\S]{0,220}stay:'10\/2固定主线'/, 'the coast map should include the exact Butterfly Valley viewpoint as a fixed stop');
 assert.match(html, /maps:'https:\/\/www\.google\.com\/maps\/search\/\?api=1&query=36\.5002863%2C29\.1281400'/, 'the viewpoint popup should override fuzzy name search with exact coordinates');
