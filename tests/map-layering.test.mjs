@@ -23,7 +23,8 @@ assert.doesNotMatch(html, /Myra|米拉/i, 'the replaced Myra stop must not remai
 assert.match(html, /下杜登瀑布/, 'the airport-side Lower Duden waterfall stop should be included');
 assert.match(html, /9\/29[\s\S]{0,260}(?:08:30|上午)[\s\S]{0,260}下杜登瀑布/, 'Lower Duden should be a planned morning stop after the Antalya overnight');
 assert.match(html, /DLM\s*→\s*SAW/, 'the October 3 route card should show the confirmed Dalaman-to-SAW direction');
-assert.match(html, /DLM\s*→\s*SAW[\s\S]{0,320}<time datetime="2026-10-03">10\/3[^<]*<\/time><span>[^<]*(?:起飞|落地|[–—]|→)[^<]*<\/span>/, 'the October 3 DLM-to-SAW route card should show its date and concrete timing');
+assert.match(html, /DLM\s*→\s*SAW[\s\S]{0,320}<time datetime="2026-10-03">10\/3[^<]*<\/time><span>VF3135[^<]*13:40[–—-]15:00[^<]*<\/span>/, 'the October 3 DLM-to-SAW route card should show the confirmed flight number and schedule');
+assert.match(html, /name:'达拉曼机场 DLM'[\s\S]{0,180}10:10[–—-]10:30[^']*还车[\s\S]{0,160}13:40起飞/, 'the DLM map point should show the concrete car-return and flight times');
 assert.match(html, /9\/26[\s\S]{0,220}格雷梅日落＋蓝调夜景[\s\S]{0,260}约2小时[\s\S]{0,100}19:30/, 'the duration table should include the restored September 26 night-view window');
 assert.match(html, /name:'格雷梅日落＋夜景（Aydınkırağı）'[\s\S]{0,180}time:'9\/26 · 17:30–19:30'/, 'the Cappadocia map popup should identify the restored night-view stop and time');
 assert.match(html, /name:'Ihlara峡谷（热气球成功分支）'[\s\S]{0,120}lat:38\.253762[\s\S]{0,80}lng:34\.302209[\s\S]{0,220}time:'9\/28 · 09:30–12:45'/, 'the Cappadocia map should include the conditional Ihlara route with the main stair-gate coordinates and time');

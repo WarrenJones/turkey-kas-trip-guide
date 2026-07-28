@@ -51,7 +51,8 @@ assert.match(html, /订单提示[^<]{0,80}提前\s*3\s*小时[^<]{0,100}(?:到�
 assert.match(html, /17:30[^<]{0,100}(?:ASR|开塞利)/, 'the airport transfer should leave Göreme at 17:30');
 assert.doesNotMatch(html, /18:30(?:\s*左右)?(?:从格雷梅出发|离开格雷梅|共同去ASR|乘接送去开塞利)|18:30\s*出发/, 'the superseded 18:30 airport-transfer departure should be removed');
 assert.match(html, /1\. 确认 PC3503 出票与行李/, 'the checklist should verify ticket issuance and baggage instead of asking the traveller to book PC3503 again');
-assert.match(html, /4\. 订\s*10\/3\s*DLM→SAW/, 'the remaining-flight checklist item should ask the traveller to book the October 3 SAW flight');
+assert.match(html, /4\. 确认 VF3135 客票与行李/, 'the checklist should verify the already-booked October 3 flight instead of asking the traveller to book it');
+assert.doesNotMatch(html, /4\. 订\s*10\/3\s*DLM→SAW/, 'the checklist must not keep the superseded October 3 booking task');
 assert.doesNotMatch(html, /订三段境内机票/, 'the checklist should no longer imply that all three domestic flights remain unbooked');
 assert.match(html, /<div class="date">09\.28<\/div>[\s\S]{0,4800}(?:AYT|Lara)[\s\S]{0,180}(?:住宿|入住)/, 'September 28 should finish at an Antalya or Lara hotel');
 assert.match(html, /<div class="date">09\.26<\/div>[\s\S]{0,2600}<img src="guide-images\/goreme-night\.jpg" alt="格雷梅镇区与洞穴建筑亮灯夜景">[\s\S]{0,220}<span class="slot-time">17:30–19:30<\/span>[\s\S]{0,160}<h3>格雷梅日落观景台＋洞穴镇夜景<\/h3>[\s\S]{0,420}日落后继续停留 30–45 分钟[\s\S]{0,260}天黑后不进入山谷小径/, 'September 26 should explicitly retain the Göreme blue-hour and illuminated cave-town night view with a matching night photograph');
@@ -77,6 +78,12 @@ assert.match(html, /安塔利亚机场[\s\S]{0,220}<td>1晚<\/td>/, 'the Antalya
 
 const octoberThird = html.match(/<div class="date">10\.03<\/div>[\s\S]*?<div class="date">10\.04<\/div>/)?.[0] ?? '';
 assert.match(octoberThird, /DLM\s*→\s*SAW/, 'October 3 should fly from DLM to SAW instead of requiring an IST arrival');
+assert.match(octoberThird, /VF3135[\s\S]{0,240}13:40[–-]15:00/, 'October 3 should use the confirmed VF3135 schedule');
+assert.match(octoberThird, /(?:订单截图显示|已付)[^<]{0,80}¥684[^<]{0,80}(?:两位乘客|两人)/, 'October 3 should record the paid two-passenger amount without treating it as a live fare quote');
+assert.match(octoberThird, /(?:托运行李|行李额度)[^<]{0,80}(?:未显示|待确认)/, 'October 3 should keep baggage allowance explicitly unconfirmed');
+assert.match(octoberThird, /09:00[^<]{0,120}(?:离开费特希耶|费特希耶出发)/, 'October 3 should give a concrete Fethiye departure time');
+assert.match(octoberThird, /10:10[–-]10:30[^<]{0,120}(?:还车|OPET)/, 'October 3 should give a bounded fuel and car-return window');
+assert.match(octoberThird, /10:40[^<]{0,100}(?:航站楼|办理值机)/, 'October 3 should preserve the booking app three-hour airport buffer');
 assert.match(octoberThird, /M4[\s\S]{0,120}52\s*分钟/, 'October 3 should state the roughly 52-minute M4 ride from SAW');
 assert.match(octoberThird, /落地到(?:码头|\s*Kadıköy)[^<]{0,60}100[–-]130\s*分/, 'October 3 should include baggage collection and station access in the SAW-to-Kadıköy timing');
 assert.doesNotMatch(octoberThird, /落地后[^<]{0,40}70[–-]85\s*分/, 'October 3 must not confuse the train ride with the full baggage-inclusive transfer');
@@ -94,6 +101,10 @@ assert.match(octoberThird, /(?:取回|取件)[^<]{0,30}行李(?:箱)?[\s\S]{0,22
 assert.match(octoberThird, /Gayrettepe[\s\S]{0,180}(?:实际\s*M11\s*入口|M11\s*实际入口)/, 'October 3 should stay near a verified Gayrettepe M11 entrance');
 assert.doesNotMatch(octoberThird, /Levent[^<]{0,120}(?:步行|直达)[^<]{0,40}M11/, 'the guide must not imply that ordinary Levent hotels directly walk to M11');
 assert.doesNotMatch(html, /SAW[^<]{0,30}(?:不可选|不能选)|廉航[^<]{0,30}SAW[^<]{0,30}(?:不可选|不能选)/, 'the guide must not categorically reject SAW or a low-cost flight merely for landing there');
+
+assert.match(html, /VF3135[^<]{0,180}13:40[^<]{0,80}15:00/, 'flight and transport planning should show the confirmed VF3135 schedule');
+assert.match(html, /¥684[^<]{0,100}(?:两位乘客|两人)/, 'the budget should include the paid October 3 order amount for two passengers');
+assert.match(html, /(?:托运行李|行李额度)[^<]{0,100}(?:未显示|待确认)/, 'transport and budget should not invent baggage allowance from the screenshot');
 
 const octoberFourth = html.match(/<div class="date">10\.04<\/div>[\s\S]*?<\/article>/)?.[0] ?? '';
 assert.match(octoberFourth, /M11[\s\S]{0,180}IST/, 'October 4 should use M11 to reach IST from the European-side hotel area');
