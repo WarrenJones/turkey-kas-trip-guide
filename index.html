@@ -68,7 +68,7 @@
     .map-side { display: flex; flex-direction: column; gap: 10px; }
     .leg-card { padding: 15px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
     .leg-card strong { display: block; }
-    .leg-date { display: flex; align-items: center; gap: 8px; margin: 9px 0 3px; color: var(--sea-dark); font-size: 12px; font-weight: 850; }
+    .leg-date { display: flex; align-items: center; gap: 8px; margin: 9px 0 3px; color: var(--sea-dark); font-size: 14px; font-weight: 850; }
     .leg-date time { flex: 0 0 auto; padding: 3px 8px; border-radius: 999px; color: white; background: var(--sun); }
     .leg-date span { color: #496269; }
     .leg-card .leg-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; color: var(--muted); font-size: 13px; }
@@ -78,10 +78,11 @@
     .duration-grid { display: grid; gap: 11px; }
     .duration-row { display: grid; grid-template-columns: 86px minmax(180px, 1.05fr) minmax(190px, 1.25fr) 90px 90px; gap: 10px; align-items: center; padding: 13px 15px; border-bottom: 1px solid var(--line); }
     .duration-row.header { color: var(--muted); font-size: 12px; font-weight: 800; letter-spacing: .06em; }
-    .duration-date { color: var(--sea-dark); font-weight: 900; }
+    .duration-date { color: var(--sea-dark); font-size: 15px; font-weight: 900; }
     .duration-place strong { display: block; }
     .duration-place small, .duration-transit small { color: var(--muted); }
-    .time-pill { display: inline-flex; align-items: center; justify-content: center; min-height: 34px; padding: 5px 9px; border-radius: 10px; color: var(--sea-dark); background: rgba(8,127,140,.09); font-size: 13px; font-weight: 850; text-align: center; }
+    .time-pill { display: inline-flex; align-items: center; justify-content: center; min-height: 34px; padding: 5px 9px; border-radius: 10px; color: var(--sea-dark); background: rgba(8,127,140,.09); font-size: 15px; font-weight: 850; text-align: center; }
+    .duration-row:not(.header) > :last-child { font-size: 15px; font-weight: 800; }
 
     .restaurant-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .restaurant { display: flex; flex-direction: column; padding: 21px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: 0 10px 28px rgba(18,57,64,.08); }
@@ -245,7 +246,7 @@
     .slot { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: #fff; }
     .slot img { aspect-ratio: 16 / 9; }
     .slot-text { padding: 15px; }
-    .slot-time { display: block; margin-bottom: 5px; color: var(--sun); font-size: 12px; font-weight: 900; letter-spacing: .1em; }
+    .slot-time { display: block; margin-bottom: 5px; color: var(--sun); font-size: 15px; font-weight: 900; letter-spacing: .06em; }
     .slot p { margin-bottom: 0; color: #52696e; font-size: 14px; }
     .authority-links { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
     .authority-link { display: inline-flex; align-items: center; min-height: 31px; padding: 5px 9px; border: 1px solid rgba(8,127,140,.24); border-radius: 9px; color: var(--sea-dark); background: rgba(8,127,140,.07); text-decoration: none; font-size: 12px; font-weight: 850; line-height: 1.35; }
@@ -314,6 +315,7 @@
       .wrap { width: min(100% - 22px, 1180px); }
       .hero { min-height: 78vh; }
       .hero-content { padding-bottom: 38px; }
+      .slot-time, .leg-date, .time-pill { font-size: 16px; }
       .summary-grid, .booking-grid, .check-grid { grid-template-columns: 1fr; }
       .map-shell, #trip-map { min-height: 480px; }
       .map-controls { left: 48px; right: 10px; overflow-x: auto; }
@@ -408,8 +410,8 @@
           </div>
           <aside class="map-side">
             <div class="leg-card"><strong><span class="mode-icon">✈</span>伊斯坦布尔 → 卡帕多奇亚</strong><div class="leg-date"><time datetime="2026-09-26">9/26 周六</time><span>07:45 起飞 · 约11:00到格雷梅</span></div><div class="leg-meta"><span>VF3268 已订</span><span>09:00 到 NAV</span><span>接送约 40–50分</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">↔</span>热气球 / Ihlara 二选一</strong><div class="leg-date"><time datetime="2026-09-28">9/28 周一</time><span>由 9/27 是否升空决定</span></div><div class="leg-meta"><span>取消：04:30补飞</span><span>成功：08:00–约14:30峡谷</span><span>18:30共同去ASR</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">✈</span>开塞利 ASR → 安塔利亚 AYT</strong><div class="leg-date"><time datetime="2026-09-28">9/28 周一</time><span>PC3503 · 22:05–23:25</span></div><div class="leg-meta"><span>NAV 进、ASR 出</span><span>18:30 离开格雷梅</span><span>当晚住 AYT / Lara</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">↔</span>热气球 / Ihlara 二选一</strong><div class="leg-date"><time datetime="2026-09-28">9/28 周一</time><span>由 9/27 是否升空决定</span></div><div class="leg-meta"><span>取消：04:30补飞</span><span>成功：08:00–约14:30峡谷</span><span>17:30共同去ASR</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">✈</span>开塞利 ASR → 安塔利亚 AYT</strong><div class="leg-date"><time datetime="2026-09-28">9/28 周一</time><span>PC3503 · 22:05–23:25</span></div><div class="leg-meta"><span>PC3503 已订 · 待确认出票与行李</span><span>NAV 进、ASR 出</span><span>17:30 离开格雷梅</span><span>当晚住 AYT / Lara</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">🚗</span>AYT → 下杜登 → 卡什</strong><div class="leg-date"><time datetime="2026-09-29">9/29 周二</time><span>上午 08:30 取车 · 10:30 前离开瀑布</span></div><div class="leg-meta"><span>下杜登瀑布45–60分</span><span>约203 km</span><span>日落前抵达古剧场</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">⛵</span>卡什 → Kekova → 卡什</strong><div class="leg-date"><time datetime="2026-10-01">10/1 周四</time><span>预计 09:00–18:00</span></div><div class="leg-meta"><span>拼船约 8–9小时</span><span>通常无需当天开车</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">🚗</span>D400：卡什 → Kaputaş → Patara → 蝴蝶谷崖顶 → 厄吕代尼兹</strong><div class="leg-date"><time datetime="2026-10-02">10/2 周五</time><span>13:45 离开 Patara · 18:45 日落</span></div><div class="leg-meta"><span>经停全段约 160 km</span><span>实际驾驶预留 4小时</span><span>Faralya 固定折返约 18 km</span></div></div>
@@ -425,7 +427,7 @@
       <div class="wrap">
         <p class="eyebrow">Trip at a glance</p>
         <h2>不全国开车，把时间留给真正重要的地方</h2>
-        <p class="lead">这版按你的自然偏好重排：卡帕多奇亚只住 2 晚。9/28 不再空等——9/27 取消就补飞热气球，成功就走 Ihlara 约 4 公里溪流峡谷；18:30 两条分支都回到同一条 ASR→AYT 航线。</p>
+        <p class="lead">这版按你的自然偏好重排：卡帕多奇亚只住 2 晚。9/28 不再空等——9/27 取消就补飞热气球，成功就走 Ihlara 约 4 公里溪流峡谷；17:30 两条分支都回到已订的 ASR→AYT 航线。</p>
         <div class="summary-grid">
           <article class="summary-card"><strong>2 晚</strong><span>卡帕多奇亚两次清晨<br><small class="muted">9/28 晚从 ASR 飞走</small></span></article>
           <article class="summary-card"><strong>1 个决定点</strong><span>热气球 / Ihlara 二选一<br><small class="muted">9/27 08:30 后锁定 9/28 分支</small></span></article>
@@ -442,7 +444,7 @@
       <div class="wrap">
         <p class="eyebrow">Risk control &amp; Plan B</p>
         <h2>先保核心体验，再按时间主动删减</h2>
-        <p class="lead">9/28 先按 9/27 的热气球结果分流，再在 18:30 汇合去 ASR：取消就争取补飞，成功就去 Ihlara。除此之外仍要盯紧 PC3503、深夜酒店接送，以及 10/2 多站自驾的删减门槛。</p>
+        <p class="lead">9/28 先按 9/27 的热气球结果分流，再在 17:30 汇合去 ASR：取消就争取补飞，成功就去 Ihlara。PC3503 已订，但仍要确认电子客票号、托运行李和深夜酒店接送。</p>
         <div class="risk-grid">
           <article class="risk-panel">
             <span class="risk-label">9/28 · 9/27 08:30 后锁定分支</span>
@@ -451,16 +453,17 @@
               <div class="decision-step"><div class="decision-time">分支 A</div><div class="decision-copy"><strong>9/27 因天气取消 → 9/28 补飞热气球</strong><p>只有原运营商书面确认改期且仍有余位才成立；约 04:30–08:30，之后早餐、补觉和退房，Ihlara 自动取消。</p></div></div>
               <div class="decision-step"><div class="decision-time">分支 B</div><div class="decision-copy"><strong>9/27 成功升空 → 9/28 Ihlara</strong><p>07:30 前早餐退房，08:00 私人司机出发；09:30 入谷，走约 4 公里至 Belisırma，12:45 硬性离开。</p></div></div>
               <div class="decision-step"><div class="decision-time">15:00</div><div class="decision-copy"><strong>最迟回到格雷梅</strong><p>取行李、简单更衣、休息和提前晚餐；不得把景点延误转嫁给机场接送。</p></div></div>
-              <div class="decision-step"><div class="decision-time">18:30</div><div class="decision-copy"><strong>两条分支共同前往 ASR</strong><p>PC3503 仍按 22:05 起飞执行，Ihlara 不改变当晚 AYT / Lara 住宿。</p></div></div>
+              <div class="decision-step"><div class="decision-time">17:30</div><div class="decision-copy"><strong>两条分支共同前往 ASR</strong><p>目标 18:30–18:50 抵达，满足订单提示的提前 3 小时到机场；PC3503 仍按 22:05 起飞执行。</p></div></div>
             </div>
             <p class="risk-foot">Ihlara 只使用可在 Belisırma 异地接人的私人司机或包车司机；普通绿线团回程不可控，<strong>不建议参加</strong>。默认方案为 2号台阶主入口下、Belisırma 接；出发前一周必须再次核对官方开放信息。若 2号入口关闭，只在司机书面确认可改走 1号入口或从 Belisırma 反向进入、且仍能 12:45 离谷及 15:00 前返回时执行，否则取消 Ihlara。<a href="https://www.muze.gov.tr/muze-detay?DistId=IH1&amp;SectionId=IH101" target="_blank" rel="noopener noreferrer">官方开放信息 ↗</a></p>
           </article>
 
           <article class="risk-panel">
-            <span class="risk-label">9/28 · 主方案已改为晚飞</span>
+            <span class="risk-label">9/28 · PC3503 已订，待确认出票</span>
             <h3>NAV 进、ASR 出；不要再搜 NAV→AYT</h3>
             <ul class="risk-list">
-              <li><strong>Plan A：</strong>订 9/28 Pegasus PC3503，开塞利 ASR 22:05 → 安塔利亚 AYT 23:25；18:30 左右从格雷梅出发，接送预留 60–80 分钟。</li>
+              <li><strong>已订：</strong>9/28 Pegasus PC3503，开塞利 ASR 22:05 → 安塔利亚 AYT 23:25。订单提示提前 3 小时到机场，17:30 从格雷梅出发，接送预留 60–80 分钟。</li>
+              <li><strong>出票待确认：</strong>截图显示“订单未出票完成”；看到两人的电子客票号并核对托运行李额度后，才把出票状态视为完成。</li>
               <li><strong>机场区别：</strong>你已订的 9/26 航班落地 NAV（内夫谢希尔）；9/28 直飞从 ASR（开塞利）起飞。两座机场不是同一个，搜索 NAV 会看到大量伊斯坦布尔中转。</li>
               <li><strong>取消／错过：</strong>先让航司改签到最早可行航班；若只能次日经伊斯坦布尔转机，就住开塞利机场附近，9/29 取消下杜登并直接去卡什。夜巴只作为自愿接受通宵疲劳的最后备选。</li>
             </ul>
@@ -596,9 +599,9 @@
               <div class="slots">
                 <div class="slot attraction-card"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚清晨成群升空的热气球"><div class="slot-text"><span class="slot-time">分支 A · 约04:30–08:30</span><h3>9/27 取消 → 热气球机会 2</h3><p>仅在 9/27 因天气取消、且原运营商确认 9/28 仍有余位并完成改期时再飞；飞完后早餐、补觉、退房，今天不再去 Ihlara。</p><div class="authority-links"><a class="authority-link" href="https://web.shgm.gov.tr/en/s/80-balloon-operators" target="_blank" rel="noopener noreferrer">土耳其民航局 · 持证运营商 ↗</a><a class="authority-link" href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">官方飞行旗 · 当天状态 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/ihlara-valley.jpg" alt="Ihlara峡谷高耸岩壁与谷底绿色树林"><div class="slot-text"><span class="slot-time">分支 B · 08:00出发 · 15:00前返回</span><h3>9/27 成功 → Ihlara 峡谷</h3><p>私人司机约 09:30 送到 2号台阶主入口（出发前一周复核开放），下 382 级台阶后沿 Melendiz 河走约 4 公里至 Belisırma；教堂只顺路看一处或全跳过。12:45 硬性离开，由司机异地接回格雷梅。</p><div class="authority-links"><a class="authority-link" href="https://www.muze.gov.tr/muze-detay?DistId=IH1&amp;SectionId=IH101" target="_blank" rel="noopener noreferrer">土耳其博物馆 · 开放信息 ↗</a><a class="authority-link" href="https://aksaray.ktb.gov.tr/TR-232541/ihlara-vadisi39nde-trekking.html" target="_blank" rel="noopener noreferrer">Aksaray 旅游局 · 4/7/14公里路线 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=38.253762%2C34.302209" target="_blank" rel="noopener noreferrer">2号台阶入口导航 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=38.264252%2C34.290615" target="_blank" rel="noopener noreferrer">Belisırma 接车点 ↗</a></div></div></div>
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">18:30–23:25</span><h3>格雷梅 → ASR → AYT</h3><p>18:30 左右乘接送去开塞利 ASR；PC3503 预计 22:05–23:25 直飞安塔利亚。落地后只去有深夜接送的 AYT / Lara 酒店入住。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">17:30–23:25</span><h3>PC3503 已订：格雷梅 → ASR → AYT</h3><p>17:30 乘接送去开塞利 ASR，目标 18:30–18:50 抵达；PC3503 计划 22:05–23:25 直飞安塔利亚。电子客票号和托运行李仍需确认，落地后只去有深夜接送的 AYT / Lara 酒店入住。</p></div></div>
               </div>
-              <p class="why"><strong>二选一规则：</strong>9/27 08:30 后立即锁定分支。取消就让第二次热气球继续保持核心价值；成功就用 Ihlara 的溪流峡谷替代空等。两条分支都必须 17:30 前回酒店取行李，18:30 离开格雷梅。</p>
+              <p class="why"><strong>二选一规则：</strong>9/27 08:30 后立即锁定分支。取消就让第二次热气球继续保持核心价值；成功就用 Ihlara 的溪流峡谷替代空等。两条分支都必须 16:30 前完成取行李和提前晚餐，17:30 离开格雷梅。</p>
             </div>
           </article>
 
@@ -766,8 +769,8 @@
           <div class="duration-row"><div class="duration-date">9/27</div><div class="duration-place"><strong>红谷／玫瑰谷</strong><small>短环线徒步＋日落观景</small></div><div class="duration-transit"><strong>格雷梅约 7–10 km</strong><small>车程约 15–20 分钟</small></div><div><span class="time-pill">2.5–3小时</span></div><div>日落后</div></div>
           <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>热气球机会 2</strong><small>仅 9/27 取消且确认有余位后改期</small></div><div class="duration-transit"><strong>酒店接送包含</strong><small>约 04:30 出发</small></div><div><span class="time-pill">3–4小时</span></div><div>约08:30</div></div>
           <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>Ihlara峡谷4公里短线（条件分支）</strong><small>仅 9/27 热气球成功后执行</small></div><div class="duration-transit"><strong>格雷梅 → Ihlara约83 km</strong><small>私人司机单程按1.5小时；Belisırma异地接</small></div><div><span class="time-pill">约3小时</span></div><div>12:45硬性离开</div></div>
-          <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>格雷梅 → ASR</strong><small>NAV 进、ASR 出，不要走错机场</small></div><div class="duration-transit"><strong>约 75 km</strong><small>18:30 出发；接送预留 60–80 分钟</small></div><div><span class="time-pill">约1小时15分</span></div><div>19:45到机场</div></div>
-          <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>PC3503：ASR → AYT</strong><small>开塞利直飞安塔利亚</small></div><div class="duration-transit"><strong>22:05–23:25</strong><small>落地后乘酒店深夜接送</small></div><div><span class="time-pill">1小时20分</span></div><div>住AYT/Lara</div></div>
+          <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>格雷梅 → ASR</strong><small>NAV 进、ASR 出，不要走错机场</small></div><div class="duration-transit"><strong>约 75 km</strong><small>17:30 出发；接送预留 60–80 分钟</small></div><div><span class="time-pill">约1小时15分</span></div><div>18:30–18:50到机场</div></div>
+          <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>PC3503：ASR → AYT（已订）</strong><small>待确认电子客票号与托运行李</small></div><div class="duration-transit"><strong>22:05–23:25</strong><small>落地后乘酒店深夜接送</small></div><div><span class="time-pill">1小时20分</span></div><div>住AYT/Lara</div></div>
           <div class="duration-row"><div class="duration-date">9/29</div><div class="duration-place"><strong>下杜登瀑布</strong><small>海崖陆地观景台</small></div><div class="duration-transit"><strong>AYT → 下杜登约 14 km</strong><small>08:30取车；正常约20分钟</small></div><div><span class="time-pill">45–60分</span></div><div>10:30</div></div>
           <div class="duration-row"><div class="duration-date">9/29</div><div class="duration-place"><strong>卡什＋古剧场日落</strong><small>入住、休息、步行去剧场</small></div><div class="duration-transit"><strong>下杜登 → 卡什约 189 km</strong><small>纯驾驶约2小时50分；含午餐预留4小时</small></div><div><span class="time-pill">1–1.5小时</span></div><div>日落后</div></div>
           <div class="duration-row"><div class="duration-date">9/30</div><div class="duration-place"><strong>卡什港口＋老城</strong><small>早餐、港口与短巷慢走</small></div><div class="duration-transit"><strong>住宿 → 港口</strong><small>中心区全程步行</small></div><div><span class="time-pill">1.5小时</span></div><div>10:00</div></div>
@@ -845,7 +848,7 @@
               <li>三段均按每人至少 20kg 托运行李比价</li>
               <li>9/26：SAW→NAV，VF3268，07:45–09:00（已订，订单显示已付 ¥588）</li>
               <li><strong>NAV 进、ASR 出：</strong>两座机场不同，不要搜索 NAV→AYT</li>
-              <li>9/28：PC3503，ASR 22:05→AYT 23:25；订票时再次核对日期、航站与托运行李</li>
+              <li>9/28：PC3503，ASR 22:05→AYT 23:25（已订；待确认两人电子客票号与托运行李额度）</li>
               <li>10/3：DLM→IST，只选18:00后晚班；含托运行李</li>
             </ul>
           </article>
@@ -933,7 +936,7 @@
           <article class="practical-item"><h3>Ihlara 条件分支</h3><ul><li>只在 9/27 热气球成功后执行；若取消并改到 9/28，Ihlara 自动删除。</li><li>预订可取消的私人司机：08:00 格雷梅酒店接、默认 2号台阶主入口下、Belisırma 接、15:00 前返回格雷梅。</li><li>出发前一周复核入口；若 2号入口关闭，只有司机确认改走 1号入口或 Belisırma 反向进入且不突破硬时限才执行，否则取消。</li><li>主入口约382级台阶，谷底短线约4公里；穿防滑鞋，教堂不是核心，可只顺路看一处。</li><li>普通绿线团通常加入地下城、Selime和购物点，回程不可控，不参加。</li></ul><p class="small"><a href="https://www.muze.gov.tr/muze-detay?DistId=IH1&amp;SectionId=IH101" target="_blank" rel="noopener noreferrer">官方开放与票务 ↗</a>　<a href="https://aksaray.ktb.gov.tr/TR-232541/ihlara-vadisi39nde-trekking.html" target="_blank" rel="noopener noreferrer">官方徒步路线 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=38.253762%2C34.302209" target="_blank" rel="noopener noreferrer">2号入口 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=38.264252%2C34.290615" target="_blank" rel="noopener noreferrer">Belisırma 接车 ↗</a></p></article>
           <article class="practical-item"><h3>卡什古剧场</h3><ul><li>官方资料确认剧场位于卡什主广场以西约 500 米，但未提供稳定的独立开放时间和票价。</li><li>不要把“全天免费”当作已确认事实；可能因活动、维护或现场管理临时变化。</li><li>出发前一周请住宿方确认开放时间、收费、活动占用和日落后离场方式。</li></ul><p class="small"><a href="https://www.ktb.gov.tr/EN-36176/where-to-visit.html" target="_blank" rel="noopener">土耳其文化旅游部资料 ↗</a></p></article>
           <article class="practical-item"><h3>Saklıkent 涉水安全</h3><ul><li>带包脚防滑水鞋，不穿人字拖；手机和证件放防水袋。</li><li>峡谷水位、开放深度和栈道状态每天会变，只走管理方当天开放区域。</li><li>下雨、山洪提示或工作人员封路时立即取消，直接去 DLM，不用“来都来了”冒险。</li></ul><p class="small"><a href="https://ekotaban.tarimorman.gov.tr/alan/49" target="_blank" rel="noopener noreferrer">国家公园官方资料 ↗</a></p></article>
-          <article class="practical-item"><h3>出发前一周复核</h3><ul><li>9/28 PC3503 的 22:05–23:25 时刻、ASR 出发机场及三段托运行李额度。</li><li>Ihlara 2号入口开放状态、Belisırma接车点、司机取消时限、15:00前返回承诺及 Anatolia Restaurant 营业。</li><li>9/29 卡什实际日落、古剧场开放状态和天气；9/30 保留第二次机会。</li><li>10/2 约 18:45 的日落、Faralya 道路施工、降雨、风力和能见度。</li><li>Saklıkent开放与涉水条件、景点开放日、餐厅营业日及租车门店交接点。</li></ul></article>
+          <article class="practical-item"><h3>出发前一周复核</h3><ul><li>9/28 PC3503 已订：确认两人电子客票号、托运行李、22:05–23:25 时刻和 ASR 出发机场；17:30 从格雷梅出发。</li><li>Ihlara 2号入口开放状态、Belisırma接车点、司机取消时限、15:00前返回承诺及 Anatolia Restaurant 营业。</li><li>9/29 卡什实际日落、古剧场开放状态和天气；9/30 保留第二次机会。</li><li>10/2 约 18:45 的日落、Faralya 道路施工、降雨、风力和能见度。</li><li>Saklıkent开放与涉水条件、景点开放日、餐厅营业日及租车门店交接点。</li></ul></article>
         </div>
       </div>
     </section>
@@ -944,10 +947,10 @@
         <h2>推荐下单顺序</h2>
         <div class="panel">
           <div class="check-grid">
-            <div class="check-item"><input id="c1" type="checkbox"><label for="c1"><strong>1. 订 9/28 PC3503</strong><br><span class="muted small">确认 ASR 22:05→AYT 23:25；NAV 进、ASR 出，不要选错机场。</span></label></div>
+            <div class="check-item"><input id="c1" type="checkbox"><label for="c1"><strong>1. 确认 PC3503 出票与行李</strong><br><span class="muted small">航班已订；确认两人电子客票号、托运行李及 ASR 22:05→AYT 23:25，17:30 从格雷梅出发。</span></label></div>
             <div class="check-item"><input id="c2" type="checkbox"><label for="c2"><strong>2. 官网订 9/27 第一批热气球</strong><br><span class="muted small">见“活动预约”第 2 项；确认天气取消全退，9/28 改期仅在仍有余位时成立。</span></label></div>
             <div class="check-item"><input id="c3" type="checkbox"><label for="c3"><strong>3. 询价 Ihlara 可取消私人司机</strong><br><span class="muted small">默认 2号入口下、Belisırma 接；书面确认入口关闭时的替代路线和 15:00 前回格雷梅承诺，整项费用超过 ¥1,500 就不执行。</span></label></div>
-            <div class="check-item"><input id="c4" type="checkbox"><label for="c4"><strong>4. 订三段境内机票</strong><br><span class="muted small">三段均按每人至少 20kg 托运行李的最终价比较。</span></label></div>
+            <div class="check-item"><input id="c4" type="checkbox"><label for="c4"><strong>4. 订 10/3 DLM→IST</strong><br><span class="muted small">只剩这一段待订；选择 18:00 后直飞并按每人至少 20kg 托运行李的最终价比较。</span></label></div>
             <div class="check-item"><input id="c5" type="checkbox"><label for="c5"><strong>5. 锁定卡什住宿</strong><br><span class="muted small">先保证剧场步行距离和停车，再考虑海景。</span></label></div>
             <div class="check-item"><input id="c6" type="checkbox"><label for="c6"><strong>6. 书面确认租车</strong><br><span class="muted small">香港驾照＋IDP、保险、押金、异地还车全部确认。</span></label></div>
             <div class="check-item"><input id="c7" type="checkbox"><label for="c7"><strong>7. 购买旅行保险</strong><br><span class="muted small">核对医疗运送、改道、热气球及租车自负额条款。</span></label></div>
@@ -1015,7 +1018,7 @@
         {n:3, name:'乌奇萨＋鸽子谷', lat:38.6307, lng:34.8050, stay:'不换酒店', time:'9/26 · 2.5–3小时', food:'Saklı Konak', source:'https://www.uchisar.bel.tr/uchisar-kalesi/'},
         {n:4, name:'红谷＋玫瑰谷', lat:38.6532, lng:34.8620, stay:'不换酒店', time:'9/27 · 2.5–3小时', food:'回格雷梅吃', source:'https://goturkiye.com/zh/central/touch'},
         {n:5, name:'Ihlara峡谷（热气球成功分支）', lat:38.253762, lng:34.302209, stay:'9/28条件分支', time:'9/28 · 09:30–12:45', food:'Anatolia Restaurant（先确认营业）', source:'https://www.muze.gov.tr/muze-detay?DistId=IH1&SectionId=IH101', maps:'https://www.google.com/maps/search/?api=1&query=38.253762%2C34.302209'},
-        {n:6, name:'开塞利机场 ASR', lat:38.7704, lng:35.4954, stay:'9/28出发', time:'PC3503 · 22:05', food:'提前备好轻食'},
+        {n:6, name:'开塞利机场 ASR', lat:38.7704, lng:35.4954, stay:'9/28出发 · PC3503已订', time:'17:30离开格雷梅 · 22:05起飞', food:'提前备好轻食'},
         {n:7, name:'安塔利亚机场 AYT', lat:36.8999, lng:30.8012, stay:'9/28住AYT/Lara', time:'23:25落地 · 次晨取车', food:'酒店早餐'},
         {n:8, name:'下杜登瀑布', lat:36.8500, lng:30.7822, stay:'9/29上午', time:'45–60分钟', food:'Düden Balık Çarşısı', source:'https://goturkiye.com/antalya/listen'},
         {n:9, name:'卡什', lat:36.2019, lng:29.6377, stay:'3晚', time:'9/29–10/2', food:'Bi Lokma / Ruhi Bey', source:'https://goturkiye.com/antalya/touch'},
