@@ -46,7 +46,14 @@ assert.doesNotMatch(html, /guide-images\/cappadocia-balloon\.jpg" alt="卡帕多
 
 assert.match(html, /NAV\s*进[，、·\s]*ASR\s*出/, 'the guide should clearly distinguish the inbound NAV airport from outbound ASR');
 assert.match(html, /9\/28[\s\S]{0,360}PC3503[\s\S]{0,180}22:05[\s\S]{0,100}23:25/, 'September 28 should use the direct PC3503 evening flight');
-assert.match(html, /<div class="date">09\.28<\/div>[\s\S]{0,3600}(?:AYT|Lara)[\s\S]{0,180}(?:住宿|入住)/, 'September 28 should finish at an Antalya or Lara hotel');
+assert.match(html, /PC3503[^<]{0,100}(?:已订|已预订)[^<]{0,100}(?:待确认出票|出票待确认)/, 'PC3503 should be marked as booked while ticket issuance is still awaiting confirmation');
+assert.match(html, /订单提示[^<]{0,80}提前\s*3\s*小时[^<]{0,100}(?:到机场|抵达机场)/, 'the guide should preserve the booking app recommendation to reach ASR three hours early');
+assert.match(html, /17:30[^<]{0,100}(?:ASR|开塞利)/, 'the airport transfer should leave Göreme at 17:30');
+assert.doesNotMatch(html, /18:30(?:\s*左右)?(?:从格雷梅出发|离开格雷梅|共同去ASR|乘接送去开塞利)|18:30\s*出发/, 'the superseded 18:30 airport-transfer departure should be removed');
+assert.match(html, /1\. 确认 PC3503 出票与行李/, 'the checklist should verify ticket issuance and baggage instead of asking the traveller to book PC3503 again');
+assert.match(html, /4\. 订\s*10\/3\s*DLM→IST/, 'the remaining-flight checklist item should only ask the traveller to book the unbooked October 3 flight');
+assert.doesNotMatch(html, /订三段境内机票/, 'the checklist should no longer imply that all three domestic flights remain unbooked');
+assert.match(html, /<div class="date">09\.28<\/div>[\s\S]{0,4800}(?:AYT|Lara)[\s\S]{0,180}(?:住宿|入住)/, 'September 28 should finish at an Antalya or Lara hotel');
 assert.match(html, /<div class="date">09\.26<\/div>[\s\S]{0,2600}<img src="guide-images\/goreme-night\.jpg" alt="格雷梅镇区与洞穴建筑亮灯夜景">[\s\S]{0,220}<span class="slot-time">17:30–19:30<\/span>[\s\S]{0,160}<h3>格雷梅日落观景台＋洞穴镇夜景<\/h3>[\s\S]{0,420}日落后继续停留 30–45 分钟[\s\S]{0,260}天黑后不进入山谷小径/, 'September 26 should explicitly retain the Göreme blue-hour and illuminated cave-town night view with a matching night photograph');
 assert.doesNotMatch(html, /<h3>Paşabağ＋Zelve<\/h3>/, 'the compressed Cappadocia plan should remove the old third-day architecture stop');
 
@@ -68,6 +75,12 @@ assert.match(html, /38\.264252%2C34\.290615/, 'the Ihlara plan should provide an
 assert.match(html, /格雷梅[\s\S]{0,220}<td>2晚<\/td>/, 'the stay table should reduce Göreme to two nights');
 assert.match(html, /安塔利亚机场[\s\S]{0,220}<td>1晚<\/td>/, 'the Antalya airport or Lara night should be fixed, not optional');
 assert.match(html, /<div class="date">10\.03<\/div>[\s\S]{0,3600}Saklıkent[\s\S]{0,900}(?:晚班|傍晚)[\s\S]{0,300}DLM→IST/, 'October 3 should visit Saklıkent before an evening DLM flight');
+
+assert.match(html, /\.slot-time\s*\{[^}]*font-size:\s*15px/, 'daily itinerary time labels should use a readable 15px desktop size');
+assert.match(html, /\.leg-date\s*\{[^}]*font-size:\s*14px/, 'route-card date and time labels should be larger than the previous 12px size');
+assert.match(html, /\.time-pill\s*\{[^}]*font-size:\s*15px/, 'duration-table time pills should use a readable 15px size');
+assert.match(html, /\.duration-row:not\(\.header\)\s*>\s*:last-child\s*\{[^}]*font-size:\s*15px/, 'duration-table deadline times should use a readable 15px size');
+assert.match(html, /@media \(max-width: 620px\)[\s\S]{0,1600}\.slot-time,\s*\.leg-date,\s*\.time-pill\s*\{[^}]*font-size:\s*16px/, 'primary time labels should increase to 16px on phones');
 
 function extractDivBlocksByClass(source, className) {
   const classPattern = new RegExp(`<div\\s+[^>]*class="[^"]*\\b${className}\\b[^"]*"[^>]*>`, 'g');
