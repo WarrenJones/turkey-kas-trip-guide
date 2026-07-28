@@ -14,7 +14,7 @@ assert.match(html, /guide-images\/kas-harbor\.jpg/, 'Kaş old town and harbour s
 assert.match(html, /guide-images\/limanagzi\.jpg/, 'the Kaş swimming day should show Limanağzı');
 assert.match(html, /guide-images\/kekova-bay\.jpg/, 'the Kekova boat day should show a bay or boat view');
 assert.match(html, /guide-images\/patara-dunes\.jpg/, 'Patara should show its beach and dunes');
-assert.match(html, /guide-images\/saklikent-canyon\.jpg/, 'the southern extension should show Saklıkent canyon');
+assert.match(html, /guide-images\/kadikoy-sunset\.jpg/, 'the Istanbul return should show the Kadıköy waterfront at sunset');
 
 const theatreUses = html.match(/guide-images\/kas-theatre\.jpg/g) ?? [];
 assert.ok(theatreUses.length <= 2, `Kaş theatre photograph should be used at most twice, found ${theatreUses.length}`);
@@ -51,7 +51,7 @@ assert.match(html, /订单提示[^<]{0,80}提前\s*3\s*小时[^<]{0,100}(?:到�
 assert.match(html, /17:30[^<]{0,100}(?:ASR|开塞利)/, 'the airport transfer should leave Göreme at 17:30');
 assert.doesNotMatch(html, /18:30(?:\s*左右)?(?:从格雷梅出发|离开格雷梅|共同去ASR|乘接送去开塞利)|18:30\s*出发/, 'the superseded 18:30 airport-transfer departure should be removed');
 assert.match(html, /1\. 确认 PC3503 出票与行李/, 'the checklist should verify ticket issuance and baggage instead of asking the traveller to book PC3503 again');
-assert.match(html, /4\. 订\s*10\/3\s*DLM→IST/, 'the remaining-flight checklist item should only ask the traveller to book the unbooked October 3 flight');
+assert.match(html, /4\. 订\s*10\/3\s*DLM→SAW/, 'the remaining-flight checklist item should ask the traveller to book the October 3 SAW flight');
 assert.doesNotMatch(html, /订三段境内机票/, 'the checklist should no longer imply that all three domestic flights remain unbooked');
 assert.match(html, /<div class="date">09\.28<\/div>[\s\S]{0,4800}(?:AYT|Lara)[\s\S]{0,180}(?:住宿|入住)/, 'September 28 should finish at an Antalya or Lara hotel');
 assert.match(html, /<div class="date">09\.26<\/div>[\s\S]{0,2600}<img src="guide-images\/goreme-night\.jpg" alt="格雷梅镇区与洞穴建筑亮灯夜景">[\s\S]{0,220}<span class="slot-time">17:30–19:30<\/span>[\s\S]{0,160}<h3>格雷梅日落观景台＋洞穴镇夜景<\/h3>[\s\S]{0,420}日落后继续停留 30–45 分钟[\s\S]{0,260}天黑后不进入山谷小径/, 'September 26 should explicitly retain the Göreme blue-hour and illuminated cave-town night view with a matching night photograph');
@@ -74,7 +74,33 @@ assert.match(html, /2号[^<]{0,40}(?:主入口|入口)[\s\S]{0,280}出发前一�
 assert.match(html, /38\.264252%2C34\.290615/, 'the Ihlara plan should provide an exact Belisırma pickup coordinate');
 assert.match(html, /格雷梅[\s\S]{0,220}<td>2晚<\/td>/, 'the stay table should reduce Göreme to two nights');
 assert.match(html, /安塔利亚机场[\s\S]{0,220}<td>1晚<\/td>/, 'the Antalya airport or Lara night should be fixed, not optional');
-assert.match(html, /<div class="date">10\.03<\/div>[\s\S]{0,3600}Saklıkent[\s\S]{0,900}(?:晚班|傍晚)[\s\S]{0,300}DLM→IST/, 'October 3 should visit Saklıkent before an evening DLM flight');
+
+const octoberThird = html.match(/<div class="date">10\.03<\/div>[\s\S]*?<div class="date">10\.04<\/div>/)?.[0] ?? '';
+assert.match(octoberThird, /DLM\s*→\s*SAW/, 'October 3 should fly from DLM to SAW instead of requiring an IST arrival');
+assert.match(octoberThird, /M4[\s\S]{0,120}52\s*分钟/, 'October 3 should state the roughly 52-minute M4 ride from SAW');
+assert.match(octoberThird, /落地到码头[^<]{0,60}100[–-]130\s*分/, 'October 3 should include baggage collection and station access in the SAW-to-Kadıköy timing');
+assert.doesNotMatch(octoberThird, /落地后[^<]{0,40}70[–-]85\s*分/, 'October 3 must not confuse the train ride with the full baggage-inclusive transfer');
+assert.match(octoberThird, /Kadıköy[^<]{0,80}(?:码头|港口)[^<]{0,80}(?:海边|海滨)/, 'October 3 should keep the luggage-friendly Kadıköy pier waterfront stop');
+assert.match(octoberThird, /Kadıköy[^<]{0,80}市场/, 'October 3 should keep Kadıköy market as the second compact Asian-side stop');
+assert.match(octoberThird, /(?:随身携带|全程带|不寄存)[^<]{0,40}行李箱|行李箱[^<]{0,40}(?:随身携带|全程带|不寄存)/, 'October 3 should explicitly keep the suitcases with the travellers instead of storing them');
+assert.match(octoberThird, /(?:不走|不去|不安排|取消|跳过)[^<]{0,60}Moda|Moda[^<]{0,60}(?:不走|不去|不安排|取消|跳过|长距离)/, 'October 3 should not require a long suitcase walk to Moda');
+assert.match(octoberThird, /(?:渡轮|轮渡)[\s\S]{0,240}(?:欧洲侧|欧洲区)/, 'October 3 should return to the European side by ferry after the Asian-side visit');
+assert.match(octoberThird, /(?:携带|带着|拖着)[^<]{0,30}行李(?:箱)?[^<]{0,100}(?:渡轮|轮渡)|(?:渡轮|轮渡)[^<]{0,100}(?:携带|带着|拖着)[^<]{0,30}行李(?:箱)?/, 'the evening ferry transfer should explicitly include the travellers carrying their luggage');
+assert.match(octoberThird, /Gayrettepe[\s\S]{0,180}(?:实际\s*M11\s*入口|M11\s*实际入口)/, 'October 3 should stay near a verified Gayrettepe M11 entrance');
+assert.doesNotMatch(octoberThird, /Levent[^<]{0,120}(?:步行|直达)[^<]{0,40}M11/, 'the guide must not imply that ordinary Levent hotels directly walk to M11');
+assert.doesNotMatch(html, /SAW[^<]{0,30}(?:不可选|不能选)|廉航[^<]{0,30}SAW[^<]{0,30}(?:不可选|不能选)/, 'the guide must not categorically reject SAW or a low-cost flight merely for landing there');
+
+const octoberFourth = html.match(/<div class="date">10\.04<\/div>[\s\S]*?<\/article>/)?.[0] ?? '';
+assert.match(octoberFourth, /M11[\s\S]{0,180}IST/, 'October 4 should use M11 to reach IST from the European-side hotel area');
+
+const transportSection = html.match(/<section class="section" id="transport">[\s\S]*?<section class="section" id="budget">/)?.[0] ?? '';
+assert.match(transportSection, /Çizgi/, 'the car-rental plan should name Çizgi correctly');
+assert.match(transportSection, /AYT\s*→\s*DLM[\s\S]{0,180}异地还车/, 'the car-rental plan should explicitly use one-way AYT to DLM return');
+assert.match(transportSection, /(?:主方案|默认)[^<]{0,80}9\/29[^<]{0,60}08:30|9\/29[^<]{0,60}08:30[^<]{0,80}(?:主方案|默认)/, 'the car-rental plan should consistently use 08:30 as the main pickup time');
+assert.match(transportSection, /00:30[^<]{0,120}(?:可选备选|不作为默认)/, 'the car-rental plan may retain 00:30 only as a clearly non-default option');
+assert.match(transportSection, /自动挡[^<]{0,120}(?:两件|2件)[^<]{0,50}(?:行李|托运|箱)/, 'the recommended automatic car should fit two checked suitcases');
+assert.match(transportSection, /(?:one-way fee|异地还车费)[\s\S]{0,320}(?:里程额度|里程限制|总里程)[\s\S]{0,320}(?:押金|预授权)[\s\S]{0,320}(?:保险免赔|免赔额)/i, 'the rental checklist should confirm the one-way fee, mileage, deposit and insurance excess');
+assert.match(transportSection, /DLM[\s\S]{0,240}OPET[\s\S]{0,240}(?:接驳|送机|航站楼)/, 'the rental checklist should confirm the DLM OPET return point and terminal transfer');
 
 assert.match(html, /\.slot-time\s*\{[^}]*font-size:\s*15px/, 'daily itinerary time labels should use a readable 15px desktop size');
 assert.match(html, /\.leg-date\s*\{[^}]*font-size:\s*14px/, 'route-card date and time labels should be larger than the previous 12px size');
@@ -110,6 +136,8 @@ for (const [index, card] of attractionCards.entries()) {
 }
 assert.match(html, /web\.shgm\.gov\.tr[\s\S]{0,480}shmkapadokya\.kapadokya\.edu\.tr/, 'the balloon card should link both licensed operators and the official flight status');
 assert.match(html, /whc\.unesco\.org\/en\/tentativelists\/1411/, 'Kekova should link to its UNESCO record');
-assert.match(html, /ekotaban\.tarimorman\.gov\.tr\/alan\/49/, 'Saklıkent should link to the national park authority');
+assert.match(html, /metro\.istanbul\/en\/Hatlarimiz\/HatDetay\?hat=M4/, 'the SAW transfer should link to the official M4 page');
+assert.match(html, /sehirhatlari\.istanbul\/tr\/seferler\/ic-hatlar\/istanbul-ici-hatlar\/kadikoybesiktas-165/, 'the luggage-friendly ferry transfer should link to the official timetable');
+assert.match(html, /dhmi\.gov\.tr\/sayfalar\/havalimani\/istanbul\/Ulasim\.aspx/i, 'the final IST transfer should link to the airport authority');
 
 console.log('Itinerary content and image mapping regression test passed');

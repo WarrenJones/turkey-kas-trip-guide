@@ -396,16 +396,17 @@
       <div class="wrap">
         <p class="eyebrow">Interactive route map</p>
         <h2>先看地图，再看每天怎么走</h2>
-        <p class="lead">地图中的实线是 D400 自驾路线，虚线是境内航班。卡帕多奇亚详情同时显示 9/28 的 Ihlara 条件分支；点击编号可以查看建议停留时间和附近用餐点。</p>
+        <p class="lead">地图中青色实线表示 D400 自驾或轨道交通，橙色虚线表示境内航班与 Kekova 船线，蓝色虚线表示 Kadıköy 渡轮＋短程接驳。卡帕多奇亚详情同时显示 9/28 的 Ihlara 条件分支；点击编号可以查看建议停留时间和附近用餐点。</p>
         <div class="map-layout">
           <div class="map-shell">
-            <div id="trip-map" role="img" aria-label="伊斯坦布尔、格雷梅日落夜景、乌奇萨、红谷、Ihlara峡谷、下杜登瀑布、卡什、Kekova、Patara、蝴蝶谷崖顶观景台、厄吕代尼兹、Saklıkent峡谷及达拉曼的旅行路线地图"></div>
+            <div id="trip-map" role="img" aria-label="伊斯坦布尔、格雷梅日落夜景、乌奇萨、红谷、Ihlara峡谷、下杜登瀑布、卡什、Kekova、Patara、蝴蝶谷崖顶观景台、厄吕代尼兹、费特希耶、达拉曼机场、萨比哈机场、Kadıköy码头、欧洲侧Gayrettepe及伊斯坦布尔机场的旅行路线地图"></div>
             <div class="map-controls" aria-label="地图范围">
               <button type="button" class="active" id="map-all">全程路线</button>
               <button type="button" id="map-cappadocia">卡帕多奇亚</button>
               <button type="button" id="map-coast">海岸自驾</button>
               <button type="button" id="map-kas">卡什周边</button>
               <button type="button" id="map-fethiye">费特希耶段</button>
+              <button type="button" id="map-return">返程亚洲区</button>
             </div>
           </div>
           <aside class="map-side">
@@ -415,8 +416,9 @@
             <div class="leg-card"><strong><span class="mode-icon">🚗</span>AYT → 下杜登 → 卡什</strong><div class="leg-date"><time datetime="2026-09-29">9/29 周二</time><span>上午 08:30 取车 · 10:30 前离开瀑布</span></div><div class="leg-meta"><span>下杜登瀑布45–60分</span><span>约203 km</span><span>日落前抵达古剧场</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">⛵</span>卡什 → Kekova → 卡什</strong><div class="leg-date"><time datetime="2026-10-01">10/1 周四</time><span>预计 09:00–18:00</span></div><div class="leg-meta"><span>拼船约 8–9小时</span><span>通常无需当天开车</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">🚗</span>D400：卡什 → Kaputaş → Patara → 蝴蝶谷崖顶 → 厄吕代尼兹</strong><div class="leg-date"><time datetime="2026-10-02">10/2 周五</time><span>13:45 离开 Patara · 18:45 日落</span></div><div class="leg-meta"><span>经停全段约 160 km</span><span>实际驾驶预留 4小时</span><span>Faralya 固定折返约 18 km</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">🚗</span>费特希耶 → Saklıkent → DLM</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>07:15 出发 · 约13:30到机场</span></div><div class="leg-meta"><span>约 135 km</span><span>峡谷游玩 2–2.5小时</span><span>还车预留 45分</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">✈</span>Dalaman → 伊斯坦布尔</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>只订 18:00 后晚班</span></div><div class="leg-meta"><span>飞行约 1小时25分</span><span>优先落地 IST</span><span>峡谷晚点仍有缓冲</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">🚗</span>费特希耶 → DLM</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>睡醒再走 · 按航班倒推还车</span></div><div class="leg-meta"><span>约 50 km / 50–60分</span><span>起飞前约3小时到还车点</span><span>不再塞沿途景点</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">✈</span>DLM → SAW → Kadıköy</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>完整下午优先选择 15:00 前落地 SAW 的直飞</span></div><div class="leg-meta"><span>飞行约1小时20分</span><span>M4车程约52分</span><span>落地到码头预留100–130分</span><span>行李箱全程随身</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">⛴</span>Kadıköy → Beşiktaş → Gayrettepe</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>18:43 日落 · 晚饭后渡轮回欧洲侧</span></div><div class="leg-meta"><span>码头海边＋市场两点</span><span>不拖箱长走 Moda</span><span>次晨 M11 去 IST</span></div></div>
             <div class="map-note">地图时间为无停车、无拍照、无堵车的路线计算；正式日程已经额外加入约 20%–30% 缓冲。</div>
           </aside>
         </div>
@@ -432,10 +434,10 @@
           <article class="summary-card"><strong>2 晚</strong><span>卡帕多奇亚两次清晨<br><small class="muted">9/28 晚从 ASR 飞走</small></span></article>
           <article class="summary-card"><strong>1 个决定点</strong><span>热气球 / Ihlara 二选一<br><small class="muted">9/27 08:30 后锁定 9/28 分支</small></span></article>
           <article class="summary-card"><strong>3 晚</strong><span>连续住在卡什<br><small class="muted">古剧场日落＋Kekova</small></span></article>
-          <article class="summary-card"><strong>约 500 km</strong><span>含 Saklıkent 的自驾主线<br><small class="muted">安塔利亚取、达拉曼还</small></span></article>
+          <article class="summary-card"><strong>约 430–470 km</strong><span>含拍照绕行的海岸自驾<br><small class="muted">AYT 取、DLM 异地还</small></span></article>
         </div>
         <div class="route" aria-label="旅行路线">
-          <span>伊斯坦布尔</span><i>→</i><span>格雷梅</span><i>↔</i><span>Ihlara（条件分支）</span><i>✈</i><span>安塔利亚</span><i>🚗</i><span>下杜登</span><i>→</i><span>卡什</span><i>→</i><span>Kekova</span><i>→</i><span>Patara</span><i>→</i><span>蝴蝶谷崖顶</span><i>→</i><span>厄吕代尼兹</span><i>→</i><span>Saklıkent</span><i>✈</i><span>伊斯坦布尔</span>
+          <span>伊斯坦布尔</span><i>→</i><span>格雷梅</span><i>↔</i><span>Ihlara（条件分支）</span><i>✈</i><span>安塔利亚</span><i>🚗</i><span>下杜登</span><i>→</i><span>卡什</span><i>→</i><span>Kekova</span><i>→</i><span>Patara</span><i>→</i><span>蝴蝶谷崖顶</span><i>→</i><span>厄吕代尼兹</span><i>→</i><span>费特希耶</span><i>✈</i><span>SAW</span><i>🚇</i><span>Kadıköy</span><i>⛴</i><span>欧洲侧</span><i>🚇</i><span>IST</span>
         </div>
       </div>
     </section>
@@ -656,14 +658,15 @@
           </article>
 
           <article class="day">
-            <header class="day-head"><div><div class="date">10.03</div><div class="weekday">周六 · Day 10</div></div><div class="sleep">住：IST 机场附近<br>接送酒店</div></header>
+            <header class="day-head"><div><div class="date">10.03</div><div class="weekday">周六 · Day 10</div></div><div class="sleep">住：欧洲侧 Gayrettepe<br>步行到 M11 实际入口</div></header>
             <div class="day-body">
-              <div class="slots">
-                <div class="slot attraction-card"><img src="guide-images/saklikent-canyon.jpg" alt="Saklıkent 国家公园狭窄峡谷与溪流"><div class="slot-text"><span class="slot-time">07:15出发 · 08:15–10:45</span><h3>Saklıkent 峡谷</h3><p>从费特希耶早出发，走栈道与开放涉水段；穿防滑水鞋。水位高、管理方封闭或天气恶劣时绝不强行深入。</p><div class="authority-links"><a class="authority-link" href="https://ekotaban.tarimorman.gov.tr/alan/49" target="_blank" rel="noopener noreferrer">国家公园官方 · Saklıkent ↗</a></div></div></div>
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">10:45–13:30</span><h3>Saklıkent → DLM 还车</h3><p>简单午餐后驶往达拉曼，约 90 km；13:30 左右加满油并还车，预留 45 分钟拍照验车。</p></div></div>
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">18:00后晚班</span><h3>DLM→IST＋机场住宿</h3><p>只订 18:00 后直飞 IST 的航班；落地后住 Arnavutköy 接送酒店，次日从 IST 离境。</p></div></div>
+              <div class="slots slots-four">
+                <div class="slot attraction-card"><img src="guide-images/fethiye-marina.jpg" alt="费特希耶码头的木质帆船与临山老城"><div class="slot-text"><span class="slot-time">出票后倒推 · 参考08:30–09:30</span><h3>码头早餐＋退房</h3><p>目标航班允许时睡到自然醒，也不再加入峡谷或沿途打卡。早餐后沿码头短走，回住宿取两件行李；若最终航班更早，就缩短早餐而不是压缩还车缓冲。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/fethiye" target="_blank" rel="noopener noreferrer">GoTürkiye · 费特希耶 ↗</a></div></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">出票后倒推 · 起飞前约3小时还车</span><h3>费特希耶 → DLM → SAW</h3><p>费特希耶到 DLM 约 50 km／50–60 分钟。加满油、在 OPET 交车点验车拍照，再进航站楼。若想保留一个下午＋傍晚，优先订<strong>15:00前落地 SAW</strong>的直飞；15:00–16:00 落地只承诺码头日落＋晚饭。</p></div></div>
+                <div class="slot attraction-card"><img src="guide-images/kadikoy-sunset.jpg" alt="从 Kadıköy 码头海边望向历史半岛日落"><div class="slot-text"><span class="slot-time">落地到码头预留100–130分 · 18:43日落</span><h3>Kadıköy码头海边＋市场</h3><p>M4 从 SAW 车程约 52 分钟；另计取托运行李、步行、候车和出站。你们<strong>全程带着行李箱、不寄存</strong>，因此只走码头海边和市场两点：在近岸看日落，再到市场吃饭；不走 Moda 长距离路线，也不跨去 Üsküdar。</p><div class="authority-links"><a class="authority-link" href="https://www.metro.istanbul/en/Hatlarimiz/HatDetay?hat=M4" target="_blank" rel="noopener noreferrer">Metro İstanbul · M4 ↗</a><a class="authority-link" href="https://istanbul.goturkiye.com/zh/kadikoy" target="_blank" rel="noopener noreferrer">GoTürkiye · Kadıköy ↗</a></div></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">晚饭后 · 优先20:15或20:45渡轮</span><h3>携带行李箱乘渡轮 → 欧洲侧酒店</h3><p>取最近一班 Kadıköy→Beşiktaş 官方渡轮，行李始终在身边；抵达后短程打车到 Gayrettepe，入住步行 5–10 分钟可达<strong>实际 M11 入口</strong>的酒店。10月班次须临行复核。</p><div class="authority-links"><a class="authority-link" href="https://sehirhatlari.istanbul/tr/seferler/ic-hatlar/istanbul-ici-hatlar/kadikoybesiktas-165" target="_blank" rel="noopener noreferrer">Şehir Hatları · 官方班次 ↗</a></div></div></div>
               </div>
-              <p class="why"><strong>这样安排：</strong>把从卡帕多奇亚省下的半天真正给南部自然景点。Saklıkent 之后仍预留约 4 小时机场缓冲，国际航班前一晚照常回到伊斯坦布尔。</p>
+              <p class="why"><strong>当天基调：</strong>不赶景点。南部早上从容收尾，亚洲区只体验彼此相邻的码头海边和市场；行李不寄存、不走长距离，晚饭后用渡轮完成一次海峡夜景，再住到次日能直接搭 M11 的欧洲侧。</p>
             </div>
           </article>
 
@@ -671,9 +674,9 @@
             <header class="day-head"><div><div class="date">10.04</div><div class="weekday">周日 · Day 11</div></div><div class="sleep">返程日</div></header>
             <div class="day-body">
               <div class="slots">
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">上午</span><h3>早餐＋退房</h3><p>搭酒店接送前往 IST，建议 10:00 前抵达航站楼。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:30–09:00</span><h3>早餐＋退房</h3><p>从 Gayrettepe 酒店步行到预先核实的 M11 入口；不再横穿城区，也不依赖机场酒店接送。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">09:00–约10:00</span><h3>M11 → IST</h3><p>乘 M11 前往伊斯坦布尔机场，连进站、候车和航站楼步行按约 1 小时预留，目标 10:00 前抵达。</p><div class="authority-links"><a class="authority-link" href="https://www.dhmi.gov.tr/sayfalar/havalimani/istanbul/Ulasim.aspx" target="_blank" rel="noopener noreferrer">IST 机场官方交通 ↗</a></div></div></div>
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">13:20</span><h3>飞往北京</h3><p>国际航班起飞，次日抵达北京；返程卡不再用热气球图片冒充当天景点。</p></div></div>
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">留白</span><h3>不安排城市活动</h3><p>机场住宿的价值，就是不用承担伊斯坦布尔早高峰风险——把最后的从容留给这趟旅行本身。</p></div></div>
               </div>
             </div>
           </article>
@@ -782,9 +785,12 @@
           <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>Patara 沙丘＋海滩</strong><small>自然优先；古城有余力才看</small></div><div class="duration-transit"><strong>Kalkan → Patara 约17 km</strong><small>约 20–25 分钟</small></div><div><span class="time-pill">约2.5小时</span></div><div>13:45</div></div>
           <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>蝴蝶谷崖顶观景台</strong><small>Faralya 高崖远观；不下谷</small></div><div class="duration-transit"><strong>Patara → 观景台约90 km</strong><small>实际预留2小时05分–2小时35分</small></div><div><span class="time-pill">15–20分钟</span></div><div>16:40</div></div>
           <div class="duration-row"><div class="duration-date">10/2</div><div class="duration-place"><strong>厄吕代尼兹</strong><small>泻湖、18:45日落与蓝调</small></div><div class="duration-transit"><strong>蝴蝶谷崖顶 → Ölüdeniz约8 km</strong><small>窄弯路预留20–30分钟</small></div><div><span class="time-pill">约2小时</span></div><div>约19:10</div></div>
-          <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>Saklıkent 峡谷</strong><small>栈道＋当天开放的涉水段</small></div><div class="duration-transit"><strong>费特希耶 → Saklıkent约45 km</strong><small>07:15出发；约50–60分钟</small></div><div><span class="time-pill">2–2.5小时</span></div><div>10:45</div></div>
-          <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>Dalaman 还车</strong><small>加油、验车、拍照</small></div><div class="duration-transit"><strong>Saklıkent → DLM约90 km</strong><small>含简单午餐预留2小时30分</small></div><div><span class="time-pill">还车45分</span></div><div>约14:15完成</div></div>
-          <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>DLM → IST 晚班</strong><small>只选18:00后直飞</small></div><div class="duration-transit"><strong>还车后进入航站楼</strong><small>至少保留3小时以上缓冲</small></div><div><span class="time-pill">约1小时25分</span></div><div>抵达后住机场</div></div>
+          <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>费特希耶码头早餐</strong><small>睡到自然醒、退房、取行李</small></div><div class="duration-transit"><strong>住宿步行</strong><small>不加峡谷或沿途打卡</small></div><div><span class="time-pill">约1小时</span></div><div>按航班倒推</div></div>
+          <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>DLM 还车＋飞 SAW</strong><small>加油、验车、拍照；含托运行李比价</small></div><div class="duration-transit"><strong>费特希耶 → DLM约50 km</strong><small>50–60分钟；起飞前约3小时到还车点</small></div><div><span class="time-pill">飞行约1小时20分</span></div><div>完整下午需15:00前落地</div></div>
+          <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>SAW → Kadıköy</strong><small>两件行李箱全程随身</small></div><div class="duration-transit"><strong>M4 车程约52分钟</strong><small>另计取箱、步行、候车和出站</small></div><div><span class="time-pill">门到门100–130分</span></div><div>落地后直接走</div></div>
+          <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>Kadıköy码头海边＋市场</strong><small>只选相邻两点；不寄存、不长走Moda</small></div><div class="duration-transit"><strong>M4终点步行</strong><small>控制在码头与市场附近</small></div><div><span class="time-pill">约2–2.5小时</span></div><div>晚饭后离开</div></div>
+          <div class="duration-row"><div class="duration-date">10/3</div><div class="duration-place"><strong>渡轮 → 欧洲侧酒店</strong><small>携行李到Beşiktaş，再短程打车</small></div><div class="duration-transit"><strong>Kadıköy → Beşiktaş</strong><small>官方渡轮约25–30分钟；班次临行复核</small></div><div><span class="time-pill">约1小时</span></div><div>约21:30入住</div></div>
+          <div class="duration-row"><div class="duration-date">10/4</div><div class="duration-place"><strong>Gayrettepe → IST</strong><small>国际航班13:20</small></div><div class="duration-transit"><strong>M11 机场线</strong><small>含步行候车按约1小时预留</small></div><div><span class="time-pill">约1小时</span></div><div>10:00前到机场</div></div>
         </div>
       </div>
     </section>
@@ -796,7 +802,7 @@
         <p class="lead">按你“不想顿顿烤肉、预算不要太高”的要求筛选。价格为两人、不喝酒的规划区间；土耳其通胀较快，进店后先看菜单。</p>
         <div class="restaurant-grid">
           <article class="restaurant"><div class="restaurant-loc">伊斯坦布尔 · Sirkeci</div><h3>Balkan Lokantası</h3><p>历史区最实用的家常菜馆，柜台指菜；适合香料市场之后、前往 Eminönü 码头前午餐。</p><div class="restaurant-tags"><span>豆饭</span><span>炖茄子</span><span>扁豆汤</span><span>非烤肉</span></div><div class="restaurant-footer"><strong>两人 ₺800–1,300</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Balkan+Lokantasi+Sirkeci" target="_blank" rel="noopener">地图 ↗</a></div></article>
-          <article class="restaurant"><div class="restaurant-loc">伊斯坦布尔 · Kadıköy</div><h3>Çiya Sofrası</h3><p>渡轮到亚洲区后的地方菜选择；从冷菜柜挑蔬菜、豆类和一份主菜即可。</p><div class="restaurant-tags"><span>安纳托利亚家常菜</span><span>蔬菜小菜</span><span>可共享</span></div><div class="restaurant-footer"><strong>两人 ₺2,000–3,000</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Ciya+Sofrasi+Kadikoy" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">Kadıköy市场 · 10/3带行李晚饭</div><h3>Çiya Sofrası</h3><p>从码头短走到市场，用现成的蔬菜、豆类、汤和一份主菜解决晚饭；行李箱不离身。排队就换同街的 esnaf lokantası，不为了名店拖延渡轮。</p><div class="restaurant-tags"><span>安纳托利亚家常菜</span><span>蔬菜小菜</span><span>可共享</span><span>控制60分钟</span></div><div class="restaurant-footer"><strong>两人 ₺1,600–2,600</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Ciya+Sofrasi+Kadikoy" target="_blank" rel="noopener">地图 ↗</a></div></article>
           <article class="restaurant"><div class="restaurant-loc">格雷梅</div><h3>Seten Restaurant</h3><p>2026 米其林推荐，景观与传统菜兼顾；只安排一顿稍正式的卡帕多奇亚晚餐。</p><div class="restaurant-tags"><span>Mantı饺子</span><span>汤</span><span>当地蔬菜</span><span>建议预约</span></div><div class="restaurant-footer"><strong>两人 ₺2,000–3,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Seten+Restaurant+Goreme" target="_blank" rel="noopener">地图 ↗</a></div></article>
           <article class="restaurant"><div class="restaurant-loc">Uçhisar</div><h3>Saklı Konak</h3><p>适合乌奇萨结束后吃午餐；点汤、Mantı和一道蔬菜即可，不必点完整烤肉套餐。</p><div class="restaurant-tags"><span>当地菜</span><span>Mantı</span><span>室内休息</span></div><div class="restaurant-footer"><strong>两人 ₺1,400–2,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Sakli+Konak+Restaurant+Uchisar" target="_blank" rel="noopener">地图 ↗</a></div></article>
           <article class="restaurant"><div class="restaurant-loc">Ihlara分支 · Belisırma</div><h3>Anatolia Restaurant</h3><p>Aksaray 旅游局餐厅目录列出的河谷餐厅；只在司机确认当天营业、12:00 前到达时快速午餐，12:45 必须离开，不能等慢速套餐。</p><div class="restaurant-tags"><span>汤</span><span>Gözleme</span><span>河边</span><span>限时40分钟</span></div><div class="restaurant-footer"><strong>两人控制在 ₺1,200 内</strong><a href="https://aksaray.ktb.gov.tr/TR-63631/guzelyurt-ilcesi.html" target="_blank" rel="noopener">官方目录 ↗</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Anatolia+Restaurant+Belisirma" target="_blank" rel="noopener">地图 ↗</a></div></article>
@@ -808,7 +814,7 @@
           <article class="restaurant"><div class="restaurant-loc">Patara · Gelemiş村</div><h3>Durak Lokantası</h3><p>适合从古城出来后简单吃，价格级别低于 Kalkan；如果时间紧，也可只买 Gözleme。</p><div class="restaurant-tags"><span>家常菜</span><span>Gözleme</span><span>便宜</span><span>可外带</span></div><div class="restaurant-footer"><strong>两人 ₺700–1,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Durak+Lokantasi+Patara" target="_blank" rel="noopener">地图 ↗</a></div></article>
           <article class="restaurant"><div class="restaurant-loc">厄吕代尼兹</div><h3>Kumsal Pide</h3><p>泻湖日落前后的低负担选择；两人点一份 Pide、一碗汤和沙拉，不用去海滨西餐厅。</p><div class="restaurant-tags"><span>Pide</span><span>汤</span><span>轻晚餐</span><span>经济</span></div><div class="restaurant-footer"><strong>两人 ₺700–1,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Kumsal+Pide+Oludeniz" target="_blank" rel="noopener">地图 ↗</a></div></article>
           <article class="restaurant"><div class="restaurant-loc">费特希耶 · Paspatur</div><h3>Nefis Pide</h3><p>还车前一晚或次日早餐后的简单正餐；比鱼市场更符合预算，也不需要复杂称重和加工。</p><div class="restaurant-tags"><span>Pide</span><span>Lahmacun</span><span>快速</span><span>经济</span></div><div class="restaurant-footer"><strong>两人 ₺700–1,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Nefis+Pide+Paspatur+Fethiye" target="_blank" rel="noopener">地图 ↗</a></div></article>
-          <article class="restaurant"><div class="restaurant-loc">Saklıkent · 国家公园入口</div><h3>入口 Gözleme 简餐</h3><p>峡谷出来再吃薄饼、汤或鳟鱼；先看菜单总价，不选强制套餐。11:15 前离开，避免挤压 DLM 还车缓冲。</p><div class="restaurant-tags"><span>Gözleme</span><span>汤</span><span>鳟鱼可选</span><span>快速</span></div><div class="restaurant-footer"><strong>两人 ₺800–1,400</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=restaurant+Saklikent+Milli+Parki" target="_blank" rel="noopener">附近搜索 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">DLM · 10/3 还车后</div><h3>航站楼快速午餐</h3><p>交完车再吃三明治、汤或 Gözleme；不在费特希耶到机场途中增加停车点。这样不会为了午餐压缩异地还车和托运行李时间。</p><div class="restaurant-tags"><span>三明治</span><span>汤</span><span>Gözleme</span><span>不赶时间</span></div><div class="restaurant-footer"><strong>两人 ₺600–1,100</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Dalaman+Airport+restaurant" target="_blank" rel="noopener">机场餐饮 ↗</a></div></article>
         </div>
         <div class="callout"><strong>每天用餐逻辑：</strong>Airbnb 自备简单早餐；午餐用 Lokanta、汤、Pide 或 Gözleme；晚餐才坐下来吃。Ihlara 分支只留 40 分钟快速午餐，Kekova 船餐已经包含就不要再订岸上午餐。全程正式海鲜仅卡什一顿，餐饮仍可控制在两人约 ¥2,200～2,800。</div>
       </div>
@@ -827,7 +833,7 @@
               <tr><td><strong>安塔利亚机场 / Lara</strong></td><td>1晚</td><td>AYT 深夜接送范围</td><td>¥300～500</td><td>确认 23:25 后接机、次晨送回取车点</td></tr>
               <tr><td><strong>卡什</strong></td><td>3</td><td>古剧场—老城之间</td><td>¥1,100～1,700</td><td>步行到剧场；停车明确；不要住半岛深处</td></tr>
               <tr><td><strong>费特希耶</strong></td><td>1</td><td>Karagözler / 老城码头</td><td>¥350～550</td><td>一晚优先小酒店，避免高额清洁费</td></tr>
-              <tr><td><strong>IST 机场附近</strong></td><td>1</td><td>Arnavutköy</td><td>¥600～850</td><td>确认接送时间、价格与航站楼集合点</td></tr>
+              <tr><td><strong>伊斯坦布尔欧洲侧</strong></td><td>1</td><td>Gayrettepe M11 入口附近</td><td>¥650～950</td><td>以地图步行路线实测5–10分钟；可晚入住；电梯与两件行李空间</td></tr>
             </tbody>
           </table>
         </div>
@@ -838,80 +844,94 @@
     <section class="section" id="transport">
       <div class="wrap">
         <p class="eyebrow">Flights &amp; road trip</p>
-        <h2>三段境内航班＋5 个日历日海岸自驾</h2>
+        <h2>三段境内航班＋Çizgi 五日海岸自驾</h2>
         <div class="booking-grid">
           <article class="panel">
             <p class="eyebrow">Domestic flights</p>
             <h3>境内航班</h3>
-            <div class="price">¥2,800～3,500</div>
+            <div class="price">SAW 方案比 IST 约省 ¥2,600／两人</div>
             <ul class="booking-list">
               <li>三段均按每人至少 20kg 托运行李比价</li>
               <li>9/26：SAW→NAV，VF3268，07:45–09:00（已订，订单显示已付 ¥588）</li>
               <li><strong>NAV 进、ASR 出：</strong>两座机场不同，不要搜索 NAV→AYT</li>
               <li>9/28：PC3503，ASR 22:05→AYT 23:25（已订；待确认两人电子客票号与托运行李额度）</li>
-              <li>10/3：DLM→IST，只选18:00后晚班；含托运行李</li>
+              <li>10/3：改选 DLM→SAW 直飞；Pegasus／AJet 均按<strong>两人含至少20kg托运行李的最终价</strong>比较，不拿裸票价做决定</li>
+              <li><strong>订票门槛：</strong>完整下午＋傍晚优先15:00前落地；15:00–16:00只承诺码头日落＋晚饭，16:00后不再承诺日落</li>
+              <li>你目前看到的SAW方案约便宜¥1,300／人；出票前再确认退改、行李与实际到达时间</li>
             </ul>
           </article>
           <article class="panel">
             <p class="eyebrow">Car rental</p>
-            <h3>Cizgi / Enterprise</h3>
-            <div class="price">¥2,800～3,500</div>
+            <h3>Çizgi 主选 / Enterprise 备选</h3>
+            <div class="price">租金＋异地费＋保障约 ¥2,200～3,600</div>
             <ul class="booking-list">
-              <li>9/29 安塔利亚机场取车</li>
-              <li>10/3 达拉曼机场还车</li>
-              <li>自动挡紧凑型，含加强保险</li>
-              <li>必须确认异地还车费</li>
+              <li><strong>AYT → DLM 异地还车</strong>，只开D400南部海岸，不租全国段</li>
+              <li><strong>主方案：</strong>9/29 08:30 取车；PC3503 落地后先搭酒店接送／出租车去 AYT／Lara 睡觉，天亮再验车</li>
+              <li>00:30 深夜取车只作可选备选，不作为默认；仅在主驾精神充足、门店书面确认延误保留订单且酒店有停车时考虑</li>
+              <li>自动挡紧凑SUV／中型车，明确可放两件托运行李；不需要四驱或大型SUV</li>
             </ul>
           </article>
           <article class="panel">
             <p class="eyebrow">Road cost</p>
             <h3>油费与停车</h3>
-            <div class="price">¥500～700</div>
+            <div class="price">¥470～710</div>
             <ul class="booking-list">
-              <li>加入 Saklıkent 与 Faralya 折返后主线约 500 公里，含绕行按 520～560 公里</li>
+              <li>含 Faralya 折返及拍照绕行约 430～470 公里</li>
               <li>汽油约 37～44 升</li>
               <li>另含停车、HGS 与补油误差</li>
             </ul>
           </article>
         </div>
-        <div class="callout"><strong>驾照确认模板：</strong>邮件明确写明持“香港正式驾驶执照原件＋香港运输署签发的国际驾驶许可证（IDP）”，要求租车公司书面确认接受，并同时确认押金、保险免责额、轮胎/玻璃/底盘保障及 Dalaman 精确还车位置。</div>
+        <div class="panel table-scroll" style="margin-top:18px">
+          <table class="stay-table">
+            <thead><tr><th>Çizgi 下单项</th><th>本次填写</th><th>付款前必须确认</th></tr></thead>
+            <tbody>
+              <tr><td><strong>取车</strong></td><td>Antalya Airport Domestic（AYT）<br>9/29 08:30 主方案；订单备注 PC3503</td><td>早班现场取车位置；若改为00:30，先确认航班延误仍保留订单、办公室24小时和酒店停车</td></tr>
+              <tr><td><strong>还车</strong></td><td>Dalaman Airport（DLM）<br>按DLM→SAW起飞前约3小时倒推</td><td>DLM办公室地址在机场路 OPET 加油站内；确认准确交车点、免费接驳及送到航站楼时间</td></tr>
+              <tr><td><strong>车组</strong></td><td>Peugeot 2008 / Opel Crossland / Renault Megane / Citroën C4 X 或同组自动挡</td><td>官网只保证车组；书面确认两件托运行李可同时放入，不接受临场降成微型车</td></tr>
+              <tr><td><strong>费用与保障</strong></td><td>基础租金＋异地还车费＋加强保障</td><td>按顺序确认 one-way fee、总里程额度至少800km、超里程费、押金／信用卡预授权、保险免赔额，以及轮胎、玻璃、底盘、车顶、钥匙和拖车</td></tr>
+              <tr><td><strong>证件</strong></td><td>实体香港正式驾照＋香港IDP＋护照＋主驾实体信用卡</td><td>让门店书面确认接受；第二司机若会开必须登记并确认费用</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout"><strong>官方核对入口：</strong><a href="https://www.cizgirentacar.com/en/office/antalya-cizgi-office/" target="_blank" rel="noopener noreferrer">AYT办公室 ↗</a>　<a href="https://www.cizgirentacar.com/en/office/dalaman-cizgi-office/" target="_blank" rel="noopener noreferrer">DLM办公室 ↗</a>　<a href="https://www.cizgirentacar.com/en/ourcars/" target="_blank" rel="noopener noreferrer">车组 ↗</a>　<a href="https://www.cizgirentacar.com/en/content/18/car-renting-conditions/" target="_blank" rel="noopener noreferrer">租车及保障条款 ↗</a>　<a href="https://api.whatsapp.com/send?phone=908504331183" target="_blank" rel="noopener noreferrer">官方WhatsApp询价 ↗</a>。Premium并不自动等于零免赔；没有上述书面回复前不付款。</div>
       </div>
     </section>
 
     <section class="section" id="budget">
       <div class="wrap">
         <p class="eyebrow">Budget for two</p>
-        <h2>两人基础费用控制在 3.8 万；Ihlara 单列条件预算</h2>
+        <h2>两人基础费用约 3.05～3.75 万；Ihlara 单列条件预算</h2>
         <div class="budget-wrap">
           <div class="panel table-scroll">
             <table class="budget-table">
               <thead><tr><th>项目</th><th>两人预算</th></tr></thead>
               <tbody>
                 <tr><td>北京—伊斯坦布尔国际往返机票</td><td>¥12,628（已付）</td></tr>
-                <tr><td>10 晚住宿（格雷梅2晚＋AYT/Lara1晚）</td><td>¥3,800～5,700</td></tr>
-                <tr><td>土耳其境内 3 段飞机</td><td>¥2,800～3,500</td></tr>
-                <tr><td>5个日历日租车＋保险＋异地还车</td><td>¥2,800～3,500</td></tr>
-                <tr><td>油费、停车与 HGS（约520～560 km）</td><td>¥550～800</td></tr>
+                <tr><td>10 晚住宿（末晚改住Gayrettepe M11附近）</td><td>¥3,850～5,800</td></tr>
+                <tr><td>土耳其境内 3 段飞机</td><td>暂按 ¥1,500～2,300；DLM→SAW出票后替换</td></tr>
+                <tr><td>5个日历日租车＋保险＋AYT→DLM异地还车</td><td>¥2,200～3,600</td></tr>
+                <tr><td>油费、停车与 HGS（约430～470 km）</td><td>¥470～710</td></tr>
                 <tr><td>卡帕多奇亚热气球</td><td>¥4,500～5,000（两人 €540～580）</td></tr>
                 <tr><td>Ihlara条件分支（仅9/27升空后；不计入下方基础合计）</td><td>门票当前 €30/两人＋私人司机书面报价；整项决策上限 ¥1,500</td></tr>
                 <tr><td>Kekova 拼船</td><td>¥800～900</td></tr>
-                <tr><td>博斯普鲁斯短线＋Saklıkent等小额门票</td><td>¥900～1,500</td></tr>
+                <tr><td>博斯普鲁斯短线等小额门票</td><td>¥900～1,500</td></tr>
                 <tr><td>10 天餐饮</td><td>¥2,200～2,800</td></tr>
                 <tr><td>两人旅行保险</td><td>¥460～740</td></tr>
-                <tr><td>机场接送与城市交通</td><td>¥700～950</td></tr>
+                <tr><td>机场接送与城市交通（含M4、渡轮、短程出租、M11）</td><td>¥800～1,200</td></tr>
                 <tr><td>两人 eSIM</td><td>¥120～220</td></tr>
-                <tr class="budget-total"><td>两人基础全程预计（不含Ihlara条件分支）</td><td>¥32,300～38,300</td></tr>
+                <tr class="budget-total"><td>两人基础全程预计（不含Ihlara条件分支）</td><td>约 ¥30,500～37,500</td></tr>
               </tbody>
             </table>
           </div>
           <aside class="panel">
             <p class="eyebrow">Recommended cap</p>
             <h3>建议控制线</h3>
-            <div class="big-number">¥38,000</div>
-            <p class="muted">这是基础控制线，保留博斯普鲁斯短线、热气球、红／玫瑰谷、Kekova、卡什古剧场、D400、蝴蝶谷崖顶与 Saklıkent。若执行 Ihlara，再单列最多 ¥1,500；超过上限不应为了填满 9/28 硬订包车。</p>
+            <div class="big-number">¥37,500</div>
+            <p class="muted">这是暂定基础控制线，保留博斯普鲁斯短线、热气球、红／玫瑰谷、Kekova、卡什古剧场、D400、蝴蝶谷崖顶和10/3 Kadıköy海边。若执行 Ihlara，再单列最多 ¥1,500；超过上限不应为了填满 9/28 硬订包车。</p>
             <span class="paid-note">其中 ¥12,628 国际机票已经支付</span>
-            <p style="margin-top:20px"><strong>预计尚待支付</strong><br><span class="price">约 ¥19,700～25,700</span></p>
-            <p class="small muted">Ihlara 的司机费用尚未取得书面报价，因此没有伪装成锁价并塞进基础总额；购物、滑翔伞、私人游艇及大额纪念品同样未计入。</p>
+            <p style="margin-top:20px"><strong>预计尚待支付</strong><br><span class="price">约 ¥17,900～24,900</span></p>
+            <p class="small muted">SAW 比 IST 便宜约 ¥2,600／两人的差额来自你当前看到的价格，基础合计仍以含托运行李的最终付款页为准；Ihlara司机、购物、滑翔伞、私人游艇及大额纪念品未计入。</p>
           </aside>
         </div>
       </div>
@@ -935,8 +955,8 @@
           <article class="practical-item"><h3>热气球与游船</h3><ul><li>热气球只订 9/27 第一批升空；天气取消应全额退款，改到 9/28 只在仍有余位且运营商书面确认时成立。</li><li>下单前先在 SHGM 名单核对持证运营商，再确认 Göreme 主飞行区、篮筐人数、酒店接送和实际飞行时长。</li><li>Kekova确认从卡什还是 Üçağız 出发、午餐是否包含、Simena停留多久。</li><li>游船日带防晒、帽子、水、泳衣和防水袋。</li></ul><p class="small"><a href="https://web.shgm.gov.tr/en/s/80-balloon-operators" target="_blank" rel="noopener noreferrer">SHGM 持证运营商 ↗</a>　<a href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">卡帕多奇亚官方飞行旗 ↗</a></p></article>
           <article class="practical-item"><h3>Ihlara 条件分支</h3><ul><li>只在 9/27 热气球成功后执行；若取消并改到 9/28，Ihlara 自动删除。</li><li>预订可取消的私人司机：08:00 格雷梅酒店接、默认 2号台阶主入口下、Belisırma 接、15:00 前返回格雷梅。</li><li>出发前一周复核入口；若 2号入口关闭，只有司机确认改走 1号入口或 Belisırma 反向进入且不突破硬时限才执行，否则取消。</li><li>主入口约382级台阶，谷底短线约4公里；穿防滑鞋，教堂不是核心，可只顺路看一处。</li><li>普通绿线团通常加入地下城、Selime和购物点，回程不可控，不参加。</li></ul><p class="small"><a href="https://www.muze.gov.tr/muze-detay?DistId=IH1&amp;SectionId=IH101" target="_blank" rel="noopener noreferrer">官方开放与票务 ↗</a>　<a href="https://aksaray.ktb.gov.tr/TR-232541/ihlara-vadisi39nde-trekking.html" target="_blank" rel="noopener noreferrer">官方徒步路线 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=38.253762%2C34.302209" target="_blank" rel="noopener noreferrer">2号入口 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=38.264252%2C34.290615" target="_blank" rel="noopener noreferrer">Belisırma 接车 ↗</a></p></article>
           <article class="practical-item"><h3>卡什古剧场</h3><ul><li>官方资料确认剧场位于卡什主广场以西约 500 米，但未提供稳定的独立开放时间和票价。</li><li>不要把“全天免费”当作已确认事实；可能因活动、维护或现场管理临时变化。</li><li>出发前一周请住宿方确认开放时间、收费、活动占用和日落后离场方式。</li></ul><p class="small"><a href="https://www.ktb.gov.tr/EN-36176/where-to-visit.html" target="_blank" rel="noopener">土耳其文化旅游部资料 ↗</a></p></article>
-          <article class="practical-item"><h3>Saklıkent 涉水安全</h3><ul><li>带包脚防滑水鞋，不穿人字拖；手机和证件放防水袋。</li><li>峡谷水位、开放深度和栈道状态每天会变，只走管理方当天开放区域。</li><li>下雨、山洪提示或工作人员封路时立即取消，直接去 DLM，不用“来都来了”冒险。</li></ul><p class="small"><a href="https://ekotaban.tarimorman.gov.tr/alan/49" target="_blank" rel="noopener noreferrer">国家公园官方资料 ↗</a></p></article>
-          <article class="practical-item"><h3>出发前一周复核</h3><ul><li>9/28 PC3503 已订：确认两人电子客票号、托运行李、22:05–23:25 时刻和 ASR 出发机场；17:30 从格雷梅出发。</li><li>Ihlara 2号入口开放状态、Belisırma接车点、司机取消时限、15:00前返回承诺及 Anatolia Restaurant 营业。</li><li>9/29 卡什实际日落、古剧场开放状态和天气；9/30 保留第二次机会。</li><li>10/2 约 18:45 的日落、Faralya 道路施工、降雨、风力和能见度。</li><li>Saklıkent开放与涉水条件、景点开放日、餐厅营业日及租车门店交接点。</li></ul></article>
+          <article class="practical-item"><h3>10/3 带行李箱的亚洲区方案</h3><ul><li>若想保留一个下午＋傍晚，只订<strong>含两人托运行李、15:00 前落地 SAW</strong>的 DLM→SAW 直飞；15:00–16:00 落地只期待码头日落＋晚饭，最终以航空公司付款页为准。</li><li>SAW 落地后带着行李乘 M4：列车车程约 52 分钟，但加上取托运行李、步行、候车和出站，<strong>落地到码头按100–130分钟</strong>。行李箱全程随身、不寄存，只走码头海边＋附近市场，不走 Moda 长距离路线。</li><li>晚饭后携行李乘 Kadıköy→Beşiktaş 官方渡轮，再短程打车入住 Gayrettepe；酒店选电梯、晚到可入住且按地图实际步行 5–10 分钟可达 M11 入口。</li><li><strong>延误降级：</strong>16:00 后落地就不再承诺日落，只保留晚饭；若已赶不上合适渡轮，直接从 SAW 去欧洲侧酒店，不为打卡冒险。</li><li>10/4 早餐后乘 M11 去 IST，目标 10:00 前到航站楼，衔接 13:20 国际航班。</li></ul><p class="small"><a href="https://www.metro.istanbul/en/Hatlarimiz/HatDetay?hat=M4" target="_blank" rel="noopener noreferrer">Metro İstanbul · M4 ↗</a>　<a href="https://www.metro.istanbul/en/Hatlarimiz/HatDetay?hat=M2" target="_blank" rel="noopener noreferrer">Metro İstanbul · Gayrettepe换乘 ↗</a>　<a href="https://sehirhatlari.istanbul/tr/seferler/ic-hatlar/istanbul-ici-hatlar/kadikoybesiktas-165" target="_blank" rel="noopener noreferrer">Şehir Hatları · Kadıköy–Beşiktaş ↗</a>　<a href="https://www.dhmi.gov.tr/sayfalar/havalimani/istanbul/Ulasim.aspx" target="_blank" rel="noopener noreferrer">IST 官方交通 ↗</a></p></article>
+          <article class="practical-item"><h3>出发前一周复核</h3><ul><li>9/28 PC3503 已订：确认两人电子客票号、托运行李、22:05–23:25 时刻和 ASR 出发机场；17:30 从格雷梅出发。</li><li>Ihlara 2号入口开放状态、Belisırma接车点、司机取消时限、15:00前返回承诺及 Anatolia Restaurant 营业。</li><li>9/29 卡什实际日落、古剧场开放状态和天气；9/30 保留第二次机会。</li><li>10/2 约 18:45 的日落、Faralya 道路施工、降雨、风力和能见度。</li><li>10/3 DLM→SAW 实际起降时间、两人托运行李和延误规则；Çizgi 的 DLM OPET 还车点、接驳航站楼、异地费、里程、押金与免赔额。</li><li>M4 运营状态、Kadıköy→Beşiktaş 当晚班次和登船码头；Gayrettepe 酒店晚到入住、电梯及到实际 M11 入口的步行路线。</li></ul></article>
         </div>
       </div>
     </section>
@@ -950,14 +970,14 @@
             <div class="check-item"><input id="c1" type="checkbox"><label for="c1"><strong>1. 确认 PC3503 出票与行李</strong><br><span class="muted small">航班已订；确认两人电子客票号、托运行李及 ASR 22:05→AYT 23:25，17:30 从格雷梅出发。</span></label></div>
             <div class="check-item"><input id="c2" type="checkbox"><label for="c2"><strong>2. 官网订 9/27 第一批热气球</strong><br><span class="muted small">见“活动预约”第 2 项；确认天气取消全退，9/28 改期仅在仍有余位时成立。</span></label></div>
             <div class="check-item"><input id="c3" type="checkbox"><label for="c3"><strong>3. 询价 Ihlara 可取消私人司机</strong><br><span class="muted small">默认 2号入口下、Belisırma 接；书面确认入口关闭时的替代路线和 15:00 前回格雷梅承诺，整项费用超过 ¥1,500 就不执行。</span></label></div>
-            <div class="check-item"><input id="c4" type="checkbox"><label for="c4"><strong>4. 订 10/3 DLM→IST</strong><br><span class="muted small">只剩这一段待订；选择 18:00 后直飞并按每人至少 20kg 托运行李的最终价比较。</span></label></div>
+            <div class="check-item"><input id="c4" type="checkbox"><label for="c4"><strong>4. 订 10/3 DLM→SAW</strong><br><span class="muted small">想保留下午＋傍晚就优先直飞且 15:00 前落地；15:00–16:00 只保证日落＋晚饭。比较时必须看包含两人托运行李的最终结算价。你当前看到约便宜 ¥1,300／人，但付款页才是准价。</span></label></div>
             <div class="check-item"><input id="c5" type="checkbox"><label for="c5"><strong>5. 锁定卡什住宿</strong><br><span class="muted small">先保证剧场步行距离和停车，再考虑海景。</span></label></div>
-            <div class="check-item"><input id="c6" type="checkbox"><label for="c6"><strong>6. 书面确认租车</strong><br><span class="muted small">香港驾照＋IDP、保险、押金、异地还车全部确认。</span></label></div>
+            <div class="check-item"><input id="c6" type="checkbox"><label for="c6"><strong>6. 向 Çizgi 书面确认租车</strong><br><span class="muted small">AYT 取、DLM OPET 还；确认自动挡可放两件托运行李、香港驾照＋IDP、one-way fee、至少 800 km 额度、押金／预授权、保险免赔额和航站楼接驳。</span></label></div>
             <div class="check-item"><input id="c7" type="checkbox"><label for="c7"><strong>7. 购买旅行保险</strong><br><span class="muted small">核对医疗运送、改道、热气球及租车自负额条款。</span></label></div>
-            <div class="check-item"><input id="c8" type="checkbox"><label for="c8"><strong>8. 预订其余住宿</strong><br><span class="muted small">Airbnb 看最终结算总价；9/28 固定订可深夜接送的 AYT / Lara 酒店。</span></label></div>
+            <div class="check-item"><input id="c8" type="checkbox"><label for="c8"><strong>8. 预订其余住宿</strong><br><span class="muted small">Airbnb 看最终结算总价；9/28 订可深夜接送的 AYT／Lara 酒店；10/3 订 Gayrettepe 有电梯、晚到可入住且按地图实际步行 5–10 分钟可达 M11 入口的酒店。</span></label></div>
             <div class="check-item"><input id="c9" type="checkbox"><label for="c9"><strong>9. 预订 Kekova 拼船</strong><br><span class="muted small">见“活动预约”第 3 项；确认 09:30 集合、约 18:00 返回、午餐、Simena 停留与取消政策。</span></label></div>
             <div class="check-item"><input id="c10" type="checkbox"><label for="c10"><strong>10. 联系 Limanağzı 海滩</strong><br><span class="muted small">见“活动预约”第 1 项；确认 Nuri’s 接船点、最低消费、15:30～16:00 回程及浮潜装备。</span></label></div>
-            <div class="check-item"><input id="c11" type="checkbox"><label for="c11"><strong>11. 出发前一周复核</strong><br><span class="muted small">航班、行李、Ihlara入口与接车点、日落、古剧场、Limanağzı班次、Faralya路况、Saklıkent水位、天气和餐厅营业。</span></label></div>
+            <div class="check-item"><input id="c11" type="checkbox"><label for="c11"><strong>11. 出发前一周复核</strong><br><span class="muted small">航班与行李、Ihlara入口、日落、古剧场、Limanağzı班次、Faralya路况、DLM→SAW、Çizgi DLM 还车、M4、Kadıköy渡轮、M11、天气和餐厅营业。</span></label></div>
           </div>
         </div>
       </div>
@@ -970,7 +990,7 @@
       <p class="small">行程日期：2026 年 9 月 24 日—10 月 4 日。价格为 2026 年 7 月制定行程时的两人规划区间，不等同于锁价订单；付款前请重新核对含税价格、行李、取消规则、餐厅营业时间和异地还车费用。</p>
       <p class="small">路线距离来自 OSRM 道路计算；地图国界数据来自 Natural Earth，经 world-atlas 提供并随页面本地加载。餐厅优先参考 2026 米其林名单、当地政府/旅游资料及近期营业信息，但季节性营业可能调整。</p>
       <p class="small">新增卡帕多奇亚照片来自 Wikimedia Commons：Goreme sunset（Cetintas555）、Cappadocia Red Valley（Kaan Kosemen）、Zelve, Cappadocia 16（Bernard Gagnon）、Valley of Love in Cappadocia（Emre Dokur），以及 <a href="https://commons.wikimedia.org/wiki/File:Ihlara_valley_canyon.jpg" target="_blank" rel="noopener noreferrer">Ihlara valley canyon</a>（Benh LIEU SONG，<a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a>），按各自 CC 许可使用。页面图片保存在同目录下的 guide-images 文件夹中。</p>
-      <p class="small">本次校正照片同样来自 Wikimedia Commons：Kaş–Kalkan road（Tutku Çetinel，CC BY 3.0）、Kaş harbour（Esginmurat，CC BY-SA 4.0）、Limanağzı（Tugceeakgunn91，CC BY-SA 4.0）、Büyük Çakıl（Dündar Termal Apart，CC BY 3.0）、Patara dunes（Angela Stefanoni，CC BY 3.0）、Kekova/Simena view 与 Kaş sunset（Alexkom000，CC BY 4.0）、Fethiye bay（Alet123，CC BY-SA 4.0）、Saklıkent canyon（Mutlu88，CC BY-SA 4.0）、Üsküdar sunset（Ezzeldin.Elbaksawy，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:Kelebekler_vadisi.jpg" target="_blank" rel="noopener noreferrer">Kelebekler vadisi</a>（Rotadefterim，<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>）、<a href="https://commons.wikimedia.org/wiki/File:G%C3%B6reme_at_Night_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Göreme at Night – 2014.10</a>（rheins，<a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>）。</p>
+      <p class="small">本次校正照片同样来自 Wikimedia Commons：Kaş–Kalkan road（Tutku Çetinel，CC BY 3.0）、Kaş harbour（Esginmurat，CC BY-SA 4.0）、Limanağzı（Tugceeakgunn91，CC BY-SA 4.0）、Büyük Çakıl（Dündar Termal Apart，CC BY 3.0）、Patara dunes（Angela Stefanoni，CC BY 3.0）、Kekova/Simena view 与 Kaş sunset（Alexkom000，CC BY 4.0）、Fethiye bay（Alet123，CC BY-SA 4.0）、Üsküdar sunset（Ezzeldin.Elbaksawy，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:Kelebekler_vadisi.jpg" target="_blank" rel="noopener noreferrer">Kelebekler vadisi</a>（Rotadefterim，<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>）、<a href="https://commons.wikimedia.org/wiki/File:G%C3%B6reme_at_Night_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Göreme at Night – 2014.10</a>（rheins，<a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>）、<a href="https://commons.wikimedia.org/wiki/File:Sunset_of_Historical_Peninsula_from_Kad%C4%B1k%C3%B6y.jpg" target="_blank" rel="noopener noreferrer">Sunset of Historical Peninsula from Kadıköy</a>（Scott Dexter，<a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a>）。</p>
     </div>
   </footer>
   <script src="vendor/leaflet/leaflet.js"></script>
@@ -1029,8 +1049,11 @@
         {n:14, name:'蝴蝶谷崖顶观景台（Faralya）', lat:36.5002863, lng:29.12814, stay:'10/2固定主线', time:'15:50–16:20抵达 · 停15–20分钟', food:'不在此用餐', source:'https://www.fethiye.gov.tr/kelebekler-vadisi', maps:'https://www.google.com/maps/search/?api=1&query=36.5002863%2C29.1281400'},
         {n:15, name:'厄吕代尼兹', lat:36.5490, lng:29.1269, stay:'10/2日落', time:'17:10前抵达 · 18:45日落', food:'Kumsal Pide', source:'https://ekotaban.tarimorman.gov.tr/alan/5111'},
         {n:16, name:'费特希耶', lat:36.6592, lng:29.1263, stay:'1晚', time:'10/2入住', food:'Nefis Pide', source:'https://goturkiye.com/fethiye'},
-        {n:17, name:'Saklıkent峡谷', lat:36.4738, lng:29.4035, stay:'10/3早晨', time:'2–2.5小时', food:'入口Gözleme简餐', source:'https://ekotaban.tarimorman.gov.tr/alan/49'},
-        {n:18, name:'达拉曼机场 DLM', lat:36.7126, lng:28.7955, stay:'还车＋飞行', time:'约13:30到达 · 18:00后起飞', food:'还车前简单午餐'}
+        {n:17, name:'达拉曼机场 DLM', lat:36.7126, lng:28.7955, stay:'10/3还车＋飞SAW', time:'按航班倒推 · 起飞前约3小时到还车点', food:'还车后在航站楼快速吃'},
+        {n:18, name:'萨比哈·格克琴机场 SAW', lat:40.8986, lng:29.3092, stay:'10/3抵达 · 完整下午需15:00前', time:'落地到码头预留100–130分钟', food:'不在机场停留', source:'https://www.metro.istanbul/en/Hatlarimiz/HatDetay?hat=M4'},
+        {n:19, name:'Kadıköy码头海边＋市场', lat:40.9914, lng:29.0231, stay:'行李箱全程随身 · 不寄存', time:'日落＋晚饭约2–2.5小时', food:'Çiya / 邻近 esnaf lokantası', source:'https://istanbul.goturkiye.com/zh/kadikoy'},
+        {n:20, name:'Gayrettepe M11 入口附近', lat:41.0647, lng:29.0059, stay:'10/3欧洲侧住1晚', time:'渡轮到Beşiktaş后短程打车', food:'酒店附近即可', source:'https://www.metro.istanbul/en/Hatlarimiz/HatDetay?hat=M2'},
+        {n:21, name:'伊斯坦布尔机场 IST', lat:41.2753, lng:28.7519, stay:'10/4国际航班', time:'09:00左右乘M11 · 10:00前抵达', food:'航站楼', source:'https://www.dhmi.gov.tr/sayfalar/havalimani/istanbul/Ulasim.aspx'}
       ];
 
       const hubMarkers = L.layerGroup();
@@ -1063,25 +1086,27 @@
 
       const eastRoadLngLat = [[30.801207,36.899927],[30.7920,36.8780],[30.7822,36.8500],[30.7480,36.8620],[30.7080,36.8790],[30.6650,36.8910],[30.619307,36.898235],[30.59274,36.819424],[30.572196,36.798371],[30.569456,36.758081],[30.553756,36.733392],[30.568926,36.679707],[30.538256,36.651672],[30.554759,36.630622],[30.540665,36.591629],[30.556052,36.578027],[30.553498,36.542584],[30.530322,36.529947],[30.518557,36.510425],[30.501019,36.508624],[30.429595,36.468573],[30.433138,36.441538],[30.422122,36.409819],[30.381629,36.378649],[30.370537,36.379443],[30.374991,36.348735],[30.332138,36.373608],[30.303809,36.36312],[30.285812,36.366986],[30.273282,36.320347],[30.16398,36.309777],[30.146033,36.297306],[30.151948,36.275282],[30.138398,36.278827],[30.112146,36.247128],[30.08536,36.250875],[30.056665,36.27575],[30.031985,36.255412],[30.009737,36.250335],[29.991599,36.266557],[29.98521,36.258019],[29.951228,36.249549],[29.969109,36.261436],[29.931209,36.268317],[29.866933,36.260395],[29.810738,36.237182],[29.780901,36.252801],[29.757538,36.2535],[29.737412,36.239243],[29.707918,36.23428],[29.673157,36.212803],[29.666436,36.198527],[29.632072,36.207072],[29.637747,36.201915]];
       const westRoadLngLat = [[29.637747,36.201915],[29.612298,36.208665],[29.5856,36.20136],[29.573772,36.202907],[29.567429,36.210461],[29.548593,36.212779],[29.512455,36.209713],[29.478128,36.21231],[29.448598,36.229375],[29.425139,36.234902],[29.427154,36.246328],[29.414057,36.264946],[29.412623,36.272631],[29.401597,36.269215],[29.387451,36.278815],[29.366182,36.270039],[29.351979,36.287231],[29.32913,36.297137],[29.318509,36.28614],[29.318184,36.263918],[29.31705,36.257959],[29.321746,36.279932],[29.318509,36.28614],[29.329737,36.296808],[29.334898,36.341133],[29.322325,36.376209],[29.327068,36.39024],[29.297918,36.404639],[29.269205,36.411652],[29.273398,36.425165],[29.268704,36.435471],[29.290131,36.44617],[29.288274,36.46409],[29.315361,36.484979],[29.33911,36.519111],[29.34778,36.55763],[29.344877,36.570351],[29.358036,36.611076],[29.352175,36.620058],[29.35542,36.633676],[29.319129,36.643269],[29.29143,36.641562],[29.251046,36.630524],[29.227742,36.632245],[29.18486,36.649126],[29.145538,36.630106],[29.157667,36.583775],[29.145076,36.567965],[29.127919,36.559479],[29.122574,36.550701],[29.126914,36.549008],[29.127551,36.547536],[29.126295,36.543613],[29.127364,36.543913],[29.126768,36.543296],[29.127290,36.540974],[29.126138,36.538944],[29.126289,36.537064],[29.127047,36.536430],[29.126495,36.532535],[29.128561,36.532427],[29.128868,36.526692],[29.132183,36.523790],[29.132327,36.522911],[29.132211,36.521115],[29.129503,36.519663],[29.131216,36.519737],[29.129920,36.519134],[29.128323,36.519522],[29.125659,36.519023],[29.126587,36.516171],[29.125668,36.515336],[29.126135,36.515018],[29.126928,36.516041],[29.126922,36.517246],[29.126815,36.515064],[29.127461,36.514360],[29.124868,36.502852],[29.125329,36.501968],[29.128326,36.500616],[29.125329,36.501968],[29.124868,36.502852],[29.127461,36.514360],[29.126815,36.515064],[29.126922,36.517246],[29.126928,36.516041],[29.126135,36.515018],[29.125668,36.515336],[29.126587,36.516171],[29.125659,36.519023],[29.128323,36.519522],[29.129920,36.519134],[29.131216,36.519737],[29.129503,36.519663],[29.132211,36.521115],[29.132327,36.522911],[29.132183,36.523790],[29.128868,36.526692],[29.128561,36.532427],[29.126495,36.532535],[29.127047,36.536430],[29.126289,36.537064],[29.126138,36.538944],[29.127290,36.540974],[29.126768,36.543296],[29.127364,36.543913],[29.126295,36.543613],[29.127551,36.547536],[29.126914,36.549008],[29.122153,36.549547],[29.127919,36.559479],[29.145076,36.567965],[29.157687,36.583997],[29.152302,36.59202],[29.150565,36.61519],[29.12582,36.623165],[29.122322,36.656379],[29.126322,36.659207],[29.132053,36.66317],[29.127443,36.677625],[29.080233,36.691966],[29.052707,36.706275],[29.042439,36.706624],[29.036538,36.71524],[29.029669,36.714285],[29.019564,36.745406],[28.999092,36.747418],[28.972193,36.738762],[28.961838,36.742756],[28.963405,36.750924],[28.955383,36.755122],[28.95884,36.758448],[28.943336,36.763054],[28.934743,36.758503],[28.912504,36.765377],[28.869226,36.760443],[28.850055,36.769842],[28.822542,36.795973],[28.810671,36.795106],[28.800069,36.773672],[28.799375,36.755022],[28.80775,36.738864],[28.800778,36.732338],[28.79553,36.712587]];
-      const fethiyeIndex = westRoadLngLat.findIndex((c) => c[0] === 29.126322 && c[1] === 36.659207);
-      const coastRoadLngLat = westRoadLngLat.slice(0, fethiyeIndex + 1);
-      const saklikentRoadLngLat = [[29.126322,36.659207],[29.203505,36.643398],[29.294397,36.641963],[29.367921,36.627381],[29.389532,36.572827],[29.381892,36.547529],[29.403402,36.500053],[29.403566,36.473797],[29.3801,36.528834],[29.342519,36.533026],[29.350892,36.578484],[29.352175,36.620058],[29.321328,36.643129],[29.250464,36.630459],[29.203499,36.64355],[29.143213,36.664354],[29.080233,36.691966],[29.042138,36.70675],[29.019252,36.745535],[28.972193,36.738762],[28.934743,36.758503],[28.869226,36.760443],[28.822542,36.795973],[28.800069,36.773672],[28.795532,36.712595]];
+      // 10/3 海岸自驾在 DLM 结束；随后改用航班、M4、渡轮和 M11，行李始终随身。
+      const coastRoadLngLat = westRoadLngLat;
       const flip = (arr) => arr.map((c) => [c[1], c[0]]);
       L.polyline(flip(eastRoadLngLat), {color:'#087f8c', weight:5, opacity:.9}).addTo(map);
       L.polyline(flip(coastRoadLngLat), {color:'#087f8c', weight:5, opacity:.9}).addTo(map);
-      L.polyline(flip(saklikentRoadLngLat), {color:'#087f8c', weight:5, opacity:.9}).addTo(map);
       L.polyline([[36.2019,29.6377],[36.1886,29.8627]], {color:'#e99645', weight:3, dashArray:'7 7'}).addTo(map);
       L.polyline([[41.0086,28.9802],[38.6431,34.8289]], {color:'#e99645', weight:3, dashArray:'10 8'}).addTo(map);
       L.polyline([[38.6431,34.8289],[38.7704,35.4954]], {color:'#087f8c', weight:3, dashArray:'5 7'}).addTo(map);
       L.polyline([[38.7704,35.4954],[36.8999,30.8012]], {color:'#e99645', weight:3, dashArray:'10 8'}).addTo(map);
-      L.polyline([[36.7126,28.7955],[41.0086,28.9802]], {color:'#e99645', weight:3, dashArray:'10 8'}).addTo(map);
+      L.polyline([[36.7126,28.7955],[40.8986,29.3092]], {color:'#e99645', weight:3, dashArray:'10 8'}).addTo(map);
+      L.polyline([[40.8986,29.3092],[40.9914,29.0231]], {color:'#087f8c', weight:4, opacity:.9}).addTo(map);
+      L.polyline([[40.9914,29.0231],[41.0414,29.0077],[41.0647,29.0059]], {color:'#3f8ba6', weight:3, dashArray:'7 7'}).addTo(map);
+      L.polyline([[41.0647,29.0059],[41.2753,28.7519]], {color:'#087f8c', weight:4, opacity:.9}).addTo(map);
 
       const allBounds = L.latLngBounds(points.map((p) => [p.lat,p.lng]));
       const cappadociaBounds = L.latLngBounds(points.filter((p) => p.n >= 2 && p.n <= 5).map((p) => [p.lat,p.lng]));
-      const coastBounds = L.latLngBounds(points.filter((p) => p.n >= 7).map((p) => [p.lat,p.lng]));
+      const coastBounds = L.latLngBounds(points.filter((p) => p.n >= 7 && p.n <= 17).map((p) => [p.lat,p.lng]));
       const kasBounds = L.latLngBounds(points.filter((p) => p.n >= 9 && p.n <= 13).map((p) => [p.lat,p.lng]));
-      const fethiyeBounds = L.latLngBounds(points.filter((p) => p.n >= 14 && p.n <= 16).map((p) => [p.lat,p.lng]));
-      const buttons = [document.getElementById('map-all'), document.getElementById('map-cappadocia'), document.getElementById('map-coast'), document.getElementById('map-kas'), document.getElementById('map-fethiye')];
+      const fethiyeBounds = L.latLngBounds(points.filter((p) => p.n >= 14 && p.n <= 17).map((p) => [p.lat,p.lng]));
+      const returnBounds = L.latLngBounds(points.filter((p) => p.n >= 18 && p.n <= 21).map((p) => [p.lat,p.lng]));
+      const buttons = [document.getElementById('map-all'), document.getElementById('map-cappadocia'), document.getElementById('map-coast'), document.getElementById('map-kas'), document.getElementById('map-fethiye'), document.getElementById('map-return')];
       function updateMarkerVisibility() {
         const showDetails = map.getZoom() >= 9;
         if (showDetails) {
@@ -1102,6 +1127,7 @@
       buttons[2].addEventListener('click', () => select(buttons[2], coastBounds));
       buttons[3].addEventListener('click', () => select(buttons[3], kasBounds));
       buttons[4].addEventListener('click', () => select(buttons[4], fethiyeBounds));
+      buttons[5].addEventListener('click', () => select(buttons[5], returnBounds));
       select(buttons[0], allBounds);
       setTimeout(() => { map.invalidateSize(); updateMarkerVisibility(); }, 80);
     })();
