@@ -35,15 +35,21 @@ assert.match(html, /\+90 532 676 24 11/, 'Kekova guide should include the Bermud
 assert.match(html, /wa\.me\/905326762411\?text=[^"']{180,}/, 'Kekova should open WhatsApp with its dated enquiry prefilled');
 assert.match(html, /1 October 2026[\s\S]{0,1200}(?:09:30|09:45)[\s\S]{0,1200}(?:18:00|return)/i, 'Kekova guide should include the dated enquiry and operating window');
 
-assert.match(html, /id="book-ihlara-driver"/, 'the guide should provide a dedicated Ihlara private-driver booking block');
-assert.match(html, /cappatransfer\.com\/en\/our-services\/chauffeur-driven-car-rental/, 'the Ihlara booking block should link the selected licensed chauffeur service');
-assert.match(html, /cappatransfer\.com\/en\/tours\/cappadocia-green-tour/, 'the selected operator should publish the same Ihlara-Belisirma-Narligol route');
-assert.match(html, /cappadocia-private-dream-day-tour-t2638/, 'the Ihlara booking block should link a second licensed operator with the same route');
-assert.match(html, /wa\.me\/905443609425\?text=[^"']{350,}[\s\S]{0,3500}wa\.me\/905308698850\?text=[^"']{350,}/, 'both licensed Ihlara contacts should have the exact custom route prefilled');
-assert.match(html, /28 September 2026[\s\S]{0,1400}08:00[\s\S]{0,1400}(?:main stair entrance|2号)[\s\S]{0,1400}Belis(?:ı|i)rma[\s\S]{0,1400}13:00[\s\S]{0,1400}Narl(?:ı|i)göl[\s\S]{0,1400}16:15/i, 'the Ihlara enquiry should specify the complete timed one-way hike logistics');
-assert.equal((html.match(/officially%20closed%20or%20severe%20weather/g) || []).length, 2, 'both Ihlara WhatsApp enquiries should ask for a closure and severe-weather exception');
-assert.match(html, /即使不足 ?24 ?小时[^<]{0,80}(?:全退|免费改为安全路线)/, 'the Ihlara booking gate should require written last-minute closure or severe-weather protection');
-assert.match(html, /司机[^<]{0,100}(?:€190|EUR 190)[\s\S]{0,700}(?:€15\/人|€30\/两人)[\s\S]{0,700}(?:整项|合计)[^<]{0,100}¥1,850/, 'the private-driver and ticket limits should use one coherent total-budget rule');
-assert.match(html, /无需预约 Plan B[\s\S]{0,1000}Zemi Valley[\s\S]{0,1000}18:30/, 'the fixed nature day should have an executable no-booking fallback before the airport transfer');
+assert.match(html, /id="book-avanos-red-tour"/, 'the guide should provide a dedicated platform-bookable Red Tour and Avanos block');
+assert.match(html, /getyourguide\.com\/avanos-l983\/red-tour-cappadocia-t689055\//, 'the primary September 28 option should link the selected GetYourGuide Red North Tour');
+assert.match(html, /28 September 2026[\s\S]{0,1800}(?:2位成人|2\s*adults)[\s\S]{0,1000}(?:英语|English)[\s\S]{0,1000}Red Tour Cappadocia\s*\(Group Tour\)[\s\S]{0,1000}(?:酒店接送|hotel pickup)[\s\S]{0,1000}(?:午餐|lunch)[\s\S]{0,1000}(?:门票|tickets)/i, 'the booking steps should select the exact dated group option with its included transport, lunch and tickets');
+assert.match(html, /Paşabağ[\s\S]{0,800}Devrent[\s\S]{0,800}Avanos[^<]{0,80}(?:陶艺|pottery)/i, 'the selected Red Tour should cover the natural formations and hands-on pottery stop');
+assert.match(html, /(?:最多|不超过)\s*15\s*人[\s\S]{0,800}(?:09:30|9:30)[\s\S]{0,500}16:00[\s\S]{0,500}(?:约\s*)?6\s*小时[\s\S]{0,1000}(?:24\s*小时[^<]{0,80}免费取消|免费取消[^<]{0,80}24\s*小时)[\s\S]{0,1000}(?:先订后付|reserve now[^<]{0,60}pay later)/i, 'the group option should state its size, fixed window, duration and platform protections');
+assert.match(html, /(?:US\$|\$)42\s*\/\s*人/, 'the guide should preserve the currently observed per-person starting price without presenting it as locked');
+assert.match(html, /(?:平台订单消息|订单内消息|GetYourGuide[^<]{0,50}(?:订单|消息))[\s\S]{0,800}(?:最迟|不晚于)\s*16:30[\s\S]{0,500}(?:书面确认|written confirmation)/i, 'the booking gate should require written 16:30 Göreme hotel return confirmation inside the platform order');
+assert.match(html, /(?:不|绝不)(?:再|要)?(?:自行|自己)[^<]{0,40}(?:找|联系)(?:私人)?司机[\s\S]{0,500}(?:不|绝不)[^<]{0,40}(?:私下转账|线下转账|私人账户)/, 'the guide should explicitly forbid sourcing a private driver or paying off-platform');
+
+assert.match(html, /tourlacappadocia\.com\/products\/cappadocia-pottery-workshop-in-avanos/, 'the fallback should link the selected Tourla Cappadocia Avanos pottery workshop');
+assert.match(html, /(?:雨天|时间不合适|无法确认16:30)[\s\S]{0,1200}(?:Plan B|备选)[\s\S]{0,800}Avanos[^<]{0,80}(?:陶艺|pottery)[\s\S]{0,800}(?:10:00|上午10点)[\s\S]{0,800}(?:约\s*)?1\s*小时[\s\S]{0,800}(?:酒店接送|hotel pickup)[\s\S]{0,800}(?:€25\s*\/\s*人)[\s\S]{0,800}(?:24\s*小时[^<]{0,80}免费取消|免费取消[^<]{0,80}24\s*小时)/i, 'rain or an unsuitable return time should switch to the short Tourla pottery workshop with hotel transfer');
+assert.match(html, /(?:Avanos陶艺|Avanos\s*陶艺|北线地貌)[^<]{0,80}(?:Red Tour|小团)[\s\S]{0,220}¥570～650/, 'the trip budget should use the verified two-person group-tour planning range');
+
+assert.doesNotMatch(html, /id="book-ihlara-driver"|Ihlara＋Narlıgöl 私人司机/, 'the rejected Ihlara private-driver booking block should be removed');
+assert.doesNotMatch(html, /wa\.me\/905443609425|officially%20closed%20or%20severe%20weather/, 'the old Ihlara driver WhatsApp enquiries should be removed');
+assert.doesNotMatch(html, /€190|EUR 190|¥1,850/, 'the old private-car and total-budget limits should be removed');
 
 console.log('Activity booking guides regression test passed');

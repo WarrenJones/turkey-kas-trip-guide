@@ -60,26 +60,21 @@ assert.doesNotMatch(html, /4\. 订\s*10\/3\s*DLM→SAW/, 'the checklist must not
 assert.doesNotMatch(html, /订三段境内机票/, 'the checklist should no longer imply that all three domestic flights remain unbooked');
 assert.match(html, /<div class="date">09\.28<\/div>[\s\S]{0,4800}(?:AYT|Lara)[\s\S]{0,180}(?:住宿|入住)/, 'September 28 should finish at an Antalya or Lara hotel');
 assert.match(html, /<div class="date">09\.26<\/div>[\s\S]{0,2600}<img src="guide-images\/goreme-night\.jpg" alt="格雷梅镇区与洞穴建筑亮灯夜景">[\s\S]{0,220}<span class="slot-time">17:30–19:30<\/span>[\s\S]{0,160}<h3>格雷梅日落观景台＋洞穴镇夜景<\/h3>[\s\S]{0,420}日落后继续停留 30–45 分钟[\s\S]{0,260}天黑后不进入山谷小径/, 'September 26 should explicitly retain the Göreme blue-hour and illuminated cave-town night view with a matching night photograph');
-assert.doesNotMatch(html, /<h3>Paşabağ＋Zelve<\/h3>/, 'the compressed Cappadocia plan should remove the old third-day architecture stop');
-
 const septemberTwentyEighth = html.match(/<div class="date">09\.28<\/div>[\s\S]*?<div class="date">09\.29<\/div>/)?.[0] ?? '';
-assert.match(septemberTwentyEighth, /08:00[\s\S]{0,900}Ihlara[\s\S]{0,900}13:00[\s\S]{0,900}Narlıgöl[\s\S]{0,900}16:15/, 'September 28 should use a fixed Ihlara and Narlıgöl nature route with a bounded return');
-assert.match(septemberTwentyEighth, /guide-images\/ihlara-valley\.jpg/, 'Ihlara should keep its own matching photograph');
-assert.match(septemberTwentyEighth, /guide-images\/narligol-crater-lake\.jpg/, 'Narlıgöl should have its own matching photograph');
-assert.match(septemberTwentyEighth, /muze\.gov\.tr\/muze-detay\?DistId=IH1&amp;SectionId=IH101/, 'Ihlara should link to the official museum page');
-assert.match(septemberTwentyEighth, /aksaray\.ktb\.gov\.tr\/TR-232541\/ihlara-vadisi39nde-trekking\.html/, 'Ihlara should link to the official trekking information');
-assert.match(septemberTwentyEighth, /aksaray\.ktb\.gov\.tr\/TR-170580\/fotograf-cekim-noktalari\.html/, 'Narlıgöl should link to the official photography-point directory');
-assert.match(septemberTwentyEighth, /私人司机|包车司机/, 'the fixed nature route should specify controlled private transport');
-assert.match(septemberTwentyEighth, /13:15[\s\S]{0,180}(?:删除|跳过)\s*Narlıgöl/, 'the optional lake stop should have a clear cut rule');
+assert.match(septemberTwentyEighth, /(?:08:30|09:00|09:30)[\s\S]{0,1000}(?:Red Tour|北线)[\s\S]{0,1200}Paşabağ[\s\S]{0,900}Devrent[\s\S]{0,1000}Avanos[^<]{0,100}陶艺[\s\S]{0,1400}(?:最迟|不晚于)\s*16:30[\s\S]{0,1200}18:30/, 'September 28 should use a bounded platform Red Tour before the fixed airport transfer');
+assert.match(septemberTwentyEighth, /guide-images\/pasabag\.jpg/, 'Paşabağ should use its own matching fairy-chimney photograph');
+assert.match(septemberTwentyEighth, /guide-images\/avanos-pottery-workshop\.jpg/, 'the Avanos hands-on pottery stop should use its own matching photograph');
+assert.match(septemberTwentyEighth, /getyourguide\.com\/avanos-l983\/red-tour-cappadocia-t689055\//, 'the September 28 itinerary should link its directly bookable platform product');
+assert.match(septemberTwentyEighth, /(?:酒店接送|hotel pickup)[\s\S]{0,600}(?:午餐|lunch)[\s\S]{0,600}(?:门票|tickets)/i, 'the day plan should make the included transport, lunch and tickets explicit');
+assert.match(septemberTwentyEighth, /(?:不|绝不)(?:再|要)?(?:自行|自己)[^<]{0,40}(?:找|联系)(?:私人)?司机/, 'the day plan should make clear that the traveller does not source a private driver');
 assert.doesNotMatch(septemberTwentyEighth, /补飞|机会\s*2|成功升空|条件分支/, 'September 28 should no longer depend on a balloon-flight branch');
 
-assert.match(html, /9\/28[\s\S]{0,220}Ihlara[^<]{0,100}4公里[\s\S]{0,520}13:00/, 'the duration matrix should show the fixed short Ihlara route and pickup time');
-assert.match(html, /9\/28[\s\S]{0,260}Narlıgöl[\s\S]{0,500}14:20/, 'the duration matrix should include the short crater-lake stop');
-assert.match(html, /name:'Ihlara峡谷（9\/28固定主线）'[\s\S]{0,220}time:'9\/28 · 09:30–13:00'/, 'the Cappadocia map should include fixed Ihlara timing');
-assert.match(html, /name:'Narlıgöl火山口湖'[\s\S]{0,220}time:'9\/28 · 13:45–14:20'/, 'the Cappadocia map should include the crater-lake add-on');
-assert.match(html, /普通绿线团[\s\S]{0,160}(?:不参加|不要参加|不建议)/, 'the guide should reject an uncontrolled group Green Tour before the airport transfer');
-assert.match(html, /出发前一周[^<]{0,100}(?:当天开放的主楼梯入口|主楼梯入口)[^<]{0,140}(?:开放|下车点|确认)/, 'the guide should require the driver to reconfirm the operating stair entrance rather than hard-code stale access');
-assert.match(html, /38\.264252%2C34\.290615/, 'the Ihlara plan should provide an exact Belisırma pickup coordinate');
+assert.match(html, /9\/28[\s\S]{0,260}(?:Red Tour|北线地貌)[\s\S]{0,300}(?:Paşabağ|Devrent)[\s\S]{0,400}Avanos[^<]{0,80}陶艺[\s\S]{0,500}(?:约\s*)?6小时[\s\S]{0,500}16:00/, 'the duration matrix should show the bounded six-hour Red Tour and planned hotel return');
+assert.match(html, /name:'Paşabağ[^']*'[\s\S]{0,260}region:'cappadocia'[\s\S]{0,260}time:'9\/28[^']*'/, 'the Cappadocia map should include the September 28 fairy-chimney stop');
+assert.match(html, /name:'Devrent[^']*'[\s\S]{0,260}region:'cappadocia'[\s\S]{0,260}time:'9\/28[^']*'/, 'the Cappadocia map should include the September 28 imagination-valley stop');
+assert.match(html, /name:'Avanos[^']*(?:陶艺|Pottery)[^']*'[\s\S]{0,260}region:'cappadocia'[\s\S]{0,260}time:'9\/28[^']*'/i, 'the Cappadocia map should include the September 28 pottery stop');
+assert.match(html, /(?:Avanos陶艺|Avanos\s*陶艺|北线地貌)[^<]{0,100}(?:Red Tour|小团)[\s\S]{0,260}¥570～650/, 'the budget should replace the private-driver cost with the verified platform-tour range');
+assert.doesNotMatch(html, /id="book-ihlara-driver"|Ihlara＋Narlıgöl 私人司机|€190|EUR 190|¥1,850/, 'the old Ihlara private-driver plan and price limits should be gone');
 const septemberTwentySeventh = html.match(/<div class="date">09\.27<\/div>[\s\S]*?<div class="date">09\.28<\/div>/)?.[0] ?? '';
 assert.match(septemberTwentySeventh, /04:45[–-]07:45[\s\S]{0,600}地面追(?:热气球|球)/, 'September 27 should use a concrete shared ground chase window');
 assert.match(septemberTwentySeventh, /起飞区[\s\S]{0,220}(?:Love Valley|爱情谷)[\s\S]{0,220}风向/, 'the ground chase should combine inflation views with wind-dependent viewpoints');
