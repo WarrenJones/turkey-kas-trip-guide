@@ -63,20 +63,27 @@ assert.match(html, /<div class="date">09\.26<\/div>[\s\S]{0,2600}<img src="guide
 assert.doesNotMatch(html, /<h3>Paşabağ＋Zelve<\/h3>/, 'the compressed Cappadocia plan should remove the old third-day architecture stop');
 
 const septemberTwentyEighth = html.match(/<div class="date">09\.28<\/div>[\s\S]*?<div class="date">09\.29<\/div>/)?.[0] ?? '';
-assert.match(septemberTwentyEighth, /9\/27[^<]{0,60}取消[\s\S]{0,500}热气球/, 'September 28 should reserve the second balloon attempt only when September 27 is cancelled');
-assert.match(septemberTwentyEighth, /9\/27[^<]{0,60}成功[\s\S]{0,500}Ihlara/, 'September 28 should activate Ihlara only when the first balloon flight succeeds');
-assert.match(septemberTwentyEighth, /guide-images\/ihlara-valley\.jpg/, 'the Ihlara branch should have its own matching photograph');
-assert.match(septemberTwentyEighth, /08:00[\s\S]{0,180}15:00/, 'the Ihlara branch should have a bounded morning-to-afternoon window');
-assert.match(septemberTwentyEighth, /muze\.gov\.tr\/muze-detay\?DistId=IH1&amp;SectionId=IH101/, 'the Ihlara branch should link to the official museum page');
-assert.match(septemberTwentyEighth, /aksaray\.ktb\.gov\.tr\/TR-232541\/ihlara-vadisi39nde-trekking\.html/, 'the Ihlara branch should link to the official trekking information');
-assert.match(septemberTwentyEighth, /私人司机|包车司机/, 'the Ihlara branch should specify controlled private transport');
-assert.doesNotMatch(septemberTwentyEighth, /<h3>爱情谷轻量观景<\/h3>/, 'Love Valley should not remain the formal September 28 fallback');
+assert.match(septemberTwentyEighth, /08:00[\s\S]{0,900}Ihlara[\s\S]{0,900}13:00[\s\S]{0,900}Narlıgöl[\s\S]{0,900}16:15/, 'September 28 should use a fixed Ihlara and Narlıgöl nature route with a bounded return');
+assert.match(septemberTwentyEighth, /guide-images\/ihlara-valley\.jpg/, 'Ihlara should keep its own matching photograph');
+assert.match(septemberTwentyEighth, /guide-images\/narligol-crater-lake\.jpg/, 'Narlıgöl should have its own matching photograph');
+assert.match(septemberTwentyEighth, /muze\.gov\.tr\/muze-detay\?DistId=IH1&amp;SectionId=IH101/, 'Ihlara should link to the official museum page');
+assert.match(septemberTwentyEighth, /aksaray\.ktb\.gov\.tr\/TR-232541\/ihlara-vadisi39nde-trekking\.html/, 'Ihlara should link to the official trekking information');
+assert.match(septemberTwentyEighth, /aksaray\.ktb\.gov\.tr\/TR-170580\/fotograf-cekim-noktalari\.html/, 'Narlıgöl should link to the official photography-point directory');
+assert.match(septemberTwentyEighth, /私人司机|包车司机/, 'the fixed nature route should specify controlled private transport');
+assert.match(septemberTwentyEighth, /13:15[\s\S]{0,180}(?:删除|跳过)\s*Narlıgöl/, 'the optional lake stop should have a clear cut rule');
+assert.doesNotMatch(septemberTwentyEighth, /补飞|机会\s*2|成功升空|条件分支/, 'September 28 should no longer depend on a balloon-flight branch');
 
-assert.match(html, /9\/28[\s\S]{0,220}Ihlara[^<]{0,100}4公里[\s\S]{0,520}12:45/, 'the duration matrix should show the short Ihlara route and hard departure time');
-assert.match(html, /name:'Ihlara峡谷（热气球成功分支）'[\s\S]{0,220}time:'9\/28 · 09:30–12:45'/, 'the Cappadocia map should include the conditional Ihlara stop and time');
+assert.match(html, /9\/28[\s\S]{0,220}Ihlara[^<]{0,100}4公里[\s\S]{0,520}13:00/, 'the duration matrix should show the fixed short Ihlara route and pickup time');
+assert.match(html, /9\/28[\s\S]{0,260}Narlıgöl[\s\S]{0,500}14:20/, 'the duration matrix should include the short crater-lake stop');
+assert.match(html, /name:'Ihlara峡谷（9\/28固定主线）'[\s\S]{0,220}time:'9\/28 · 09:30–13:00'/, 'the Cappadocia map should include fixed Ihlara timing');
+assert.match(html, /name:'Narlıgöl火山口湖'[\s\S]{0,220}time:'9\/28 · 13:45–14:20'/, 'the Cappadocia map should include the crater-lake add-on');
 assert.match(html, /普通绿线团[\s\S]{0,160}(?:不参加|不要参加|不建议)/, 'the guide should reject an uncontrolled group Green Tour before the airport transfer');
-assert.match(html, /2号[^<]{0,40}(?:主入口|入口)[\s\S]{0,280}出发前一周[\s\S]{0,220}(?:关闭|改走|取消)/, 'the guide should require a final check rather than assuming Ihlara gate 2 remains open');
+assert.match(html, /出发前一周[^<]{0,100}(?:当天开放的主楼梯入口|主楼梯入口)[^<]{0,140}(?:开放|下车点|确认)/, 'the guide should require the driver to reconfirm the operating stair entrance rather than hard-code stale access');
 assert.match(html, /38\.264252%2C34\.290615/, 'the Ihlara plan should provide an exact Belisırma pickup coordinate');
+const septemberTwentySeventh = html.match(/<div class="date">09\.27<\/div>[\s\S]*?<div class="date">09\.28<\/div>/)?.[0] ?? '';
+assert.match(septemberTwentySeventh, /04:45[–-]07:45[\s\S]{0,600}地面追(?:热气球|球)/, 'September 27 should use a concrete shared ground chase window');
+assert.match(septemberTwentySeventh, /起飞区[\s\S]{0,220}(?:Love Valley|爱情谷)[\s\S]{0,220}风向/, 'the ground chase should combine inflation views with wind-dependent viewpoints');
+assert.doesNotMatch(septemberTwentySeventh, /第一批升空|约 60 分钟飞行|热气球机会\s*1/, 'September 27 should not retain the abandoned flight');
 assert.match(html, /格雷梅[\s\S]{0,220}<td>2晚<\/td>/, 'the stay table should reduce Göreme to two nights');
 assert.match(html, /安塔利亚机场[\s\S]{0,220}<td>1晚<\/td>/, 'the Antalya airport or Lara night should be fixed, not optional');
 
@@ -156,7 +163,8 @@ for (const [index, card] of attractionCards.entries()) {
   assert.match(card, /target="_blank"/, `attraction card ${index + 1} should open its authority link separately`);
   assert.match(card, /rel="noopener noreferrer"/, `attraction card ${index + 1} should isolate the external authority page`);
 }
-assert.match(html, /web\.shgm\.gov\.tr[\s\S]{0,480}shmkapadokya\.kapadokya\.edu\.tr/, 'the balloon card should link both licensed operators and the official flight status');
+assert.match(html, /goreme\.bel\.tr[\s\S]{0,1000}shmkapadokya\.kapadokya\.edu\.tr|shmkapadokya\.kapadokya\.edu\.tr[\s\S]{0,1000}goreme\.bel\.tr/, 'ground balloon viewing should link an official viewpoint source and official flight status');
+assert.doesNotMatch(html, /热气球机会\s*[12]|热气球\s*\/\s*Ihlara\s*二选一|First Ascent|Turquaz/, 'the abandoned balloon-flight branch should be removed throughout the guide');
 assert.match(html, /whc\.unesco\.org\/en\/tentativelists\/1411/, 'Kekova should link to its UNESCO record');
 assert.match(html, /metro\.istanbul\/en\/Hatlarimiz\/HatDetay\?hat=M4/, 'the SAW transfer should link to the official M4 page');
 assert.match(html, /sehirhatlari\.istanbul\/tr\/seferler\/ic-hatlar\/istanbul-ici-hatlar\/kadikoybesiktas-165/, 'the luggage-friendly ferry transfer should link to the official timetable');

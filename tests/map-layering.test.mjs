@@ -11,7 +11,7 @@ assert.match(html, /const hubMarkers = L\.layerGroup\(\)/, 'map should have a ci
 assert.match(html, /const detailMarkers = L\.layerGroup\(\)/, 'map should have a detail marker layer');
 assert.match(html, /map\.on\('zoomend', updateMarkerVisibility\)/, 'marker layers should react to zoom level');
 assert.doesNotMatch(html, /L\.marker\(\[p\.lat,p\.lng\][\s\S]{0,160}\.addTo\(map\)/, 'detail markers must not always render on the nationwide map');
-assert.match(html, /cappadociaBounds = L\.latLngBounds\(points\.filter\(\(p\) => p\.n >= 2 && p\.n <= 5\)/, 'the Cappadocia detail view should exclude distant ASR so valley markers do not overlap');
+assert.match(html, /cappadociaBounds = L\.latLngBounds\(points\.filter\(\(p\) => p\.region === 'cappadocia'\)/, 'the Cappadocia detail view should use an explicit region instead of fragile numeric ranges');
 assert.match(html, /class="leg-date"/, 'route cards should show a dedicated date and time row');
 for (const date of ['2026-09-26', '2026-09-28', '2026-09-29', '2026-10-01', '2026-10-02', '2026-10-03']) {
   assert.match(html, new RegExp(`datetime="${date}"`), `route cards should include ${date}`);
@@ -27,8 +27,10 @@ assert.match(html, /DLM\s*→\s*SAW[\s\S]{0,320}<time datetime="2026-10-03">10\/
 assert.match(html, /name:'达拉曼机场 DLM'[\s\S]{0,180}10:30[–—-]10:50[^']*还车[\s\S]{0,120}11:10[^']*航站楼[\s\S]{0,160}13:40起飞/, 'the DLM map point should separate car return, terminal arrival and flight time');
 assert.match(html, /9\/26[\s\S]{0,220}格雷梅日落＋蓝调夜景[\s\S]{0,260}约2小时[\s\S]{0,100}19:30/, 'the duration table should include the restored September 26 night-view window');
 assert.match(html, /name:'格雷梅日落＋夜景（Aydınkırağı）'[\s\S]{0,180}time:'9\/26 · 17:30–19:30'/, 'the Cappadocia map popup should identify the restored night-view stop and time');
-assert.match(html, /name:'Ihlara峡谷（热气球成功分支）'[\s\S]{0,120}lat:38\.253762[\s\S]{0,80}lng:34\.302209[\s\S]{0,220}time:'9\/28 · 09:30–12:45'/, 'the Cappadocia map should include the conditional Ihlara route with the main stair-gate coordinates and time');
-assert.match(html, /热气球\s*\/\s*Ihlara\s*二选一[\s\S]{0,220}9\/28[^<]{0,30}周一[\s\S]{0,280}18:30共同去ASR/, 'the map-side route card should show the September 28 branch and revised airport deadline');
+assert.match(html, /name:'Ihlara峡谷（9\/28固定主线）'[\s\S]{0,120}lat:38\.253762[\s\S]{0,80}lng:34\.302209[\s\S]{0,220}time:'9\/28 · 09:30–13:00'/, 'the Cappadocia map should include fixed Ihlara timing and coordinates');
+assert.match(html, /name:'Narlıgöl火山口湖'[\s\S]{0,120}lat:38\.339566[\s\S]{0,80}lng:34\.456797[\s\S]{0,220}time:'9\/28 · 13:45–14:20'/, 'the Cappadocia map should include the fixed crater-lake add-on');
+assert.match(html, /Ihlara\s*＋\s*Narlıgöl\s*固定自然日[\s\S]{0,220}9\/28[^<]{0,30}周一[\s\S]{0,300}18:30[^<]{0,80}(?:ASR|格雷梅)/, 'the map-side route card should show the fixed nature day and airport deadline');
+assert.match(html, /const cappadociaNatureRoute[\s\S]{0,400}38\.253762[\s\S]{0,240}38\.339566[\s\S]{0,400}L\.polyline/, 'the map should visualize the fixed September 28 nature route');
 assert.match(html, /开塞利 ASR\s*→\s*安塔利亚 AYT[\s\S]{0,320}PC3503[^<]{0,100}(?:已订|已预订)/, 'the map-side flight card should mark PC3503 as booked');
 assert.match(html, /name:'蝴蝶谷崖顶观景台（Faralya）'[\s\S]{0,220}lat:36\.5002863[\s\S]{0,80}lng:29\.12814[\s\S]{0,220}stay:'10\/2固定主线'/, 'the coast map should include the exact Butterfly Valley viewpoint as a fixed stop');
 assert.match(html, /maps:'https:\/\/www\.google\.com\/maps\/search\/\?api=1&query=36\.5002863%2C29\.1281400'/, 'the viewpoint popup should override fuzzy name search with exact coordinates');

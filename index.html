@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="2026年9月24日至10月4日，伊斯坦布尔、卡帕多奇亚、卡什与土耳其地中海海岸双人旅行攻略。">
-  <title>土耳其 11 日旅行手册｜卡什·热气球·D400 自驾</title>
+  <title>土耳其 11 日旅行手册｜卡什·追热气球·D400 自驾</title>
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <style>
     :root {
@@ -277,6 +277,15 @@
     .booking-template strong { display: block; margin-bottom: 9px; color: var(--sea-dark); }
     .booking-template blockquote { margin: 0; padding: 14px; border-left: 3px solid var(--sun); border-radius: 0 12px 12px 0; color: #405a60; background: white; font-size: 13px; line-height: 1.65; }
     .booking-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .booking-decision { margin: 16px 0; padding: 15px; border-left: 4px solid var(--sun); border-radius: 0 13px 13px 0; color: #405a60; background: rgba(233,150,69,.11); }
+    .booking-decision strong { display: block; margin-bottom: 5px; color: var(--sea-dark); }
+    .booking-option-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 15px; }
+    .booking-option { padding: 15px; border: 1px solid rgba(8,127,140,.18); border-radius: 14px; background: rgba(8,127,140,.045); }
+    .booking-option h4 { margin: 0 0 8px; color: var(--sea-dark); font-size: 16px; }
+    .booking-option p { margin: 0; color: #50686d; font-size: 13px; }
+    .booking-option ol { margin: 10px 0 0; padding-left: 18px; color: #50686d; font-size: 13px; }
+    .booking-option li + li { margin-top: 6px; }
+    .booking-option .authority-link { min-height: 44px; }
     .price { color: var(--sea-dark); font-size: 28px; font-weight: 900; }
     .callout { margin-top: 18px; padding: 18px; border-left: 4px solid var(--sun); border-radius: 0 14px 14px 0; background: rgba(233,150,69,.11); }
 
@@ -309,6 +318,7 @@
       .map-shell, #trip-map { min-height: 520px; }
       .map-side { display: grid; grid-template-columns: repeat(2, 1fr); }
       .activity-booking-card { grid-template-columns: 1fr; }
+      .booking-option-grid { grid-template-columns: 1fr; }
       .restaurant-grid { grid-template-columns: repeat(2, 1fr); }
       .duration-row { grid-template-columns: 70px minmax(170px,1fr) minmax(170px,1fr) 82px; }
       .duration-row > :last-child { display: none; }
@@ -367,12 +377,12 @@
     <img class="hero-bg" src="guide-images/kas-sunset.jpg" alt="卡什海岸与地中海日落">
     <div class="wrap hero-content">
       <p class="eyebrow">Türkiye · 24 Sep — 4 Oct 2026</p>
-      <h1>卡什、热气球<br>与地中海公路</h1>
-      <p class="lead">两个人的 11 日土耳其旅行手册。以卡什慢游为主线，在卡帕多奇亚为热气球保留两次机会；若 9/27 已成功升空，9/28 改走 Ihlara 溪流峡谷，只租车行驶最值得开的 D400 海岸段。</p>
+      <h1>卡什、追热气球<br>与地中海公路</h1>
+      <p class="lead">两个人的 11 日土耳其旅行手册。以卡什慢游为主线，9/27 在格雷梅乘地面追球车看充气、起飞和群球；9/28 固定走 Ihlara 溪流峡谷＋Narlıgöl 火山口湖，只租车行驶最值得开的 D400 海岸段。</p>
       <div class="hero-meta">
         <span class="chip">2 人 · 10 晚</span>
         <span class="chip">5 个日历日 · 约500 km自驾</span>
-        <span class="chip">基础预算约 ¥38,000</span>
+        <span class="chip">基础预算约 ¥35,000</span>
         <span class="chip">国际机票已付 ¥12,628</span>
         <span class="chip">VF3135 已订 · 10/3 13:40–15:00</span>
       </div>
@@ -406,10 +416,10 @@
       <div class="wrap">
         <p class="eyebrow">Interactive route map</p>
         <h2>先看地图，再看每天怎么走</h2>
-        <p class="lead">地图中青色实线表示 D400 自驾或轨道交通，橙色虚线表示境内航班与 Kekova 船线，蓝色虚线表示 Kadıköy 渡轮＋短程接驳。卡帕多奇亚详情同时显示 9/28 的 Ihlara 条件分支；点击编号可以查看建议停留时间和附近用餐点。</p>
+        <p class="lead">地图中青色实线表示 D400 自驾或轨道交通，橙色虚线表示境内航班与 Kekova 船线，蓝色虚线表示 Kadıköy 渡轮＋短程接驳。卡帕多奇亚详情显示 9/27 按风向移动的地面追球点，以及 9/28 Ihlara–Narlıgöl 固定自然路线；点击编号可查看时间与用餐点。</p>
         <div class="map-layout">
           <div class="map-shell">
-            <div id="trip-map" role="img" aria-label="伊斯坦布尔、格雷梅日落夜景、乌奇萨、红谷、Ihlara峡谷、下杜登瀑布、卡什、Kekova、Patara、蝴蝶谷崖顶观景台、厄吕代尼兹、费特希耶、达拉曼机场、萨比哈机场、Kadıköy寄存点、Moda海滨、Kadıköy市场、欧洲侧Gayrettepe及伊斯坦布尔机场的旅行路线地图"></div>
+            <div id="trip-map" role="img" aria-label="伊斯坦布尔、格雷梅日落夜景、地面追热气球、乌奇萨、红谷、Ihlara峡谷、Narlıgöl火山口湖、下杜登瀑布、卡什、Kekova、Patara、蝴蝶谷崖顶观景台、厄吕代尼兹、费特希耶、达拉曼机场、萨比哈机场、Kadıköy寄存点、Moda海滨、Kadıköy市场、欧洲侧Gayrettepe及伊斯坦布尔机场的旅行路线地图"></div>
             <div class="map-controls" aria-label="地图范围">
               <button type="button" class="active" id="map-all">全程路线</button>
               <button type="button" id="map-cappadocia">卡帕多奇亚</button>
@@ -421,7 +431,8 @@
           </div>
           <aside class="map-side">
             <div class="leg-card"><strong><span class="mode-icon">✈</span>伊斯坦布尔 → 卡帕多奇亚</strong><div class="leg-date"><time datetime="2026-09-26">9/26 周六</time><span>07:45 起飞 · 约11:00到格雷梅</span></div><div class="leg-meta"><span>VF3268 已订</span><span>09:00 到 NAV</span><span>接送约 40–50分</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">↔</span>热气球 / Ihlara 二选一</strong><div class="leg-date"><time datetime="2026-09-28">9/28 周一</time><span>由 9/27 是否升空决定</span></div><div class="leg-meta"><span>取消：04:30补飞</span><span>成功：08:00–约14:30峡谷</span><span>18:30共同去ASR</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">🚐</span>格雷梅地面追热气球</strong><div class="leg-date"><time datetime="2026-09-27">9/27 周日</time><span>04:45–07:45 · 按风向换点</span></div><div class="leg-meta"><span>老爷车 €90/车</span><span>共享团 US$29–51/人</span><span>老爷车停飞全退未确认就选 Rush</span></div></div>
+            <div class="leg-card"><strong><span class="mode-icon">🥾</span>Ihlara ＋ Narlıgöl 固定自然日</strong><div class="leg-date"><time datetime="2026-09-28">9/28 周一</time><span>08:00出发 · 16:15前回格雷梅</span></div><div class="leg-meta"><span>Ihlara 4公里</span><span>13:00 Belisırma接车</span><span>13:15未离开则删Narlıgöl</span><span>18:30格雷梅去ASR</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">✈</span>开塞利 ASR → 安塔利亚 AYT</strong><div class="leg-date"><time datetime="2026-09-28">9/28 周一</time><span>PC3503 · 22:05–23:25</span></div><div class="leg-meta"><span>PC3503 已订 · 待确认出票与行李</span><span>NAV 进、ASR 出</span><span>18:30 离开格雷梅</span><span>19:30–19:50 到航站楼</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">🚗</span>AYT → 下杜登 → 卡什</strong><div class="leg-date"><time datetime="2026-09-29">9/29 周二</time><span>上午 08:30 取车 · 10:30 前离开瀑布</span></div><div class="leg-meta"><span>下杜登瀑布45–60分</span><span>约203 km</span><span>日落前抵达古剧场</span></div></div>
             <div class="leg-card"><strong><span class="mode-icon">⛵</span>卡什 → Kekova → 卡什</strong><div class="leg-date"><time datetime="2026-10-01">10/1 周四</time><span>预计 09:00–18:00</span></div><div class="leg-meta"><span>拼船约 8–9小时</span><span>通常无需当天开车</span></div></div>
@@ -439,15 +450,15 @@
       <div class="wrap">
         <p class="eyebrow">Trip at a glance</p>
         <h2>不全国开车，把时间留给真正重要的地方</h2>
-        <p class="lead">这版按你的自然偏好重排：卡帕多奇亚只住 2 晚。9/28 不再空等——9/27 取消就补飞热气球，成功就走 Ihlara 约 4 公里溪流峡谷；18:30 两条分支都回到已订的 ASR→AYT 航线。</p>
+        <p class="lead">这版按你的自然偏好重排：卡帕多奇亚只住 2 晚。9/27 不乘球，改用私人老爷车或共享车在地面追球；9/28 固定走 Ihlara 约 4 公里溪流峡谷，再顺路看 Narlıgöl 火山口湖，18:30 回到已订的 ASR→AYT 航线。</p>
         <div class="summary-grid">
-          <article class="summary-card"><strong>2 晚</strong><span>卡帕多奇亚两次清晨<br><small class="muted">9/28 晚从 ASR 飞走</small></span></article>
-          <article class="summary-card"><strong>1 个决定点</strong><span>热气球 / Ihlara 二选一<br><small class="muted">9/27 08:30 后锁定 9/28 分支</small></span></article>
+          <article class="summary-card"><strong>2 晚</strong><span>卡帕多奇亚两个自然日<br><small class="muted">9/28 晚从 ASR 飞走</small></span></article>
+          <article class="summary-card"><strong>2 个核心体验</strong><span>地面追球＋溪流峡谷<br><small class="muted">不再为空中飞行支付高价</small></span></article>
           <article class="summary-card"><strong>3 晚</strong><span>连续住在卡什<br><small class="muted">古剧场日落＋Kekova</small></span></article>
           <article class="summary-card"><strong>约 430–470 km</strong><span>含拍照绕行的海岸自驾<br><small class="muted">AYT 取、DLM 异地还</small></span></article>
         </div>
         <div class="route" aria-label="旅行路线">
-          <span>伊斯坦布尔</span><i>→</i><span>格雷梅</span><i>↔</i><span>Ihlara（条件分支）</span><i>✈</i><span>安塔利亚</span><i>🚗</i><span>下杜登</span><i>→</i><span>卡什</span><i>→</i><span>Kekova</span><i>→</i><span>Patara</span><i>→</i><span>蝴蝶谷崖顶</span><i>→</i><span>厄吕代尼兹</span><i>→</i><span>费特希耶</span><i>✈</i><span>SAW</span><i>🚇</i><span>Kadıköy寄存</span><i>↔</i><span>Moda</span><i>⛴</i><span>欧洲侧</span><i>🚇</i><span>IST</span>
+          <span>伊斯坦布尔</span><i>→</i><span>格雷梅追球</span><i>→</i><span>Ihlara</span><i>→</i><span>Narlıgöl</span><i>✈</i><span>安塔利亚</span><i>🚗</i><span>下杜登</span><i>→</i><span>卡什</span><i>→</i><span>Kekova</span><i>→</i><span>Patara</span><i>→</i><span>蝴蝶谷崖顶</span><i>→</i><span>厄吕代尼兹</span><i>→</i><span>费特希耶</span><i>✈</i><span>SAW</span><i>🚇</i><span>Kadıköy寄存</span><i>↔</i><span>Moda</span><i>⛴</i><span>欧洲侧</span><i>🚇</i><span>IST</span>
         </div>
       </div>
     </section>
@@ -456,18 +467,18 @@
       <div class="wrap">
         <p class="eyebrow">Risk control &amp; Plan B</p>
         <h2>先保核心体验，再按时间主动删减</h2>
-        <p class="lead">9/28 先按 9/27 的热气球结果分流，再在 18:30 汇合去 ASR：取消就争取补飞，成功就去 Ihlara。PC3503 已订，但仍要确认电子客票号、托运行李和深夜酒店接送。</p>
+        <p class="lead">9/27 的地面追球按官方飞行旗执行；9/28 固定走 Ihlara＋Narlıgöl，并用 13:15 删湖门槛守住 18:30 去 ASR。PC3503 已订，但仍要确认电子客票号、托运行李和深夜酒店接送。</p>
         <div class="risk-grid">
           <article class="risk-panel">
-            <span class="risk-label">9/28 · 9/27 08:30 后锁定分支</span>
-            <h3>热气球和 Ihlara 只做一个，不临时叠加</h3>
+            <span class="risk-label">9/27–9/28 · 两天各有明确主线</span>
+            <h3>追球看飞行旗；Ihlara 按 13:15 主动删湖</h3>
             <div class="decision-track">
-              <div class="decision-step"><div class="decision-time">分支 A</div><div class="decision-copy"><strong>9/27 因天气取消 → 9/28 补飞热气球</strong><p>只有原运营商书面确认改期且仍有余位才成立；约 04:30–08:30，之后早餐、补觉和退房，Ihlara 自动取消。</p></div></div>
-              <div class="decision-step"><div class="decision-time">分支 B</div><div class="decision-copy"><strong>9/27 成功升空 → 9/28 Ihlara</strong><p>07:30 前早餐退房，08:00 私人司机出发；09:30 入谷，走约 4 公里至 Belisırma，12:45 硬性离开。</p></div></div>
-              <div class="decision-step"><div class="decision-time">15:00</div><div class="decision-copy"><strong>最迟回到格雷梅</strong><p>取行李、简单更衣、休息和提前晚餐；不得把景点延误转嫁给机场接送。</p></div></div>
-              <div class="decision-step"><div class="decision-time">18:30</div><div class="decision-copy"><strong>两条分支共同前往 ASR</strong><p>接送预留 60–80 分钟，目标 19:30–19:50 到航站楼；距 22:05 起飞仍有约 2小时15分–2小时35分。</p></div></div>
+              <div class="decision-step"><div class="decision-time">9/27 04:45</div><div class="decision-copy"><strong>老爷车或共享车地面追球</strong><p>先去起飞区看充气和点火，再按风向转往 Love Valley 或高位观景点；老爷车只有书面确认停飞全退才订，否则直接用 Rush 共享团。</p></div></div>
+              <div class="decision-step"><div class="decision-time">9/28 08:00</div><div class="decision-copy"><strong>私人司机出发去 Ihlara</strong><p>09:30 从 2号台阶主入口下谷，走约 4 公里至 Belisırma，12:15–13:00 快速午餐并异地接车。</p></div></div>
+              <div class="decision-step"><div class="decision-time">13:15</div><div class="decision-copy"><strong>仍未离开 Belisırma 就删除 Narlıgöl</strong><p>湖只是顺路加餐，不值得侵占回程缓冲；正常时 13:45–14:20 看湖，约 15:35 返回格雷梅，16:15 前结束道路缓冲。</p></div></div>
+              <div class="decision-step"><div class="decision-time">18:30</div><div class="decision-copy"><strong>固定前往 ASR</strong><p>接送预留 60–80 分钟，目标 19:30–19:50 到航站楼；距 22:05 起飞仍有约 2小时15分–2小时35分。</p></div></div>
             </div>
-            <p class="risk-foot">Ihlara 只使用可在 Belisırma 异地接人的私人司机或包车司机；普通绿线团回程不可控，<strong>不建议参加</strong>。默认方案为 2号台阶主入口下、Belisırma 接；出发前一周必须再次核对官方开放信息。若 2号入口关闭，只在司机书面确认可改走 1号入口或从 Belisırma 反向进入、且仍能 12:45 离谷及 15:00 前返回时执行，否则取消 Ihlara。<a href="https://www.muze.gov.tr/muze-detay?DistId=IH1&amp;SectionId=IH101" target="_blank" rel="noopener noreferrer">官方开放信息 ↗</a></p>
+            <p class="risk-foot">Ihlara 只使用可在 Belisırma 异地接人的私人司机；普通绿线团会加入地下城、修道院和购物点，回程不可控，<strong>不要参加</strong>。攻略“下单清单”已给两家持牌经营方和两条一键询价；司机整车超过 €190，或加上 €30/两人门票后整项超过约 ¥1,850，就执行 Zemi Valley 无需预约 Plan B。出发前一周复核当天开放的主楼梯入口；只有司机书面确认下车点且不突破时间时才执行。<a href="#book-ihlara-driver">司机预约闭环 ↓</a>　<a href="https://www.muze.gov.tr/muze-detay?DistId=IH1&amp;SectionId=IH101" target="_blank" rel="noopener noreferrer">官方开放信息 ↗</a></p>
           </article>
 
           <article class="risk-panel">
@@ -495,7 +506,8 @@
             <span class="risk-label">天气依赖 · 心理预期</span>
             <h3>保证到达正确地点，不保证晚霞</h3>
             <ul class="risk-list">
-              <li><strong>热气球两天都取消</strong>接受退款，不再为卡帕多奇亚加住一晚；9/28 既然已执行补飞分支，就不再临时赶 Ihlara，下午用于补觉和整理行李。</li>
+              <li><strong>9/27 热气球全部停飞</strong>Rush 产品页写明全退；老爷车必须以付款前取得的书面退款承诺为准。酒店露台和观景台同样没有群球可看；当天回去补觉，下午红／玫瑰谷不变，9/28 仍执行 Ihlara。</li>
+              <li><strong>9/28 峡谷遇大雨或雷暴</strong>不下 Ihlara，也不进入 Zemi 等其他山谷；按预订时的书面确认，选择全退或免费改为不进入山谷的安全路线。未确认这项临时关闭／恶劣天气例外就不付款；天气安全但司机无车／超价时，才执行攻略中的 Zemi Valley 无需预约 Plan B。</li>
               <li><strong>卡什古剧场多云</strong>9/29 仍看海景和蓝调时刻；若取车延误或临时关闭，9/30 从 Limanağzı 早一班返港后再尝试。</li>
               <li><strong>蝴蝶谷低云或下雨</strong>固定主线也服从安全：能见度差、路面湿滑或没有合法宽阔停车位时不停车，更不靠崖或尝试下谷。</li>
               <li><strong>厄吕代尼兹多云</strong>保留泻湖景观，不为追晚霞改动 10/3 返程航班。</li>
@@ -600,7 +612,7 @@
                 <div class="slot attraction-card"><img src="guide-images/uchisar-panorama.jpg" alt="乌奇萨与鸽子谷全景"><div class="slot-text"><span class="slot-time">12:30–16:00</span><h3>乌奇萨＋鸽子谷</h3><p>城堡高点看全区地貌，再用鸽子谷短步行连接第一批全景；不把时间耗在室内建筑。</p><div class="authority-links"><a class="authority-link" href="https://www.uchisar.bel.tr/uchisar-kalesi/" target="_blank" rel="noopener noreferrer">乌奇萨市政府 · 城堡与鸽子谷 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/goreme-night.jpg" alt="格雷梅镇区与洞穴建筑亮灯夜景"><div class="slot-text"><span class="slot-time">17:30–19:30</span><h3>格雷梅日落观景台＋洞穴镇夜景</h3><p>Aydınkırağı / Sunset Point 先看日落；日落后继续停留 30–45 分钟，看镇区与洞穴酒店逐渐亮灯。只沿主路下山，天黑后不进入山谷小径。</p><div class="authority-links"><a class="authority-link" href="https://www.goreme.bel.tr/tr/seyir-alani-1758439471" target="_blank" rel="noopener noreferrer">格雷梅市政府 · 官方观景点说明 ↗</a></div></div></div>
               </div>
-              <p class="why"><strong>这样安排：</strong>上午航班已确认，下午立即进入最有辨识度的全景线；约 20:00 前回酒店，既保留蓝调夜景，也不影响次日约 04:30 的热气球接人。</p>
+              <p class="why"><strong>这样安排：</strong>上午航班已确认，下午立即进入最有辨识度的全景线；约 20:00 前回酒店，既保留蓝调夜景，也不影响次日约 04:45 的地面追球接人。</p>
             </div>
           </article>
 
@@ -608,23 +620,24 @@
             <header class="day-head"><div><div class="date">09.27</div><div class="weekday">周日 · Day 4</div></div><div class="sleep">住：格雷梅<br>民宿 / 洞穴酒店</div></header>
             <div class="day-body">
               <div class="slots">
-                <div class="slot attraction-card"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚热气球"><div class="slot-text"><span class="slot-time">约04:30–08:30</span><h3>热气球机会 1</h3><p>只向 SHGM 名单内的持证运营商预订第一批升空；约 60 分钟飞行，确认天气取消全退。</p><div class="authority-links"><a class="authority-link" href="https://web.shgm.gov.tr/en/s/80-balloon-operators" target="_blank" rel="noopener noreferrer">土耳其民航局 · 持证运营商 ↗</a><a class="authority-link" href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">官方飞行旗 · 当天能否起飞 ↗</a><a class="authority-link" href="#book-balloon">预约方法与话术 ↓</a></div></div></div>
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:30–15:30</span><h3>早餐＋补觉</h3><p>取消露天博物馆。热气球后回酒店吃早餐，至少睡 2–3 小时；午餐后再决定徒步强度。</p></div></div>
+                <div class="slot attraction-card"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚地面观看成群热气球升空"><div class="slot-text"><span class="slot-time">04:45–07:45</span><h3>地面追热气球</h3><p>先问 €90/车的私人老爷车；它书面确认停飞全退就订，否则直接订 Rush 共享车。两者都先到起飞区看充气，再转到 Love Valley（爱情谷）或其他高位点，具体机位按当天风向决定。</p><div class="authority-links"><a class="authority-link" href="https://cappadociaconcepttravel.com/en/classic-car-tours-cappadocia-t2080" target="_blank" rel="noopener noreferrer">老爷车官方产品 ↗</a><a class="authority-link" href="https://www.getyourguide.com/goreme-l984/cappadocia-private-sunrise-hot-air-balloon-watching-tour-t526609/" target="_blank" rel="noopener noreferrer">Rush 共享追球 ↗</a><a class="authority-link" href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">官方飞行旗 ↗</a><a class="authority-link" href="#book-balloon-viewing">直接下单步骤与话术 ↓</a></div></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:00–15:30</span><h3>早餐＋补觉</h3><p>回酒店吃早餐并睡 2–3 小时。地面追球约 1.5–2 小时，比乘球恢复更快；午餐后再决定徒步强度。</p></div></div>
                 <div class="slot attraction-card"><img src="guide-images/red-valley.jpg" alt="卡帕多奇亚红谷与玫瑰谷地貌"><div class="slot-text"><span class="slot-time">15:30–日落</span><h3>红谷＋玫瑰谷徒步</h3><p>安排 2.5–3 小时自然线，选择短环线并在 Kızılçukur 看颜色变化；体力不足则缩为观景台。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/zh/central/touch" target="_blank" rel="noopener noreferrer">GoTürkiye · 红／玫瑰谷官方介绍 ↗</a></div></div></div>
               </div>
-              <p class="why"><strong>体力预期：</strong>这是全程最早起的一天。上午明确留白补觉，下午才走自然线；若热气球取消，也不要把空档塞成室内或建筑型半日团。</p>
+              <p class="why"><strong>方案取舍：</strong>两人价格重叠，所以先争取私人老爷车；只有它明确承诺停飞全退才成立，否则使用退款规则清楚的 Rush。老爷车要求起飞区＋两个后续点；Rush 按公开产品执行起飞区＋一个后续点（总共至少2点）；露台只是免费兜底。</p>
             </div>
           </article>
 
           <article class="day">
             <header class="day-head"><div><div class="date">09.28</div><div class="weekday">周一 · Day 5</div></div><div class="sleep">住：AYT / Lara<br>深夜接送酒店</div></header>
             <div class="day-body">
-              <div class="slots">
-                <div class="slot attraction-card"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚清晨成群升空的热气球"><div class="slot-text"><span class="slot-time">分支 A · 约04:30–08:30</span><h3>9/27 取消 → 热气球机会 2</h3><p>仅在 9/27 因天气取消、且原运营商确认 9/28 仍有余位并完成改期时再飞；飞完后早餐、补觉、退房，今天不再去 Ihlara。</p><div class="authority-links"><a class="authority-link" href="https://web.shgm.gov.tr/en/s/80-balloon-operators" target="_blank" rel="noopener noreferrer">土耳其民航局 · 持证运营商 ↗</a><a class="authority-link" href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">官方飞行旗 · 当天状态 ↗</a></div></div></div>
-                <div class="slot attraction-card"><img src="guide-images/ihlara-valley.jpg" alt="Ihlara峡谷高耸岩壁与谷底绿色树林"><div class="slot-text"><span class="slot-time">分支 B · 08:00出发 · 15:00前返回</span><h3>9/27 成功 → Ihlara 峡谷</h3><p>私人司机约 09:30 送到 2号台阶主入口（出发前一周复核开放），下 382 级台阶后沿 Melendiz 河走约 4 公里至 Belisırma；教堂只顺路看一处或全跳过。12:45 硬性离开，由司机异地接回格雷梅。</p><div class="authority-links"><a class="authority-link" href="https://www.muze.gov.tr/muze-detay?DistId=IH1&amp;SectionId=IH101" target="_blank" rel="noopener noreferrer">土耳其博物馆 · 开放信息 ↗</a><a class="authority-link" href="https://aksaray.ktb.gov.tr/TR-232541/ihlara-vadisi39nde-trekking.html" target="_blank" rel="noopener noreferrer">Aksaray 旅游局 · 4/7/14公里路线 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=38.253762%2C34.302209" target="_blank" rel="noopener noreferrer">2号台阶入口导航 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=38.264252%2C34.290615" target="_blank" rel="noopener noreferrer">Belisırma 接车点 ↗</a></div></div></div>
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">18:30–23:25</span><h3>PC3503 已订：格雷梅 → ASR → AYT</h3><p>18:30 乘接送去开塞利 ASR，目标 19:30–19:50 到航站楼；PC3503 计划 22:05–23:25 直飞安塔利亚。国内航班按起飞前约 2 小时到航站楼，接送时间另计；电子客票号和托运行李仍需确认，落地后乘接送去 AYT / Lara 酒店入住。</p></div></div>
+              <div class="slots slots-four">
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">07:15–08:00</span><h3>早餐＋退房寄存</h3><p>07:45 前吃完早餐，08:00 把两件行李留在格雷梅住宿处；确认司机下午回同一地点。</p></div></div>
+                <div class="slot attraction-card"><img src="guide-images/ihlara-valley.jpg" alt="Ihlara峡谷高耸岩壁与谷底绿色树林"><div class="slot-text"><span class="slot-time">08:00出发 · 09:30–13:00</span><h3>Ihlara 溪流峡谷</h3><p>私人司机送到 2号台阶主入口，下 382 级台阶，沿 Melendiz 河走约 4 公里到 Belisırma；教堂只顺路看 0–1 处。12:15–13:00 快速午餐，司机 13:00 异地接车。</p><div class="authority-links"><a class="authority-link" href="https://www.muze.gov.tr/muze-detay?DistId=IH1&amp;SectionId=IH101" target="_blank" rel="noopener noreferrer">土耳其博物馆 · 开放信息 ↗</a><a class="authority-link" href="https://aksaray.ktb.gov.tr/TR-232541/ihlara-vadisi39nde-trekking.html" target="_blank" rel="noopener noreferrer">Aksaray 旅游局 · 4/7/14公里路线 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=38.253762%2C34.302209" target="_blank" rel="noopener noreferrer">2号台阶入口导航 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=38.264252%2C34.290615" target="_blank" rel="noopener noreferrer">Belisırma 接车点 ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/narligol-crater-lake.jpg" alt="Narlıgöl 火山口湖与周围山坡"><div class="slot-text"><span class="slot-time">13:45–14:20 · 16:15前回格雷梅</span><h3>Narlıgöl 火山口湖</h3><p>Belisırma 到湖边约 45 分钟，只在高位观景、拍照，不安排泡温泉。14:20 离开，预计 15:35 回格雷梅，保留到 16:15 的路况缓冲；若 13:15 仍未离开 Belisırma，立即删除 Narlıgöl。</p><div class="authority-links"><a class="authority-link" href="https://aksaray.ktb.gov.tr/TR-170580/fotograf-cekim-noktalari.html" target="_blank" rel="noopener noreferrer">Aksaray 旅游局 · 官方摄影点 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=38.339566%2C34.456797" target="_blank" rel="noopener noreferrer">火山口湖导航 ↗</a></div></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">18:30–23:25</span><h3>PC3503 已订：格雷梅 → ASR → AYT</h3><p>16:15 后休息、提前晚餐并取行李；18:30 乘接送去 ASR，目标 19:30–19:50 到航站楼。PC3503 计划 22:05–23:25；电子客票号和托运行李仍需确认，落地后接送入住 AYT / Lara 酒店。</p></div></div>
               </div>
-              <p class="why"><strong>二选一规则：</strong>9/27 08:30 后立即锁定分支。取消就让第二次热气球继续保持核心价值；成功就用 Ihlara 的溪流峡谷替代空等。两条分支都在 15:00 前回格雷梅，留足休息、取行李和提前晚餐时间，18:30 离开格雷梅。</p>
+              <p class="why"><strong>固定自然日：</strong>Ihlara 是核心，Narlıgöl 只是顺路加餐；普通绿线团回程不可控，不参加。司机整车超过 €190、车辆＋€30门票合计超过约 ¥1,850、天气能见度差或 13:15 未离开 Belisırma，就删除湖或执行 Zemi Valley 无需预约 Plan B；18:30 去 ASR 不动。<a href="#book-ihlara-driver">直接询价与付款门槛 ↓</a></p>
             </div>
           </article>
 
@@ -727,28 +740,57 @@
             <aside class="booking-template">
               <strong>复制后发 WhatsApp</strong>
               <blockquote>Hello, we are 2 adults and would like to reserve day-use beach access on 30 September 2026. Is your boat transfer from Kaş Harbour operating that day? Please confirm the meeting point, minimum spend or entrance fee, and whether we can reserve a return boat at 15:30 or 16:00. Do you provide snorkel masks?</blockquote>
-              <div class="booking-actions"><a class="authority-link" href="https://wa.me/905388993272" target="_blank" rel="noopener noreferrer">打开 Nuri’s WhatsApp ↗</a></div>
+              <div class="booking-actions"><a class="authority-link" href="https://wa.me/905388993272?text=Hello%2C%20we%20are%202%20adults%20and%20would%20like%20to%20reserve%20day-use%20beach%20access%20on%2030%20September%202026.%20Is%20your%20boat%20transfer%20from%20Ka%C5%9F%20Harbour%20operating%20that%20day%3F%20Please%20confirm%20the%20meeting%20point%2C%20minimum%20spend%20or%20entrance%20fee%2C%20and%20whether%20we%20can%20reserve%20a%20return%20boat%20at%2015%3A30%20or%2016%3A00.%20Do%20you%20provide%20snorkel%20masks%3F" target="_blank" rel="noopener noreferrer">一键带入 Nuri’s 询价话术 ↗</a></div>
             </aside>
           </article>
 
-          <article class="panel activity-booking-card" id="book-balloon">
+          <article class="panel activity-booking-card" id="book-balloon-viewing">
             <div>
               <span class="booking-kicker">09.27 · 格雷梅</span>
-              <h3>2. 热气球</h3>
-              <p><strong>现在订 9/27 第一批，不同时预付 9/28。</strong>9/28 只是天气取消后的改期窗口，而且必须仍有余位；临时到格雷梅再订，很可能只剩第二批或更贵的篮筐。</p>
+              <h3>2. 地面追热气球</h3>
+              <p><strong>不用再自己找产品：只执行“先问老爷车，条件不全就订 Rush”这一条路径。</strong>两个人时共享追球约 US$29–51/人，老爷车 €90/车，总价高度重叠；因此同级比价看的是能否真正追球和停飞退款，而不是车型。</p>
+              <div class="booking-decision"><strong>我替你定好的选择规则</strong>Cappadocia Concept Travel 若书面确认：总价不超过 €90/车、酒店接送、先到起飞区再按风向去至少两个后续观景点、SHM 全部停飞可 100% 退款，就订私人老爷车；停飞退款不是明确回复 Yes、回复含糊或加价，就不再比较其他老爷车，直接订 Rush 共享追球。</div>
+              <div class="booking-option-grid">
+                <section class="booking-option">
+                  <h4>共享追球：直接下单</h4>
+                  <p><strong>Rush Travel / GetYourGuide</strong><br>1.5–2小时；酒店接送；起飞准备区＋1个后续观景点，总共至少2点；产品页明确当天停飞全退。</p>
+                  <ol>
+                    <li>点下面按钮，人数选 <strong>Adult × 2</strong>。</li>
+                    <li>日期选 <strong>27 September 2026</strong>，语言选 English，点 Check availability。</li>
+                    <li>选 Shared / Small group，不要误选 Private。</li>
+                    <li>填格雷梅住宿名称与地址，优先 Reserve now &amp; pay later。</li>
+                    <li>付款后保存订单号、取消截止时间，并在订单聊天再次确认接人时间。</li>
+                  </ol>
+                  <div class="booking-actions"><a class="authority-link" href="https://www.getyourguide.com/goreme-l984/cappadocia-private-sunrise-hot-air-balloon-watching-tour-t526609/" target="_blank" rel="noopener noreferrer">打开 Rush 直订页 ↗</a></div>
+                </section>
+                <section class="booking-option">
+                  <h4>老爷车：直接询价</h4>
+                  <p><strong>Cappadocia Concept Travel · TÜRSAB 16029</strong><br>官网 €90/车、最多4人、2小时私人团；酒店老爷车接送，先到起飞区，再追踪热气球并停 Swords、Love、Red Valley。</p>
+                  <ol>
+                    <li>点下面 WhatsApp，把右侧“老爷车话术”整段发出。</li>
+                    <li>对照上方四项；必须全部明确回复 Yes。</li>
+                    <li>回复合格才让对方保留 9/27；使用官网 Book Now &amp; Pay Later，不私下转账。</li>
+                    <li>保存书面确认、车型颜色、接人时间和退款条款；专业摄影不要加。</li>
+                  </ol>
+                  <div class="booking-actions"><a class="authority-link" href="https://wa.me/905308698850?text=Hello%2C%20we%20are%202%20adults%20staying%20in%20G%C3%B6reme%20and%20would%20like%20to%20book%20one%20private%20classic%20car%20sunrise%20balloon-watching%20tour%20on%2027%20September%202026.%20Please%20confirm%20the%20total%20price%20for%20one%20car%2C%20hotel%20pickup%20and%20drop-off%2C%20the%20balloon%20inflation%2Ftake-off%20area%2C%20and%20at%20least%20two%20viewpoints%20selected%20according%20to%20the%20actual%20wind%20and%20balloon%20direction.%20Please%20also%20confirm%20whether%20professional%20photography%20is%20included%20or%20extra%2C%20and%20whether%20we%20receive%20a%20100%25%20refund%20if%20SHM%20cancels%20all%20balloon%20flights%20that%20morning.%20We%20only%20need%20the%20driver%20to%20help%20take%20a%20few%20phone%20photos%3B%20no%20professional%20photographer%20is%20required.%20Please%20send%20a%20written%20booking%20confirmation.%20Hotel%3A%20%5Bhotel%20name%20and%20address%5D." target="_blank" rel="noopener noreferrer">一键带入老爷车询价 ↗</a><a class="authority-link" href="https://cappadociaconcepttravel.com/en/classic-car-tours-cappadocia-t2080" target="_blank" rel="noopener noreferrer">查看 €90 官方产品 ↗</a><a class="authority-link" href="https://www.tursabonlinesorgu.com/" target="_blank" rel="noopener noreferrer">TÜRSAB 查询 16029 ↗</a></div>
+                </section>
+              </div>
               <ul class="booking-facts">
-                <li>Turquaz Standard：最多 28 人、First Ascent、约 60 分钟；Classic：最多 20 人、First Ascent、约 60 分钟。两者每人差价不超过 €20–25 时选 Classic，否则选 Standard。</li>
-                <li><strong>2026-07-27 实时查询：</strong>Standard €270/人，Classic €290/人；两人分别约 €540 / €580。余位和价格会变化，以付款页及 WhatsApp 书面回复为准。</li>
-                <li>不要为了便宜选 Second Ascent；你最想看的就是日出时的大规模热气球群。</li>
-                <li>Turquaz WhatsApp：<strong>+90 554 165 3640</strong>。付款前确认总价、篮筐上限、格雷梅酒店接送、飞行约 60 分钟以及主飞行区。</li>
-                <li>经营方因天气或运营原因取消时，Turquaz 当前政策提供全额退款、免费改期或代金券；改到 9/28 仍取决于余位，不能承诺一定有位、保持同一舱型或维持原价。</li>
+                <li><strong>为什么先问老爷车：</strong>€90/车约 ¥700，两人总价与共享团接近，但它是私人车；官网也明确写了起飞区、追球与多个山谷，不再把它误写成只会定点摆拍。</li>
+                <li><strong>为什么保留 Rush：</strong>它公开写明起飞准备区＋1个后续观景点（总共至少2点）、酒店接送和当天停飞全退；老爷车唯独没有公开承诺当天停飞退款，所以用这一条作否决门槛。不要把老爷车的“两个后续点”要求套在 Rush 上。</li>
+                <li><strong>平台老爷车备选：</strong>若官方直订无车，可看 GetYourGuide 的 Turn Back 私人老爷车；当前页面约 US$88/车、2小时、酒店接送和多个观景点，但同样要在订单聊天确认当天停飞是否退。<a href="https://www.getyourguide.com/goreme-l984/cappadocia-sunrise-day-tour-sunset-classic-car-tour-t527906/" target="_blank" rel="noopener noreferrer">Turn Back 直订页 ↗</a></li>
+                <li><strong>酒店露台兜底：</strong>通常免费，但机位固定且较难近看充气；只有两种产品都超预算时才使用 Aydın Kırağı / Sunset &amp; Sunrise Point。</li>
+                <li>前一晚查官方 SHM 状态；无论坐什么地面车，只要全部停飞，天空就没有群球。</li>
               </ul>
-              <div class="booking-actions"><a class="authority-link" href="https://www.turquazballoons.com/" target="_blank" rel="noopener noreferrer">Turquaz 官网预订 ↗</a><a class="authority-link" href="https://www.turquazballoons.com/terms-and-conditions?contract=cancellation" target="_blank" rel="noopener noreferrer">官方退款政策 ↗</a><a class="authority-link" href="https://web.shgm.gov.tr/en/s/80-balloon-operators" target="_blank" rel="noopener noreferrer">SHGM 持证运营商 ↗</a><a class="authority-link" href="https://voyagerballoons.com/book/" target="_blank" rel="noopener noreferrer">Voyager 备选 ↗</a></div>
+              <div class="booking-actions"><a class="authority-link" href="https://www.goreme.bel.tr/en" target="_blank" rel="noopener noreferrer">格雷梅官方观景区 ↗</a><a class="authority-link" href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">官方飞行旗 ↗</a></div>
             </div>
             <aside class="booking-template">
-              <strong>付款前发给 Turquaz</strong>
-              <blockquote>For 27 September 2026, we would like to book 2 adults on the first ascent. Please confirm the total price, maximum basket capacity, approximately 60-minute flight, Göreme hotel pickup, and full refund if the flight is cancelled due to weather. If cancelled, may we reschedule to 28 September subject to availability?</blockquote>
-              <div class="booking-actions"><a class="authority-link" href="https://wa.me/905541653640" target="_blank" rel="noopener noreferrer">打开 Turquaz WhatsApp ↗</a></div>
+              <strong>共享团订单聊天备用话术</strong>
+              <blockquote>For 27 September 2026, we are 2 adults staying in Göreme and would like to book a shared ground balloon watching and chasing tour, not a balloon flight. Please confirm the total price, hotel pickup time, whether the tour includes the inflation/take-off area and at least one additional viewpoint after take-off, and whether we receive a 100% refund if SHM cancels all balloon flights that morning.</blockquote>
+              <strong style="margin-top:18px">老爷车 WhatsApp 话术</strong>
+              <blockquote>Hello, we are 2 adults staying in Göreme and would like to book one private classic car sunrise balloon-watching tour on 27 September 2026. Please confirm the total price for one car, hotel pickup and drop-off, the balloon inflation/take-off area, and at least two viewpoints selected according to the actual wind and balloon direction. Please also confirm whether professional photography is included or extra, and whether we receive a 100% refund if SHM cancels all balloon flights that morning. We only need the driver to help take a few phone photos; no professional photographer is required. Please send a written booking confirmation. Hotel: [hotel name and address].</blockquote>
+              <p class="small muted">只看四个答案：€90/车以内、接送、起飞区＋至少两个追球点、停飞全退。任一项不是明确 Yes，就点左侧 Rush 直订，不需要继续找。</p>
+              <div class="booking-actions"><a class="authority-link" href="https://wa.me/905308698850?text=Hello%2C%20we%20are%202%20adults%20staying%20in%20G%C3%B6reme%20and%20would%20like%20to%20book%20one%20private%20classic%20car%20sunrise%20balloon-watching%20tour%20on%2027%20September%202026.%20Please%20confirm%20the%20total%20price%20for%20one%20car%2C%20hotel%20pickup%20and%20drop-off%2C%20the%20balloon%20inflation%2Ftake-off%20area%2C%20and%20at%20least%20two%20viewpoints%20selected%20according%20to%20the%20actual%20wind%20and%20balloon%20direction.%20Please%20also%20confirm%20whether%20professional%20photography%20is%20included%20or%20extra%2C%20and%20whether%20we%20receive%20a%20100%25%20refund%20if%20SHM%20cancels%20all%20balloon%20flights%20that%20morning.%20We%20only%20need%20the%20driver%20to%20help%20take%20a%20few%20phone%20photos%3B%20no%20professional%20photographer%20is%20required.%20Please%20send%20a%20written%20booking%20confirmation.%20Hotel%3A%20%5Bhotel%20name%20and%20address%5D." target="_blank" rel="noopener noreferrer">一键带入老爷车询价话术 ↗</a></div>
             </aside>
           </article>
 
@@ -769,7 +811,47 @@
             <aside class="booking-template">
               <strong>复制后发给 Bermuda</strong>
               <blockquote>Hello, we are 2 adults staying in Kaş. Do you have a confirmed full-day Kekova tour departing from Kaş Harbour on 1 October 2026? Please confirm the boat name, maximum group size, 09:30 meeting and 09:45 departure, return around 18:00, total price in TRY, lunch, Simena stop, deposit, and cancellation terms.</blockquote>
-              <div class="booking-actions"><a class="authority-link" href="https://wa.me/905326762411" target="_blank" rel="noopener noreferrer">打开 Bermuda WhatsApp ↗</a></div>
+              <div class="booking-actions"><a class="authority-link" href="https://wa.me/905326762411?text=Hello%2C%20we%20are%202%20adults%20staying%20in%20Ka%C5%9F.%20Do%20you%20have%20a%20confirmed%20full-day%20Kekova%20tour%20departing%20from%20Ka%C5%9F%20Harbour%20on%201%20October%202026%3F%20Please%20confirm%20the%20boat%20name%2C%20maximum%20group%20size%2C%2009%3A30%20meeting%20and%2009%3A45%20departure%2C%20return%20around%2018%3A00%2C%20total%20price%20in%20TRY%2C%20lunch%2C%20Simena%20stop%2C%20deposit%2C%20and%20cancellation%20terms." target="_blank" rel="noopener noreferrer">一键带入 Bermuda 询价话术 ↗</a></div>
+            </aside>
+          </article>
+
+          <article class="panel activity-booking-card" id="book-ihlara-driver">
+            <div>
+              <span class="booking-kicker">09.28 · 格雷梅往返</span>
+              <h3>4. Ihlara＋Narlıgöl 私人司机</h3>
+              <p><strong>不要自己搜司机：只问下面两家持牌经营方。</strong>首选 Cappa Transfer，因为它同时公开了司机包车服务和“约4公里 Ihlara 徒步→Belisırma→Narlıgöl”的同路线；拒绝 driver-only、无车或超价时，才问 Cappadocia Concept Travel 的同路线私人车。</p>
+              <div class="booking-decision"><strong>我替你定好的成交门槛</strong>车辆两人整车价不超过 €190，必须包含酒店往返、全部路线里程、燃油、停车、过路费、等待和 Belisırma 异地接车；Ihlara 官方票当前 €15/人、€30/两人另买。按付款前汇率复核，车辆＋两张票整项不超过约 ¥1,850；并且对方须书面确认：Ihlara 官方关闭或恶劣天气令峡谷徒步不安全时，即使不足 24 小时也能全退或免费改为安全路线。两项都满足才订。</div>
+              <div class="booking-option-grid">
+                <section class="booking-option">
+                  <h4>首选：持牌司机包车</h4>
+                  <p><strong>Cappa Transfer · TÜRSAB 15551</strong><br>官网明确提供 chauffeur-driven car rental；其 Green Tour 页面同时公开约4公里 Ihlara、Belisırma 接车／午餐和 Narlıgöl，路线能力无需你再判断。</p>
+                  <ol>
+                    <li>点下面按钮，WhatsApp 会自动带入完整日期、路线、时间和删项。</li>
+                    <li>只接受 <strong>driver only / no guide</strong> 的整车总价，不买官网标准全包团。</li>
+                    <li>€190以内、16:15前回格雷梅、24小时前免费取消，以及临时关闭／恶劣天气即使不足24小时也可全退或免费安全改线，全部书面确认才订。</li>
+                    <li>使用有 Cappa Transfer 商户名的安全付款链接或上车付款；不向私人账户转账。</li>
+                  </ol>
+                  <div class="booking-actions"><a class="authority-link" href="https://wa.me/905443609425?text=Hello%2C%20we%20are%202%20adults%20staying%20in%20G%C3%B6reme%20and%20need%20private%20transportation%20with%20a%20driver%20only%20(no%20guide)%20on%2028%20September%202026.%20Please%20pick%20us%20up%20at%2008%3A00%20from%20%5Bhotel%20name%20and%20address%5D%2C%20drop%20us%20at%20the%20currently%20open%20main%20stair%20entrance%20of%20Ihlara%20Valley%20at%20about%2009%3A30%20for%20the%20approximately%204%20km%20one-way%20walk%2C%20wait%20and%20pick%20us%20up%20by%20road%20at%20Belis%C4%B1rma%20at%2013%3A00%2C%20then%20stop%20at%20Narl%C4%B1g%C3%B6l%20crater%20lake%20for%2030%20minutes%20and%20return%20us%20to%20the%20same%20G%C3%B6reme%20hotel%20no%20later%20than%2016%3A15.%20If%20we%20have%20not%20left%20Belis%C4%B1rma%20by%2013%3A15%2C%20we%20will%20skip%20Narl%C4%B1g%C3%B6l%20and%20return%20directly.%20Please%20confirm%20the%20final%20all-inclusive%20price%20for%20one%20private%20vehicle%20for%202%20adults%2C%20including%20all%20route%20mileage%2C%20fuel%2C%20tolls%2C%20parking%20and%20waiting%3B%20the%20exact%20Ihlara%20drop-off%20and%20Belis%C4%B1rma%20pickup%20points%3B%20the%20vehicle%20type%3B%20any%20overtime%20charge%3B%20payment%20method%3B%20and%20free%20cancellation%20with%20a%20full%20refund%20up%20to%20at%20least%2024%20hours%20before%20pickup.%20We%20will%20buy%20our%20own%20Ihlara%20tickets%2C%20our%20luggage%20will%20remain%20at%20the%20hotel%2C%20and%20we%20do%20not%20want%20underground%20city%2C%20Selime%2C%20shopping%2C%20guide%20or%20lunch%20added.%20We%20will%20book%20only%20if%20the%20vehicle%20total%20is%20EUR%20190%20or%20less.%20If%20Ihlara%20Valley%20is%20officially%20closed%20or%20severe%20weather%20makes%20the%20canyon%20walk%20unsafe%2C%20even%20within%2024%20hours%20of%20pickup%2C%20please%20confirm%20that%20you%20will%20either%20provide%20a%20full%20refund%20or%20change%20to%20a%20safe%20alternative%20route%20at%20no%20extra%20cost.%20Please%20send%20written%20confirmation." target="_blank" rel="noopener noreferrer">一键带入 Cappa 询价 ↗</a><a class="authority-link" href="https://cappatransfer.com/en/our-services/chauffeur-driven-car-rental/" target="_blank" rel="noopener noreferrer">官方司机包车 ↗</a><a class="authority-link" href="https://cappatransfer.com/en/tours/cappadocia-green-tour/" target="_blank" rel="noopener noreferrer">核对同路线 ↗</a></div>
+                </section>
+                <section class="booking-option">
+                  <h4>备用：第二家持牌路线车</h4>
+                  <p><strong>Cappadocia Concept Travel · TÜRSAB 16029</strong><br>官方 Private Dream Day Tour 明确走 Narlıgöl、Ihlara、Belisırma；用相同话术要求删掉导游与其他景点，只保留司机和精确时间。</p>
+                  <ol>
+                    <li>只有首选拒绝 driver-only、无车或超过 €190 才点备用按钮。</li>
+                    <li>确认车牌／车型、司机姓名、总价、付款方式、16:15返程，以及临时关闭／恶劣天气即使不足24小时也可全退或免费安全改线。</li>
+                    <li>要求上车付款；若必须预付，只接受有商户名称的安全支付链接。</li>
+                    <li>任一项含糊、要求私人转账或临时加景点，就不订。</li>
+                  </ol>
+                  <div class="booking-actions"><a class="authority-link" href="https://wa.me/905308698850?text=Hello%2C%20we%20are%202%20adults%20staying%20in%20G%C3%B6reme%20and%20need%20private%20transportation%20with%20a%20driver%20only%20(no%20guide)%20on%2028%20September%202026.%20Please%20pick%20us%20up%20at%2008%3A00%20from%20%5Bhotel%20name%20and%20address%5D%2C%20drop%20us%20at%20the%20currently%20open%20main%20stair%20entrance%20of%20Ihlara%20Valley%20at%20about%2009%3A30%20for%20the%20approximately%204%20km%20one-way%20walk%2C%20wait%20and%20pick%20us%20up%20by%20road%20at%20Belis%C4%B1rma%20at%2013%3A00%2C%20then%20stop%20at%20Narl%C4%B1g%C3%B6l%20crater%20lake%20for%2030%20minutes%20and%20return%20us%20to%20the%20same%20G%C3%B6reme%20hotel%20no%20later%20than%2016%3A15.%20If%20we%20have%20not%20left%20Belis%C4%B1rma%20by%2013%3A15%2C%20we%20will%20skip%20Narl%C4%B1g%C3%B6l%20and%20return%20directly.%20Please%20confirm%20the%20final%20all-inclusive%20price%20for%20one%20private%20vehicle%20for%202%20adults%2C%20including%20all%20route%20mileage%2C%20fuel%2C%20tolls%2C%20parking%20and%20waiting%3B%20the%20exact%20Ihlara%20drop-off%20and%20Belis%C4%B1rma%20pickup%20points%3B%20the%20vehicle%20type%3B%20any%20overtime%20charge%3B%20payment%20method%3B%20and%20free%20cancellation%20with%20a%20full%20refund%20up%20to%20at%20least%2024%20hours%20before%20pickup.%20We%20will%20buy%20our%20own%20Ihlara%20tickets%2C%20our%20luggage%20will%20remain%20at%20the%20hotel%2C%20and%20we%20do%20not%20want%20underground%20city%2C%20Selime%2C%20shopping%2C%20guide%20or%20lunch%20added.%20We%20will%20book%20only%20if%20the%20vehicle%20total%20is%20EUR%20190%20or%20less.%20If%20Ihlara%20Valley%20is%20officially%20closed%20or%20severe%20weather%20makes%20the%20canyon%20walk%20unsafe%2C%20even%20within%2024%20hours%20of%20pickup%2C%20please%20confirm%20that%20you%20will%20either%20provide%20a%20full%20refund%20or%20change%20to%20a%20safe%20alternative%20route%20at%20no%20extra%20cost.%20Please%20send%20written%20confirmation." target="_blank" rel="noopener noreferrer">一键带入 Concept 备用询价 ↗</a><a class="authority-link" href="https://cappadociaconcepttravel.com/en/cappadocia-private-dream-day-tour-t2638" target="_blank" rel="noopener noreferrer">查看备用同路线 ↗</a></div>
+                </section>
+              </div>
+              <div class="flight-fallback"><strong>无需预约 Plan B</strong><p>两家都无车、整车超过 €190、拒绝上述书面门槛，且本地天气适合徒步时：09:00–11:30 从格雷梅镇边走 Zemi Valley 短程原路折返；12:00 午餐；13:30–15:30 只在 Aydın Kırağı / Göreme Panorama 看白天地貌并休息；16:00 回住宿取行李、提前晚餐，18:30 乘已约机场接送去 ASR。它不新增远程交通，也不会影响 PC3503。若是大雨／雷暴，执行上方室内安全预案，不进 Zemi。</p></div>
+              <div class="booking-actions"><a class="authority-link" href="https://www.muze.gov.tr/urun-detay?CatalogNo=WEB-IH101-87-009" target="_blank" rel="noopener noreferrer">Ihlara 官方电子票 · €15/人 ↗</a><a class="authority-link" href="https://www.goreme.bel.tr/tr/seyir-alani-1758439471" target="_blank" rel="noopener noreferrer">格雷梅官方观景区 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Zemi+Valley+Trailhead+Goreme" target="_blank" rel="noopener noreferrer">Zemi Valley 起点导航 ↗</a></div>
+            </div>
+            <aside class="booking-template">
+              <strong>两家使用同一条完整询价</strong>
+              <blockquote>Hello, we are 2 adults staying in Göreme and need private transportation with a driver only (no guide) on 28 September 2026. Please pick us up at 08:00 from [hotel name and address], drop us at the currently open main stair entrance of Ihlara Valley at about 09:30 for the approximately 4 km one-way walk, wait and pick us up by road at Belisırma at 13:00, then stop at Narlıgöl crater lake for 30 minutes and return us to the same Göreme hotel no later than 16:15. If we have not left Belisırma by 13:15, we will skip Narlıgöl and return directly. Please confirm the final all-inclusive price for one private vehicle for 2 adults, including all route mileage, fuel, tolls, parking and waiting; the exact Ihlara drop-off and Belisırma pickup points; the vehicle type; any overtime charge; payment method; and free cancellation with a full refund up to at least 24 hours before pickup. We will buy our own Ihlara tickets, our luggage will remain at the hotel, and we do not want underground city, Selime, shopping, guide or lunch added. We will book only if the vehicle total is EUR 190 or less. If Ihlara Valley is officially closed or severe weather makes the canyon walk unsafe, even within 24 hours of pickup, please confirm that you will either provide a full refund or change to a safe alternative route at no extra cost. Please send written confirmation.</blockquote>
+              <p class="small muted">顺序固定：先点 Cappa Transfer；只有它拒绝／超价才点 Cappadocia Concept。司机不超过 €190，门票 €15/人、€30/两人，车辆＋门票整项控制在约 ¥1,850。两家都不合格就执行左侧无需预约 Plan B。</p>
             </aside>
           </article>
         </div>
@@ -789,10 +871,10 @@
           <div class="duration-row"><div class="duration-date">9/25</div><div class="duration-place"><strong>Üsküdar 海边</strong><small>日落散步＋亚洲区晚餐</small></div><div class="duration-transit"><strong>Eminönü → Üsküdar</strong><small>普通渡轮约 15–20 分钟</small></div><div><span class="time-pill">2.5–3小时</span></div><div>晚餐后</div></div>
           <div class="duration-row"><div class="duration-date">9/26</div><div class="duration-place"><strong>乌奇萨＋鸽子谷</strong><small>城堡全景与短步行</small></div><div class="duration-transit"><strong>NAV → 格雷梅约 40 km</strong><small>接送约 40–50 分钟；放行李后出发</small></div><div><span class="time-pill">2.5–3小时</span></div><div>16:00</div></div>
           <div class="duration-row"><div class="duration-date">9/26</div><div class="duration-place"><strong>格雷梅日落＋蓝调夜景</strong><small>Aydınkırağı / Sunset Point</small></div><div class="duration-transit"><strong>镇中心步行约 15–25 分</strong><small>坡路，回程带照明；不进山谷小径</small></div><div><span class="time-pill">约2小时</span></div><div>约19:30</div></div>
-          <div class="duration-row"><div class="duration-date">9/27</div><div class="duration-place"><strong>热气球</strong><small>接送、早餐、飞行、庆祝</small></div><div class="duration-transit"><strong>酒店接送包含</strong><small>约 04:30 出发</small></div><div><span class="time-pill">3–4小时</span></div><div>约 08:30</div></div>
+          <div class="duration-row"><div class="duration-date">9/27</div><div class="duration-place"><strong>地面追热气球</strong><small>起飞区＋按风向切换高位观景点</small></div><div class="duration-transit"><strong>所选产品酒店接送</strong><small>04:45 左右出发</small></div><div><span class="time-pill">1.5–2小时</span></div><div>约07:45回酒店</div></div>
           <div class="duration-row"><div class="duration-date">9/27</div><div class="duration-place"><strong>红谷／玫瑰谷</strong><small>短环线徒步＋日落观景</small></div><div class="duration-transit"><strong>格雷梅约 7–10 km</strong><small>车程约 15–20 分钟</small></div><div><span class="time-pill">2.5–3小时</span></div><div>日落后</div></div>
-          <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>热气球机会 2</strong><small>仅 9/27 取消且确认有余位后改期</small></div><div class="duration-transit"><strong>酒店接送包含</strong><small>约 04:30 出发</small></div><div><span class="time-pill">3–4小时</span></div><div>约08:30</div></div>
-          <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>Ihlara峡谷4公里短线（条件分支）</strong><small>仅 9/27 热气球成功后执行</small></div><div class="duration-transit"><strong>格雷梅 → Ihlara约83 km</strong><small>私人司机单程按1.5小时；Belisırma异地接</small></div><div><span class="time-pill">约3小时</span></div><div>12:45硬性离开</div></div>
+          <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>Ihlara峡谷4公里固定短线</strong><small>溪流徒步＋Belisırma快速午餐</small></div><div class="duration-transit"><strong>格雷梅 → Ihlara约83 km</strong><small>08:00私人司机出发；Belisırma异地接</small></div><div><span class="time-pill">09:30–13:00</span></div><div>13:00接车</div></div>
+          <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>Narlıgöl火山口湖</strong><small>顺路高位观景，不泡温泉</small></div><div class="duration-transit"><strong>Belisırma → Narlıgöl约30 km</strong><small>车程约44分；13:15未离开则删除</small></div><div><span class="time-pill">13:45–14:20</span></div><div>14:20离开；16:15前回格雷梅</div></div>
           <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>格雷梅 → ASR</strong><small>NAV 进、ASR 出，不要走错机场</small></div><div class="duration-transit"><strong>约 75 km</strong><small>18:30 出发；接送预留 60–80 分钟</small></div><div><span class="time-pill">约1小时15分</span></div><div>19:30–19:50到航站楼</div></div>
           <div class="duration-row"><div class="duration-date">9/28</div><div class="duration-place"><strong>PC3503：ASR → AYT（已订）</strong><small>待确认电子客票号与托运行李</small></div><div class="duration-transit"><strong>22:05–23:25</strong><small>落地后乘酒店深夜接送</small></div><div><span class="time-pill">1小时20分</span></div><div>住AYT/Lara</div></div>
           <div class="duration-row"><div class="duration-date">9/29</div><div class="duration-place"><strong>下杜登瀑布</strong><small>海崖陆地观景台</small></div><div class="duration-transit"><strong>AYT → 下杜登约 14 km</strong><small>08:30取车；正常约20分钟</small></div><div><span class="time-pill">45–60分</span></div><div>10:30</div></div>
@@ -826,7 +908,7 @@
           <article class="restaurant"><div class="restaurant-loc">Kadıköy市场 · 10/3取件前快速晚饭</div><h3>Çiya Sofrası</h3><p>从 Moda 回到市场，用现成的蔬菜、豆类、汤和一份主菜解决晚饭。19:35 前离店去取行李；排队就换同街的 esnaf lokantası，不为了名店错过取件或渡轮。</p><div class="restaurant-tags"><span>安纳托利亚家常菜</span><span>蔬菜小菜</span><span>可共享</span><span>19:35离店</span></div><div class="restaurant-footer"><strong>两人 ₺1,600–2,600</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Ciya+Sofrasi+Kadikoy" target="_blank" rel="noopener">地图 ↗</a></div></article>
           <article class="restaurant"><div class="restaurant-loc">格雷梅</div><h3>Seten Restaurant</h3><p>2026 米其林推荐，景观与传统菜兼顾；只安排一顿稍正式的卡帕多奇亚晚餐。</p><div class="restaurant-tags"><span>Mantı饺子</span><span>汤</span><span>当地蔬菜</span><span>建议预约</span></div><div class="restaurant-footer"><strong>两人 ₺2,000–3,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Seten+Restaurant+Goreme" target="_blank" rel="noopener">地图 ↗</a></div></article>
           <article class="restaurant"><div class="restaurant-loc">Uçhisar</div><h3>Saklı Konak</h3><p>适合乌奇萨结束后吃午餐；点汤、Mantı和一道蔬菜即可，不必点完整烤肉套餐。</p><div class="restaurant-tags"><span>当地菜</span><span>Mantı</span><span>室内休息</span></div><div class="restaurant-footer"><strong>两人 ₺1,400–2,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Sakli+Konak+Restaurant+Uchisar" target="_blank" rel="noopener">地图 ↗</a></div></article>
-          <article class="restaurant"><div class="restaurant-loc">Ihlara分支 · Belisırma</div><h3>Anatolia Restaurant</h3><p>Aksaray 旅游局餐厅目录列出的河谷餐厅；只在司机确认当天营业、12:00 前到达时快速午餐，12:45 必须离开，不能等慢速套餐。</p><div class="restaurant-tags"><span>汤</span><span>Gözleme</span><span>河边</span><span>限时40分钟</span></div><div class="restaurant-footer"><strong>两人控制在 ₺1,200 内</strong><a href="https://aksaray.ktb.gov.tr/TR-63631/guzelyurt-ilcesi.html" target="_blank" rel="noopener">官方目录 ↗</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Anatolia+Restaurant+Belisirma" target="_blank" rel="noopener">地图 ↗</a></div></article>
+          <article class="restaurant"><div class="restaurant-loc">Ihlara固定主线 · Belisırma</div><h3>Anatolia Restaurant</h3><p>Aksaray 旅游局餐厅目录列出的河谷餐厅；只在司机确认当天营业时吃汤、Gözleme 等快餐，12:15–13:00 用餐，13:00 接车，不能等慢速套餐。</p><div class="restaurant-tags"><span>汤</span><span>Gözleme</span><span>河边</span><span>限时45分钟</span></div><div class="restaurant-footer"><strong>两人控制在 ₺1,200 内</strong><a href="https://aksaray.ktb.gov.tr/TR-63631/guzelyurt-ilcesi.html" target="_blank" rel="noopener">官方目录 ↗</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Anatolia+Restaurant+Belisirma" target="_blank" rel="noopener">地图 ↗</a></div></article>
           <article class="restaurant"><div class="restaurant-loc">下杜登 · 9/29 上午</div><h3>Düden Balık Çarşısı</h3><p>市属平价鱼餐厅，适合不想再吃烤肉；若 10:30 前已看完瀑布且无需等开门，只做早午餐。任何排队都直接放弃，上路后再吃。</p><div class="restaurant-tags"><span>鲜鱼</span><span>沙拉</span><span>海边</span><span>非烤肉</span></div><div class="restaurant-footer"><strong>两人 ₺1,000–1,800</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Duden+Balik+Carsisi+Antalya" target="_blank" rel="noopener">地图 ↗</a></div></article>
           <article class="restaurant"><div class="restaurant-loc">卡什 · 老城北侧</div><h3>Bi Lokma</h3><p>家庭式土耳其菜，汤、米饭、蔬菜、饺子选择比海港餐厅全面；作为卡什日常正餐首选。</p><div class="restaurant-tags"><span>汤饭</span><span>土耳其饺子</span><span>素食选择</span><span>可预约</span></div><div class="restaurant-footer"><strong>两人 ₺1,200–1,900</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Bi+Lokma+Kas" target="_blank" rel="noopener">地图 ↗</a></div></article>
           <article class="restaurant"><div class="restaurant-loc">卡什 · 古剧场日落后</div><h3>Ruhi Bey Meyhanesi</h3><p>全程唯一一顿正式海鲜；只点两款 Meze、一条鱼和沙拉，不点酒和大拼盘。</p><div class="restaurant-tags"><span>Meze</span><span>本地鱼</span><span>酥皮虾可选</span><span>建议预约</span></div><div class="restaurant-footer"><strong>两人 ₺2,500–4,000</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Ruhi+Bey+Meyhanesi+Kas" target="_blank" rel="noopener">地图 ↗</a></div></article>
@@ -837,7 +919,7 @@
           <article class="restaurant"><div class="restaurant-loc">费特希耶 · Paspatur</div><h3>Nefis Pide</h3><p>还车前一晚或次日早餐后的简单正餐；比鱼市场更符合预算，也不需要复杂称重和加工。</p><div class="restaurant-tags"><span>Pide</span><span>Lahmacun</span><span>快速</span><span>经济</span></div><div class="restaurant-footer"><strong>两人 ₺700–1,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Nefis+Pide+Paspatur+Fethiye" target="_blank" rel="noopener">地图 ↗</a></div></article>
           <article class="restaurant"><div class="restaurant-loc">DLM · 10/3 约11:10进航站楼后</div><h3>航站楼快速午餐</h3><p>交完车、办妥值机和行李手续后再吃三明治、汤或 Gözleme；不在费特希耶到机场途中增加停车点。这样不会为了午餐压缩异地还车和登机缓冲。</p><div class="restaurant-tags"><span>三明治</span><span>汤</span><span>Gözleme</span><span>不赶时间</span></div><div class="restaurant-footer"><strong>两人 ₺600–1,100</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Dalaman+Airport+restaurant" target="_blank" rel="noopener">机场餐饮 ↗</a></div></article>
         </div>
-        <div class="callout"><strong>每天用餐逻辑：</strong>Airbnb 自备简单早餐；午餐用 Lokanta、汤、Pide 或 Gözleme；晚餐才坐下来吃。Ihlara 分支只留 40 分钟快速午餐，Kekova 船餐已经包含就不要再订岸上午餐。全程正式海鲜仅卡什一顿，餐饮仍可控制在两人约 ¥2,200～2,800。</div>
+        <div class="callout"><strong>每天用餐逻辑：</strong>Airbnb 自备简单早餐；午餐用 Lokanta、汤、Pide 或 Gözleme；晚餐才坐下来吃。Ihlara 固定路线只留 45 分钟快速午餐，Kekova 船餐已经包含就不要再订岸上午餐。全程正式海鲜仅卡什一顿，餐饮仍可控制在两人约 ¥2,200～2,800。</div>
       </div>
     </section>
 
@@ -850,7 +932,7 @@
             <thead><tr><th>地点</th><th>晚数</th><th>推荐区域</th><th>合理总价</th><th>关键筛选</th></tr></thead>
             <tbody>
               <tr><td><strong>伊斯坦布尔</strong></td><td>2</td><td>Sultanahmet / Cankurtaran</td><td>¥700～1,100</td><td>步行到圣索菲亚；自助入住；行李寄存</td></tr>
-              <tr><td><strong>格雷梅</strong></td><td>2晚</td><td>Göreme 镇中心</td><td>¥750～1,150</td><td>有露台；步行到餐厅；两次清晨均可接送</td></tr>
+              <tr><td><strong>格雷梅</strong></td><td>2晚</td><td>Göreme 镇中心</td><td>¥750～1,150</td><td>有无遮挡露台；步行到餐厅；可安排追球和 Ihlara 司机接送</td></tr>
               <tr><td><strong>安塔利亚机场 / Lara</strong></td><td>1晚</td><td>AYT 深夜接送范围</td><td>¥300～500</td><td>确认 23:25 后接机、次晨送回取车点</td></tr>
               <tr><td><strong>卡什</strong></td><td>3</td><td>古剧场—老城之间</td><td>¥1,100～1,700</td><td>步行到剧场；停车明确；不要住半岛深处</td></tr>
               <tr><td><strong>费特希耶</strong></td><td>1</td><td>Karagözler / 老城码头</td><td>¥350～550</td><td>一晚优先小酒店，避免高额清洁费</td></tr>
@@ -923,7 +1005,7 @@
     <section class="section" id="budget">
       <div class="wrap">
         <p class="eyebrow">Budget for two</p>
-        <h2>两人基础费用约 3.05～3.75 万；Ihlara 单列条件预算</h2>
+        <h2>两人全程约 2.73～3.47 万，建议以 3.5 万封顶</h2>
         <div class="budget-wrap">
           <div class="panel table-scroll">
             <table class="budget-table">
@@ -934,26 +1016,26 @@
                 <tr><td>土耳其境内 3 段飞机</td><td>暂按 ¥1,500～2,300<br><small>已知已付：VF3268 ¥588＋VF3135 ¥684＝¥1,272；另加 PC3503 实付及 VF3135 可能追加的行李费</small></td></tr>
                 <tr><td>5个日历日租车＋保险＋AYT→DLM异地还车</td><td>¥2,200～3,600</td></tr>
                 <tr><td>油费、停车与 HGS（约430～470 km）</td><td>¥470～710</td></tr>
-                <tr><td>卡帕多奇亚热气球</td><td>¥4,500～5,000（两人 €540～580）</td></tr>
-                <tr><td>Ihlara条件分支（仅9/27升空后；不计入下方基础合计）</td><td>门票当前 €30/两人＋私人司机书面报价；整项决策上限 ¥1,500</td></tr>
+                <tr><td>地面追热气球（二选一）</td><td>¥420～740<br><small>共享追球 US$29–51/人；首问老爷车 €90/车，满足停飞全退才订，不重复计入</small></td></tr>
+                <tr><td>Ihlara＋Narlıgöl固定自然日</td><td>约 ¥1,300～1,850<br><small>司机目标≤€190＋Ihlara门票€30/两人；整项决策上限约¥1,850</small></td></tr>
                 <tr><td>Kekova 拼船</td><td>¥800～900</td></tr>
                 <tr><td>博斯普鲁斯短线等小额门票</td><td>¥900～1,500</td></tr>
                 <tr><td>10 天餐饮</td><td>¥2,200～2,800</td></tr>
                 <tr><td>两人旅行保险</td><td>¥460～740</td></tr>
                 <tr><td>机场接送、城市交通与Kadıköy寄存（含M4、渡轮、短程出租、M11）</td><td>¥800～1,200<br><small>两件寄存当前基础价约 €7.80 起，保障／服务费以结账页为准</small></td></tr>
                 <tr><td>两人 eSIM</td><td>¥120～220</td></tr>
-                <tr class="budget-total"><td>两人基础全程预计（不含Ihlara条件分支）</td><td>约 ¥30,500～37,500</td></tr>
+                <tr class="budget-total"><td>两人基础全程预计</td><td>约 ¥27,300～34,700</td></tr>
               </tbody>
             </table>
           </div>
           <aside class="panel">
             <p class="eyebrow">Recommended cap</p>
             <h3>建议控制线</h3>
-            <div class="big-number">¥37,500</div>
-            <p class="muted">这是暂定基础控制线，保留博斯普鲁斯短线、热气球、红／玫瑰谷、Kekova、卡什古剧场、D400、蝴蝶谷崖顶和10/3 Kadıköy寄存＋Moda海滨。若执行 Ihlara，再单列最多 ¥1,500；超过上限不应为了填满 9/28 硬订包车。</p>
+            <div class="big-number">¥35,000</div>
+            <p class="muted">这条控制线已包含博斯普鲁斯短线、老爷车或共享车地面追球（二选一）、Ihlara＋Narlıgöl私人司机、红／玫瑰谷、Kekova、卡什古剧场、D400、蝴蝶谷崖顶和10/3 Kadıköy寄存＋Moda海滨。专业摄影、滑翔伞和私人游艇不在内。</p>
             <span class="paid-note">目前可核金额已付 ¥13,900：国际 ¥12,628＋VF3268 ¥588＋VF3135 ¥684</span>
-            <p style="margin-top:20px"><strong>按目前可核金额预计尚待支付</strong><br><span class="price">约 ¥16,600～23,600</span></p>
-            <p class="small muted">PC3503 的实付金额尚未录入，若已经扣款应再从“尚待支付”扣除。VF3135 截图确认两位乘客共付 ¥684，但未显示手提或托运行李额度；确认或加购后再回填境内航班实际总额。¥684 已包含在境内航班预算区间内，不会重复加到基础总额；Ihlara司机、购物、滑翔伞、私人游艇及大额纪念品未计入。</p>
+            <p style="margin-top:20px"><strong>按目前可核金额预计尚待支付</strong><br><span class="price">约 ¥13,400～20,800</span></p>
+            <p class="small muted">PC3503 的实付金额尚未录入，若已经扣款应再从“尚待支付”扣除。VF3135 截图确认两位乘客共付 ¥684，但未显示手提或托运行李额度；确认或加购后再回填境内航班实际总额。¥684 已包含在境内航班预算区间内，不会重复计算；老爷车写真、购物、滑翔伞、私人游艇及大额纪念品未计入。</p>
           </aside>
         </div>
       </div>
@@ -966,19 +1048,19 @@
         <div class="practical-grid">
           <article class="practical-item"><h3>护照与签证</h3><ul><li>持香港特区护照，旅游停留 90 天内目前免签。</li><li>持 BN(O) 护照并非同一规则，需要按土耳其官方要求办理电子签证。</li><li>护照身份不同，务必以实际使用的旅行证件核对。</li><li>出发时护照有效期距回程日建议至少还有 6 个月；临近有效期务必先换发再订票。</li></ul><p class="small"><a href="https://www.mfa.gov.tr/yabancilarin-tabi-oldugu-vize-rejimi.tr.mfa" target="_blank" rel="noopener">土耳其外交部签证规则 ↗</a></p></article>
           <article class="practical-item"><h3>香港驾照</h3><ul><li>建议带香港正式驾驶执照原件＋香港运输署签发的 IDP。</li><li>IDP 有效期为签发日起 1 年；申请时需符合香港运输署资格。</li><li>另带护照、主驾驶人实体信用卡；最终以租车公司书面确认为准。</li></ul><p class="small"><a href="https://www.td.gov.hk/en/public_services/licences_and_permits/driving_licences/how_to_apply_for_a_driving_licence/general_information_on_driving_licence/index.html" target="_blank" rel="noopener">香港运输署 IDP 说明 ↗</a></p></article>
-          <article class="practical-item"><h3>旅行保险</h3><ul><li>两人 11 日单次全球保障预留 HK$500～800（约 ¥460～740）。</li><li>至少比较海外医疗 HK$100 万以上、医疗运送、旅程改道、行李延误和个人责任。</li><li>核对热气球是否属于承保娱乐活动；滑翔伞必须另行确认。租车自负额保障不能代替租车公司的 CDW。</li></ul><p class="small"><a href="https://www.consumer.org.hk/sc/article/582-travel-insurance/582-travel-insurance-study-overview" target="_blank" rel="noopener">香港消委会旅保比较提醒 ↗</a></p></article>
+          <article class="practical-item"><h3>旅行保险</h3><ul><li>两人 11 日单次全球保障预留 HK$500～800（约 ¥460～740）。</li><li>至少比较海外医疗 HK$100 万以上、医疗运送、旅程改道、行李延误和个人责任。</li><li>地面追球不涉及升空；若另加滑翔伞必须单独确认承保。租车自负额保障不能代替租车公司的 CDW。</li></ul><p class="small"><a href="https://www.consumer.org.hk/sc/article/582-travel-insurance/582-travel-insurance-study-overview" target="_blank" rel="noopener">香港消委会旅保比较提醒 ↗</a></p></article>
           <article class="practical-item"><h3>D400 驾驶</h3><ul><li>土耳其靠右行驶，卡什老城道路狭窄，不要开车进核心步行区。</li><li>山海路段弯道多，天黑后不赶路；Kaputaş 停车位有限，必须早到。</li><li>Faralya 最后约 8 km 为窄弯高崖路；司机专心看路、乘客负责拍照。</li><li>取还车时录制车身、轮胎、玻璃、油量和里程；保留加油小票。</li></ul></article>
           <article class="practical-item"><h3>蝴蝶谷崖顶怎么停</h3><ul><li>导航必须保存精确坐标，避免被同名地点带到 Ölüdeniz 码头或谷底乘船点。</li><li>这里只做崖顶远观，不下谷；官方资料提醒 Faralya 陆路非常陡，部分位置需借助绳索。</li><li>现场没有确认过的大型正规停车场：只在合法、宽阔且不影响车流的位置停车，无位就直接驶离。</li><li>不跨越护栏、不靠崖边自拍；强风、雨雾、低云或司机疲劳时由安全否决。</li></ul><p class="small"><a href="https://www.fethiye.gov.tr/kelebekler-vadisi" target="_blank" rel="noopener noreferrer">费特希耶政府说明 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=36.5002863%2C29.1281400" target="_blank" rel="noopener noreferrer">精确坐标导航 ↗</a></p></article>
           <article class="practical-item"><h3>付款与现金</h3><ul><li>酒店、租车和较大餐厅可刷卡；小店、停车、市场和部分船家准备现金。</li><li>刷卡机询问币种时选择 TRY，不选择人民币或港币动态换汇。</li><li>鱼类按公斤计价时，先确认整条鱼的总价再下单。</li></ul></article>
-          <article class="practical-item"><h3>9月底穿衣</h3><ul><li>伊斯坦布尔：薄外套＋防雨层；海风时体感偏凉。</li><li>卡帕多奇亚清晨：羽绒背心或抓绒、长裤；热气球集合时温度最低。</li><li>卡什海岸：短袖为主，带防晒、水鞋和一件晚间薄外套。</li></ul></article>
-          <article class="practical-item"><h3>网络与离线准备</h3><ul><li>出发前装 eSIM；同时下载 Google Maps 土耳其离线区域。</li><li>保存租车、住宿、热气球和游船确认单截图。</li><li>本攻略地图需联网加载底图，但路线、时间表和图片可离线阅读。</li></ul></article>
+          <article class="practical-item"><h3>9月底穿衣</h3><ul><li>伊斯坦布尔：薄外套＋防雨层；海风时体感偏凉。</li><li>卡帕多奇亚清晨：羽绒背心或抓绒、长裤；地面追球集合和等待时温度最低。</li><li>Ihlara 穿防滑运动鞋；卡什海岸短袖为主，带防晒、水鞋和一件晚间薄外套。</li></ul></article>
+          <article class="practical-item"><h3>网络与离线准备</h3><ul><li>出发前装 eSIM；同时下载 Google Maps 土耳其离线区域。</li><li>保存租车、住宿、地面追球、Ihlara司机和游船确认单截图。</li><li>本攻略地图需联网加载底图，但路线、时间表和图片可离线阅读。</li></ul></article>
           <article class="practical-item"><h3>插头与充电</h3><ul><li>土耳其使用 C / F 型两圆脚插座，230V；香港 G 型插头需要转换器。</li><li>手机、相机和电脑充电器标有 100–240V 时只需转换插头。</li><li>吹风机等大功率设备必须检查电压标签，不要只靠插头转换。</li></ul><p class="small"><a href="https://blog.turkishairlines.com/en/a-guide-to-plugs-and-sockets-by-country/" target="_blank" rel="noopener">土耳其航空插座说明 ↗</a></p></article>
           <article class="practical-item"><h3>紧急联系方式</h3><ul><li>土耳其警察、救护、消防统一拨 112。</li><li>香港入境处境外 24 小时求助：+852 1868，也可向 (852) 1868 发送 WhatsApp。</li><li>中国驻土耳其使馆领保：+90 538 821 5530；驻伊斯坦布尔总领馆：+90 531 338 9459。</li></ul><p class="small"><a href="https://www.immd.gov.hk/eng/services/Assistance_Outside_Hong_Kong.html" target="_blank" rel="noopener">香港入境处境外协助 ↗</a>　<a href="https://www.112.gov.tr/" target="_blank" rel="noopener">土耳其 112 ↗</a></p></article>
-          <article class="practical-item"><h3>热气球与游船</h3><ul><li>热气球只订 9/27 第一批升空；天气取消应全额退款，改到 9/28 只在仍有余位且运营商书面确认时成立。</li><li>下单前先在 SHGM 名单核对持证运营商，再确认 Göreme 主飞行区、篮筐人数、酒店接送和实际飞行时长。</li><li>Kekova确认从卡什还是 Üçağız 出发、午餐是否包含、Simena停留多久。</li><li>游船日带防晒、帽子、水、泳衣和防水袋。</li></ul><p class="small"><a href="https://web.shgm.gov.tr/en/s/80-balloon-operators" target="_blank" rel="noopener noreferrer">SHGM 持证运营商 ↗</a>　<a href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">卡帕多奇亚官方飞行旗 ↗</a></p></article>
-          <article class="practical-item"><h3>Ihlara 条件分支</h3><ul><li>只在 9/27 热气球成功后执行；若取消并改到 9/28，Ihlara 自动删除。</li><li>预订可取消的私人司机：08:00 格雷梅酒店接、默认 2号台阶主入口下、Belisırma 接、15:00 前返回格雷梅。</li><li>出发前一周复核入口；若 2号入口关闭，只有司机确认改走 1号入口或 Belisırma 反向进入且不突破硬时限才执行，否则取消。</li><li>主入口约382级台阶，谷底短线约4公里；穿防滑鞋，教堂不是核心，可只顺路看一处。</li><li>普通绿线团通常加入地下城、Selime和购物点，回程不可控，不参加。</li></ul><p class="small"><a href="https://www.muze.gov.tr/muze-detay?DistId=IH1&amp;SectionId=IH101" target="_blank" rel="noopener noreferrer">官方开放与票务 ↗</a>　<a href="https://aksaray.ktb.gov.tr/TR-232541/ihlara-vadisi39nde-trekking.html" target="_blank" rel="noopener noreferrer">官方徒步路线 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=38.253762%2C34.302209" target="_blank" rel="noopener noreferrer">2号入口 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=38.264252%2C34.290615" target="_blank" rel="noopener noreferrer">Belisırma 接车 ↗</a></p></article>
+          <article class="practical-item"><h3>追球、峡谷与游船</h3><ul><li>先问 Cappadocia Concept €90/车老爷车：只有酒店接送、起飞区、至少两个按风向选择的观景点和停飞全退全部书面确认才订。</li><li>任一项含糊就直接订 Rush 共享团；不用继续到处比较。专业摄影一律不加，司机用手机帮拍需在话术中确认。</li><li>Kekova确认从卡什还是 Üçağız 出发、午餐是否包含、Simena停留多久。</li><li>游船日带防晒、帽子、水、泳衣和防水袋。</li></ul><p class="small"><a href="https://cappadociaconcepttravel.com/en/classic-car-tours-cappadocia-t2080" target="_blank" rel="noopener noreferrer">老爷车产品 ↗</a>　<a href="https://www.getyourguide.com/goreme-l984/cappadocia-private-sunrise-hot-air-balloon-watching-tour-t526609/" target="_blank" rel="noopener noreferrer">Rush 共享团 ↗</a>　<a href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">官方飞行旗 ↗</a></p></article>
+          <article class="practical-item"><h3>Ihlara＋Narlıgöl 固定自然日</h3><ul><li>按预约区顺序联系：Cappa Transfer 先问，拒绝／超价才问 Cappadocia Concept；两条 WhatsApp 已预填完整路线。</li><li>司机整车不超过 €190；Ihlara 官方票 €15/人、€30/两人另买，车辆＋门票整项约 ¥1,850 封顶。</li><li>13:15 仍未离开 Belisırma、能见度差或湖边道路不安全，立即删除 Narlıgöl；它不是核心。</li><li>出发前一周复核主楼梯入口；只有司机确认当天开放入口、异地接车点且不突破硬时限才执行。</li><li>主入口约382级台阶，谷底短线约4公里；普通绿线团回程不可控，不参加；司机不合格就走 Zemi Valley 无需预约 Plan B。</li></ul><p class="small"><a href="#book-ihlara-driver">司机一键询价与 Plan B ↓</a>　<a href="https://www.muze.gov.tr/muze-detay?DistId=IH1&amp;SectionId=IH101" target="_blank" rel="noopener noreferrer">Ihlara 官方开放与票务 ↗</a>　<a href="https://aksaray.ktb.gov.tr/TR-232541/ihlara-vadisi39nde-trekking.html" target="_blank" rel="noopener noreferrer">官方徒步路线 ↗</a>　<a href="https://aksaray.ktb.gov.tr/TR-170580/fotograf-cekim-noktalari.html" target="_blank" rel="noopener noreferrer">Narlıgöl 官方摄影点 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=38.264252%2C34.290615" target="_blank" rel="noopener noreferrer">Belisırma 接车 ↗</a></p></article>
           <article class="practical-item"><h3>卡什古剧场</h3><ul><li>官方资料确认剧场位于卡什主广场以西约 500 米，但未提供稳定的独立开放时间和票价。</li><li>不要把“全天免费”当作已确认事实；可能因活动、维护或现场管理临时变化。</li><li>出发前一周请住宿方确认开放时间、收费、活动占用和日落后离场方式。</li></ul><p class="small"><a href="https://www.ktb.gov.tr/EN-36176/where-to-visit.html" target="_blank" rel="noopener">土耳其文化旅游部资料 ↗</a></p></article>
           <article class="practical-item"><h3>10/3 Kadıköy 寄存＋Moda 主方案</h3><ul><li><strong>已订 VF3135：</strong>DLM 13:40→SAW 15:00；订单截图显示支付完成、两位乘客共 ¥684，但未显示手提或托运行李额度。</li><li>SAW 落地后带行李乘 M4：列车车程约 52 分钟，加上取行李、步行、候车和出站，<strong>落地到 Kadıköy 按100–130分钟</strong>，准点预计 16:40–17:10 到站、16:55–17:30 完成寄存。</li><li><strong>寄存规则：</strong>Radical Storage 页面当前显示该已验证合作商户 09:30–20:30，Kadıköy 区价格从 €3.90／件／天起。必须提前网上预订，现场不接受 walk-in 或现金；预订后才显示具体门店。只选市场／码头步行 5–10 分钟且至少营业到20:30的点；两件当前基础价约 €7.80 起，保障或服务费以结账页为准。</li><li><strong>贵重物不寄存：</strong>护照、现金、手机、药品和贵重电子设备全部随身；不把地铁失物招领处当成寄存点，也不假定 Kadıköy 地铁站有官方储物柜。</li><li><strong>分流：</strong>17:30 前寄存完成，去 Moda 海滨＋市场；17:31–18:15 完成，删 Moda；18:15 后才到就不寄存，带箱吃饭。主方案 19:45–20:00 取件，20:45 渡轮为默认，20:15 只是提前取箱时的机会班次。</li><li>晚上取回行李后乘 Kadıköy→Beşiktaş 官方渡轮，再短程打车入住 Gayrettepe；若预计赶不上 20:45，取消亚洲区停留，从 SAW 直接去酒店。10/4 早餐后乘 M11 去 IST，目标 10:00 前到航站楼。</li></ul><p class="small"><a href="https://radicalstorage.com/luggage-storage/istanbul/haydarpasa/luggage-storage-kadikoy" target="_blank" rel="noopener noreferrer">Radical Storage · Kadıköy ↗</a>　<a href="https://radicalstorage.com/luggage-storage/istanbul/kadikoy?from_whitelabel=1" target="_blank" rel="noopener noreferrer">Kadıköy 区域价格 ↗</a>　<a href="https://www.metro.istanbul/en/Hatlarimiz/HatDetay?hat=M4" target="_blank" rel="noopener noreferrer">Metro İstanbul · M4 ↗</a>　<a href="https://www.metro.istanbul/en/Hatlarimiz/HatDetay?hat=M2" target="_blank" rel="noopener noreferrer">Metro İstanbul · Gayrettepe换乘 ↗</a>　<a href="https://sehirhatlari.istanbul/tr/seferler/ic-hatlar/istanbul-ici-hatlar/kadikoybesiktas-165" target="_blank" rel="noopener noreferrer">Şehir Hatları · Kadıköy–Beşiktaş ↗</a>　<a href="https://www.dhmi.gov.tr/sayfalar/havalimani/istanbul/Ulasim.aspx" target="_blank" rel="noopener noreferrer">IST 官方交通 ↗</a></p></article>
-          <article class="practical-item"><h3>出发前一周复核</h3><ul><li>9/28 PC3503 已订：确认两人电子客票号、托运行李、22:05–23:25 时刻和 ASR 出发机场；18:30 从格雷梅出发，目标 19:30–19:50 到航站楼。</li><li>Ihlara 2号入口开放状态、Belisırma接车点、司机取消时限、15:00前返回承诺及 Anatolia Restaurant 营业。</li><li>9/29 卡什实际日落、古剧场开放状态和天气；9/30 保留第二次机会。</li><li>10/2 约 18:45 的日落、Faralya 道路施工、降雨、风力和能见度。</li><li>复核 VF3135 两人电子客票号、13:40–15:00 时刻、退改及手提／托运行李额度；若不含托运提前加购。确认 Çizgi 可在 10:30–10:50 完成 DLM OPET 还车并于 11:10 前接驳到航站楼，以及异地费、里程、押金与免赔额。</li><li>Radical Storage 寄存点的最终地址、10/3 营业时间、两件总价、取件手续和 19:45–20:00 取件截止；若无法同时满足靠近码头／市场与 20:30 前不关门，就不使用该点。</li><li>M4 运营状态、Kadıköy→Beşiktaş 当晚班次和登船码头；Gayrettepe 酒店晚到入住、电梯及到实际 M11 入口的步行路线。</li></ul></article>
+          <article class="practical-item"><h3>出发前一周复核</h3><ul><li>9/27 老爷车：起飞区＋两个后续风向点；若改 Rush，则按其公开承诺核对起飞区＋一个后续点（总共至少2点）。两者都复核接送与停飞退款，前一晚查 SHM 飞行旗。</li><li>9/28 PC3503 已订：确认两人电子客票号、托运行李、22:05–23:25 时刻和 ASR 出发机场；18:30 从格雷梅出发，目标 19:30–19:50 到航站楼。</li><li>Ihlara 司机书面确认整车≤€190、24小时前全退、当天开放的主楼梯入口、Belisırma接车、全部里程、Narlıgöl道路和16:15前返回；门票按官方 €15/人复核，Anatolia Restaurant 只查营业。</li><li>9/29 卡什实际日落、古剧场开放状态和天气；9/30 保留第二次机会。</li><li>10/2 约 18:45 的日落、Faralya 道路施工、降雨、风力和能见度。</li><li>复核 VF3135 两人电子客票号、13:40–15:00 时刻、退改及手提／托运行李额度；若不含托运提前加购。确认 Çizgi 可在 10:30–10:50 完成 DLM OPET 还车并于 11:10 前接驳到航站楼，以及异地费、里程、押金与免赔额。</li><li>Radical Storage 寄存点的最终地址、10/3 营业时间、两件总价、取件手续和 19:45–20:00 取件截止；若无法同时满足靠近码头／市场与 20:30 前不关门，就不使用该点。</li><li>M4 运营状态、Kadıköy→Beşiktaş 当晚班次和登船码头；Gayrettepe 酒店晚到入住、电梯及到实际 M11 入口的步行路线。</li></ul></article>
         </div>
       </div>
     </section>
@@ -990,17 +1072,17 @@
         <div class="panel">
           <div class="check-grid">
             <div class="check-item"><input id="c1" type="checkbox"><label for="c1"><strong>1. 确认 PC3503 出票与行李</strong><br><span class="muted small">航班已订；确认两人电子客票号、托运行李及 ASR 22:05→AYT 23:25，18:30 从格雷梅出发。</span></label></div>
-            <div class="check-item"><input id="c2" type="checkbox"><label for="c2"><strong>2. 官网订 9/27 第一批热气球</strong><br><span class="muted small">见“活动预约”第 2 项；确认天气取消全退，9/28 改期仅在仍有余位时成立。</span></label></div>
-            <div class="check-item"><input id="c3" type="checkbox"><label for="c3"><strong>3. 询价 Ihlara 可取消私人司机</strong><br><span class="muted small">默认 2号入口下、Belisırma 接；书面确认入口关闭时的替代路线和 15:00 前回格雷梅承诺，整项费用超过 ¥1,500 就不执行。</span></label></div>
+            <div class="check-item"><input id="c2" type="checkbox"><label for="c2"><strong>2. 预订 9/27 地面追球</strong><br><span class="muted small">先发攻略内老爷车 WhatsApp；四项全部明确 Yes 就订 €90/车，否则直接点 Rush 共享团，不再另找产品。</span></label></div>
+            <div class="check-item"><input id="c3" type="checkbox"><label for="c3"><strong>3. 询价 Ihlara＋Narlıgöl 私人司机</strong><br><span class="muted small">点攻略内预填 WhatsApp：先 Cappa Transfer、后 Cappadocia Concept；司机≤€190，门票€30/两人，合计约¥1,850封顶。两家都不合格就走 Zemi Valley Plan B。</span></label></div>
             <div class="check-item"><input id="c4" type="checkbox"><label for="c4"><strong>4. 确认 VF3135 客票与行李</strong><br><span class="muted small">10/3 DLM 13:40→SAW 15:00 已订；订单截图显示两位乘客共付 ¥684，但行李额度未显示。核对两人电子客票号、手提／托运行李和退改，若不含托运尽早加购。</span></label></div>
             <div class="check-item"><input id="c5" type="checkbox"><label for="c5"><strong>5. 锁定卡什住宿</strong><br><span class="muted small">先保证剧场步行距离和停车，再考虑海景。</span></label></div>
             <div class="check-item"><input id="c6" type="checkbox"><label for="c6"><strong>6. 向 Çizgi 书面确认租车</strong><br><span class="muted small">AYT 取、DLM OPET 还；确认自动挡可放两件托运行李、香港驾照＋IDP、one-way fee、至少 800 km 额度、押金／预授权、保险免赔额，以及 10/3 10:30–10:50 还车后 11:10 前送达航站楼。</span></label></div>
-            <div class="check-item"><input id="c7" type="checkbox"><label for="c7"><strong>7. 购买旅行保险</strong><br><span class="muted small">核对医疗运送、改道、热气球及租车自负额条款。</span></label></div>
+            <div class="check-item"><input id="c7" type="checkbox"><label for="c7"><strong>7. 购买旅行保险</strong><br><span class="muted small">核对海外医疗、医疗运送、旅程改道、行李延误及租车自负额条款。</span></label></div>
             <div class="check-item"><input id="c8" type="checkbox"><label for="c8"><strong>8. 预订其余住宿</strong><br><span class="muted small">Airbnb 看最终结算总价；9/28 订可深夜接送的 AYT／Lara 酒店；10/3 订 Gayrettepe 有电梯、晚到可入住且按地图实际步行 5–10 分钟可达 M11 入口的酒店。</span></label></div>
             <div class="check-item"><input id="c9" type="checkbox"><label for="c9"><strong>9. 预订 Kekova 拼船</strong><br><span class="muted small">见“活动预约”第 3 项；确认 09:30 集合、约 18:00 返回、午餐、Simena 停留与取消政策。</span></label></div>
             <div class="check-item"><input id="c10" type="checkbox"><label for="c10"><strong>10. 联系 Limanağzı 海滩</strong><br><span class="muted small">见“活动预约”第 1 项；确认 Nuri’s 接船点、最低消费、15:30～16:00 回程及浮潜装备。</span></label></div>
             <div class="check-item"><input id="c11" type="checkbox"><label for="c11"><strong>11. 预订 Kadıköy 行李寄存</strong><br><span class="muted small">在 Radical Storage 线上预订；付款前只选市场／码头步行 5–10 分钟、至少营业到 20:30 的点。保存确认单和实际门店地址，计划 19:45–20:00 取件。</span></label></div>
-            <div class="check-item"><input id="c12" type="checkbox"><label for="c12"><strong>12. 出发前一周复核</strong><br><span class="muted small">航班与行李、Ihlara入口、日落、古剧场、Limanağzı班次、Faralya路况、VF3135 时刻／电子客票／行李额度、Çizgi DLM 还车、Kadıköy寄存地址／营业／取件时间、M4、渡轮、M11、天气和餐厅营业。</span></label></div>
+            <div class="check-item"><input id="c12" type="checkbox"><label for="c12"><strong>12. 出发前一周复核</strong><br><span class="muted small">追球接送与退款、SHM飞行旗、Ihlara入口、Narlıgöl道路、航班与行李、日落、古剧场、Limanağzı班次、Faralya路况、Çizgi还车、Kadıköy寄存、M4、渡轮、M11、天气和餐厅营业。</span></label></div>
           </div>
         </div>
       </div>
@@ -1012,7 +1094,7 @@
       <strong>土耳其 11 日旅行手册</strong>
       <p class="small">行程日期：2026 年 9 月 24 日—10 月 4 日。价格为 2026 年 7 月制定行程时的两人规划区间，不等同于锁价订单；付款前请重新核对含税价格、行李、取消规则、餐厅营业时间和异地还车费用。</p>
       <p class="small">路线距离来自 OSRM 道路计算；地图国界数据来自 Natural Earth，经 world-atlas 提供并随页面本地加载。餐厅优先参考 2026 米其林名单、当地政府/旅游资料及近期营业信息，但季节性营业可能调整。</p>
-      <p class="small">新增卡帕多奇亚照片来自 Wikimedia Commons：Goreme sunset（Cetintas555）、Cappadocia Red Valley（Kaan Kosemen）、Zelve, Cappadocia 16（Bernard Gagnon）、Valley of Love in Cappadocia（Emre Dokur），以及 <a href="https://commons.wikimedia.org/wiki/File:Ihlara_valley_canyon.jpg" target="_blank" rel="noopener noreferrer">Ihlara valley canyon</a>（Benh LIEU SONG，<a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a>），按各自 CC 许可使用。页面图片保存在同目录下的 guide-images 文件夹中。</p>
+      <p class="small">新增卡帕多奇亚照片来自 Wikimedia Commons：Goreme sunset（Cetintas555）、Cappadocia Red Valley（Kaan Kosemen）、Zelve, Cappadocia 16（Bernard Gagnon）、Valley of Love in Cappadocia（Emre Dokur），<a href="https://commons.wikimedia.org/wiki/File:Ihlara_valley_canyon.jpg" target="_blank" rel="noopener noreferrer">Ihlara valley canyon</a>（Benh LIEU SONG，<a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a>），以及 <a href="https://commons.wikimedia.org/wiki/File:Lake_Nar_-_Narl%C4%B1g%C3%B6l.jpg" target="_blank" rel="noopener noreferrer">Lake Nar – Narlıgöl</a>（Theugursevinc，<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>），按各自 CC 许可使用。页面图片保存在同目录下的 guide-images 文件夹中。</p>
       <p class="small">本次校正照片同样来自 Wikimedia Commons：Kaş–Kalkan road（Tutku Çetinel，CC BY 3.0）、Kaş harbour（Esginmurat，CC BY-SA 4.0）、Limanağzı（Tugceeakgunn91，CC BY-SA 4.0）、Büyük Çakıl（Dündar Termal Apart，CC BY 3.0）、Patara dunes（Angela Stefanoni，CC BY 3.0）、Kekova/Simena view 与 Kaş sunset（Alexkom000，CC BY 4.0）、Fethiye bay（Alet123，CC BY-SA 4.0）、Üsküdar sunset（Ezzeldin.Elbaksawy，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:Kelebekler_vadisi.jpg" target="_blank" rel="noopener noreferrer">Kelebekler vadisi</a>（Rotadefterim，<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>）、<a href="https://commons.wikimedia.org/wiki/File:G%C3%B6reme_at_Night_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Göreme at Night – 2014.10</a>（rheins，<a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>）、<a href="https://commons.wikimedia.org/wiki/File:Sunset_of_Historical_Peninsula_from_Kad%C4%B1k%C3%B6y.jpg" target="_blank" rel="noopener noreferrer">Sunset of Historical Peninsula from Kadıköy</a>（Scott Dexter，<a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a>）、<a href="https://commons.wikimedia.org/wiki/File:Moda_Sahil.jpg" target="_blank" rel="noopener noreferrer">Moda Sahil</a>（Antoloji，<a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a>）。</p>
     </div>
   </footer>
@@ -1057,10 +1139,12 @@
 
       const points = [
         {n:1, name:'伊斯坦布尔历史区', lat:41.0086, lng:28.9802, stay:'2晚', time:'9/24–9/25', food:'Balkan Lokantası / Çiya Sofrası', source:'https://goturkiye.com/zh/istanbul/blue-mosque'},
-        {n:2, name:'格雷梅日落＋夜景（Aydınkırağı）', lat:38.6398, lng:34.8324, stay:'格雷梅2晚', time:'9/26 · 17:30–19:30', food:'Seten / 格雷梅镇中心', source:'https://www.goreme.bel.tr/tr/seyir-alani-1758439471'},
-        {n:3, name:'乌奇萨＋鸽子谷', lat:38.6307, lng:34.8050, stay:'不换酒店', time:'9/26 · 2.5–3小时', food:'Saklı Konak', source:'https://www.uchisar.bel.tr/uchisar-kalesi/'},
-        {n:4, name:'红谷＋玫瑰谷', lat:38.6532, lng:34.8620, stay:'不换酒店', time:'9/27 · 2.5–3小时', food:'回格雷梅吃', source:'https://goturkiye.com/zh/central/touch'},
-        {n:5, name:'Ihlara峡谷（热气球成功分支）', lat:38.253762, lng:34.302209, stay:'9/28条件分支', time:'9/28 · 09:30–12:45', food:'Anatolia Restaurant（先确认营业）', source:'https://www.muze.gov.tr/muze-detay?DistId=IH1&SectionId=IH101', maps:'https://www.google.com/maps/search/?api=1&query=38.253762%2C34.302209'},
+        {n:2, name:'格雷梅日落＋夜景（Aydınkırağı）', lat:38.6398, lng:34.8324, region:'cappadocia', stay:'格雷梅2晚', time:'9/26 · 17:30–19:30', food:'Seten / 格雷梅镇中心', source:'https://www.goreme.bel.tr/tr/seyir-alani-1758439471'},
+        {n:'2A', name:'地面追热气球（起飞区＋风向观景点）', lat:38.6520, lng:34.8430, region:'cappadocia', stay:'9/27老爷车或共享车', time:'9/27 · 04:45–07:45', food:'回酒店早餐', source:'https://www.goreme.bel.tr/en'},
+        {n:3, name:'乌奇萨＋鸽子谷', lat:38.6307, lng:34.8050, region:'cappadocia', stay:'不换酒店', time:'9/26 · 2.5–3小时', food:'Saklı Konak', source:'https://www.uchisar.bel.tr/uchisar-kalesi/'},
+        {n:4, name:'红谷＋玫瑰谷', lat:38.6532, lng:34.8620, region:'cappadocia', stay:'不换酒店', time:'9/27 · 2.5–3小时', food:'回格雷梅吃', source:'https://goturkiye.com/zh/central/touch'},
+        {n:5, name:'Ihlara峡谷（9/28固定主线）', lat:38.253762, lng:34.302209, region:'cappadocia', stay:'9/28固定主线', time:'9/28 · 09:30–13:00', food:'Anatolia Restaurant（先确认营业）', source:'https://www.muze.gov.tr/muze-detay?DistId=IH1&SectionId=IH101', maps:'https://www.google.com/maps/search/?api=1&query=38.253762%2C34.302209'},
+        {n:'5A', name:'Narlıgöl火山口湖', lat:38.339566, lng:34.456797, region:'cappadocia', stay:'9/28顺路加餐', time:'9/28 · 13:45–14:20', food:'不在此用餐', source:'https://aksaray.ktb.gov.tr/TR-170580/fotograf-cekim-noktalari.html', maps:'https://www.google.com/maps/search/?api=1&query=38.339566%2C34.456797'},
         {n:6, name:'开塞利机场 ASR', lat:38.7704, lng:35.4954, stay:'9/28出发 · PC3503已订', time:'18:30离开格雷梅 · 19:30–19:50到航站楼 · 22:05起飞', food:'提前备好轻食'},
         {n:7, name:'安塔利亚机场 AYT', lat:36.8999, lng:30.8012, stay:'9/28住AYT/Lara', time:'23:25落地 · 次晨取车', food:'酒店早餐'},
         {n:8, name:'下杜登瀑布', lat:36.8500, lng:30.7822, stay:'9/29上午', time:'45–60分钟', food:'Düden Balık Çarşısı', source:'https://goturkiye.com/antalya/listen'},
@@ -1117,6 +1201,8 @@
       L.polyline(flip(coastRoadLngLat), {color:'#087f8c', weight:5, opacity:.9}).addTo(map);
       L.polyline([[36.2019,29.6377],[36.1886,29.8627]], {color:'#e99645', weight:3, dashArray:'7 7'}).addTo(map);
       L.polyline([[41.0086,28.9802],[38.6431,34.8289]], {color:'#e99645', weight:3, dashArray:'10 8'}).addTo(map);
+      const cappadociaNatureRoute = [[38.6431,34.8289],[38.253762,34.302209],[38.264252,34.290615],[38.339566,34.456797],[38.6431,34.8289]];
+      L.polyline(cappadociaNatureRoute, {color:'#6f8f5e', weight:4, opacity:.9}).addTo(map);
       L.polyline([[38.6431,34.8289],[38.7704,35.4954]], {color:'#087f8c', weight:3, dashArray:'5 7'}).addTo(map);
       L.polyline([[38.7704,35.4954],[36.8999,30.8012]], {color:'#e99645', weight:3, dashArray:'10 8'}).addTo(map);
       L.polyline([[36.7126,28.7955],[40.8986,29.3092]], {color:'#e99645', weight:3, dashArray:'10 8'}).addTo(map);
@@ -1126,7 +1212,7 @@
       L.polyline([[41.0647,29.0059],[41.2753,28.7519]], {color:'#087f8c', weight:4, opacity:.9}).addTo(map);
 
       const allBounds = L.latLngBounds(points.map((p) => [p.lat,p.lng]));
-      const cappadociaBounds = L.latLngBounds(points.filter((p) => p.n >= 2 && p.n <= 5).map((p) => [p.lat,p.lng]));
+      const cappadociaBounds = L.latLngBounds(points.filter((p) => p.region === 'cappadocia').map((p) => [p.lat,p.lng]));
       const coastBounds = L.latLngBounds(points.filter((p) => p.n >= 7 && p.n <= 17).map((p) => [p.lat,p.lng]));
       const kasBounds = L.latLngBounds(points.filter((p) => p.n >= 9 && p.n <= 13).map((p) => [p.lat,p.lng]));
       const fethiyeBounds = L.latLngBounds(points.filter((p) => p.n >= 14 && p.n <= 17).map((p) => [p.lat,p.lng]));
