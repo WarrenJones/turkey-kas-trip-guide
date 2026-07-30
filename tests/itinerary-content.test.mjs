@@ -50,6 +50,10 @@ assert.match(html, /PC3503[^<]{0,100}(?:已订|已预订)[^<]{0,100}(?:待确认
 assert.match(html, /国内航班[^<]{0,100}起飞前约\s*2\s*小时[^<]{0,80}航站楼/, 'the guide should distinguish a two-hour domestic terminal-arrival target from the transfer time');
 assert.match(html, /flypgs\.com\/en\/useful-info\/info-about-flights\/check-in/, 'the domestic-airport timing rule should link to Pegasus official guidance');
 assert.match(html, /18:30[^<]{0,100}(?:ASR|开塞利)/, 'the airport transfer should leave Göreme at 18:30');
+assert.match(html, /NAV[^<]{0,80}(?:接机|接送)[\s\S]{0,260}€15\s*\/\s*人[^<]{0,100}现金[\s\S]{0,220}(?:已确认|住宿方确认)/, 'the September 26 NAV shared shuttle should be recorded as confirmed at EUR 15 per person cash');
+assert.match(html, /ASR[^<]{0,80}(?:送机|接送)[\s\S]{0,300}(?:按同类共享车|预算)[^<]{0,100}€15\s*\/\s*人[\s\S]{0,260}(?:实际报价|报价与订单)[^<]{0,100}(?:待确认|尚待确认)/, 'the September 28 ASR shuttle should use EUR 15 only as an explicitly unconfirmed planning assumption');
+assert.match(html, /9\/28[^<]{0,180}(?:行李寄存|寄存两件行李)[^<]{0,120}(?:待书面确认|尚待确认)/, 'the post-checkout luggage storage should remain explicitly unconfirmed');
+assert.doesNotMatch(html, /<strong>固定前往 ASR<\/strong>/, 'the guide must not describe the unconfirmed outbound shuttle as fixed');
 assert.doesNotMatch(html, /17:30[^<]{0,100}(?:共同去ASR|离开格雷梅|乘接送去开塞利|前往 ASR)/, 'the superseded 17:30 airport-transfer departure should be removed');
 assert.match(html, /class="flight-compact"/, 'the booked-flight facts should use a compact summary card');
 assert.match(html, /<details class="flight-fallback">[\s\S]{0,180}<summary>航班取消／错过 Plan B<\/summary>/, 'the exceptional PC3503 fallback should be collapsed by default');
@@ -73,7 +77,9 @@ assert.match(html, /9\/28[\s\S]{0,260}(?:Red Tour|北线地貌)[\s\S]{0,300}(?:P
 assert.match(html, /name:'Paşabağ[^']*'[\s\S]{0,260}region:'cappadocia'[\s\S]{0,260}time:'9\/28[^']*'/, 'the Cappadocia map should include the September 28 fairy-chimney stop');
 assert.match(html, /name:'Devrent[^']*'[\s\S]{0,260}region:'cappadocia'[\s\S]{0,260}time:'9\/28[^']*'/, 'the Cappadocia map should include the September 28 imagination-valley stop');
 assert.match(html, /name:'Avanos[^']*(?:陶艺|Pottery)[^']*'[\s\S]{0,260}region:'cappadocia'[\s\S]{0,260}time:'9\/28[^']*'/i, 'the Cappadocia map should include the September 28 pottery stop');
-assert.match(html, /(?:Avanos陶艺|Avanos\s*陶艺|北线地貌)[^<]{0,100}(?:Red Tour|小团)[\s\S]{0,260}¥570～650/, 'the budget should replace the private-driver cost with the verified platform-tour range');
+assert.match(html, /(?:Avanos陶艺|Avanos\s*陶艺|北线地貌)[^<]{0,100}(?:Red Tour|小团)[\s\S]{0,260}¥570～850[\s\S]{0,300}平台主方案[^<]{0,80}¥570～650/, 'the budget should include both the verified platform main range and the host-tour fallback ceiling');
+assert.match(html, /两人全程约\s*2\.69～3\.40\s*万[\s\S]{0,2000}两人基础全程预计<\/td><td>约\s*¥26,900～34,000/, 'the budget headline and total row should share the updated host-tour-inclusive ceiling');
+assert.match(html, /NAV→格雷梅[^<]{0,120}(?:已确认|确认)[\s\S]{0,300}格雷梅→ASR[^<]{0,220}(?:实际报价|付款方式)[^<]{0,100}(?:待确认|尚待确认)[\s\S]{0,260}€60/, 'the transport budget should show the two-shuttle planning total while separating confirmed arrival from unconfirmed departure terms');
 assert.doesNotMatch(html, /id="book-ihlara-driver"|Ihlara＋Narlıgöl 私人司机|€190|EUR 190|¥1,850/, 'the old Ihlara private-driver plan and price limits should be gone');
 const septemberTwentySeventh = html.match(/<div class="date">09\.27<\/div>[\s\S]*?<div class="date">09\.28<\/div>/)?.[0] ?? '';
 assert.match(septemberTwentySeventh, /04:45[–-]07:45[\s\S]{0,600}地面追(?:热气球|球)/, 'September 27 should use a concrete shared ground chase window');

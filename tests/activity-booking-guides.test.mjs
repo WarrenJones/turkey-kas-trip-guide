@@ -12,12 +12,12 @@ assert.match(html, /30 September 2026[\s\S]{0,900}15:30 or 16:00/, 'Limanağzı 
 
 assert.match(html, /2\. 地面追(?:热气球|球)/, 'booking guide 2 should cover ground balloon watching rather than a flight');
 assert.match(html, /getyourguide\.com[^"']*t526609/, 'the ground-watching guide should link the weather-refundable shared chase option');
-assert.match(html, /cappadociaconcepttravel\.com\/en\/classic-car-tours-cappadocia-t2080/, 'the guide should link the selected direct classic-car product');
-assert.match(html, /wa\.me\/905308698850/, 'the guide should provide a one-click WhatsApp path for the selected classic-car operator');
-assert.match(html, /wa\.me\/905308698850\?text=[^"']{300,}/, 'the selected classic-car WhatsApp link should open with the full enquiry prefilled');
-assert.match(html, /一键带入[^<]{0,20}(?:询价|话术)/, 'the guide should tell the user that the WhatsApp enquiry is prefilled');
+assert.match(html, /房东[^<]{0,100}€80[^<]{0,100}(?:可供\s*2人|可坐两人)[\s\S]{0,300}(?:计价单位|整车两人总价)[^<]{0,100}(?:待确认|未写清)/, 'the guide should record the ambiguous EUR 80 classic-car offer without inventing a per-car unit');
+assert.match(html, /Airbnb[^<]{0,60}(?:订单聊天|平台消息)[\s\S]{0,500}(?:整车|一辆车)[^<]{0,80}(?:两人总价|total price for one car)/i, 'the host-arranged classic car should be confirmed inside the accommodation order conversation');
+assert.match(html, /住宿露台[\s\S]{0,500}(?:开放时间|清晨开放)[\s\S]{0,200}(?:是否收费|收费尚未确认)/, 'the booked rooftop fallback should keep dawn access and its fee explicitly unconfirmed');
+assert.match(html, /住宿露台[\s\S]{0,1200}机位固定[^<]{0,120}风向/, 'the rooftop fallback should explain its fixed-view wind dependency');
 assert.match(html, /27 September 2026[\s\S]{0,1200}ground balloon watching and chasing[\s\S]{0,1200}not a balloon flight[\s\S]{0,1200}100% refund/i, 'the ground-watching guide should include a dated enquiry and weather-cancellation question');
-assert.match(html, /US\$29[–-]51\/人[\s\S]{0,800}€90\/车/, 'the guide should distinguish the planning prices for shared chasing and the selected classic car');
+assert.match(html, /US\$29[–-]51\/人[\s\S]{0,900}(?:价格\s*)?€80[\s\S]{0,500}(?:计价单位|整车两人总价)/, 'the guide should distinguish the known shared price range from the ambiguous host-arranged classic-car offer');
 assert.match(html, /同级比价[\s\S]{0,900}(?:按风向|追随风向)[\s\S]{0,900}(?:至少两个|2[–-]3个).*观景点/s, 'the guide should compare shared and classic-car products by actual chasing capability, not label one as an automatic upgrade');
 assert.match(html, /共享追球[^<]{0,20}(?:直接下单|预订步骤)[\s\S]{0,1600}老爷车[^<]{0,20}(?:直接询价|预订步骤)/, 'both options should have an explicit booking path');
 assert.match(html, /停飞[^<]{0,80}(?:明确回复|书面回复).*Yes[\s\S]{0,600}(?:否则|不是|含糊)[\s\S]{0,300}Rush/, 'the guide should make the classic-car versus Rush decision for the user');
@@ -46,7 +46,11 @@ assert.match(html, /(?:不|绝不)(?:再|要)?(?:自行|自己)[^<]{0,40}(?:找|
 
 assert.match(html, /tourlacappadocia\.com\/products\/cappadocia-pottery-workshop-in-avanos/, 'the fallback should link the selected Tourla Cappadocia Avanos pottery workshop');
 assert.match(html, /(?:雨天|时间不合适|无法确认16:30)[\s\S]{0,1200}(?:Plan B|备选)[\s\S]{0,800}Avanos[^<]{0,80}(?:陶艺|pottery)[\s\S]{0,800}(?:10:00|上午10点)[\s\S]{0,800}(?:约\s*)?1\s*小时[\s\S]{0,800}(?:酒店接送|hotel pickup)[\s\S]{0,800}(?:€25\s*\/\s*人)[\s\S]{0,800}(?:24\s*小时[^<]{0,80}免费取消|免费取消[^<]{0,80}24\s*小时)/i, 'rain or an unsuitable return time should switch to the short Tourla pottery workshop with hotel transfer');
-assert.match(html, /(?:Avanos陶艺|Avanos\s*陶艺|北线地貌)[^<]{0,80}(?:Red Tour|小团)[\s\S]{0,220}¥570～650/, 'the trip budget should use the verified two-person group-tour planning range');
+assert.match(html, /(?:Avanos陶艺|Avanos\s*陶艺|北线地貌)[^<]{0,80}(?:Red Tour|小团)[\s\S]{0,220}¥570～850[\s\S]{0,300}平台主方案[^<]{0,80}¥570～650/, 'the trip budget should cover both the platform main plan and the more expensive host-tour fallback');
+assert.match(html, /住宿方\s*Red Tour[\s\S]{0,500}€55\s*\/\s*人[\s\S]{0,500}(?:约\s*)?17:00[\s\S]{0,700}(?:正式备选|备选方案)/, 'the host Red Tour should be documented as a later-returning backup rather than silently replacing the platform tour');
+
+assert.match(html, /公开页不展示住宿名、房东、电话、详细地址或乘客姓名/, 'the public guide should state its accommodation-privacy boundary without embedding private values in repository tests');
+assert.doesNotMatch(html, /(?:tel:|wa\.me\/)[^"']{0,80}(?:住宿|房东|host)/i, 'the accommodation section must not publish a direct private phone link');
 
 assert.doesNotMatch(html, /id="book-ihlara-driver"|Ihlara＋Narlıgöl 私人司机/, 'the rejected Ihlara private-driver booking block should be removed');
 assert.doesNotMatch(html, /wa\.me\/905443609425|officially%20closed%20or%20severe%20weather/, 'the old Ihlara driver WhatsApp enquiries should be removed');
