@@ -5,16 +5,19 @@ const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 
 assert.match(html, /id="d400-guide"/, 'the guide should include a dedicated D400 driving section');
 assert.match(html, /卡什[^<]{0,40}Kaputaş[^<]{0,40}Kalkan/, 'the guide should identify the scenic Kaş–Kaputaş–Kalkan section');
-assert.match(html, /只在正规停车位|不要在路肩停车/, 'the D400 guide should include a safe-stop rule');
+assert.match(html, /(?:只在|只用|进入)[^<]{0,30}正规停车|不(?:要|在)[^<]{0,20}路肩/, 'the D400 guide should include a safe-stop rule');
 assert.match(html, /乘客负责拍照/, 'the D400 guide should make the passenger responsible for photos');
-assert.match(html, /Kalkan[^<]{0,120}(?:先跳过|优先跳过)/, 'the D400 guide should state the first stop to cut when late');
+assert.match(html, /Kalkan[\s\S]{0,300}(?:只经过|不停车|不专门停)/, 'the D400 guide should make Kalkan a pass-through rather than a parking-dependent stop');
+assert.match(html, /Patara[\s\S]{0,400}(?:第一可删|首个可删|可选)/, 'the D400 guide should identify Patara as the first optional scenic stop when late');
 
 assert.match(html, /guide-images\/d400-kas-kalkan-road\.jpg/, 'the D400 drive should have its own road photograph');
 assert.match(html, /guide-images\/kas-harbor\.jpg/, 'Kaş old town and harbour should have a dedicated photograph');
 assert.match(html, /guide-images\/limanagzi\.jpg/, 'the Kaş swimming day should show Limanağzı');
-assert.match(html, /guide-images\/kekova-bay\.jpg/, 'the Kekova boat day should show a bay or boat view');
 assert.match(html, /guide-images\/patara-dunes\.jpg/, 'Patara should show its beach and dunes');
 assert.match(html, /guide-images\/moda-coast\.jpg/, 'the Istanbul return should show the newly added Moda waterfront stop');
+assert.match(html, /<img src="guide-images\/[^"]+" alt="[^"]*(?:Kaş Seyir Terası|卡什观景)[^"]*"/i, 'Kaş Seyir Terası should have its own matching photograph');
+assert.match(html, /<img src="guide-images\/[^"]+" alt="[^"]*(?:滑翔伞|paraglid)[^"]*"/i, 'the paragliding card should have its own matching photograph');
+assert.match(html, /<img src="guide-images\/[^"]+" alt="[^"]*(?:海盗船|pirate)[^"]*"/i, 'the pirate-boat card should have its own matching photograph');
 
 const theatreUses = html.match(/guide-images\/kas-theatre\.jpg/g) ?? [];
 assert.ok(theatreUses.length <= 2, `Kaş theatre photograph should be used at most twice, found ${theatreUses.length}`);
@@ -29,20 +32,25 @@ assert.match(html, /Patara 沙丘＋海滩/, 'Patara should prioritize nature fo
 assert.doesNotMatch(html, /Patara 古城优先/, 'Patara should no longer prioritize architecture');
 assert.match(html, /slots slots-five/, 'the D400 itinerary day should visualize the road plus its four major natural stops');
 
+const octoberFirst = html.match(/<div class="date">10\.01<\/div>[\s\S]*?<div class="date">10\.02<\/div>/)?.[0] ?? '';
 const octoberSecond = html.match(/<div class="date">10\.02<\/div>[\s\S]*?<div class="date">10\.03<\/div>/)?.[0] ?? '';
-assert.match(octoberSecond, /蝴蝶谷崖顶观景台/, 'October 2 should include Butterfly Valley viewpoint as a fixed mainline stop');
-assert.match(octoberSecond, /15:50–16:20/, 'Butterfly Valley viewpoint should have a concrete arrival window');
-assert.match(octoberSecond, /guide-images\/butterfly-valley-viewpoint\.jpg/, 'Butterfly Valley viewpoint should have its own matching photograph');
-assert.match(octoberSecond, /fethiye\.gov\.tr\/kelebekler-vadisi/, 'Butterfly Valley viewpoint should link to the local government guide');
-assert.match(octoberSecond, /36\.5002863%2C29\.1281400/, 'Butterfly Valley viewpoint should provide exact-coordinate navigation');
-assert.doesNotMatch(octoberSecond, /蝴蝶谷[^<]{0,80}(?:可选|有空|天气好才去)/, 'Butterfly Valley viewpoint must not be described as optional');
+assert.match(octoberFirst, /Kaş Seyir Terası/, 'October 1 should start the coast drive with the municipal Kaş viewpoint');
+assert.match(octoberFirst, /Kaputaş[\s\S]{0,1200}Patara[\s\S]{0,1200}蝴蝶谷崖顶观景台/, 'October 1 should retain the bounded natural stops before paragliding');
+assert.match(octoberFirst, /14:30[\s\S]{0,500}ReAction/i, 'October 1 should reserve the 14:30 ReAction paragliding slot');
+assert.match(octoberFirst, /guide-images\/butterfly-valley-viewpoint\.jpg/, 'Butterfly Valley viewpoint should keep its own matching photograph');
+assert.match(octoberFirst, /fethiye\.gov\.tr\/kelebekler-vadisi/, 'Butterfly Valley viewpoint should link to the local government guide');
+assert.match(octoberFirst, /36\.5002863%2C29\.1281400/, 'Butterfly Valley viewpoint should provide exact-coordinate navigation');
+assert.doesNotMatch(octoberFirst, /蝴蝶谷[^<]{0,80}(?:可选|有空|天气好才去)/, 'Butterfly Valley viewpoint must not be described as optional');
 
-assert.match(html, /name:'蝴蝶谷崖顶观景台（Faralya）'[\s\S]{0,180}stay:'10\/2固定主线'/, 'the route map should include Butterfly Valley as a fixed October 2 stop');
+assert.match(octoberSecond, /Dragon[\s\S]{0,500}(?:海盗船|pirate)[\s\S]{0,900}10:30[–-]17:00/i, 'October 2 should use the full-day Dragon pirate boat');
+assert.match(octoberSecond, /(?:午餐|lunch)[\s\S]{0,400}(?:DJ|泡沫派对|foam)|(?:DJ|泡沫派对|foam)[\s\S]{0,400}(?:午餐|lunch)/i, 'October 2 should disclose both the included lunch and party character');
+
+assert.match(html, /name:'蝴蝶谷崖顶观景台（Faralya）'[\s\S]{0,180}stay:'10\/1固定主线'/, 'the route map should include Butterfly Valley as a fixed October 1 stop');
 assert.match(html, /不下谷/, 'the guide should clearly prohibit descending from the cliff viewpoint');
 assert.match(html, /只在[^<]{0,80}(?:合法|明确划出|正规)[^<]{0,40}停车/, 'the viewpoint guide should retain a legal-parking safety rule');
 
-assert.doesNotMatch(html, /guide-images\/oludeniz\.jpg" alt="费特希耶/, 'Fethiye must not reuse the Ölüdeniz image');
 assert.doesNotMatch(html, /guide-images\/cappadocia-balloon\.jpg" alt="卡帕多奇亚地貌"[\s\S]{0,180}SAW→NAV/, 'a flight card must not reuse a balloon photograph');
+assert.doesNotMatch(html, /Kekova|Simena|Bermuda|book-kekova/i, 'the cancelled Kekova day and booking content should be removed throughout the guide');
 
 assert.match(html, /NAV\s*进[，、·\s]*ASR\s*出/, 'the guide should clearly distinguish the inbound NAV airport from outbound ASR');
 assert.match(html, /9\/28[\s\S]{0,360}PC3503[\s\S]{0,180}22:05[\s\S]{0,100}23:25/, 'September 28 should use the direct PC3503 evening flight');
@@ -78,7 +86,11 @@ assert.match(html, /name:'Paşabağ[^']*'[\s\S]{0,260}region:'cappadocia'[\s\S]{
 assert.match(html, /name:'Devrent[^']*'[\s\S]{0,260}region:'cappadocia'[\s\S]{0,260}time:'9\/28[^']*'/, 'the Cappadocia map should include the September 28 imagination-valley stop');
 assert.match(html, /name:'Avanos[^']*(?:陶艺|Pottery)[^']*'[\s\S]{0,260}region:'cappadocia'[\s\S]{0,260}time:'9\/28[^']*'/i, 'the Cappadocia map should include the September 28 pottery stop');
 assert.match(html, /(?:Avanos陶艺|Avanos\s*陶艺|北线地貌)[^<]{0,100}(?:Red Tour|小团)[\s\S]{0,260}¥570～850[\s\S]{0,300}平台主方案[^<]{0,80}¥570～650/, 'the budget should include both the verified platform main range and the host-tour fallback ceiling');
-assert.match(html, /两人全程约\s*2\.69～3\.40\s*万[\s\S]{0,2000}两人基础全程预计<\/td><td>约\s*¥26,900～34,000/, 'the budget headline and total row should share the updated host-tour-inclusive ceiling');
+const budgetHeadline = html.match(/两人全程约\s*([0-9.]+)～([0-9.]+)\s*万/);
+const budgetTotal = html.match(/两人基础全程预计<\/td><td>约\s*¥([\d,]+)～([\d,]+)/);
+assert.ok(budgetHeadline && budgetTotal, 'the guide should expose both a headline budget and a total-row budget');
+assert.equal(Math.round(Number(budgetHeadline[1]) * 10000), Number(budgetTotal[1].replaceAll(',', '')), 'the budget headline lower bound should match the total row');
+assert.equal(Math.round(Number(budgetHeadline[2]) * 10000), Number(budgetTotal[2].replaceAll(',', '')), 'the budget headline upper bound should match the total row');
 assert.match(html, /NAV→格雷梅[^<]{0,120}(?:已确认|确认)[\s\S]{0,300}格雷梅→ASR[^<]{0,220}(?:实际报价|付款方式)[^<]{0,100}(?:待确认|尚待确认)[\s\S]{0,260}€60/, 'the transport budget should show the two-shuttle planning total while separating confirmed arrival from unconfirmed departure terms');
 assert.doesNotMatch(html, /id="book-ihlara-driver"|Ihlara＋Narlıgöl 私人司机|€190|EUR 190|¥1,850/, 'the old Ihlara private-driver plan and price limits should be gone');
 const septemberTwentySeventh = html.match(/<div class="date">09\.27<\/div>[\s\S]*?<div class="date">09\.28<\/div>/)?.[0] ?? '';
@@ -87,13 +99,15 @@ assert.match(septemberTwentySeventh, /起飞区[\s\S]{0,220}(?:Love Valley|爱�
 assert.doesNotMatch(septemberTwentySeventh, /第一批升空|约 60 分钟飞行|热气球机会\s*1/, 'September 27 should not retain the abandoned flight');
 assert.match(html, /格雷梅[\s\S]{0,220}<td>2晚<\/td>/, 'the stay table should reduce Göreme to two nights');
 assert.match(html, /安塔利亚机场[\s\S]{0,220}<td>1晚<\/td>/, 'the Antalya airport or Lara night should be fixed, not optional');
+assert.match(html, /卡什[\s\S]{0,220}<td>2<\/td>/, 'the stay table should reduce Kaş to two nights');
+assert.match(html, /(?:厄吕代尼兹|Ölüdeniz)[\s\S]{0,220}<td>2<\/td>/i, 'the stay table should add two nights in Ölüdeniz');
 
 const octoberThird = html.match(/<div class="date">10\.03<\/div>[\s\S]*?<div class="date">10\.04<\/div>/)?.[0] ?? '';
 assert.match(octoberThird, /DLM\s*→\s*SAW/, 'October 3 should fly from DLM to SAW instead of requiring an IST arrival');
 assert.match(octoberThird, /VF3135[\s\S]{0,240}13:40[–-]15:00/, 'October 3 should use the confirmed VF3135 schedule');
 assert.match(octoberThird, /(?:订单截图显示|已付)[^<]{0,80}¥684[^<]{0,80}(?:两位乘客|两人)/, 'October 3 should record the paid two-passenger amount without treating it as a live fare quote');
 assert.match(octoberThird, /(?:托运行李|行李额度)[^<]{0,80}(?:未显示|待确认)/, 'October 3 should keep baggage allowance explicitly unconfirmed');
-assert.match(octoberThird, /09:30[^<]{0,120}(?:离开费特希耶|费特希耶出发)/, 'October 3 should give a concrete Fethiye departure time');
+assert.match(octoberThird, /(?:厄吕代尼兹|Ölüdeniz)[^<]{0,180}(?:离开|出发)[\s\S]{0,500}DLM/i, 'October 3 should depart the two-night Ölüdeniz base for DLM');
 assert.match(octoberThird, /10:30[–-]10:50[^<]{0,120}(?:还车|OPET)/, 'October 3 should give a bounded fuel and car-return window');
 assert.match(octoberThird, /11:10[^<]{0,100}(?:航站楼|办理值机)/, 'October 3 should reach the terminal with a separate rental-return buffer before the two-hour baseline');
 assert.match(octoberThird, /(?:纯\s*2\s*小时[^<]{0,120}11:40|11:40[^<]{0,120}(?:纯|标准|基准)[^<]{0,60}2\s*小时)/, 'October 3 should explain the pure two-hour terminal-arrival baseline');
@@ -126,8 +140,8 @@ assert.match(octoberFourth, /M11[\s\S]{0,180}IST/, 'October 4 should use M11 to 
 const transportSection = html.match(/<section class="section" id="transport">[\s\S]*?<section class="section" id="budget">/)?.[0] ?? '';
 assert.match(transportSection, /Çizgi/, 'the car-rental plan should name Çizgi correctly');
 assert.match(transportSection, /AYT\s*→\s*DLM[\s\S]{0,180}异地还车/, 'the car-rental plan should explicitly use one-way AYT to DLM return');
-assert.match(transportSection, /(?:主方案|默认)[^<]{0,80}9\/29[^<]{0,60}08:30|9\/29[^<]{0,60}08:30[^<]{0,80}(?:主方案|默认)/, 'the car-rental plan should consistently use 08:30 as the main pickup time');
-assert.match(transportSection, /00:30[^<]{0,120}(?:可选备选|不作为默认)/, 'the car-rental plan may retain 00:30 only as a clearly non-default option');
+assert.match(transportSection, /(?:主方案|默认)[^<]{0,80}9\/29[^<]{0,60}10:30|9\/29[^<]{0,60}10:30[^<]{0,80}(?:主方案|默认)/, 'the car-rental plan should use the exact 10:30 pickup aligned with the return time');
+assert.doesNotMatch(transportSection, /9\/29[^<]{0,100}08:30[^<]{0,100}(?:取车|主方案)/, 'the superseded 08:30 pickup should be removed from the rental plan');
 assert.match(transportSection, /自动挡[^<]{0,120}(?:两件|2件)[^<]{0,50}(?:行李|托运|箱)/, 'the recommended automatic car should fit two checked suitcases');
 assert.match(transportSection, /(?:one-way fee|异地还车费)[\s\S]{0,320}(?:里程额度|里程限制|总里程)[\s\S]{0,320}(?:押金|预授权)[\s\S]{0,320}(?:保险免赔|免赔额)/i, 'the rental checklist should confirm the one-way fee, mileage, deposit and insurance excess');
 assert.match(transportSection, /DLM[\s\S]{0,240}OPET[\s\S]{0,240}(?:接驳|送机|航站楼)/, 'the rental checklist should confirm the DLM OPET return point and terminal transfer');
@@ -166,7 +180,9 @@ for (const [index, card] of attractionCards.entries()) {
 }
 assert.match(html, /goreme\.bel\.tr[\s\S]{0,1000}shmkapadokya\.kapadokya\.edu\.tr|shmkapadokya\.kapadokya\.edu\.tr[\s\S]{0,1000}goreme\.bel\.tr/, 'ground balloon viewing should link an official viewpoint source and official flight status');
 assert.doesNotMatch(html, /热气球机会\s*[12]|热气球\s*\/\s*Ihlara\s*二选一|First Ascent|Turquaz/, 'the abandoned balloon-flight branch should be removed throughout the guide');
-assert.match(html, /whc\.unesco\.org\/en\/tentativelists\/1411/, 'Kekova should link to its UNESCO record');
+assert.match(html, /kas\.bel\.tr\/proje\/kas-seyir-terasi-projesi-3184/, 'Kaş Seyir Terası should link to the municipal project page');
+assert.match(html, /reaction-paragliding\.com/i, 'the October 1 paragliding plan should link ReAction directly');
+assert.match(html, /dragonboatoludeniz\.info\/daytrip/i, 'the October 2 pirate-boat plan should link the official Dragon day trip');
 assert.match(html, /metro\.istanbul\/en\/Hatlarimiz\/HatDetay\?hat=M4/, 'the SAW transfer should link to the official M4 page');
 assert.match(html, /sehirhatlari\.istanbul\/tr\/seferler\/ic-hatlar\/istanbul-ici-hatlar\/kadikoybesiktas-165/, 'the luggage-friendly ferry transfer should link to the official timetable');
 assert.match(html, /radicalstorage\.com\/luggage-storage\/istanbul\/haydarpasa\/luggage-storage-kadikoy/, 'the guide should link directly to the verified Kadıköy luggage-storage listing');

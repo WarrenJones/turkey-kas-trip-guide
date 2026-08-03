@@ -30,10 +30,20 @@ assert.doesNotMatch(html, /共享追球通常 1\.5[–-]2 小时|<strong>共享�
 assert.match(html, /地面追(?:热气球|球)(?:（二选一）)?<\/td><td>¥420～740/, 'the trip budget should use a realistic two-person ground-watching range');
 assert.doesNotMatch(html, /<h3>2\. 热气球<\/h3>|Turquaz|First Ascent|€270\/人|€290\/人|¥4,500～5,000/, 'the abandoned flight product and price should be removed');
 
-assert.match(html, /3\. Kekova 海湾出航/, 'booking guide 3 should cover the Kekova cruise');
-assert.match(html, /\+90 532 676 24 11/, 'Kekova guide should include the Bermuda WhatsApp number');
-assert.match(html, /wa\.me\/905326762411\?text=[^"']{180,}/, 'Kekova should open WhatsApp with its dated enquiry prefilled');
-assert.match(html, /1 October 2026[\s\S]{0,1200}(?:09:30|09:45)[\s\S]{0,1200}(?:18:00|return)/i, 'Kekova guide should include the dated enquiry and operating window');
+assert.doesNotMatch(html, /Kekova|Simena|Bermuda|book-kekova/i, 'the cancelled Kekova day and booking guide should be removed everywhere');
+
+assert.match(html, /id="book-oludeniz-paragliding"/, 'the guide should provide a dedicated Ölüdeniz paragliding booking block');
+assert.match(html, /reaction-paragliding\.com/i, 'the selected paragliding option should link ReAction directly');
+assert.match(html, /1 October 2026[\s\S]{0,1800}2 adults[\s\S]{0,1400}14:30/i, 'the paragliding enquiry should use the actual date, party size and reserved slot');
+assert.match(html, /(?:双人滑翔伞|tandem paragliding)[\s\S]{0,1000}(?:不是|not)[^<]{0,100}(?:飞机跳伞|skydiving)/i, 'the booking guide should distinguish tandem paragliding from aircraft skydiving');
+assert.match(html, /(?:保险|insurance)[\s\S]{0,900}(?:天气|weather)[\s\S]{0,1200}(?:退款|refund|改期|reschedul)/i, 'the paragliding guide should confirm passenger insurance and weather disruption terms');
+
+assert.match(html, /id="book-pirate-boat"/, 'the guide should provide a dedicated pirate-boat booking block');
+assert.match(html, /dragonboatoludeniz\.info\/daytrip/i, 'the pirate-boat option should link the official Dragon day-trip page');
+assert.match(html, /2 October 2026[\s\S]{0,1800}2 adults[\s\S]{0,1400}10:30/i, 'the pirate-boat enquiry should use the actual date, party size and departure time');
+assert.match(html, /Dragon[\s\S]{0,1200}10:30[–-]17:00[\s\S]{0,1200}(?:午餐|lunch)/i, 'the Dragon guide should state its full-day operating window and included lunch');
+assert.match(html, /(?:DJ|泡沫派对|foam party)/i, 'the guide should disclose the pirate boat\'s party character');
+assert.match(html, /滑翔伞[^<]{0,160}(?:取消|停飞|改期)[\s\S]{0,1200}(?:海盗船[^<]{0,100}二选一|补飞[^<]{0,160}海盗船[^<]{0,100}二选一)/, 'a weather-cancelled flight should not be promised alongside the October 2 boat');
 
 assert.match(html, /id="book-avanos-red-tour"/, 'the guide should provide a dedicated platform-bookable Red Tour and Avanos block');
 assert.match(html, /getyourguide\.com\/avanos-l983\/red-tour-cappadocia-t689055\//, 'the primary September 28 option should link the selected GetYourGuide Red North Tour');

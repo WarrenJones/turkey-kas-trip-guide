@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 
 assert.match(html, /id="map-cappadocia"/, 'map should offer a Cappadocia detail view');
-assert.match(html, /id="map-fethiye"/, 'map should offer a Fethiye and Butterfly Valley detail view');
+assert.match(html, /id="map-fethiye"/, 'map should offer an Ölüdeniz and Butterfly Valley detail view');
 assert.match(html, /id="map-return"/, 'map should offer an Istanbul return detail view');
 assert.match(html, /青色实线[^<]{0,80}(?:D400|轨道交通)[^<]{0,160}橙色虚线[^<]{0,100}境内航班[^<]{0,160}蓝色虚线[^<]{0,100}渡轮/, 'the legend should distinguish roads and rail, flights, and the ferry transfer');
 assert.match(html, /const hubMarkers = L\.layerGroup\(\)/, 'map should have a city-level marker layer');
@@ -21,7 +21,7 @@ assert.doesNotMatch(html, /地下水宫|Basilica Cistern/i, 'the cancelled Basil
 assert.match(html, /14:40[\s\S]{0,240}博斯普鲁斯短线/, 'September 25 should include the 14:40 short Bosphorus cruise');
 assert.doesNotMatch(html, /Myra|米拉/i, 'the replaced Myra stop must not remain in the guide');
 assert.match(html, /下杜登瀑布/, 'the airport-side Lower Duden waterfall stop should be included');
-assert.match(html, /9\/29[\s\S]{0,260}(?:08:30|上午)[\s\S]{0,260}下杜登瀑布/, 'Lower Duden should be a planned morning stop after the Antalya overnight');
+assert.match(html, /9\/29[\s\S]{0,320}10:30[\s\S]{0,320}下杜登瀑布/, 'Lower Duden should follow the exact 10:30 Antalya pickup');
 assert.match(html, /DLM\s*→\s*SAW/, 'the October 3 route card should show the confirmed Dalaman-to-SAW direction');
 assert.match(html, /DLM\s*→\s*SAW[\s\S]{0,320}<time datetime="2026-10-03">10\/3[^<]*<\/time><span>VF3135[^<]*13:40[–—-]15:00[^<]*<\/span>/, 'the October 3 DLM-to-SAW route card should show the confirmed flight number and schedule');
 assert.match(html, /name:'达拉曼机场 DLM'[\s\S]{0,180}10:30[–—-]10:50[^']*还车[\s\S]{0,120}11:10[^']*航站楼[\s\S]{0,160}13:40起飞/, 'the DLM map point should separate car return, terminal arrival and flight time');
@@ -34,9 +34,15 @@ assert.match(html, /(?:北线地貌|Red Tour)\s*＋?\s*Avanos\s*陶艺(?:小团|
 assert.match(html, /const cappadociaRedTourRoute[\s\S]{0,700}L\.polyline\(cappadociaRedTourRoute/, 'the map should visualize the fixed September 28 Red Tour loop');
 assert.doesNotMatch(html, /name:'Ihlara峡谷（9\/28固定主线）'|name:'Narlıgöl火山口湖'|const cappadociaNatureRoute/, 'the removed private-driver nature route should not remain on the map');
 assert.match(html, /开塞利 ASR\s*→\s*安塔利亚 AYT[\s\S]{0,320}PC3503[^<]{0,100}(?:已订|已预订)/, 'the map-side flight card should mark PC3503 as booked');
-assert.match(html, /name:'蝴蝶谷崖顶观景台（Faralya）'[\s\S]{0,220}lat:36\.5002863[\s\S]{0,80}lng:29\.12814[\s\S]{0,220}stay:'10\/2固定主线'/, 'the coast map should include the exact Butterfly Valley viewpoint as a fixed stop');
+assert.match(html, /(?:D400[\s\S]{0,700}<time datetime="2026-10-01">[\s\S]{0,700}(?:ReAction|滑翔伞|paragliding)|D400[\s\S]{0,700}(?:ReAction|滑翔伞|paragliding)[\s\S]{0,700}<time datetime="2026-10-01">|<time datetime="2026-10-01">[\s\S]{0,700}D400[\s\S]{0,700}(?:ReAction|滑翔伞|paragliding))/i, 'the map-side route card should move the D400 drive and paragliding to October 1');
+assert.match(html, /(?:Dragon[\s\S]{0,500}(?:海盗船|pirate)[\s\S]{0,700}<time datetime="2026-10-02">|Dragon[\s\S]{0,700}<time datetime="2026-10-02">[\s\S]{0,700}(?:海盗船|pirate)|<time datetime="2026-10-02">[\s\S]{0,700}Dragon[\s\S]{0,500}(?:海盗船|pirate))/i, 'the map-side route card should show the October 2 Dragon pirate boat');
+assert.match(html, /name:'Kaş Seyir Terası'[^\n]*time:'10\/1[^']*10[–-]15分钟'/, 'the coast map should include the municipal Kaş viewpoint with its date and stop time');
+assert.match(html, /https:\/\/www\.kas\.bel\.tr\/proje\/kas-seyir-terasi-projesi-3184/, 'the coast map should cite the municipal Kaş viewpoint source');
+assert.match(html, /name:'蝴蝶谷崖顶观景台（Faralya）'[\s\S]{0,220}lat:36\.5002863[\s\S]{0,80}lng:29\.12814[\s\S]{0,220}stay:'10\/1固定主线'/, 'the coast map should include the exact Butterfly Valley viewpoint as a fixed October 1 stop');
 assert.match(html, /maps:'https:\/\/www\.google\.com\/maps\/search\/\?api=1&query=36\.5002863%2C29\.1281400'/, 'the viewpoint popup should override fuzzy name search with exact coordinates');
 assert.match(html, /const mapsUrl = p\.maps \|\|/, 'map popups should honor exact-coordinate navigation overrides');
+assert.doesNotMatch(html, /Kekova|Simena|Bermuda|book-kekova/i, 'the cancelled Kekova route and booking content should be absent from the map and guide');
+assert.doesNotMatch(html, /\[\[36\.2019,29\.6377\],\[36\.1886,29\.8627\]\]/, 'the old Kaş-to-Kekova boat polyline should be removed');
 assert.match(html, /\{n:18,\s*name:'[^']*SAW'/, 'return-map point 18 should be Sabiha Gökçen Airport');
 assert.match(html, /\{n:19,\s*name:'[^']*Kadıköy[^']*'/, 'return-map point 19 should be Kadıköy');
 assert.match(html, /\{n:20,\s*name:'[^']*(?:Gayrettepe|Levent)/, 'return-map point 20 should be the Gayrettepe or Levent hotel area');
