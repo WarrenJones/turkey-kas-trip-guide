@@ -35,8 +35,8 @@ assert.match(html, /蝴蝶谷崖顶[\s\S]{0,600}(?:不下谷|禁止下谷)/, 'th
 assert.match(html, /name:'Kaş Seyir Terası'[^\n]*time:'10\/1[^']*10[–-]15分钟'/, 'the route map should show the Kaş viewpoint with its date and stop time');
 assert.doesNotMatch(html, /\[\[36\.2019,29\.6377\],\[36\.1886,29\.8627\]\]/, 'the old Kaş-to-Kekova boat polyline must be removed');
 
-assert.match(html, /卡什[\s\S]{0,220}<td>2<\/td>/, 'the stay table should reduce Kaş to two nights');
-assert.match(html, /(?:厄吕代尼兹|Ölüdeniz)[\s\S]{0,220}<td>2<\/td>/i, 'the stay table should add two nights in Ölüdeniz');
+assert.match(html, /Kaş Old Town Hotel &amp; Beach[\s\S]{0,220}<td>2晚/, 'the stay table should keep the confirmed two-night Kaş booking');
+assert.match(html, /Ölüdeniz Turquoise Hotel[\s\S]{0,220}<td>2晚/i, 'the stay table should keep the confirmed two-night Ölüdeniz booking');
 assert.match(html, /滑翔伞[^<]{0,100}<\/td><td>¥2,000～2,300/, 'the budget should include a realistic two-person paragliding range');
 assert.match(html, /海盗船[^<]{0,100}<\/td><td>¥450～650/, 'the budget should include a realistic two-person pirate-boat range');
 

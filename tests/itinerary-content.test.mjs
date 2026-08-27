@@ -99,8 +99,13 @@ assert.match(septemberTwentySeventh, /起飞区[\s\S]{0,220}(?:Love Valley|爱�
 assert.doesNotMatch(septemberTwentySeventh, /第一批升空|约 60 分钟飞行|热气球机会\s*1/, 'September 27 should not retain the abandoned flight');
 assert.match(html, /格雷梅[\s\S]{0,220}<td>2晚<\/td>/, 'the stay table should reduce Göreme to two nights');
 assert.match(html, /安塔利亚机场[\s\S]{0,220}<td>1晚<\/td>/, 'the Antalya airport or Lara night should be fixed, not optional');
-assert.match(html, /卡什[\s\S]{0,220}<td>2<\/td>/, 'the stay table should reduce Kaş to two nights');
-assert.match(html, /(?:厄吕代尼兹|Ölüdeniz)[\s\S]{0,220}<td>2<\/td>/i, 'the stay table should add two nights in Ölüdeniz');
+assert.match(html, /Kaş Old Town Hotel &amp; Beach[\s\S]{0,220}<td>2晚/, 'the stay table should record the confirmed two-night Kaş booking');
+assert.match(html, /Ölüdeniz Turquoise Hotel[\s\S]{0,220}<td>2晚/i, 'the stay table should record the confirmed two-night Ölüdeniz booking');
+assert.match(html, /Kaş Old Town Hotel &amp; Beach[\s\S]{0,500}¥1,734[\s\S]{0,220}免费取消/, 'the Kaş booking should keep its confirmed total and cancellation status');
+assert.match(html, /Ölüdeniz Turquoise Hotel[\s\S]{0,500}¥2,118[\s\S]{0,220}不可退款/i, 'the Ölüdeniz booking should keep its confirmed total and refund status');
+assert.match(html, /¥3,852[^<]{0,120}(?:已确认|确认)/, 'the guide should total the four confirmed hotel nights without presenting them as paid');
+assert.doesNotMatch(html, /¥28,600～36,000/, 'the hero must not retain the superseded pre-booking budget');
+assert.doesNotMatch(html, /secure\.booking\.cn|[?&](?:sid|tid|aid|label)=/i, 'the public guide must not embed the private Booking trip URL or session parameters');
 
 const octoberThird = html.match(/<div class="date">10\.03<\/div>[\s\S]*?<div class="date">10\.04<\/div>/)?.[0] ?? '';
 assert.match(octoberThird, /DLM\s*→\s*SAW/, 'October 3 should fly from DLM to SAW instead of requiring an IST arrival');
