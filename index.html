@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="2026年9月24日至10月4日，伊斯坦布尔、卡帕多奇亚、卡什与土耳其地中海海岸双人旅行攻略。">
   <title>土耳其 11 日旅行手册｜卡什·追热气球·D400 自驾</title>
-  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <style>
     :root {
       --ink: #18323a;
@@ -22,6 +21,7 @@
     }
 
     * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
@@ -54,26 +54,30 @@
     .small { font-size: 13px; }
     .section { padding: 72px 0 8px; scroll-margin-top: 76px; }
 
-    .map-layout { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, .65fr); gap: 18px; align-items: stretch; }
-    .map-shell { position: relative; overflow: hidden; min-height: 620px; border: 1px solid var(--line); border-radius: var(--radius); background: #dce9e6; box-shadow: var(--shadow); }
-    #trip-map { width: 100%; min-height: 620px; height: 100%; }
-    .map-controls { position: absolute; z-index: 500; top: 14px; left: 54px; display: flex; gap: 7px; padding: 6px; border: 1px solid rgba(24,50,58,.14); border-radius: 14px; background: rgba(255,255,255,.92); box-shadow: 0 8px 24px rgba(18,57,64,.13); }
-    .map-controls button { padding: 7px 11px; border: 0; border-radius: 9px; color: var(--ink); background: transparent; cursor: pointer; font-size: 13px; font-weight: 800; }
-    .map-controls button.active { color: white; background: var(--sea); }
-    .route-pin { display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid white; border-radius: 50%; color: white; background: var(--sea); box-shadow: 0 3px 10px rgba(11,65,72,.34); font-size: 12px; font-weight: 900; }
-    .hub-pin { display: grid; place-items: center; min-height: 32px; padding: 5px 10px; border: 2px solid white; border-radius: 999px; color: white; background: var(--sea-dark); box-shadow: 0 4px 14px rgba(11,65,72,.3); font-size: 12px; font-weight: 900; white-space: nowrap; }
-    .leaflet-popup-content { min-width: 190px; margin: 14px 16px; color: var(--ink); font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; line-height: 1.5; }
-    .leaflet-popup-content strong { display: block; margin-bottom: 4px; font-size: 15px; }
-    .leaflet-popup-content a { color: var(--sea-dark); font-weight: 800; }
-    .map-side { display: flex; flex-direction: column; gap: 10px; }
-    .leg-card { padding: 15px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
-    .leg-card strong { display: block; }
-    .leg-date { display: flex; align-items: center; gap: 8px; margin: 9px 0 3px; color: var(--sea-dark); font-size: 14px; font-weight: 850; }
-    .leg-date time { flex: 0 0 auto; padding: 3px 8px; border-radius: 999px; color: white; background: var(--sun); }
-    .leg-date span { color: #496269; }
-    .leg-card .leg-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; color: var(--muted); font-size: 13px; }
-    .mode-icon { display: inline-grid; place-items: center; width: 25px; height: 25px; margin-right: 7px; border-radius: 8px; color: white; background: var(--sea); font-size: 12px; }
-    .map-note { padding: 14px 16px; border-radius: 15px; color: #5f4b32; background: #fff2df; font-size: 13px; }
+    .route-board { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: rgba(255,255,255,.86); box-shadow: var(--shadow); }
+    .route-tabs { display: flex; gap: 8px; padding: 14px; overflow-x: auto; border-bottom: 1px solid var(--line); background: rgba(8,127,140,.06); scrollbar-width: none; }
+    .route-tabs button { flex: 0 0 auto; padding: 8px 13px; border: 1px solid rgba(8,127,140,.18); border-radius: 999px; color: var(--sea-dark); background: white; cursor: pointer; font-size: 14px; font-weight: 850; }
+    .route-tabs button.active { color: white; background: var(--sea); }
+    .route-panel { display: none; padding: 24px; }
+    .route-panel.active { display: block; }
+    .journey-strip { display: grid; grid-template-columns: repeat(var(--stops), minmax(138px, 1fr)); gap: 28px; margin: 8px 0 22px; overflow-x: auto; padding: 10px 4px 18px; scrollbar-width: thin; }
+    .route-stop { position: relative; min-width: 138px; }
+    .route-stop:not(:last-child)::after { content: ""; position: absolute; top: 21px; left: 42px; right: -28px; height: 3px; background: linear-gradient(90deg, var(--sea), var(--sun)); }
+    .stop-dot { position: relative; z-index: 1; display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 10px; border: 3px solid white; border-radius: 50%; color: white; background: var(--sea); box-shadow: 0 4px 12px rgba(8,127,140,.28); font-size: 13px; font-weight: 900; }
+    .route-stop strong { display: block; line-height: 1.35; }
+    .route-stop small { display: block; margin-top: 4px; color: var(--muted); line-height: 1.45; }
+    .route-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .route-fact { padding: 14px; border-radius: 14px; background: rgba(8,127,140,.07); }
+    .route-fact b { display: block; color: var(--sea-dark); }
+    .route-fact span { color: var(--muted); font-size: 13px; }
+    .map-note { margin-top: 14px; padding: 14px 16px; border-radius: 15px; color: #5f4b32; background: #fff2df; font-size: 13px; }
+    .decision-matrix { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .decision-card { padding: 18px; border: 1px solid var(--line); border-radius: 17px; background: var(--card); box-shadow: 0 10px 28px rgba(18,57,64,.07); }
+    .decision-card time { display: inline-flex; margin-bottom: 9px; padding: 4px 9px; border-radius: 999px; color: white; background: var(--sun); font-size: 12px; font-weight: 900; }
+    .decision-card h3 { margin-bottom: 8px; }
+    .decision-card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .decision-card p + p { margin-top: 7px; }
+    .decision-card .keep { color: var(--sea-dark); font-weight: 800; }
 
     .duration-grid { display: grid; gap: 11px; }
     .duration-row { display: grid; grid-template-columns: 86px minmax(180px, 1.05fr) minmax(190px, 1.25fr) 90px 90px; gap: 10px; align-items: center; padding: 13px 15px; border-bottom: 1px solid var(--line); }
@@ -314,9 +318,7 @@
     @media (max-width: 900px) {
       .summary-grid, .booking-grid { grid-template-columns: repeat(2, 1fr); }
       .budget-wrap, .risk-grid { grid-template-columns: 1fr; }
-      .map-layout { grid-template-columns: 1fr; }
-      .map-shell, #trip-map { min-height: 520px; }
-      .map-side { display: grid; grid-template-columns: repeat(2, 1fr); }
+      .route-facts { grid-template-columns: 1fr; }
       .activity-booking-card { grid-template-columns: 1fr; }
       .booking-option-grid { grid-template-columns: 1fr; }
       .restaurant-grid { grid-template-columns: repeat(2, 1fr); }
@@ -336,9 +338,8 @@
       .hero-content { padding-bottom: 38px; }
       .slot-time, .leg-date, .time-pill { font-size: 16px; }
       .summary-grid, .booking-grid, .check-grid { grid-template-columns: 1fr; }
-      .map-shell, #trip-map { min-height: 480px; }
-      .map-controls { left: 48px; right: 10px; overflow-x: auto; }
-      .map-side, .restaurant-grid, .practical-grid { grid-template-columns: 1fr; }
+      .route-panel { padding: 17px; }
+      .decision-matrix, .restaurant-grid, .practical-grid { grid-template-columns: 1fr; }
       .duration-grid { overflow-x: auto; }
       .duration-row { min-width: 720px; grid-template-columns: 78px 190px 230px 85px 85px; }
       .duration-row > :last-child { display: block; }
@@ -407,42 +408,50 @@
       <a href="#transport">航班与租车</a>
       <a href="#budget">预算</a>
       <a href="#practical">实用信息</a>
-      <a href="#checklist">下单清单</a>
+      <a href="#checklist">待办清单</a>
     </div>
   </nav>
 
   <main>
     <section class="section" id="map">
       <div class="wrap">
-        <p class="eyebrow">Interactive route map</p>
-        <h2>先看地图，再看每天怎么走</h2>
-        <p class="lead">地图中青色实线表示 D400 自驾或轨道交通，橙色虚线表示境内航班，蓝色虚线表示 Kadıköy 渡轮＋短程接驳。海岸段标出 10/1 每个计划停靠点、停留时间与两项活动地点；点击编号即可查看时间、用餐和权威资料。</p>
-        <div class="map-layout">
-          <div class="map-shell">
-            <div id="trip-map" role="img" aria-label="伊斯坦布尔、格雷梅日落夜景、地面追热气球、乌奇萨、红谷、Paşabağ仙人烟囱、Avanos陶艺、Devrent想象谷、下杜登瀑布、卡什、Kaş Seyir Terası、Kaputaş、Patara、蝴蝶谷崖顶观景台、厄吕代尼兹滑翔伞、Dragon海盗船、达拉曼机场、萨比哈机场、Kadıköy寄存点、Moda海滨、Kadıköy市场、欧洲侧Gayrettepe及伊斯坦布尔机场的旅行路线地图"></div>
-            <div class="map-controls" aria-label="地图范围">
-              <button type="button" class="active" id="map-all">全程路线</button>
-              <button type="button" id="map-cappadocia">卡帕多奇亚</button>
-              <button type="button" id="map-coast">海岸自驾</button>
-              <button type="button" id="map-kas">卡什周边</button>
-              <button type="button" id="map-fethiye">厄吕代尼兹段</button>
-              <button type="button" id="map-return">返程亚洲区</button>
-            </div>
+        <p class="eyebrow">Route navigator</p>
+        <h2>路线一眼看懂：日期、交通和落脚点</h2>
+        <p class="lead">这不是需要缩放猜位置的地图。点下面四个标签，就能看到当天按什么顺序走、几点必须到哪里，以及住在哪家已经确认的酒店。</p>
+        <div class="route-board" data-route-board>
+          <div class="route-tabs" aria-label="路线分段">
+            <button type="button" class="active" data-route-target="route-all">全程总览</button>
+            <button type="button" data-route-target="route-cappadocia">卡帕多奇亚</button>
+            <button type="button" data-route-target="route-coast">海岸自驾</button>
+            <button type="button" data-route-target="route-return">返程亚洲区</button>
           </div>
-          <aside class="map-side">
-            <div class="leg-card"><strong><span class="mode-icon">✈</span>伊斯坦布尔 → 卡帕多奇亚</strong><div class="leg-date"><time datetime="2026-09-26">9/26 周六</time><span>07:45 起飞 · 约10:15–11:00到格雷梅</span></div><div class="leg-meta"><span>VF3268 已订</span><span>09:00 到 NAV</span><span>NAV接机 €15/人现金 · 已确认</span><span>落地到住宿按60–90分</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">🚐</span>格雷梅地面追热气球</strong><div class="leg-date"><time datetime="2026-09-27">9/27 周日</time><span>日出前接车 · 准确时段待确认</span></div><div class="leg-meta"><span>房东称 €80、可供2人</span><span>是否整车总价待确认</span><span>共享团 US$29–51/人</span><span>住宿露台兜底 · 开放与收费待确认</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">🚐</span>北线地貌＋Avanos 陶艺小团</strong><div class="leg-date"><time datetime="2026-09-28">9/28 周一</time><span>09:30接车 · 约16:00回格雷梅</span></div><div class="leg-meta"><span>Paşabağ＋Zelve</span><span>Avanos午餐＋陶艺</span><span>Devrent想象谷</span><span>18:30格雷梅→ASR待书面确认</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">✈</span>开塞利 ASR → 安塔利亚 AYT</strong><div class="leg-date"><time datetime="2026-09-28">9/28 周一</time><span>PC3503 · 22:05–23:25</span></div><div class="leg-meta"><span>PC3503 已订 · 待确认出票与行李</span><span>NAV 进、ASR 出</span><span>18:30 目标离开格雷梅</span><span>ASR送机按 €15/人预留 · 待报价与下单</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">🚗</span>AYT → 下杜登 → 卡什</strong><div class="leg-date"><time datetime="2026-09-29">9/29 周二</time><span>10:30 取车 · 12:15 前离开瀑布</span></div><div class="leg-meta"><span>下杜登瀑布45–60分</span><span>约203 km</span><span>日落前抵达古剧场</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">🚗</span>D400：卡什 → Kaputaş → Patara → 蝴蝶谷崖顶 → 厄吕代尼兹</strong><div class="leg-date"><time datetime="2026-10-01">10/1 周四</time><span>Kaş Old Town 06:45退房 · 13:15前寄存行李</span></div><div class="leg-meta"><span>Kaş Seyir Terası 10–15分</span><span>Kalkan只经过</span><span>Turquoise Hotel 已确认</span><span>14:30 ReAction滑翔伞</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">⛵</span>厄吕代尼兹 Dragon 海盗船</strong><div class="leg-date"><time datetime="2026-10-02">10/2 周五</time><span>09:45报到 · 10:30–17:00</span></div><div class="leg-meta"><span>船上午餐包含</span><span>DJ＋泡沫派对</span><span>Turquoise全包第2晚</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">🚗</span>厄吕代尼兹 → DLM 还车</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>08:50–09:00 离开 · 10:30 还车</span></div><div class="leg-meta"><span>约 66 km / 70分</span><span>11:10 前到航站楼</span><span>VF3135 13:40 起飞</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">✈</span>DLM → SAW → Kadıköy</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>VF3135 · 13:40–15:00（订单已确认）</span></div><div class="leg-meta"><span>截图显示两位乘客共付 ¥684</span><span>行李额度待确认</span><span>M4车程约52分</span><span>准点约16:40–17:10到Kadıköy</span></div></div>
-            <div class="leg-card"><strong><span class="mode-icon">⛴</span>寄存 → Moda → 市场 → Beşiktaş</strong><div class="leg-date"><time datetime="2026-10-03">10/3 周六</time><span>18:43 日落 · 19:45–20:00 取件</span></div><div class="leg-meta"><span>寄存必须提前线上预订</span><span>VF3135准点才有机会17:30前完成</span><span>20:45渡轮主目标</span><span>晚到执行不寄存 Plan B</span></div></div>
-            <div class="map-note">地图时间为无停车、无拍照、无堵车的路线计算；正式日程已经额外加入约 20%–30% 缓冲。</div>
-          </aside>
+          <div class="route-panel active" id="route-all">
+            <div class="journey-strip" style="--stops:8">
+              <div class="route-stop"><span class="stop-dot">9/24</span><strong>伊斯坦布尔</strong><small>历史区住2晚</small></div>
+              <div class="route-stop"><span class="stop-dot">9/26</span><strong>格雷梅</strong><small>VF3268＋住2晚</small></div>
+              <div class="route-stop"><span class="stop-dot">9/28</span><strong>安塔利亚</strong><small>PC3503 23:25到</small></div>
+              <div class="route-stop"><span class="stop-dot">9/29</span><strong>卡什</strong><small>海岸自驾＋住2晚</small></div>
+              <div class="route-stop"><span class="stop-dot">10/1</span><strong>厄吕代尼兹</strong><small>D400＋住2晚</small></div>
+              <div class="route-stop"><span class="stop-dot">10/3</span><strong>DLM机场</strong><small>10:30还车</small></div>
+              <div class="route-stop"><span class="stop-dot">10/3</span><strong>Kadıköy</strong><small>寄存后轻装逛</small></div>
+              <div class="route-stop"><span class="stop-dot">10/4</span><strong>IST机场</strong><small>M11前往机场</small></div>
+            </div>
+            <div class="route-facts"><div class="route-fact"><b>3段境内航班</b><span>VF3268、PC3503、VF3135</span></div><div class="route-fact"><b>4天海岸自驾</b><span>9/29 10:30 AYT取车 → 10/3 10:30 DLM还车</span></div><div class="route-fact"><b>9/28–10/4住宿已确认</b><span>四家、六晚，订单合计 ¥5,271</span></div></div>
+          </div>
+          <div class="route-panel" id="route-cappadocia">
+            <div class="journey-strip" style="--stops:6"><div class="route-stop"><span class="stop-dot">9/26</span><strong>NAV接机</strong><small>09:00落地；€15/人现金</small></div><div class="route-stop"><span class="stop-dot">下午</span><strong>乌奇萨＋鸽子谷</strong><small>傍晚回格雷梅</small></div><div class="route-stop"><span class="stop-dot">日落</span><strong>Aydınkırağı</strong><small>日落后看夜景</small></div><div class="route-stop"><span class="stop-dot">9/27</span><strong>地面追球</strong><small>日出前接车</small></div><div class="route-stop"><span class="stop-dot">9/28</span><strong>北线＋Avanos</strong><small>09:30–约16:00</small></div><div class="route-stop"><span class="stop-dot">18:30</span><strong>去ASR</strong><small>PC3503 22:05起飞</small></div></div>
+            <div class="route-facts"><div class="route-fact"><b>住宿</b><span>Caravanserai Inn，9/26–9/28</span></div><div class="route-fact"><b>最晚动作</b><span>18:30离开格雷梅，目标19:30–19:50到ASR</span></div><div class="route-fact"><b>删减原则</b><span>团回程无法保证16:30，就不参加整日团</span></div></div>
+          </div>
+          <div class="route-panel" id="route-coast">
+            <div class="journey-strip" style="--stops:7"><div class="route-stop"><span class="stop-dot">9/29</span><strong>AYT取车</strong><small>10:30；下杜登可删</small></div><div class="route-stop"><span class="stop-dot">9/29</span><strong>卡什</strong><small>古剧场日落</small></div><div class="route-stop"><span class="stop-dot">9/30</span><strong>Limanağzı</strong><small>游泳＋浮潜</small></div><div class="route-stop"><span class="stop-dot">10/1</span><strong>Kaputaş</strong><small>D400最美段</small></div><div class="route-stop"><span class="stop-dot">10/1</span><strong>蝴蝶谷崖顶</strong><small>安全停车才停</small></div><div class="route-stop"><span class="stop-dot">10/1</span><strong>滑翔伞</strong><small>14:00前报到</small></div><div class="route-stop"><span class="stop-dot">10/2</span><strong>Dragon海盗船</strong><small>10:30–17:00</small></div></div>
+            <div class="route-facts"><div class="route-fact"><b>住卡什</b><span>Kaş Old Town，9/29–10/1</span></div><div class="route-fact"><b>住厄吕代尼兹</b><span>Turquoise全包，10/1–10/3</span></div><div class="route-fact"><b>D400直接导航</b><span><a href="#d400-guide">看停靠点地址与整段路线 ↓</a></span></div></div>
+          </div>
+          <div class="route-panel" id="route-return">
+            <div class="journey-strip" style="--stops:6"><div class="route-stop"><span class="stop-dot">09:00</span><strong>厄吕代尼兹离店</strong><small>带两件行李</small></div><div class="route-stop"><span class="stop-dot">10:30</span><strong>DLM还车</strong><small>11:10前到航站楼</small></div><div class="route-stop"><span class="stop-dot">15:00</span><strong>抵达SAW</strong><small>VF3135</small></div><div class="route-stop"><span class="stop-dot">≤17:30</span><strong>Kadıköy寄存</strong><small>晚到就删Moda</small></div><div class="route-stop"><span class="stop-dot">20:45</span><strong>渡轮去欧洲侧</strong><small>取行李后上船</small></div><div class="route-stop"><span class="stop-dot">10/4</span><strong>M11去IST</strong><small>Villa Blanche退房</small></div></div>
+            <div class="route-facts"><div class="route-fact"><b>行李策略</b><span>先寄存再逛；18:15后不寄存、不去Moda</span></div><div class="route-fact"><b>当晚住宿</b><span>Villa Blanche，Gayrettepe M11实际2号口约400m</span></div><div class="route-fact"><b>最后保障</b><span>赶不上20:45渡轮就直接回酒店</span></div></div>
+          </div>
         </div>
+        <div class="map-note">本路线板完全随网页本地加载，不依赖地图底图。需要实际开车时，请使用下方 D400 的多点导航链接。</div>
       </div>
     </section>
 
@@ -454,8 +463,8 @@
         <div class="summary-grid">
           <article class="summary-card"><strong>2 晚</strong><span>卡帕多奇亚两个自然日<br><small class="muted">9/28 晚从 ASR 飞走</small></span></article>
           <article class="summary-card"><strong>2 个核心体验</strong><span>地面追球＋北线地貌陶艺<br><small class="muted">不再为空中飞行或私人包车支付高价</small></span></article>
-          <article class="summary-card"><strong>¥1,734 · 已确认</strong><span>Kaş Old Town Hotel &amp; Beach<br><small class="muted">9/29–10/1 · 免费取消</small></span></article>
-          <article class="summary-card"><strong>¥2,118 · 已确认</strong><span>Ölüdeniz Turquoise 全包<br><small class="muted">10/1–10/3 · 不可退款</small></span></article>
+          <article class="summary-card"><strong>¥5,271</strong><span>9/28–10/4 六晚已确认<br><small class="muted">C Suites＋Kaş Old Town＋Turquoise＋Villa Blanche</small></span></article>
+          <article class="summary-card"><strong>4天自驾</strong><span>AYT 取车 → DLM 还车<br><small class="muted">只把车留给南部自然海岸</small></span></article>
         </div>
         <div class="route" aria-label="旅行路线">
           <span>伊斯坦布尔</span><i>→</i><span>格雷梅追球</span><i>→</i><span>Paşabağ</span><i>→</i><span>Avanos陶艺</span><i>✈</i><span>安塔利亚</span><i>🚗</i><span>下杜登</span><i>→</i><span>卡什</span><i>→</i><span>Kaş Seyir Terası</span><i>→</i><span>Kaputaş</span><i>→</i><span>Patara</span><i>→</i><span>蝴蝶谷崖顶</span><i>→</i><span>厄吕代尼兹滑翔伞</span><i>⛵</i><span>Dragon海盗船</span><i>✈</i><span>SAW</span><i>🚇</i><span>Kadıköy寄存</span><i>↔</i><span>Moda</span><i>⛴</i><span>欧洲侧</span><i>🚇</i><span>IST</span>
@@ -466,9 +475,17 @@
     <section class="section" id="contingency">
       <div class="wrap">
         <p class="eyebrow">Risk control &amp; Plan B</p>
-        <h2>先保核心体验，再按时间主动删减</h2>
-        <p class="lead">9/27 的地面追球按官方飞行旗执行；9/28 只选平台内可退改、含酒店接送的北线团体小团，约 16:00 回格雷梅。住宿方已经确认 9/26 NAV 接机为 €15/人现金，但 9/28 行李寄存仍待书面确认；ASR 送机只按同类共享车 €15/人做预算，实际价格、付款方式、接车时间和行李都未锁定。PC3503 还要核对电子客票号与托运行李。</p>
-        <div class="risk-grid">
+        <h2>晚点或天气变化时，只看这 6 条</h2>
+        <p class="lead"><strong>优先级只有三个：</strong>安全驾驶、赶上已订交通、保住已预约活动。下面写明触发条件；一旦触发，直接删对应景点，不在路上重新讨论。</p>
+        <div class="decision-matrix">
+          <article class="decision-card"><time datetime="2026-09-27">9/27 · 热气球停飞</time><h3>取消追球，不追空场</h3><p><strong>触发：</strong>官方飞行旗停飞，或运营方不书面确认停飞退款。</p><p><strong>执行：</strong>睡到自然醒；下午红谷／玫瑰谷照常。<span class="keep">保留：谷地徒步。</span></p></article>
+          <article class="decision-card"><time datetime="2026-09-28">9/28 · 团回程太晚</time><h3>不参加整日团</h3><p><strong>触发：</strong>不能保证 16:30 前回住宿，或行李寄存、18:30 ASR 接车仍未确认。</p><p><strong>执行：</strong>改 Avanos 室内陶艺或格雷梅休息，18:30 去 ASR。<span class="keep">保留：PC3503。</span></p></article>
+          <article class="decision-card"><time datetime="2026-09-29">9/29 · 11:15还没取到车</time><h3>删除下杜登</h3><p><strong>触发：</strong>验车、合同或行李装车在 11:15 仍未完成。</p><p><strong>执行：</strong>AYT 直接走 D400 去卡什。<span class="keep">保留：白天驾驶与古剧场日落。</span></p></article>
+          <article class="decision-card"><time datetime="2026-10-01">10/1 · D400晚点</time><h3>先删 Patara，再删蝴蝶谷</h3><p><strong>触发：</strong>10:15 未离开 Patara，或 12:30 未到蝴蝶谷。</p><p><strong>执行：</strong>13:15 前到 Turquoise 放行李，14:00 前到 ReAction。<span class="keep">保留：安全驾驶＋滑翔伞。</span></p></article>
+          <article class="decision-card"><time datetime="2026-10-02">10/2 · 滑翔伞补飞</time><h3>滑翔伞与海盗船二选一</h3><p><strong>触发：</strong>10/1 因天气取消，运营方只能改到 10/2。</p><p><strong>执行：</strong>选择更想要的一项，取消另一项；不要硬塞同一天。<span class="keep">保留：一项完整核心体验。</span></p></article>
+          <article class="decision-card"><time datetime="2026-10-03">10/3 · SAW到达后分流</time><h3>按完成寄存时间删行程</h3><p><strong>≤17:30：</strong>Moda＋市场；<strong>17:31–18:15：</strong>只留市场；<strong>&gt;18:15：</strong>不寄存，码头吃饭；赶不上20:45渡轮就直接去酒店。</p><p class="keep">保留：两件行李安全＋Villa Blanche入住。</p></article>
+        </div>
+        <div class="risk-grid" hidden aria-hidden="true">
           <article class="risk-panel">
             <span class="risk-label">9/27–9/28 · 两天各有明确主线</span>
             <h3>追球看飞行旗；北线小团只走平台订单</h3>
@@ -556,13 +573,14 @@
             <div class="drive-hero-copy"><h3>最美段：Kaş → Kaputaş</h3><p>连续海景主要集中在卡什以西到 Kalkan；过了 Kalkan 转向 Patara 后会进入农田与内陆道路，最后才在 Faralya 再次回到高崖海景。司机不边开边找机位，沿途照片由乘客拍。</p></div>
           </div>
           <div class="drive-body">
+            <div class="callout" style="margin:0 0 18px"><strong>一键导航整段：</strong><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Ka%C5%9F+Old+Town+Hotel+%26+Beach&amp;destination=%C3%96l%C3%BCdeniz+Turquoise+Hotel&amp;waypoints=36.2168%2C29.6448%7C36.2294%2C29.4486%7C36.2639%2C29.3182%7C36.5002863%2C29.1281400&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">Kaş Old Town → 观景台 → Kaputaş → Patara → 蝴蝶谷 → Turquoise ↗</a><br><span class="small muted">D400 是公路名，不是一个可搜索的地址。下面每个点都给了导航名和坐标；出发前把坐标离线收藏。</span></div>
             <div class="drive-timeline">
-              <article class="drive-leg"><span class="drive-km">必停 · 10–15分钟</span><strong>07:00 Kaş Seyir Terası</strong><p>卡什城区入口与 D400 附近的市政观景台，先看整座海湾和半岛，再正式向西上路。导航词：<a href="https://www.google.com/maps/search/?api=1&amp;query=Ka%C5%9F+Seyir+Teras%C4%B1" target="_blank" rel="noopener noreferrer">Kaş Seyir Terası</a>；<a href="https://www.kas.bel.tr/proje/kas-seyir-terasi-projesi-3184" target="_blank" rel="noopener noreferrer">市政府资料</a>。</p></article>
-              <article class="drive-leg"><span class="drive-km">约20 km · 预留40–45分钟</span><strong>Kaş→Kaputaş：行车看景</strong><p>当天最美的贴海驾驶段。<strong>不停车</strong>找临时机位，司机只看弯道，乘客拍照；只进入地图明确的正规停车区。</p></article>
-              <article class="drive-leg"><span class="drive-km">必停 · 08:00–08:45</span><strong>Kaputaş 海滩</strong><p>从公路下约200级台阶看峡谷口与蓝色海湾。只用正规停车位，车位满时不在路肩排队；<a href="https://www.kas.bel.tr/cardDetay/kaputas-plaj%C4%B1-499" target="_blank" rel="noopener noreferrer">市政府介绍</a>。</p></article>
-              <article class="drive-leg"><span class="drive-km">只经过 · 不停车</span><strong>约09:00 Kalkan</strong><p>Kalkan 不专门停，不为咖啡或港口找车位。当天目标是自然景观和滑翔伞，早餐后自带水、轻食和水果。</p></article>
-              <article class="drive-leg"><span class="drive-km">可选 · 第一可删</span><strong>09:20–10:15 Patara</strong><p>只看沙丘与长海滩，不进古城。任何前段晚点都整段删除；10:15 必须离开。<a href="https://www.kas.bel.tr/cardDetay/patara-plaj%C4%B1-7909" target="_blank" rel="noopener noreferrer">市政府介绍</a>。</p></article>
-              <article class="drive-leg"><span class="drive-km">计划停靠 · 15–20分钟</span><strong>11:45–12:05 蝴蝶谷崖顶</strong><p>从 D400 转入 Faralya 支路后原路折返，并非公路本身的顺路停车区。只在合法宽阔位置停，不下谷；12:30 仍未到就放弃。<a href="https://www.fethiye.gov.tr/kelebekler-vadisi" target="_blank" rel="noopener noreferrer">政府资料</a>。</p></article>
+              <article class="drive-leg"><span class="drive-km">必停 · 10–15分钟</span><strong>07:00 Kaş Seyir Terası</strong><p>导航：<a href="https://www.google.com/maps/search/?api=1&amp;query=36.2168%2C29.6448" target="_blank" rel="noopener noreferrer">36.2168, 29.6448 ↗</a>。看整座海湾后正式向西上路；<a href="https://www.kas.bel.tr/proje/kas-seyir-terasi-projesi-3184" target="_blank" rel="noopener noreferrer">市政府资料 ↗</a>。</p></article>
+              <article class="drive-leg"><span class="drive-km">约20 km · 预留40–45分钟</span><strong>Kaş→Kaputaş：最美行车段</strong><p>入口导航：<a href="https://www.google.com/maps/dir/?api=1&amp;origin=36.2168%2C29.6448&amp;destination=36.2294%2C29.4486&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">观景台 → Kaputaş ↗</a>。司机不停车找机位，乘客沿途拍。</p></article>
+              <article class="drive-leg"><span class="drive-km">必停 · 08:00–08:45</span><strong>Kaputaş 海滩</strong><p>导航：<a href="https://www.google.com/maps/search/?api=1&amp;query=36.2294%2C29.4486" target="_blank" rel="noopener noreferrer">36.2294, 29.4486 ↗</a>。只用正规停车位，车位满时不在路肩排队；<a href="https://www.kas.bel.tr/cardDetay/kaputas-plaj%C4%B1-499" target="_blank" rel="noopener noreferrer">市政府介绍 ↗</a>。</p></article>
+              <article class="drive-leg"><span class="drive-km">只经过 · 不停车</span><strong>约09:00 Kalkan</strong><p>路线锚点：<a href="https://www.google.com/maps/search/?api=1&amp;query=36.2649%2C29.4141" target="_blank" rel="noopener noreferrer">36.2649, 29.4141 ↗</a>。不为咖啡或港口找车位，车上备水和轻食。</p></article>
+              <article class="drive-leg"><span class="drive-km">可选 · 第一可删</span><strong>09:20–10:15 Patara 海滩</strong><p>导航：<a href="https://www.google.com/maps/search/?api=1&amp;query=36.2639%2C29.3182" target="_blank" rel="noopener noreferrer">36.2639, 29.3182 ↗</a>。只看沙丘与长海滩；前段晚点就整段删除。<a href="https://www.kas.bel.tr/cardDetay/patara-plaj%C4%B1-7909" target="_blank" rel="noopener noreferrer">市政府介绍 ↗</a>。</p></article>
+              <article class="drive-leg"><span class="drive-km">计划停靠 · 15–20分钟</span><strong>11:45–12:05 蝴蝶谷崖顶</strong><p>导航：<a href="https://www.google.com/maps/search/?api=1&amp;query=36.5002863%2C29.1281400" target="_blank" rel="noopener noreferrer">36.5002863, 29.1281400 ↗</a>。只在合法宽阔处停车，不下谷；12:30仍未到就放弃。<a href="https://www.fethiye.gov.tr/kelebekler-vadisi" target="_blank" rel="noopener noreferrer">政府资料 ↗</a>。</p></article>
             </div>
             <div class="drive-rules">
               <div class="drive-rule"><strong>停车规则</strong>Kaş Seyir Terası、Kaputaş 用明确停车区；Kaş→Kaputaş 行车看景，不停车；蝴蝶谷只在合法宽阔位置停，不能在弯道或路肩排队。</div>
@@ -631,7 +649,7 @@
           </article>
 
           <article class="day">
-            <header class="day-head"><div><div class="date">09.28</div><div class="weekday">周一 · Day 5</div></div><div class="sleep">住：AYT / Lara<br>深夜接送酒店</div></header>
+            <header class="day-head"><div><div class="date">09.28</div><div class="weekday">周一 · Day 5</div></div><div class="sleep">住：C Suites Antalia Airport<br>已确认 · ¥706</div></header>
             <div class="day-body">
               <div class="slots slots-five">
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">07:30–09:15</span><h3>早餐＋退房寄存（待确认）</h3><p>09:15 前退房，计划把两件行李留在住宿处至送机，但此项尚待住宿方书面确认；未确认就不能执行全天团。住宿名称、地址和定位只填入 GetYourGuide 订单，不在公开攻略展示，也不自行找私人司机。</p></div></div>
@@ -648,7 +666,7 @@
             <header class="day-head"><div><div class="date">09.29</div><div class="weekday">周二 · Day 6</div></div><div class="sleep">住：卡什<br>Kaş Old Town · 已确认</div></header>
             <div class="day-body">
               <div class="slots">
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:30–10:30</span><h3>AYT / Lara 早餐＋取车</h3><p>酒店接送回机场，10:30 办理取车；完整拍摄车身、轮胎、玻璃、油量与里程后再出发。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:30–10:30</span><h3>C Suites退房＋AYT取车</h3><p>订单截图未确认含早餐，早餐自理；退房后前往机场，10:30 办理取车。完整拍摄车身、轮胎、玻璃、油量与里程后再出发。</p></div></div>
                 <div class="slot attraction-card"><img src="guide-images/lower-duden-waterfall.jpg" alt="下杜登瀑布从海崖落入地中海"><div class="slot-text"><span class="slot-time">11:10–12:10</span><h3>下杜登瀑布</h3><p>距机场约 14 km，只走 Gençlik Parkı 陆地观景台，不坐船。11:15仍未取到车就跳过瀑布。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/antalya/listen" target="_blank" rel="noopener noreferrer">GoTürkiye · 下杜登官方介绍 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/kas-theatre.jpg" alt="卡什古剧场面向地中海"><div class="slot-text"><span class="slot-time">约16:30入住 · 日落前45–60分钟</span><h3>D400 转场＋卡什古剧场日落</h3><p>下杜登后约 189 km，午餐和服务区合计最多 35 分钟。入住已确认的 Kaş Old Town Hotel &amp; Beach 后不再开车，步行去古剧场；停车方式须提前在订单消息内确认。</p><div class="authority-links"><a class="authority-link" href="https://antalya.ktb.gov.tr/TR-312262/antiphellos-kas.html" target="_blank" rel="noopener noreferrer">文化与旅游部 · Antiphellos ↗</a></div></div></div>
               </div>
@@ -695,7 +713,7 @@
           </article>
 
           <article class="day">
-            <header class="day-head"><div><div class="date">10.03</div><div class="weekday">周六 · Day 10</div></div><div class="sleep">住：欧洲侧 Gayrettepe<br>步行到 M11 实际入口</div></header>
+            <header class="day-head"><div><div class="date">10.03</div><div class="weekday">周六 · Day 10</div></div><div class="sleep">住：Villa Blanche<br>已确认 · ¥724 · Gayrettepe</div></header>
             <div class="day-body">
               <div class="slots slots-four">
                 <div class="slot attraction-card"><img src="guide-images/oludeniz.jpg" alt="清晨的厄吕代尼兹蓝色泻湖"><div class="slot-text"><span class="slot-time">08:00–08:50 · 09:00前离店</span><h3>Turquoise全包早餐＋退房</h3><p>从厄吕代尼兹离开后直接去 DLM，不再加景点；08:50–09:00 带两件行李离店。前一晚结清额外消费，并确认早餐开放、停车出口和无需等待的早退房方式。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/fethiye" target="_blank" rel="noopener noreferrer">GoTürkiye · Ölüdeniz ↗</a></div></div></div>
@@ -711,7 +729,7 @@
             <header class="day-head"><div><div class="date">10.04</div><div class="weekday">周日 · Day 11</div></div><div class="sleep">返程日</div></header>
             <div class="day-body">
               <div class="slots">
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:30–09:00</span><h3>早餐＋退房</h3><p>从 Gayrettepe 酒店步行到预先核实的 M11 入口；不再横穿城区，也不依赖机场酒店接送。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:30–09:00</span><h3>Villa Blanche退房＋轻食</h3><p>订单未显示早餐，前一晚准备面包、水或能量棒；退房后步行约400米到 Gayrettepe M11 实际2号口，不横穿城区，也不依赖机场酒店接送。</p></div></div>
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">09:00–约10:00</span><h3>M11 → IST</h3><p>乘 M11 前往伊斯坦布尔机场，连进站、候车和航站楼步行按约 1 小时预留，目标 10:00 前抵达。</p><div class="authority-links"><a class="authority-link" href="https://www.dhmi.gov.tr/sayfalar/havalimani/istanbul/Ulasim.aspx" target="_blank" rel="noopener noreferrer">IST 机场官方交通 ↗</a></div></div></div>
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">13:20</span><h3>飞往北京</h3><p>国际航班起飞，次日抵达北京；返程卡不再用热气球图片冒充当天景点。</p></div></div>
               </div>
@@ -948,29 +966,42 @@
     <section class="section" id="stays">
       <div class="wrap">
         <p class="eyebrow">Where to stay</p>
-        <h2>卡什与厄吕代尼兹已锁定，四晚合计 ¥3,852</h2>
+        <h2>9/28–10/4 四家酒店已确认，六晚合计 ¥5,271</h2>
         <div class="panel table-scroll">
           <table class="stay-table">
             <thead><tr><th>地点</th><th>晚数</th><th>区域</th><th>预算或确认总价</th><th>关键执行项</th></tr></thead>
             <tbody>
               <tr><td><strong>伊斯坦布尔</strong></td><td>2</td><td>Sultanahmet / Cankurtaran</td><td>¥700～1,100</td><td>步行到圣索菲亚；自助入住；行李寄存</td></tr>
               <tr><td><strong>格雷梅 · 已订</strong></td><td>2晚</td><td>Göreme 镇中心</td><td>¥750～1,150预算<br><small>实付待回填</small></td><td>12:00入住、11:00退房；露台可看球；9/28两件行李寄存待书面确认</td></tr>
-              <tr><td><strong>安塔利亚机场 / Lara</strong></td><td>1晚</td><td>AYT 深夜接送范围</td><td>¥300～500</td><td>确认 23:25 后接机、次晨送回取车点</td></tr>
-              <tr><td><strong>Kaş Old Town Hotel &amp; Beach · 已确认</strong></td><td>2晚<br><small>9/29–10/1</small></td><td>古剧场—老城之间</td><td>¥1,734<br><small>约¥867／晚 · 免费取消</small></td><td>在订单消息确认停车；9/29晚步行去古剧场；10/1 06:45顺畅退房</td></tr>
-              <tr><td><strong>Ölüdeniz Turquoise Hotel – All Inclusive · 已确认</strong></td><td>2晚<br><small>10/1–10/3</small></td><td>Ölüdeniz 镇内</td><td>¥2,118<br><small>约¥1,059／晚 · 不可退款</small></td><td>全包；10/1约13:15停车寄存两件行李；10/2步行去Belcekız；10/3早退房</td></tr>
-              <tr><td><strong>伊斯坦布尔欧洲侧</strong></td><td>1</td><td>Gayrettepe M11 入口附近</td><td>¥650～950</td><td>以地图步行路线实测5–10分钟；可晚入住；电梯与两件行李空间</td></tr>
+              <tr><td><strong>C Suites Antalia Airport · 已确认</strong></td><td>1晚<br><small>9/28–9/29</small></td><td>AYT机场附近</td><td>¥706<br><small>免费取消</small></td><td>23:25落地后入住；早餐未在截图中确认；次晨回AYT取车</td></tr>
+              <tr><td><strong>Kaş Old Town Hotel &amp; Beach · 已确认</strong></td><td>2晚<br><small>9/29–10/1</small></td><td>古剧场—老城之间</td><td>¥1,729<br><small>约¥865／晚 · 免费取消</small></td><td>在订单消息确认停车；9/29晚步行去古剧场；10/1 06:45顺畅退房</td></tr>
+              <tr><td><strong>Ölüdeniz Turquoise Hotel – All Inclusive · 已确认</strong></td><td>2晚<br><small>10/1–10/3</small></td><td>Ölüdeniz 镇内</td><td>¥2,112<br><small>约¥1,056／晚 · 不可退款</small></td><td>全包；10/1约13:15停车寄存两件行李；10/2步行去Belcekız；10/3早退房</td></tr>
+              <tr><td><strong>Villa Blanche Hotel SPA &amp; Garden Pool · 已确认</strong></td><td>1晚<br><small>10/3–10/4</small></td><td>Gayrettepe / M11</td><td>¥724<br><small>免费取消</small></td><td>房价未显示含早；前夜备轻食；M11实际2号口约400m／5分钟</td></tr>
             </tbody>
           </table>
         </div>
-        <div class="callout"><strong>订单口径：</strong>Booking 截图确认 Kaş Old Town Hotel &amp; Beach 为 9/29–10/1、¥1,734、免费取消；Ölüdeniz Turquoise Hotel – All Inclusive 为 10/1–10/3、¥2,118、不可退款。两笔合计 ¥3,852，但截图没有显示是否已经扣款，所以预算只标“已确认”，不标“已支付”。私人订单链接、会话参数和确认号码不写入公开攻略。</div>
+        <div class="callout"><strong>订单口径：</strong>Booking 截图显示以上四笔均“已确认”：C Suites ¥706、Kaş Old Town ¥1,729、Turquoise ¥2,112、Villa Blanche ¥724，合计 ¥5,271。截图没有统一显示实际扣款状态，因此预算只标“已确认”，不标“已支付”；私人订单链接、会话参数和确认号码不写入公开攻略。</div>
       </div>
     </section>
 
     <section class="section" id="transport">
       <div class="wrap">
         <p class="eyebrow">Flights &amp; road trip</p>
-        <h2>三段境内航班＋Çizgi 四日海岸自驾</h2>
-        <div class="booking-grid">
+        <h2>交通只保留“已订信息”和“还要确认什么”</h2>
+        <p class="lead">这里不再重复讲路线，也不再放一整套租车销售说明。临出发只需核对下面四行；详细驾驶顺序看 D400，异常处理看上方 6 条预案。</p>
+        <div class="panel table-scroll">
+          <table class="stay-table">
+            <thead><tr><th>日期</th><th>已订／计划</th><th>硬时间</th><th>剩余动作</th></tr></thead>
+            <tbody>
+              <tr><td><strong>9/26</strong></td><td>VF3268 · SAW 07:45 → NAV 09:00</td><td>落地后共享接机</td><td>接机已确认 €15/人现金；核对两人电子客票和行李</td></tr>
+              <tr><td><strong>9/28</strong></td><td>PC3503 · ASR 22:05 → AYT 23:25</td><td>18:30离开格雷梅</td><td>确认电子客票、托运行李、ASR接车时间和两件行李</td></tr>
+              <tr><td><strong>9/29–10/3</strong></td><td>Çizgi · AYT取车 → DLM还车</td><td>9/29 10:30取；10/3 10:30还</td><td>书面确认异地费、总价、押金、免赔额、里程、行李箱容量及DLM接驳</td></tr>
+              <tr><td><strong>10/3</strong></td><td>VF3135 · DLM 13:40 → SAW 15:00</td><td>11:10前到航站楼</td><td>已付 ¥684／两人；核对手提与托运行李额度</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout"><strong>国内航班时间口径：</strong>目标是起飞前约 2 小时到航站楼；租车加油、还车、验车和门店接驳要另算，不能占用这 2 小时。Çizgi 的 Premium Damage 也不能仅凭名称当作“零免赔、全覆盖”，付款前必须取得 exclusions 和 excess 的书面说明。</div>
+        <div class="booking-grid" hidden aria-hidden="true">
           <article class="panel">
             <p class="eyebrow">Domestic flights</p>
             <h3>境内航班</h3>
@@ -1007,7 +1038,7 @@
             </ul>
           </article>
         </div>
-        <div class="panel table-scroll" style="margin-top:18px">
+        <div class="panel table-scroll" style="margin-top:18px" hidden aria-hidden="true">
           <table class="stay-table">
             <thead><tr><th>Çizgi 下单项</th><th>本次填写</th><th>付款前必须确认</th></tr></thead>
             <tbody>
@@ -1019,21 +1050,21 @@
             </tbody>
           </table>
         </div>
-        <div class="callout"><strong>官方核对入口：</strong><a href="https://www.cizgirentacar.com/en/office/antalya-cizgi-office/" target="_blank" rel="noopener noreferrer">AYT办公室 ↗</a>　<a href="https://www.cizgirentacar.com/en/office/dalaman-cizgi-office/" target="_blank" rel="noopener noreferrer">DLM办公室 ↗</a>　<a href="https://www.cizgirentacar.com/en/ourcars/" target="_blank" rel="noopener noreferrer">车组 ↗</a>　<a href="https://www.cizgirentacar.com/en/content/18/car-renting-conditions/" target="_blank" rel="noopener noreferrer">租车及保障条款 ↗</a>　<a href="https://api.whatsapp.com/send?phone=908504331183" target="_blank" rel="noopener noreferrer">官方WhatsApp询价 ↗</a>。Premium并不自动等于零免赔；没有上述书面回复前不付款。</div>
+        <div class="callout" hidden aria-hidden="true"><strong>官方核对入口：</strong><a href="https://www.cizgirentacar.com/en/office/antalya-cizgi-office/" target="_blank" rel="noopener noreferrer">AYT办公室 ↗</a>　<a href="https://www.cizgirentacar.com/en/office/dalaman-cizgi-office/" target="_blank" rel="noopener noreferrer">DLM办公室 ↗</a>　<a href="https://www.cizgirentacar.com/en/ourcars/" target="_blank" rel="noopener noreferrer">车组 ↗</a>　<a href="https://www.cizgirentacar.com/en/content/18/car-renting-conditions/" target="_blank" rel="noopener noreferrer">租车及保障条款 ↗</a>　<a href="https://api.whatsapp.com/send?phone=908504331183" target="_blank" rel="noopener noreferrer">官方WhatsApp询价 ↗</a>。Premium并不自动等于零免赔；没有上述书面回复前不付款。</div>
       </div>
     </section>
 
     <section class="section" id="budget">
       <div class="wrap">
         <p class="eyebrow">Budget for two</p>
-        <h2>两人全程约 3.10～3.78 万，建议以 3.8 万封顶</h2>
+        <h2>两人全程约 3.15～3.78 万，建议以 3.8 万封顶</h2>
         <div class="budget-wrap">
           <div class="panel table-scroll">
             <table class="budget-table">
               <thead><tr><th>项目</th><th>两人预算</th></tr></thead>
               <tbody>
                 <tr><td>北京—伊斯坦布尔国际往返机票</td><td>¥12,628（已付）</td></tr>
-                <tr><td>10 晚住宿（其中卡什＋厄吕代尼兹4晚已确认）</td><td>¥6,250～7,550<br><small>已确认：Kaş Old Town ¥1,734＋Ölüdeniz Turquoise全包 ¥2,118＝¥3,852；其余6晚仍按区间估算</small></td></tr>
+                <tr><td>10 晚住宿（其中9/28–10/4六晚已确认）</td><td>¥6,720～7,520<br><small>已确认：C Suites ¥706＋Kaş Old Town ¥1,729＋Turquoise ¥2,112＋Villa Blanche ¥724＝¥5,271；其余4晚按现有区间估算</small></td></tr>
                 <tr><td>土耳其境内 3 段飞机</td><td>暂按 ¥1,500～2,300<br><small>已知已付：VF3268 ¥588＋VF3135 ¥684＝¥1,272；另加 PC3503 实付及 VF3135 可能追加的行李费</small></td></tr>
                 <tr><td>4个日历日租车＋保险＋AYT→DLM异地还车</td><td>¥2,200～3,600</td></tr>
                 <tr><td>油费、停车与 HGS（约470～510 km）</td><td>¥470～710</td></tr>
@@ -1046,7 +1077,7 @@
                 <tr><td>两人旅行保险</td><td>¥460～740</td></tr>
                 <tr><td>机场接送、城市交通与Kadıköy寄存（含M4、渡轮、短程出租、M11）</td><td>¥800～1,200<br><small>NAV→格雷梅已确认€15/人现金；格雷梅→ASR仅按同类共享车€15/人预留，实际报价与付款方式待确认。两人两程预算合计€60（约¥460）。另含Kadıköy两件寄存当前基础价约€7.80起</small></td></tr>
                 <tr><td>两人 eSIM</td><td>¥120～220</td></tr>
-                <tr class="budget-total"><td>两人基础全程预计</td><td>约 ¥31,000～37,800</td></tr>
+                <tr class="budget-total"><td>两人基础全程预计</td><td>约 ¥31,500～37,800</td></tr>
               </tbody>
             </table>
           </div>
@@ -1055,9 +1086,9 @@
             <h3>建议控制线</h3>
             <div class="big-number">¥38,000</div>
             <p class="muted">这条控制线已包含博斯普鲁斯短线、老爷车或共享车地面追球（二选一）、9/28 北线小团＋Avanos陶艺、卡什古剧场、D400停靠、蝴蝶谷崖顶、两人滑翔伞、Dragon海盗船和10/3 Kadıköy寄存＋Moda海滨。滑翔伞专业影像、购物和酒精饮料不在内。</p>
-            <span class="paid-note">目前可核已付至少 ¥13,900：国际 ¥12,628＋VF3268 ¥588＋VF3135 ¥684；另有住宿订单 ¥3,852 已确认，截图未显示是否已扣款</span>
-            <p style="margin-top:20px"><strong>若两笔住宿尚未扣款，预计尚待支付</strong><br><span class="price">约 ¥17,100～23,900</span></p>
-            <p class="small muted">若 ¥3,852 住宿已经扣款，则尚待支付约 ¥13,200～20,000。PC3503 的实付金额仍未录入，若已经扣款还应继续扣除。VF3135 截图确认两位乘客共付 ¥684，但未显示手提或托运行李额度；确认或加购后再回填境内航班实际总额。滑翔伞影像、购物、酒精饮料和大额纪念品未计入。</p>
+            <span class="paid-note">目前可核已付至少 ¥13,900：国际 ¥12,628＋VF3268 ¥588＋VF3135 ¥684；另有四笔住宿共 ¥5,271 已确认，截图未统一显示是否已扣款</span>
+            <p style="margin-top:20px"><strong>若四笔住宿尚未扣款，预计尚待支付</strong><br><span class="price">约 ¥17,600～23,900</span></p>
+            <p class="small muted">若 ¥5,271 住宿已经全部扣款，则尚待支付约 ¥12,300～18,600。PC3503 的实付金额仍未录入，若已经扣款还应继续扣除。VF3135 截图确认两位乘客共付 ¥684，但未显示手提或托运行李额度；确认或加购后再回填境内航班实际总额。滑翔伞影像、购物、酒精饮料和大额纪念品未计入。</p>
           </aside>
         </div>
       </div>
@@ -1075,11 +1106,11 @@
           <article class="practical-item"><h3>蝴蝶谷崖顶怎么停</h3><ul><li>导航必须保存精确坐标，避免被同名地点带到 Ölüdeniz 码头或谷底乘船点。</li><li>这里只做崖顶远观，不下谷；官方资料提醒 Faralya 陆路非常陡，部分位置需借助绳索。</li><li>现场没有确认过的大型正规停车场：只在合法、宽阔且不影响车流的位置停车，无位就直接驶离。</li><li>不跨越护栏、不靠崖边自拍；强风、雨雾、低云或司机疲劳时由安全否决。</li></ul><p class="small"><a href="https://www.fethiye.gov.tr/kelebekler-vadisi" target="_blank" rel="noopener noreferrer">费特希耶政府说明 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=36.5002863%2C29.1281400" target="_blank" rel="noopener noreferrer">精确坐标导航 ↗</a></p></article>
           <article class="practical-item"><h3>付款与现金</h3><ul><li>酒店、租车和较大餐厅可刷卡；小店、停车、市场和部分船家准备现金。</li><li>刷卡机询问币种时选择 TRY，不选择人民币或港币动态换汇。</li><li>鱼类按公斤计价时，先确认整条鱼的总价再下单。</li></ul></article>
           <article class="practical-item"><h3>9月底穿衣</h3><ul><li>伊斯坦布尔：薄外套＋防雨层；海风时体感偏凉。</li><li>卡帕多奇亚清晨：羽绒背心或抓绒、长裤；地面追球集合和等待时温度最低。</li><li>卡帕多奇亚白天地貌段穿防滑运动鞋；陶艺体验选不怕沾泥的衣服。卡什海岸短袖为主，带防晒、水鞋和一件晚间薄外套。</li></ul></article>
-          <article class="practical-item"><h3>网络与离线准备</h3><ul><li>出发前装 eSIM；同时下载 Google Maps 土耳其离线区域。</li><li>保存租车、住宿、地面追球、Red Tour、ReAction 滑翔伞和 Dragon 海盗船确认单截图。</li><li>离线收藏 Kaş Seyir Terası、Kaputaş、Patara、蝴蝶谷精确坐标、Kaş Old Town、Ölüdeniz Turquoise 和 DLM OPET。</li><li>本攻略地图需联网加载底图，但路线、时间表和图片可离线阅读。</li></ul></article>
+          <article class="practical-item"><h3>网络与离线准备</h3><ul><li>出发前装 eSIM；同时下载 Google Maps 土耳其离线区域。</li><li>保存租车、住宿、地面追球、Red Tour、ReAction 滑翔伞和 Dragon 海盗船确认单截图。</li><li>离线收藏 Kaş Seyir Terası、Kaputaş、Patara、蝴蝶谷精确坐标、Kaş Old Town、Ölüdeniz Turquoise 和 DLM OPET。</li><li>本攻略的路线板、时间表和图片均可本地显示；实际驾车导航仍建议提前下载离线地图。</li></ul></article>
           <article class="practical-item"><h3>插头与充电</h3><ul><li>土耳其使用 C / F 型两圆脚插座，230V；香港 G 型插头需要转换器。</li><li>手机、相机和电脑充电器标有 100–240V 时只需转换插头。</li><li>吹风机等大功率设备必须检查电压标签，不要只靠插头转换。</li></ul><p class="small"><a href="https://blog.turkishairlines.com/en/a-guide-to-plugs-and-sockets-by-country/" target="_blank" rel="noopener">土耳其航空插座说明 ↗</a></p></article>
           <article class="practical-item"><h3>紧急联系方式</h3><ul><li>土耳其警察、救护、消防统一拨 112。</li><li>香港入境处境外 24 小时求助：+852 1868，也可向 (852) 1868 发送 WhatsApp。</li><li>中国驻土耳其使馆领保：+90 538 821 5530；驻伊斯坦布尔总领馆：+90 531 338 9459。</li></ul><p class="small"><a href="https://www.immd.gov.hk/eng/services/Assistance_Outside_Hong_Kong.html" target="_blank" rel="noopener">香港入境处境外协助 ↗</a>　<a href="https://www.112.gov.tr/" target="_blank" rel="noopener">土耳其 112 ↗</a></p></article>
           <article class="practical-item"><h3>格雷梅已订住宿 · 先闭环五件事</h3><ul><li><strong>日期：</strong>欢迎模板把退房月份写错；必须在 Airbnb 订单聊天确认正确退房日为 2026年9月28日。</li><li><strong>入口：</strong>欢迎模板与订单显示的门牌不一致；不在公开攻略保存地址，只让住宿方发送准确 Google Maps 入口定位。</li><li><strong>9/26 NAV接机：</strong>已确认 €15/人现金，司机在国内到达出口举姓名牌；再补问航班延误是否自动跟踪，以及12:00前能否先放两件行李。</li><li><strong>9/28行李寄存：</strong>待书面确认 09:15 前交两件行李，免费保存至送机；不能因公开页面写有寄存就当成订单承诺。</li><li><strong>9/28 ASR送机：</strong>房东只说可以协助返程；按同类共享车 €15/人预留，实际报价、付款方式、准确接车时间、两件行李和订单都尚待确认。目标约18:30，不能写成已锁定。</li><li>上述沟通全部留在已有住宿订单内；公开页不展示住宿名、房东、电话、详细地址或乘客姓名。</li></ul><p class="small"><strong>复制到 Airbnb 订单聊天：</strong></p><blockquote>Hello, thank you. Please confirm: (1) our correct checkout date is 28 September 2026; (2) the exact Google Maps entrance pin; (3) our shared NAV shuttle for VF3268 arriving at 09:00 on 26 September is confirmed for 2 adults, EUR 30 total in cash, the driver will monitor any flight delay, and we may leave 2 suitcases before check-in; (4) free storage for our 2 suitcases after checkout until the airport shuttle; and (5) a shared shuttle to ASR for flight PC3503 departing at 22:05 on 28 September, including the exact pickup time, total price, payment method and allowance for 2 suitcases. Guest names: [full names].</blockquote></article>
-          <article class="practical-item"><h3>卡什＋厄吕代尼兹住宿 · 已确认</h3><ul><li><strong>Kaş Old Town Hotel &amp; Beach：</strong>9/29–10/1，两晚 ¥1,734，订单标注免费取消。提前在订单消息内确认租车停放位置；9/29入住后步行去古剧场，10/1需06:45离店。</li><li><strong>Ölüdeniz Turquoise Hotel – All Inclusive：</strong>10/1–10/3，两晚 ¥2,118，订单不可退款。10/1约13:15可能早于正式入住，必须书面确认可先停车并寄存两件行李；10/3需09:00前完成退房。</li><li><strong>餐饮：</strong>Turquoise全包优先使用早餐和晚餐；10/2 Dragon 已含午餐，不为重复的酒店午餐中途折返。</li><li><strong>付款口径：</strong>两单合计 ¥3,852 已确认，但截图未显示扣款状态；在 Booking 订单内核对付款时间、取消截止与房型，不把确认号或私密订单链接保存到公开网页。</li></ul><p class="small"><a href="https://www.google.com/maps/search/?api=1&amp;query=Ka%C5%9F+Old+Town+Hotel+%26+Beach" target="_blank" rel="noopener noreferrer">Kaş Old Town 导航 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=%C3%96l%C3%BCdeniz+Turquoise+Hotel" target="_blank" rel="noopener noreferrer">Turquoise 导航 ↗</a></p><p class="small"><strong>复制到 Turquoise 订单消息：</strong></p><blockquote>Hello, we will arrive around 13:15 on 1 October 2026 with a rental car and two large suitcases. Can we park the car and store both suitcases before check-in, then return after paragliding? We also need a smooth early checkout before 09:00 on 3 October. Please confirm the parking location, luggage storage and early-checkout procedure in writing.</blockquote></article>
+          <article class="practical-item"><h3>9/28–10/4 四家住宿 · 全部已确认</h3><ul><li><strong>C Suites Antalia Airport：</strong>9/28–9/29，¥706，免费取消；深夜入住，早餐未确认，次晨前往AYT取车。</li><li><strong>Kaş Old Town Hotel &amp; Beach：</strong>9/29–10/1，两晚 ¥1,729，免费取消；确认停车位置与10/1 06:45退房。</li><li><strong>Ölüdeniz Turquoise Hotel – All Inclusive：</strong>10/1–10/3，两晚 ¥2,112，不可退款；确认13:15停车寄存两件行李和10/3早退房。</li><li><strong>Villa Blanche Hotel SPA &amp; Garden Pool：</strong>10/3–10/4，¥724，免费取消；订单未显示早餐，前夜备轻食；到M11实际2号口约400米。</li><li><strong>合计：</strong>六晚 ¥5,271 已确认；截图未统一显示扣款状态，分别在订单内核对付款时间与取消截止。</li></ul><p class="small"><a href="https://www.google.com/maps/search/?api=1&amp;query=C+Suites+Antalia+Airport" target="_blank" rel="noopener noreferrer">C Suites导航 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=Ka%C5%9F+Old+Town+Hotel+%26+Beach" target="_blank" rel="noopener noreferrer">Kaş Old Town导航 ↗</a>　<a href="https://www.google.com/maps/search/?api=1&amp;query=%C3%96l%C3%BCdeniz+Turquoise+Hotel" target="_blank" rel="noopener noreferrer">Turquoise导航 ↗</a>　<a href="https://hotelvillablanche.com/en/about-us/" target="_blank" rel="noopener noreferrer">Villa Blanche官方位置 ↗</a></p></article>
           <article class="practical-item"><h3>追球、北线、滑翔伞与海盗船</h3><ul><li>房东称老爷车价格 €80、可供2人：只有计价单位、整车两人总价、酒店往返、准确时段、起飞区、至少两个按风向选择的后续观景点和停飞全退全部书面确认才订。</li><li>任一项含糊就直接订 Rush 共享团；不用继续找陌生司机。专业摄影一律不加，司机用手机帮拍需在话术中确认。</li><li>9/28 北线主方案仍订 GetYourGuide 团体选项，订单内确认16:30前回格雷梅；住宿方 €55/人的17:00团只是有条件备选。</li><li>10/1 ReAction：确认14:30档、两人TRY总价、接送、Babadağ费用、保险、资质、体重限制、影像价格和天气改期/退款。</li><li>10/2 Dragon：确认09:45–10:00报到、10:30–17:00、最终季节价格、午餐、饮料、取消期限与海况退款；海盗船有DJ和泡沫派对。两项天气冲突时二选一。</li></ul><p class="small"><a href="https://www.getyourguide.com/goreme-l984/cappadocia-private-sunrise-hot-air-balloon-watching-tour-t526609/" target="_blank" rel="noopener noreferrer">Rush 共享团 ↗</a>　<a href="https://reaction-paragliding.com/" target="_blank" rel="noopener noreferrer">ReAction ↗</a>　<a href="https://www.dragonboatoludeniz.info/daytrip" target="_blank" rel="noopener noreferrer">Dragon ↗</a></p></article>
           <article class="practical-item"><h3>9/28 北线地貌＋Avanos 陶艺</h3><ul><li>主方案只通过 GetYourGuide 下单 Red Tour Cappadocia (Group Tour)，不要误选私人团。</li><li>约09:30酒店接、16:00送回，最多15人；确认午餐、全部门票与酒店往返均包含。</li><li>在平台订单消息内取得最迟16:30回同一间格雷梅住宿的书面确认；不转去私人账户付款。</li><li><strong>住宿方正式备选：</strong>€55/人、约17:00回；只有平台团不可用，且住宿方保证17:00前返回、免费寄存两件行李、18:30左右送ASR时才选。</li><li>真实评价有人认为购物停留偏多：陶艺可以体验，不买商品也没有关系。主团无法确认时间或天气不宜长时间户外，就改10:00 Avanos室内陶艺 Plan B。</li></ul><p class="small"><a href="#book-avanos-red-tour">直接下单步骤与 Plan B ↓</a>　<a href="https://www.getyourguide.com/avanos-l983/red-tour-cappadocia-t689055/" target="_blank" rel="noopener noreferrer">GetYourGuide 团体小团 ↗</a>　<a href="https://tourlacappadocia.com/products/cappadocia-pottery-workshop-in-avanos" target="_blank" rel="noopener noreferrer">Tourla 陶艺备选 ↗</a></p></article>
           <article class="practical-item"><h3>卡什古剧场</h3><ul><li>官方资料确认剧场位于卡什主广场以西约 500 米，但未提供稳定的独立开放时间和票价。</li><li>不要把“全天免费”当作已确认事实；可能因活动、维护或现场管理临时变化。</li><li>出发前一周请住宿方确认开放时间、收费、活动占用和日落后离场方式。</li></ul><p class="small"><a href="https://www.ktb.gov.tr/EN-36176/where-to-visit.html" target="_blank" rel="noopener">土耳其文化旅游部资料 ↗</a></p></article>
@@ -1091,10 +1122,20 @@
 
     <section class="section" id="checklist">
       <div class="wrap">
-        <p class="eyebrow">Before booking</p>
-        <h2>推荐下单顺序</h2>
+        <p class="eyebrow">Open items only</p>
+        <h2>酒店已订完，现在只剩 7 件事</h2>
+        <p class="lead">已完成的四家住宿不再占待办清单。下面每一项都需要订单、平台消息或书面回复作为完成凭证。</p>
         <div class="panel">
           <div class="check-grid">
+            <div class="check-item"><input id="todo1" type="checkbox"><label for="todo1"><strong>1. 补齐 PC3503 客票、行李和 ASR 送机</strong><br><span class="muted small">确认两人电子客票、托运行李、18:30接车、两件行李和最终价格。</span></label></div>
+            <div class="check-item"><input id="todo2" type="checkbox"><label for="todo2"><strong>2. 确认 9/27 地面追球</strong><br><span class="muted small">计价单位、两人总价、接送时段、观景点和停飞退款必须全部写清。</span></label></div>
+            <div class="check-item"><input id="todo3" type="checkbox"><label for="todo3"><strong>3. 下单 9/28 北线团或陶艺备选</strong><br><span class="muted small">只有保证16:30前回住宿才选整日团，否则直接订室内陶艺。</span></label></div>
+            <div class="check-item"><input id="todo4" type="checkbox"><label for="todo4"><strong>4. 完成 Çizgi 书面确认</strong><br><span class="muted small">总价、异地费、押金、免赔额、里程、两件行李空间和DLM接驳。</span></label></div>
+            <div class="check-item"><input id="todo5" type="checkbox"><label for="todo5"><strong>5. 下单 ReAction 滑翔伞＋Dragon 海盗船</strong><br><span class="muted small">分别确认两人总价、时间、集合点、天气改期或退款；天气冲突时二选一。</span></label></div>
+            <div class="check-item"><input id="todo6" type="checkbox"><label for="todo6"><strong>6. 预订 Kadıköy 两件行李寄存</strong><br><span class="muted small">选码头／市场步行5–10分钟、至少营业到20:30的点，保存实际地址。</span></label></div>
+            <div class="check-item"><input id="todo7" type="checkbox"><label for="todo7"><strong>7. 购买旅行保险并做出发前一周复核</strong><br><span class="muted small">覆盖医疗、行李、租车自负额和滑翔伞；复核天气、日落、停车、航班及取消条款。</span></label></div>
+          </div>
+          <div class="check-grid" hidden aria-hidden="true">
             <div class="check-item"><input id="c1" type="checkbox"><label for="c1"><strong>1. 确认 PC3503 出票与行李</strong><br><span class="muted small">航班已订；确认两人电子客票号、托运行李及 ASR 22:05→AYT 23:25。18:30 是目标离开时间，住宿方送机尚待书面确认。</span></label></div>
             <div class="check-item"><input id="c1a" type="checkbox"><label for="c1a"><strong>1A. 完成格雷梅住宿闭环</strong><br><span class="muted small">确认退房日为9/28、准确入口定位、9/26提前寄存；再锁定9/28两件行李免费寄存，以及ASR送机的实际价格、付款方式、接车时间与行李。NAV接机已确认，不重复下单。</span></label></div>
             <div class="check-item"><input id="c2" type="checkbox"><label for="c2"><strong>2. 预订 9/27 地面追球</strong><br><span class="muted small">在已订住宿的 Airbnb 订单聊天确认€80的计价单位、整车两人总价、准确时段、起飞区＋两个后续点、无摄影加价和停飞全退；任一项不明确就订Rush，或先确认住宿露台的清晨开放与收费。</span></label></div>
@@ -1124,8 +1165,16 @@
       <p class="small">本次校正照片同样来自 Wikimedia Commons：Kaş–Kalkan road（Tutku Çetinel，CC BY 3.0）、Kaş harbour（Esginmurat，CC BY-SA 4.0）、Limanağzı（Tugceeakgunn91，CC BY-SA 4.0）、Büyük Çakıl（Dündar Termal Apart，CC BY 3.0）、Patara dunes（Angela Stefanoni，CC BY 3.0）、Kaş sunset（Alexkom000，CC BY 4.0）、Üsküdar sunset（Ezzeldin.Elbaksawy，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:Ka%C5%9F_panoramik.jpg" target="_blank" rel="noopener noreferrer">Kaş panoramik</a>（Cobija，CC0）、<a href="https://commons.wikimedia.org/wiki/File:Paragliding_over_%C3%96l%C3%BCdeniz_Beach_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Paragliding over Ölüdeniz</a>（rheins，CC BY 3.0）、<a href="https://commons.wikimedia.org/wiki/File:Kelebekler_vadisi.jpg" target="_blank" rel="noopener noreferrer">Kelebekler vadisi</a>（Rotadefterim，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:G%C3%B6reme_at_Night_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Göreme at Night</a>（rheins，CC BY 3.0）、<a href="https://commons.wikimedia.org/wiki/File:Sunset_of_Historical_Peninsula_from_Kad%C4%B1k%C3%B6y.jpg" target="_blank" rel="noopener noreferrer">Kadıköy sunset</a>（Scott Dexter，CC BY-SA 2.0）及 <a href="https://commons.wikimedia.org/wiki/File:Moda_Sahil.jpg" target="_blank" rel="noopener noreferrer">Moda Sahil</a>（Antoloji，CC BY-SA 3.0）。海盗船图为 <a href="https://dragonparagliding.com/en/tours/pirate-boat-trip/" target="_blank" rel="noopener noreferrer">© Dragon Paragliding 官方宣传图</a>；未标开放许可，仅用于本次私人旅行手册，若改作商业公开用途需另行获得授权。</p>
     </div>
   </footer>
-  <script src="vendor/leaflet/leaflet.js"></script>
-  <script src="vendor/topojson/topojson-client.min.js"></script>
+  <script>
+    document.querySelectorAll('[data-route-board]').forEach((board) => {
+      const buttons = board.querySelectorAll('[data-route-target]');
+      const panels = board.querySelectorAll('.route-panel');
+      buttons.forEach((button) => button.addEventListener('click', () => {
+        buttons.forEach((item) => item.classList.toggle('active', item === button));
+        panels.forEach((panel) => panel.classList.toggle('active', panel.id === button.dataset.routeTarget));
+      }));
+    });
+  </script>
   <script>
     (function () {
       const mapEl = document.getElementById('trip-map');
