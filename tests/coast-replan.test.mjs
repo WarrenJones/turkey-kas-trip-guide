@@ -32,8 +32,8 @@ assert.match(html, /Kalkan[\s\S]{0,300}(?:只经过|不停车|不专门停)/, 'K
 assert.match(html, /Patara[\s\S]{0,400}(?:第一可删|首个可删|可选)/, 'Patara should be the first optional scenic stop when the drive runs late');
 assert.match(html, /蝴蝶谷崖顶[\s\S]{0,600}(?:不下谷|禁止下谷)/, 'the fixed Butterfly Valley viewpoint should retain its safety rule');
 
-assert.match(html, /name:'Kaş Seyir Terası'[^\n]*time:'10\/1[^']*10[–-]15分钟'/, 'the route map should show the Kaş viewpoint with its date and stop time');
-assert.doesNotMatch(html, /\[\[36\.2019,29\.6377\],\[36\.1886,29\.8627\]\]/, 'the old Kaş-to-Kekova boat polyline must be removed');
+assert.match(html, /Kaş Seyir Terası[\s\S]{0,500}07:00[\s\S]{0,300}10[–-]15分钟/, 'the route board and D400 guide should show the Kaş viewpoint with its date and bounded stop');
+assert.doesNotMatch(html, /const mapEl = document\.getElementById\('trip-map'\)|L\.polyline|world-atlas/, 'the retired interactive-map implementation must be removed');
 
 assert.match(html, /Kaş Old Town Hotel &amp; Beach[\s\S]{0,220}<td>2晚/, 'the stay table should keep the confirmed two-night Kaş booking');
 assert.match(html, /Ölüdeniz Turquoise Hotel[\s\S]{0,220}<td>2晚/i, 'the stay table should keep the confirmed two-night Ölüdeniz booking');
