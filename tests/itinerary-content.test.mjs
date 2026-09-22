@@ -20,23 +20,15 @@ assert.doesNotMatch(html, /11:25 抵达 IST/, 'the obsolete day-one arrival time
 assert.match(html, /苏丹艾哈迈德广场晨游[\s\S]{0,1200}午餐、入住、补觉[\s\S]{0,1200}居尔哈内公园＋Sarayburnu 海边[\s\S]{0,1200}屋顶晚餐＋老城夜景/, 'day one should have a realistic full-day sequence');
 assert.match(html, /航班延误超过 2 小时，先删海边/, 'day one should include an explicit delay fallback');
 
-const bookings = [
-  ['C Suites Antalia Airport', '¥706'],
-  ['Kaş Old Town Hotel &amp; Beach', '¥1,729'],
-  ['Ölüdeniz Turquoise Hotel', '¥2,112'],
-  ['Villa Blanche Hotel SPA &amp; Garden Pool', '¥724']
-];
-for (const [hotel, price] of bookings) {
-  assert.match(html, new RegExp(`${hotel}[\\s\\S]{0,420}${price}`), `${hotel} should show its confirmed price`);
-}
-assert.match(html, /四家酒店已确认，六晚合计 ¥5,271/, 'stay section should total all four confirmed orders');
-assert.match(html, /订单未显示早餐/, 'Villa Blanche breakfast should not be invented');
+assert.doesNotMatch(html, /id="stays"|id="transport"|href="#stays"|href="#transport"/, 'redundant lodging and transport summaries should be removed');
 assert.doesNotMatch(html, /secure\.booking\.cn|[?&](?:sid|tid|aid|label)=/i, 'private Booking parameters must not be published');
 
-assert.match(html, /交通只保留“已订信息”和“还要确认什么”/, 'transport section should be compact');
-assert.match(html, /VF3268[\s\S]{0,500}PC3503[\s\S]{0,500}Çizgi[\s\S]{0,500}VF3135/, 'compact transport table should cover all segments');
-assert.match(html, /起飞前约 2 小时到航站楼/, 'domestic flight timing should retain the two-hour baseline');
-assert.match(html, /Premium Damage[\s\S]{0,160}不能[^<]{0,80}零免赔/, 'rental insurance warning should remain explicit');
+const restaurants = ['Balkan Lokantası', 'Matbah Restaurant', 'Çiya Sofrası', 'Yanyalı Fehmi Lokantası', 'Seten Restaurant', 'Saklı Konak', 'Sofram', 'Bi Lokma', 'Oburus Momus', 'Ruhi Bey Meyhanesi', '酒店主餐厅', 'Buzz Beach Bar'];
+for (const restaurant of restaurants) assert.match(html, new RegExp(restaurant), `${restaurant} should be available as a practical choice`);
+assert.equal((html.match(/<article class="restaurant">/g) || []).length, 12, 'restaurant guide should provide twelve choices');
+assert.equal((html.match(/<figure class="restaurant-photo">/g) || []).length, 12, 'every restaurant choice should show a dish photo');
+assert.match(html, /菜图是对应菜式的代表图，不冒充餐厅实拍/, 'dish photos must be clearly labelled as representative rather than restaurant photography');
+for (const area of ['伊斯坦布尔老城', 'Kadıköy', '卡帕多奇亚', '卡什', '厄吕代尼兹']) assert.match(html, new RegExp(area), `${area} should have its own choice group`);
 assert.match(html, /酒店已订完，现在只剩 7 件事/, 'checklist should only contain open actions');
 for (let i = 1; i <= 7; i += 1) assert.match(html, new RegExp(`id="todo${i}"`), `pending item ${i} should exist`);
 assert.match(html, /两人全程约 3\.15～3\.78 万/, 'budget headline should reflect confirmed lodging totals');

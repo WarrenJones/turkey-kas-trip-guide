@@ -35,8 +35,7 @@ assert.match(html, /蝴蝶谷崖顶[\s\S]{0,600}(?:不下谷|禁止下谷)/, 'th
 assert.match(html, /Kaş Seyir Terası[\s\S]{0,500}07:00[\s\S]{0,300}10[–-]15分钟/, 'the route board and D400 guide should show the Kaş viewpoint with its date and bounded stop');
 assert.doesNotMatch(html, /const mapEl = document\.getElementById\('trip-map'\)|L\.polyline|world-atlas/, 'the retired interactive-map implementation must be removed');
 
-assert.match(html, /Kaş Old Town Hotel &amp; Beach[\s\S]{0,220}<td>2晚/, 'the stay table should keep the confirmed two-night Kaş booking');
-assert.match(html, /Ölüdeniz Turquoise Hotel[\s\S]{0,220}<td>2晚/i, 'the stay table should keep the confirmed two-night Ölüdeniz booking');
+assert.doesNotMatch(html, /id="stays"/, 'the redundant stay summary should remain removed');
 assert.match(html, /滑翔伞[^<]{0,100}<\/td><td>¥2,000～2,300/, 'the budget should include a realistic two-person paragliding range');
 assert.match(html, /海盗船[^<]{0,100}<\/td><td>¥450～650/, 'the budget should include a realistic two-person pirate-boat range');
 

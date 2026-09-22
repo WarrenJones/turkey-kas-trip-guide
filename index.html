@@ -79,7 +79,14 @@
     .decision-card .keep { color: var(--sea-dark); font-weight: 800; }
 
     .restaurant-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .restaurant { display: flex; flex-direction: column; padding: 21px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: 0 10px 28px rgba(18,57,64,.08); }
+    .restaurant-area { grid-column: 1 / -1; margin: 18px 0 0; padding: 0 2px 8px; border-bottom: 1px solid var(--line); color: var(--sea-dark); font-size: 21px; }
+    .restaurant-area:first-child { margin-top: 0; }
+    .restaurant { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: 0 10px 28px rgba(18,57,64,.08); }
+    .restaurant-photo { position: relative; margin: 0; background: #dce9e6; }
+    .restaurant-photo img { width: 100%; height: 178px; object-fit: cover; }
+    .restaurant-photo figcaption { position: absolute; right: 10px; bottom: 10px; max-width: calc(100% - 20px); padding: 5px 8px; border-radius: 8px; color: white; background: rgba(20,57,65,.86); font-size: 11px; font-weight: 750; }
+    .restaurant-body { display: flex; flex: 1; flex-direction: column; padding: 19px; }
+    .restaurant-choice { display: inline-flex; align-self: flex-start; margin-bottom: 8px; padding: 4px 8px; border-radius: 999px; color: #965719; background: #fff0dc; font-size: 11px; font-weight: 900; }
     .restaurant-loc { margin-bottom: 7px; color: var(--sun); font-size: 12px; font-weight: 900; letter-spacing: .08em; }
     .restaurant p { margin-bottom: 10px; color: var(--muted); font-size: 14px; }
     .restaurant-tags { display: flex; flex-wrap: wrap; gap: 7px; margin: auto 0 13px; }
@@ -343,8 +350,6 @@
       <a href="#itinerary">每日行程</a>
       <a href="#activity-bookings">活动预约</a>
       <a href="#restaurants">沿途餐厅</a>
-      <a href="#stays">住宿</a>
-      <a href="#transport">航班与租车</a>
       <a href="#budget">预算</a>
       <a href="#practical">实用信息</a>
       <a href="#checklist">待办清单</a>
@@ -754,59 +759,32 @@
     <section class="section" id="restaurants">
       <div class="wrap">
         <p class="eyebrow">Eat along the route</p>
-        <h2>每个停留点附近，真正顺路的餐厅</h2>
-        <p class="lead">按你“不想顿顿烤肉、预算不要太高”的要求筛选。价格为两人、不喝酒的规划区间；土耳其通胀较快，进店后先看菜单。</p>
+        <h2>每到一站，都有主选和备选</h2>
+        <p class="lead">不再让一家餐厅承担整座城市。下面按当天位置给出主选、备选和适合场景；菜图是对应菜式的代表图，不冒充餐厅实拍。价格为两人、不喝酒的规划区间，进店前仍以当日菜单为准。</p>
         <div class="restaurant-grid">
-          <article class="restaurant"><div class="restaurant-loc">伊斯坦布尔 · Sirkeci</div><h3>Balkan Lokantası</h3><p>历史区最实用的家常菜馆，柜台指菜；适合香料市场之后、前往 Eminönü 码头前午餐。</p><div class="restaurant-tags"><span>豆饭</span><span>炖茄子</span><span>扁豆汤</span><span>非烤肉</span></div><div class="restaurant-footer"><strong>两人 ₺800–1,300</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Balkan+Lokantasi+Sirkeci" target="_blank" rel="noopener">地图 ↗</a></div></article>
-          <article class="restaurant"><div class="restaurant-loc">Kadıköy市场 · 10/3取件前快速晚饭</div><h3>Çiya Sofrası</h3><p>从 Moda 回到市场，用现成的蔬菜、豆类、汤和一份主菜解决晚饭。19:35 前离店去取行李；排队就换同街的 esnaf lokantası，不为了名店错过取件或渡轮。</p><div class="restaurant-tags"><span>安纳托利亚家常菜</span><span>蔬菜小菜</span><span>可共享</span><span>19:35离店</span></div><div class="restaurant-footer"><strong>两人 ₺1,600–2,600</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Ciya+Sofrasi+Kadikoy" target="_blank" rel="noopener">地图 ↗</a></div></article>
-          <article class="restaurant"><div class="restaurant-loc">格雷梅</div><h3>Seten Restaurant</h3><p>2026 米其林推荐，景观与传统菜兼顾；只安排一顿稍正式的卡帕多奇亚晚餐。</p><div class="restaurant-tags"><span>Mantı饺子</span><span>汤</span><span>当地蔬菜</span><span>建议预约</span></div><div class="restaurant-footer"><strong>两人 ₺2,000–3,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Seten+Restaurant+Goreme" target="_blank" rel="noopener">地图 ↗</a></div></article>
-          <article class="restaurant"><div class="restaurant-loc">Uçhisar</div><h3>Saklı Konak</h3><p>适合乌奇萨结束后吃午餐；点汤、Mantı和一道蔬菜即可，不必点完整烤肉套餐。</p><div class="restaurant-tags"><span>当地菜</span><span>Mantı</span><span>室内休息</span></div><div class="restaurant-footer"><strong>两人 ₺1,400–2,200</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Sakli+Konak+Restaurant+Uchisar" target="_blank" rel="noopener">地图 ↗</a></div></article>
-          <article class="restaurant"><div class="restaurant-loc">卡什 · 老城北侧</div><h3>Bi Lokma</h3><p>家庭式土耳其菜，汤、米饭、蔬菜、饺子选择比海港餐厅全面；作为卡什日常正餐首选。</p><div class="restaurant-tags"><span>汤饭</span><span>土耳其饺子</span><span>素食选择</span><span>可预约</span></div><div class="restaurant-footer"><strong>两人 ₺1,200–1,900</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Bi+Lokma+Kas" target="_blank" rel="noopener">地图 ↗</a></div></article>
-          <article class="restaurant"><div class="restaurant-loc">卡什 · 古剧场日落后</div><h3>Ruhi Bey Meyhanesi</h3><p>全程唯一一顿正式海鲜；只点两款 Meze、一条鱼和沙拉，不点酒和大拼盘。</p><div class="restaurant-tags"><span>Meze</span><span>本地鱼</span><span>酥皮虾可选</span><span>建议预约</span></div><div class="restaurant-footer"><strong>两人 ₺2,500–4,000</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Ruhi+Bey+Meyhanesi+Kas" target="_blank" rel="noopener">地图 ↗</a></div></article>
-        </div>
-        <div class="callout"><strong>每天用餐逻辑：</strong>公寓住宿自备简单早餐；午餐用 Lokanta、汤、Pide 或 Gözleme；晚餐才坐下来吃。9/28 北线小团和 10/2 Dragon 船餐都已包含午餐；10/1–10/3 的 Turquoise 是全包订单，优先使用两次早餐和两次晚餐，10/2 船上午餐与酒店午餐重复也不折返。10/1 D400 只带轻食、不停车找餐厅；全程正式海鲜仅卡什一顿，餐饮仍可控制在两人约 ¥2,200～2,800。</div>
-      </div>
-    </section>
+          <h3 class="restaurant-area">伊斯坦布尔老城 · 家常午餐或一顿正式奥斯曼菜</h3>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-beans.jpg" alt="土耳其白豆炖菜配米饭"><figcaption>代表菜：白豆炖菜＋米饭</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">主选 · 快速实惠</span><div class="restaurant-loc">Sirkeci · 香料市场后顺路</div><h3>Balkan Lokantası</h3><p>柜台看菜直接点，适合扁豆汤、白豆饭和当天蔬菜；不需要把时间耗在排队或仪式感上。</p><div class="restaurant-tags"><span>家常菜</span><span>非烤肉</span><span>出餐快</span></div><div class="restaurant-footer"><strong>两人约 ₺900–1,400</strong><span><a href="https://www.sirkecibalkanlokantasi.com.tr/sirkeci-balkan-menu/" target="_blank" rel="noopener">菜单</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Balkan+Lokantasi+Sirkeci" target="_blank" rel="noopener">地图</a></span></div></div></article>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-meze.jpg" alt="土耳其凉菜拼盘"><figcaption>代表菜：奥斯曼风味冷前菜</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">备选 · 正式一餐</span><div class="restaurant-loc">Sultanahmet · 圣索菲亚附近</div><h3>Matbah Restaurant</h3><p>想在老城安排一顿有记忆点的晚餐时再选；主打奥斯曼宫廷菜，预算明显高于 Lokanta。</p><div class="restaurant-tags"><span>奥斯曼菜</span><span>正式晚餐</span><span>可订位</span></div><div class="restaurant-footer"><strong>价格档 ¥¥¥</strong><span><a href="https://www.matbahrestaurant.com/menu.php" target="_blank" rel="noopener">菜单</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Matbah+Restaurant+Istanbul" target="_blank" rel="noopener">地图</a></span></div></div></article>
 
-    <section class="section" id="stays">
-      <div class="wrap">
-        <p class="eyebrow">Where to stay</p>
-        <h2>9/28–10/4 四家酒店已确认，六晚合计 ¥5,271</h2>
-        <div class="panel table-scroll">
-          <table class="stay-table">
-            <thead><tr><th>地点</th><th>晚数</th><th>区域</th><th>预算或确认总价</th><th>关键执行项</th></tr></thead>
-            <tbody>
-              <tr><td><strong>伊斯坦布尔</strong></td><td>2</td><td>Sultanahmet / Cankurtaran</td><td>¥700～1,100</td><td>步行到圣索菲亚；自助入住；行李寄存</td></tr>
-              <tr><td><strong>格雷梅 · 已订</strong></td><td>2晚</td><td>Göreme 镇中心</td><td>¥750～1,150预算<br><small>实付待回填</small></td><td>12:00入住、11:00退房；露台可看球；9/28两件行李寄存待书面确认</td></tr>
-              <tr><td><strong>C Suites Antalia Airport · 已确认</strong></td><td>1晚<br><small>9/28–9/29</small></td><td>AYT机场附近</td><td>¥706<br><small>免费取消</small></td><td>23:25落地后入住；早餐未在截图中确认；次晨回AYT取车</td></tr>
-              <tr><td><strong>Kaş Old Town Hotel &amp; Beach · 已确认</strong></td><td>2晚<br><small>9/29–10/1</small></td><td>古剧场—老城之间</td><td>¥1,729<br><small>约¥865／晚 · 免费取消</small></td><td>在订单消息确认停车；9/29晚步行去古剧场；10/1 06:45顺畅退房</td></tr>
-              <tr><td><strong>Ölüdeniz Turquoise Hotel – All Inclusive · 已确认</strong></td><td>2晚<br><small>10/1–10/3</small></td><td>Ölüdeniz 镇内</td><td>¥2,112<br><small>约¥1,056／晚 · 不可退款</small></td><td>全包；10/1约13:15停车寄存两件行李；10/2步行去Belcekız；10/3早退房</td></tr>
-              <tr><td><strong>Villa Blanche Hotel SPA &amp; Garden Pool · 已确认</strong></td><td>1晚<br><small>10/3–10/4</small></td><td>Gayrettepe / M11</td><td>¥724<br><small>免费取消</small></td><td>房价未显示含早；前夜备轻食；M11实际2号口约400m／5分钟</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="callout"><strong>订单口径：</strong>Booking 截图显示以上四笔均“已确认”：C Suites ¥706、Kaş Old Town ¥1,729、Turquoise ¥2,112、Villa Blanche ¥724，合计 ¥5,271。截图没有统一显示实际扣款状态，因此预算只标“已确认”，不标“已支付”；私人订单链接、会话参数和确认号码不写入公开攻略。</div>
-      </div>
-    </section>
+          <h3 class="restaurant-area">Kadıköy · 10/3 取行李前二选一</h3>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-sarma.jpg" alt="葡萄叶包饭"><figcaption>代表菜：葡萄叶包饭与蔬菜小菜</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">主选 · 菜色最多</span><div class="restaurant-loc">Kadıköy 市场</div><h3>Çiya Sofrası</h3><p>现成蔬菜、豆类、汤和主菜可以共享。只在无需久等时进店，最迟 19:35 离店取行李。</p><div class="restaurant-tags"><span>安纳托利亚菜</span><span>蔬菜多</span><span>可共享</span></div><div class="restaurant-footer"><strong>两人约 ₺1,600–2,600</strong><span><a href="https://www.ciya.com.tr/index_en.php" target="_blank" rel="noopener">官网</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Ciya+Sofrasi+Kadikoy" target="_blank" rel="noopener">地图</a></span></div></div></article>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-mercimek.jpg" alt="土耳其扁豆汤"><figcaption>代表菜：扁豆汤＋当天家常菜</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">备选 · 排队即换</span><div class="restaurant-loc">Kadıköy 市场</div><h3>Yanyalı Fehmi Lokantası</h3><p>老派 esnaf lokantası，适合用汤、蔬菜和一份热菜快速解决晚饭；比为名店排队更符合当天硬时间。</p><div class="restaurant-tags"><span>家常热菜</span><span>汤</span><span>时间可控</span></div><div class="restaurant-footer"><strong>两人约 ₺1,200–2,000</strong><span><a href="https://yanyalifehmi.com/tr/iletisim" target="_blank" rel="noopener">官网</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Yanyali+Fehmi+Lokantasi+Kadikoy" target="_blank" rel="noopener">地图</a></span></div></div></article>
 
-    <section class="section" id="transport">
-      <div class="wrap">
-        <p class="eyebrow">Flights &amp; road trip</p>
-        <h2>交通只保留“已订信息”和“还要确认什么”</h2>
-        <p class="lead">这里不再重复讲路线，也不再放一整套租车销售说明。临出发只需核对下面四行；详细驾驶顺序看 D400，异常处理看上方 6 条预案。</p>
-        <div class="panel table-scroll">
-          <table class="stay-table">
-            <thead><tr><th>日期</th><th>已订／计划</th><th>硬时间</th><th>剩余动作</th></tr></thead>
-            <tbody>
-              <tr><td><strong>9/26</strong></td><td>VF3268 · SAW 07:45 → NAV 09:00</td><td>落地后共享接机</td><td>接机已确认 €15/人现金；核对两人电子客票和行李</td></tr>
-              <tr><td><strong>9/28</strong></td><td>PC3503 · ASR 22:05 → AYT 23:25</td><td>18:30离开格雷梅</td><td>确认电子客票、托运行李、ASR接车时间和两件行李</td></tr>
-              <tr><td><strong>9/29–10/3</strong></td><td>Çizgi · AYT取车 → DLM还车</td><td>9/29 10:30取；10/3 10:30还</td><td>书面确认异地费、总价、押金、免赔额、里程、行李箱容量及DLM接驳</td></tr>
-              <tr><td><strong>10/3</strong></td><td>VF3135 · DLM 13:40 → SAW 15:00</td><td>11:10前到航站楼</td><td>已付 ¥684／两人；核对手提与托运行李额度</td></tr>
-            </tbody>
-          </table>
+          <h3 class="restaurant-area">卡帕多奇亚 · 两晚按预算切换</h3>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-sarma.jpg" alt="土耳其葡萄叶卷"><figcaption>代表菜：叶卷与当地小菜</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">主选 · 景观晚餐</span><div class="restaurant-loc">Göreme</div><h3>Seten Restaurant</h3><p>传统菜与露台景观兼顾，适合留作唯一一顿稍正式晚餐。官网当前注明先到先坐，日落前到更稳妥。</p><div class="restaurant-tags"><span>当地菜</span><span>露台</span><span>不接受订位</span></div><div class="restaurant-footer"><strong>两人约 ₺2,000–3,200</strong><span><a href="https://www.setenrestaurant.com/menu" target="_blank" rel="noopener">菜单</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Seten+Restaurant+Goreme" target="_blank" rel="noopener">地图</a></span></div></div></article>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-manti.jpg" alt="土耳其曼特饺子"><figcaption>代表菜：Mantı 土耳其饺子</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">备选 · Uçhisar 顺路</span><div class="restaurant-loc">Uçhisar</div><h3>Saklı Konak</h3><p>如果当天在乌奇萨结束，点汤、Mantı 和一道蔬菜即可；无需为了完整烤肉套餐增加预算。</p><div class="restaurant-tags"><span>Mantı</span><span>室内休息</span><span>当地菜</span></div><div class="restaurant-footer"><strong>两人约 ₺1,400–2,200</strong><span><a href="https://saklikonakrooftop.com/" target="_blank" rel="noopener">官网</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Sakli+Konak+Restaurant+Uchisar" target="_blank" rel="noopener">地图</a></span></div></div></article>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-pide.jpg" alt="土耳其皮德饼"><figcaption>代表菜：Pide 土耳其船形饼</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">备选 · 预算优先</span><div class="restaurant-loc">Göreme 镇内</div><h3>Sofram</h3><p>想吃简单热食时选 Pide、汤或陶罐菜，不追求景观；它也列入 2026 卡帕多奇亚米其林指南名单。</p><div class="restaurant-tags"><span>Pide</span><span>热汤</span><span>价格较低</span></div><div class="restaurant-footer"><strong>价格档 ¥¥</strong><span><a href="https://kapadokyaalan.ktb.gov.tr/enterprise/institution-news/kapadokya-restoranlari-2026-michelin-rehberinde-ilk-yildizlarini-aldi" target="_blank" rel="noopener">指南</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Sofram+Restaurant+Goreme" target="_blank" rel="noopener">地图</a></span></div></div></article>
+
+          <h3 class="restaurant-area">卡什 · 日常菜、素食和海鲜各一间</h3>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-manti.jpg" alt="土耳其饺子"><figcaption>代表菜：Mantı＋酸奶蒜汁</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">主选 · 日常正餐</span><div class="restaurant-loc">老城北侧</div><h3>Bi Lokma</h3><p>家庭式土耳其菜，汤、米饭、蔬菜和饺子比海港餐厅全面；适合不想再吃烤肉的一餐。</p><div class="restaurant-tags"><span>汤饭</span><span>Mantı</span><span>素食可选</span></div><div class="restaurant-footer"><strong>两人约 ₺1,200–1,900</strong><span><a href="https://www.bilokma.com.tr/menuler/anayemekler" target="_blank" rel="noopener">菜单</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Bi+Lokma+Kas" target="_blank" rel="noopener">地图</a></span></div></div></article>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-falafel.jpg" alt="鹰嘴豆丸子配鹰嘴豆泥"><figcaption>代表菜：Falafel＋Hummus</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">备选 · 素食换口味</span><div class="restaurant-loc">Kaş 中心</div><h3>Oburus Momus</h3><p>纯素与素食菜单清楚，适合沙拉、鹰嘴豆和蔬菜主菜；官网菜单可提前看到当季价格。</p><div class="restaurant-tags"><span>纯素</span><span>素食</span><span>菜单透明</span></div><div class="restaurant-footer"><strong>两人约 ₺1,900–2,600</strong><span><a href="https://www.oburus.com/momus/tr/menu/" target="_blank" rel="noopener">菜单</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Oburus+Momus+Kas" target="_blank" rel="noopener">地图</a></span></div></div></article>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-fish.jpg" alt="地中海烤鱼"><figcaption>代表菜：当日鲜鱼＋沙拉</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">升级 · 唯一海鲜餐</span><div class="restaurant-loc">古剧场日落后</div><h3>Ruhi Bey Meyhanesi</h3><p>只安排一次：两款 Meze、一条先确认总价的鱼和沙拉；不点酒和大拼盘。</p><div class="restaurant-tags"><span>Meze</span><span>鲜鱼</span><span>建议订位</span></div><div class="restaurant-footer"><strong>两人约 ₺2,500–4,000</strong><span><a href="https://ruhibeymeyhanesi.com/" target="_blank" rel="noopener">官网</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Ruhi+Bey+Meyhanesi+Kas" target="_blank" rel="noopener">地图</a></span></div></div></article>
+
+          <h3 class="restaurant-area">厄吕代尼兹 · 先吃全包，想看海再外出</h3>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-meze.jpg" alt="土耳其自助餐凉菜"><figcaption>代表菜：酒店晚餐冷盘与热菜</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">主选 · 已含房费</span><div class="restaurant-loc">Ölüdeniz Turquoise Hotel</div><h3>酒店主餐厅</h3><p>早餐、午餐、晚餐和指定时段小食已经包含；10/1 与 10/2 晚上优先在酒店吃，避免重复花钱。</p><div class="restaurant-tags"><span>全包</span><span>零额外餐费</span><span>时间最稳</span></div><div class="restaurant-footer"><strong>房费已含</strong><a href="https://www.turquoisehotel.com/food-beverage/" target="_blank" rel="noopener">餐期 ↗</a></div></div></article>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-pide.jpg" alt="土耳其皮德饼"><figcaption>代表菜：Pide 或海边简餐</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">备选 · 海边氛围</span><div class="restaurant-loc">Belcekız 海滩</div><h3>Buzz Beach Bar</h3><p>只有明确想在海边看日落时才放弃一顿全包；点 Pide、沙拉或一份鱼即可，官网有 2026 菜单。</p><div class="restaurant-tags"><span>海景</span><span>Pide</span><span>素食可选</span></div><div class="restaurant-footer"><strong>两人约 ₺1,400–2,200</strong><span><a href="https://buzzbeachbar.com/menus.html" target="_blank" rel="noopener">菜单</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Buzz+Beach+Bar+Oludeniz" target="_blank" rel="noopener">地图</a></span></div></div></article>
         </div>
-        <div class="callout"><strong>国内航班时间口径：</strong>目标是起飞前约 2 小时到航站楼；租车加油、还车、验车和门店接驳要另算，不能占用这 2 小时。Çizgi 的 Premium Damage 也不能仅凭名称当作“零免赔、全覆盖”，付款前必须取得 exclusions 和 excess 的书面说明。</div>
-        <div class="callout"><strong>租车官方核对入口：</strong><a href="https://www.cizgirentacar.com/en/office/antalya-cizgi-office/" target="_blank" rel="noopener noreferrer">AYT办公室 ↗</a>　<a href="https://www.cizgirentacar.com/en/office/dalaman-cizgi-office/" target="_blank" rel="noopener noreferrer">DLM办公室 ↗</a>　<a href="https://www.cizgirentacar.com/en/ourcars/" target="_blank" rel="noopener noreferrer">车组 ↗</a>　<a href="https://www.cizgirentacar.com/en/content/18/car-renting-conditions/" target="_blank" rel="noopener noreferrer">租车及保障条款 ↗</a>　<a href="https://api.whatsapp.com/send?phone=908504331183" target="_blank" rel="noopener noreferrer">官方WhatsApp询价 ↗</a>。Premium并不自动等于零免赔；没有上述书面回复前不付款。</div>
+        <div class="callout"><strong>怎么选：</strong>平时从主选开始；排队超过 15 分钟、当天位置不顺或预算不合，就直接换同组备选。9/28 北线团和 10/2 船餐已含午餐；10/1–10/3 酒店是全包，除非特意想看海边日落，不需要再为晚餐付一次钱。</div>
       </div>
     </section>
 
@@ -897,6 +875,7 @@
       <strong>土耳其 11 日旅行手册</strong>
       <p class="small">行程日期：2026 年 9 月 24 日—10 月 4 日。除明确标注“已确认”的订单截图金额外，其余价格为两人规划区间，不等同于锁价；付款前请重新核对含税价格、行李、取消规则、餐厅营业时间和异地还车费用。</p>
       <p class="small">道路时间与预算是行前规划值；实际执行以当天导航、天气、订单和现场营业信息为准。餐厅优先参考官方资料与近期营业信息，但季节性营业可能调整。</p>
+      <p class="small">餐厅卡片中的食物照片仅用于说明代表菜式，并非对应餐厅实拍。图片来自 Wikimedia Commons：Kuru Fasulye、Mercimek çorbası、Turkish Meze Plate、Mantı of Kayseri、Vişneli Yaprak Sarma、Pide、Plated grilled fish 与 Falafel with Hummus，按各自 CC 或公有领域许可使用。</p>
       <p class="small">新增卡帕多奇亚照片来自 Wikimedia Commons：Goreme sunset（Cetintas555）、Cappadocia Red Valley（Kaan Kosemen）、Zelve, Cappadocia 16（Bernard Gagnon）、Valley of Love in Cappadocia（Emre Dokur），<a href="https://commons.wikimedia.org/wiki/File:In_pottery_shop_in_Avanos,_Cappadocia,_Turkey,_May,_2015.jpg" target="_blank" rel="noopener noreferrer">Avanos potter at work</a>（Alexey Komarov，<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>），以及 <a href="https://commons.wikimedia.org/wiki/File:%27Camel%27_in_Devrent_(1).JPG" target="_blank" rel="noopener noreferrer">Camel in Devrent</a>（José Luiz Bernardes Ribeiro，<a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a>），按各自 CC 许可使用。页面图片保存在同目录下的 guide-images 文件夹中。</p>
       <p class="small">本次校正照片同样来自 Wikimedia Commons：Kaş–Kalkan road（Tutku Çetinel，CC BY 3.0）、Kaş harbour（Esginmurat，CC BY-SA 4.0）、Limanağzı（Tugceeakgunn91，CC BY-SA 4.0）、Büyük Çakıl（Dündar Termal Apart，CC BY 3.0）、Patara dunes（Angela Stefanoni，CC BY 3.0）、Kaş sunset（Alexkom000，CC BY 4.0）、Üsküdar sunset（Ezzeldin.Elbaksawy，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:Ka%C5%9F_panoramik.jpg" target="_blank" rel="noopener noreferrer">Kaş panoramik</a>（Cobija，CC0）、<a href="https://commons.wikimedia.org/wiki/File:Paragliding_over_%C3%96l%C3%BCdeniz_Beach_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Paragliding over Ölüdeniz</a>（rheins，CC BY 3.0）、<a href="https://commons.wikimedia.org/wiki/File:Kelebekler_vadisi.jpg" target="_blank" rel="noopener noreferrer">Kelebekler vadisi</a>（Rotadefterim，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:G%C3%B6reme_at_Night_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Göreme at Night</a>（rheins，CC BY 3.0）、<a href="https://commons.wikimedia.org/wiki/File:Sunset_of_Historical_Peninsula_from_Kad%C4%B1k%C3%B6y.jpg" target="_blank" rel="noopener noreferrer">Kadıköy sunset</a>（Scott Dexter，CC BY-SA 2.0）及 <a href="https://commons.wikimedia.org/wiki/File:Moda_Sahil.jpg" target="_blank" rel="noopener noreferrer">Moda Sahil</a>（Antoloji，CC BY-SA 3.0）。海盗船图为 <a href="https://dragonparagliding.com/en/tours/pirate-boat-trip/" target="_blank" rel="noopener noreferrer">© Dragon Paragliding 官方宣传图</a>；未标开放许可，仅用于本次私人旅行手册，若改作商业公开用途需另行获得授权。</p>
     </div>
