@@ -14,6 +14,6 @@ assert.doesNotMatch(html, /<script src="vendor\/(?:leaflet|topojson)/, 'the rout
 assert.match(html, /data-route-target="route-coast"/, 'route tabs should expose the coast view');
 assert.match(html, /button\.dataset\.routeTarget/, 'route tabs should switch panels locally');
 assert.doesNotMatch(html, /地下水宫|Basilica Cistern/i, 'the cancelled Basilica Cistern visit must stay removed');
-assert.doesNotMatch(html, /Kekova|Simena|Bermuda|book-kekova/i, 'the cancelled Kekova route must stay removed');
+assert.match(html, /Kekova[^<]{0,120}沉没之城＋Kaleköy/, 'the coast route board should show the restored Kekova day');
 
 console.log('Static route navigator regression test passed');

@@ -6,7 +6,8 @@ const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 const octoberFirst = html.match(/<div class="date">10\.01<\/div>[\s\S]*?<div class="date">10\.02<\/div>/)?.[0] ?? '';
 const octoberSecond = html.match(/<div class="date">10\.02<\/div>[\s\S]*?<div class="date">10\.03<\/div>/)?.[0] ?? '';
 
-assert.doesNotMatch(html, /Kekova|Simena|Bermuda|book-kekova/i, 'the cancelled Kekova day and booking guide must be removed everywhere');
+assert.match(html, /09\.30[\s\S]{0,5000}Kekova[\s\S]{0,1200}10:00–18:00[\s\S]{0,1500}Kaleköy/i, 'September 30 should be a full Kaş-departure Kekova day');
+assert.match(html, /id="book-kekova"/, 'the coast plan should include a dedicated Kekova booking guide');
 
 assert.match(octoberFirst, /D400[\s\S]{0,500}Kaş Seyir Terası[\s\S]{0,900}Kaputaş[\s\S]{0,1200}Patara[\s\S]{0,1200}蝴蝶谷崖顶[\s\S]{0,1600}(?:滑翔伞|paragliding)/i, 'October 1 should combine the bounded D400 scenery stops with paragliding');
 assert.match(octoberFirst, /14:30[\s\S]{0,500}ReAction/i, 'October 1 should reserve the 14:30 ReAction paragliding slot');

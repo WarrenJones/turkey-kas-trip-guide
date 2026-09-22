@@ -93,6 +93,14 @@
     .restaurant-tags span { padding: 5px 8px; border-radius: 8px; color: #425d63; background: rgba(8,127,140,.08); font-size: 12px; font-weight: 750; }
     .restaurant-footer { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13px; }
     .restaurant-footer a { color: var(--sea-dark); font-weight: 850; }
+    .cafe-guide { margin-top: 30px; }
+    .cafe-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .cafe-stop { overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: 0 10px 28px rgba(18,57,64,.08); }
+    .cafe-stop img { width: 100%; height: 165px; object-fit: cover; }
+    .cafe-stop-body { padding: 18px; }
+    .cafe-stop-body h3 { margin: 5px 0 8px; }
+    .cafe-stop-body p { margin-bottom: 10px; color: var(--muted); font-size: 14px; }
+    .cafe-stop-time { color: var(--sun); font-size: 12px; font-weight: 900; letter-spacing: .06em; }
 
     .practical-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .practical-item { padding: 22px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,255,255,.72); }
@@ -207,6 +215,7 @@
     .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
     .slots.slots-four { grid-template-columns: repeat(4, 1fr); }
     .slots.slots-five { grid-template-columns: repeat(3, 1fr); }
+    .slots.slots-six { grid-template-columns: repeat(3, 1fr); }
     .slot { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: #fff; }
     .slot img { aspect-ratio: 16 / 9; }
     .slot-text { padding: 15px; }
@@ -272,14 +281,14 @@
       .route-facts { grid-template-columns: 1fr; }
       .activity-booking-card { grid-template-columns: 1fr; }
       .booking-option-grid { grid-template-columns: 1fr; }
-      .restaurant-grid { grid-template-columns: repeat(2, 1fr); }
+      .restaurant-grid, .cafe-grid { grid-template-columns: repeat(2, 1fr); }
       .duration-row { grid-template-columns: 70px minmax(170px,1fr) minmax(170px,1fr) 82px; }
       .duration-row > :last-child { display: none; }
       .day { grid-template-columns: 1fr; }
       .day-head { display: flex; align-items: center; gap: 18px; }
       .day-head .sleep { margin: 0 0 0 auto; text-align: right; }
       .slots { grid-template-columns: 1fr; }
-      .slots.slots-four, .slots.slots-five { grid-template-columns: repeat(2, 1fr); }
+      .slots.slots-four, .slots.slots-five, .slots.slots-six { grid-template-columns: repeat(2, 1fr); }
       .slot { display: grid; grid-template-columns: minmax(130px, .7fr) 1fr; }
       .slot img { height: 100%; aspect-ratio: auto; }
     }
@@ -290,13 +299,13 @@
       .slot-time, .leg-date { font-size: 16px; }
       .check-grid { grid-template-columns: 1fr; }
       .route-panel { padding: 17px; }
-      .decision-matrix, .restaurant-grid, .practical-grid { grid-template-columns: 1fr; }
+      .decision-matrix, .restaurant-grid, .cafe-grid, .practical-grid { grid-template-columns: 1fr; }
       .section { padding-top: 54px; }
       .panel { padding: 20px; }
       .day-body { padding: 11px; }
       .slot { grid-template-columns: 1fr; }
       .slot img { aspect-ratio: 16 / 9; }
-      .slots.slots-four, .slots.slots-five, .drive-timeline, .drive-rules { grid-template-columns: 1fr; }
+      .slots.slots-four, .slots.slots-five, .slots.slots-six, .drive-timeline, .drive-rules { grid-template-columns: 1fr; }
       .drive-hero { min-height: 320px; }
       .drive-body, .drive-hero-copy { padding: 19px; }
       .stay-table { min-width: 720px; }
@@ -311,7 +320,7 @@
       .section { padding: 12mm 0 0; }
       .panel, .day { box-shadow: none; }
       .day { break-inside: avoid; margin-bottom: 8mm; }
-      .slots, .slots.slots-four, .slots.slots-five { grid-template-columns: repeat(3, 1fr); }
+      .slots, .slots.slots-four, .slots.slots-five, .slots.slots-six { grid-template-columns: repeat(3, 1fr); }
       .slot { display: block; }
       .slot img { aspect-ratio: 16/9; }
       a { text-decoration: none; }
@@ -330,7 +339,7 @@
       <div class="hero-meta">
         <span class="chip">2 人 · 10 晚</span>
         <span class="chip">4个日历日 · 约500 km自驾</span>
-        <span class="chip">两人基础预算约 ¥31,000～37,800</span>
+        <span class="chip">两人基础预算约 ¥31,900～38,400</span>
         <span class="chip">国际机票已付 ¥12,628</span>
         <span class="chip">VF3135 已订 · 10/3 13:40–15:00</span>
       </div>
@@ -387,7 +396,7 @@
             <div class="route-facts"><div class="route-fact"><b>住宿</b><span>Caravanserai Inn，9/26–9/28</span></div><div class="route-fact"><b>最晚动作</b><span>18:30离开格雷梅，目标19:30–19:50到ASR</span></div><div class="route-fact"><b>删减原则</b><span>团回程无法保证16:30，就不参加整日团</span></div></div>
           </div>
           <div class="route-panel" id="route-coast">
-            <div class="journey-strip" style="--stops:7"><div class="route-stop"><span class="stop-dot">9/29</span><strong>AYT取车</strong><small>10:30；下杜登可删</small></div><div class="route-stop"><span class="stop-dot">9/29</span><strong>卡什</strong><small>古剧场日落</small></div><div class="route-stop"><span class="stop-dot">9/30</span><strong>Limanağzı</strong><small>游泳＋浮潜</small></div><div class="route-stop"><span class="stop-dot">10/1</span><strong>Kaputaş</strong><small>D400最美段</small></div><div class="route-stop"><span class="stop-dot">10/1</span><strong>蝴蝶谷崖顶</strong><small>安全停车才停</small></div><div class="route-stop"><span class="stop-dot">10/1</span><strong>滑翔伞</strong><small>14:00前报到</small></div><div class="route-stop"><span class="stop-dot">10/2</span><strong>Dragon海盗船</strong><small>10:30–17:00</small></div></div>
+            <div class="journey-strip" style="--stops:7"><div class="route-stop"><span class="stop-dot">9/29</span><strong>AYT取车</strong><small>10:30；下杜登可删</small></div><div class="route-stop"><span class="stop-dot">9/29</span><strong>卡什</strong><small>古剧场日落</small></div><div class="route-stop"><span class="stop-dot">9/30</span><strong>Kekova</strong><small>沉没之城＋Kaleköy</small></div><div class="route-stop"><span class="stop-dot">10/1</span><strong>Kaputaş</strong><small>D400最美段</small></div><div class="route-stop"><span class="stop-dot">10/1</span><strong>蝴蝶谷崖顶</strong><small>安全停车才停</small></div><div class="route-stop"><span class="stop-dot">10/1</span><strong>滑翔伞</strong><small>14:00前报到</small></div><div class="route-stop"><span class="stop-dot">10/2</span><strong>Dragon海盗船</strong><small>10:30–17:00</small></div></div>
             <div class="route-facts"><div class="route-fact"><b>住卡什</b><span>Kaş Old Town，9/29–10/1</span></div><div class="route-fact"><b>住厄吕代尼兹</b><span>Turquoise全包，10/1–10/3</span></div><div class="route-fact"><b>D400直接导航</b><span><a href="#d400-guide">看停靠点地址与整段路线 ↓</a></span></div></div>
           </div>
           <div class="route-panel" id="route-return">
@@ -456,14 +465,15 @@
           <article class="day">
             <header class="day-head"><div><div class="date">09.24</div><div class="weekday">周四 · Day 1</div></div><div class="sleep">住：伊斯坦布尔<br>Airbnb</div></header>
             <div class="day-body">
-              <div class="slots slots-five">
+              <div class="slots slots-six">
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">05:30–08:30</span><h3>抵达、进城、寄存行李</h3><p>05:30 抵达 IST；给入境与取行李预留 60–90 分钟。优先按两只行李选择接送或出租车直达 Sultanahmet；公共交通为 M11→M2→T1，换乘较多。须提前请房东书面确认清晨寄存行李。</p><div class="authority-links"><a class="authority-link" href="https://www.metro.istanbul/Content/assets/uploaded/%C4%B0stanbul%20Rayl%C4%B1%20Sistemler%20Haritas%C4%B1.pdf" target="_blank" rel="noopener noreferrer">Metro İstanbul · 官方轨道图 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/blue-mosque.jpg" alt="伊斯坦布尔蓝色清真寺"><div class="slot-text"><span class="slot-time">09:00–11:15</span><h3>苏丹艾哈迈德广场晨游</h3><p>早餐后依次走古竞技场、蓝色清真寺和圣索菲亚外观；都在步行范围内，不买限时门票。蓝色清真寺是仍在使用的宗教场所，能否入内以礼拜安排和现场开放为准。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/zh/istanbul/blue-mosque" target="_blank" rel="noopener noreferrer">GoTürkiye · 蓝色清真寺官方介绍 ↗</a></div></div></div>
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">11:30–15:00</span><h3>午餐、入住、补觉</h3><p>在老城吃午餐，按房东确认的时间入住；至少留 90 分钟睡觉和洗澡。若仍明显疲劳，下午直接延后，不压缩晚餐。</p></div></div>
                 <div class="slot attraction-card"><img src="guide-images/gulhane-park.jpg" alt="伊斯坦布尔居尔哈内公园林荫步道"><div class="slot-text"><span class="slot-time">15:30–17:30</span><h3>居尔哈内公园＋Sarayburnu 海边</h3><p>从公园历史入口沿林荫道慢走，再向 Sarayburnu 海边收尾；这段以树荫、海风和休息为主，不再进入博物馆。体力不足时只走公园主路，随时返回住宿。</p><div class="authority-links"><a class="authority-link" href="https://istanbulseninhaber.ibb.istanbul/haber-detay/istanbulun-has-bahcesi" target="_blank" rel="noopener noreferrer">伊斯坦布尔市政府 · 公园介绍 ↗</a><a class="authority-link" href="https://commons.wikimedia.org/wiki/File:Gulhane_park_Istanbul_2007_002.jpg" target="_blank" rel="noopener noreferrer">图片来源 · Wikimedia Commons ↗</a></div></div></div>
-                <div class="slot attraction-card"><img src="guide-images/istanbul-hagia-sophia.jpg" alt="傍晚的圣索菲亚外观"><div class="slot-text"><span class="slot-time">18:15–20:00</span><h3>屋顶晚餐＋老城夜景</h3><p>18:15 左右入座，边吃晚餐边等约 19:00 的日落；餐后只在灯光亮起的圣索菲亚与蓝色清真寺外散步，不再排队进入室内。</p><div class="authority-links"><a class="authority-link" href="https://ayasofyacamii.gov.tr/" target="_blank" rel="noopener noreferrer">圣索菲亚官网与 360° 导览 ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/istanbul-hagia-sophia.jpg" alt="傍晚的圣索菲亚外观"><div class="slot-text"><span class="slot-time">18:15–20:00 · 需订露台位</span><h3>Seven Hills 屋顶晚餐＋夜景</h3><p>预订 9/24 18:15、2人、rooftop terrace table；露台能同时看圣索菲亚、蓝色清真寺与海峡，约 19:00 等日落。地址：Cankurtaran Mah., Tevkifhane Sk. No:8, Kat:3。餐后步行回广场看两座清真寺亮灯，不再排队入内。</p><div class="authority-links"><a class="authority-link" href="https://sevenhillsrestaurant.com/Location.html" target="_blank" rel="noopener noreferrer">官网地址＋预订入口 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Seven+Hills+Restaurant+Istanbul" target="_blank" rel="noopener noreferrer">地图导航 ↗</a><a class="authority-link" href="https://wa.me/905345223793?text=Hello%2C%20I%20would%20like%20to%20reserve%20a%20rooftop%20terrace%20table%20for%202%20adults%20at%2018%3A15%20on%2024%20September%202026.%20We%20would%20like%20a%20table%20with%20views%20of%20Hagia%20Sophia%20and%20the%20Blue%20Mosque%20for%20sunset.%20Please%20confirm%20the%20reservation." target="_blank" rel="noopener noreferrer">WhatsApp 订露台位 ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/hookah-shisha.jpg" alt="传统水烟壶与休闲座位"><div class="slot-text"><span class="slot-time">20:20–21:15</span><h3>Çorlulu Ali Paşa 水烟＋茶</h3><p>从 Sultanahmet 步行或短程电车到历史庭院；两人可共用一壶并各点一杯茶。它与 9/27 格雷梅水烟不冲突，两晚氛围不同；若落地后明显疲劳，当晚直接回住处即可。</p><div class="authority-links"><a class="authority-link" href="https://corlulumedrese.com/" target="_blank" rel="noopener noreferrer">官方菜单 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Corlulu+Ali+Pasa+Medresesi" target="_blank" rel="noopener noreferrer">地图 ↗</a></div></div></div>
               </div>
-              <p class="why"><strong>当天取舍：</strong>05:30 落地足够增加上午老城和下午公园，但不预订任何限时入场。航班延误超过 2 小时，先删海边；到住宿仍很疲劳，下午公园整段取消，保留晨游、补觉和日落晚餐。</p>
+              <p class="why"><strong>当天取舍：</strong>05:30 落地足够增加上午老城和下午公园，但不预订任何限时入场。航班延误超过 2 小时，先删海边；到住宿仍很疲劳，下午公园整段取消。水烟是当晚最后一项而非必须打卡，困倦、头痛或不想吸烟就只喝茶后回去。</p>
             </div>
           </article>
 
@@ -473,7 +483,7 @@
               <div class="slots">
                 <div class="slot attraction-card"><img src="guide-images/spice-bazaar.jpg" alt="伊斯坦布尔香料市场的香料与干货摊位"><div class="slot-text"><span class="slot-time">10:00–12:30</span><h3>香料市场＋加拉塔桥</h3><p>不设闹钟赶收费景点；早餐后慢慢逛香料市场和桥边，午餐留在 Eminönü。</p><div class="authority-links"><a class="authority-link" href="https://istanbul.goturkiye.com/zh/spice-bazaar-a-culinary-and-aromatic-paradise" target="_blank" rel="noopener noreferrer">GoTürkiye · 香料市场 ↗</a><a class="authority-link" href="https://goturkiye.com/zh/istanbul/old-galata-bridge" target="_blank" rel="noopener noreferrer">GoTürkiye · 加拉塔桥 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/bosphorus-sunset.jpg" alt="博斯普鲁斯海峡上的渡轮与城市天际线"><div class="slot-text"><span class="slot-time">13:50到码头 · 14:40开船</span><h3>14:40 博斯普鲁斯短线游船</h3><p>到 Şehir Hatları 官方窗口购买 Kısa Boğaz Turu；航程约 2 小时，提前 30–45 分钟候船。季节班次只以官网为准。</p><div class="authority-links"><a class="authority-link" href="https://sehirhatlari.istanbul/en/timetables/bosphorus-tours/short-bosphorus-tour-181" target="_blank" rel="noopener noreferrer">Şehir Hatları · 官方时刻表 ↗</a></div></div></div>
-                <div class="slot attraction-card"><img src="guide-images/uskudar-sunset.jpg" alt="Üsküdar 海边望向博斯普鲁斯海峡日落"><div class="slot-text"><span class="slot-time">17:15后</span><h3>Üsküdar 海边日落＋晚餐</h3><p>游船返回后乘普通渡轮到亚洲区；沿海边散步，在 Kadıköy 或 Üsküdar 吃家常菜。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/zh/istanbul/uskudar" target="_blank" rel="noopener noreferrer">GoTürkiye · Üsküdar 官方指南 ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/uskudar-sunset.jpg" alt="Üsküdar 海边望向博斯普鲁斯海峡日落"><div class="slot-text"><span class="slot-time">17:15后</span><h3>Üsküdar 海边日落 → Çiya 晚餐</h3><p>游船返回后乘普通渡轮到 Üsküdar，沿海边看日落；随后乘 M5→Ayrılık Çeşmesi 换 M4，或短程出租去 Kadıköy 市场吃 Çiya。CSV 写的“Üsküdar Kıyı Restaurant”未找到可核对的同名官方门店，因此不把它写成主方案。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/zh/istanbul/uskudar" target="_blank" rel="noopener noreferrer">GoTürkiye · Üsküdar ↗</a><a class="authority-link" href="https://www.ciya.com.tr/index_en.php" target="_blank" rel="noopener noreferrer">Çiya 官网 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Ciya+Sofrasi+Kadikoy" target="_blank" rel="noopener noreferrer">Çiya 地图 ↗</a></div></div></div>
               </div>
               <p class="why"><strong>这样安排：</strong>删除室内建筑和限时门票，把国际航班后的恢复时间留足；当天唯一硬时间是 13:50 到 Eminönü 官方码头。</p>
             </div>
@@ -484,7 +494,7 @@
             <div class="day-body">
               <div class="slots">
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">07:45–约10:15/11:00</span><h3>SAW→NAV＋已确认接机</h3><p>VF3268，09:00 抵达；NAV 接机已由住宿方确认，€15/人现金，司机在国内到达出口举姓名牌。道路约 40–50 分钟，但连同取箱、等同车乘客，落地到住宿按 60–90 分钟管理；12:00 前能否先放行李仍待确认。</p></div></div>
-                <div class="slot attraction-card"><img src="guide-images/uchisar-panorama.jpg" alt="乌奇萨与鸽子谷全景"><div class="slot-text"><span class="slot-time">12:30–16:00</span><h3>乌奇萨＋鸽子谷</h3><p>城堡高点看全区地貌，再用鸽子谷短步行连接第一批全景；不把时间耗在室内建筑。</p><div class="authority-links"><a class="authority-link" href="https://www.uchisar.bel.tr/uchisar-kalesi/" target="_blank" rel="noopener noreferrer">乌奇萨市政府 · 城堡与鸽子谷 ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/uchisar-panorama.jpg" alt="乌奇萨与鸽子谷全景"><div class="slot-text"><span class="slot-time">12:30–16:00</span><h3>Saklı Konak 午餐＋乌奇萨＋鸽子谷</h3><p>先在乌奇萨 Saklı Konak 吃汤、Mantı 或蔬菜，约 13:30 开始城堡高点和鸽子谷短步行；不点耗时的完整套餐，16:00 前结束。</p><div class="authority-links"><a class="authority-link" href="https://saklikonakrooftop.com/" target="_blank" rel="noopener noreferrer">Saklı Konak 官网 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Sakli+Konak+Restaurant+Uchisar" target="_blank" rel="noopener noreferrer">餐厅地图 ↗</a><a class="authority-link" href="https://www.uchisar.bel.tr/uchisar-kalesi/" target="_blank" rel="noopener noreferrer">乌奇萨市政府 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/goreme-night.jpg" alt="格雷梅镇区与洞穴建筑亮灯夜景"><div class="slot-text"><span class="slot-time">17:30–19:30</span><h3>格雷梅日落观景台＋洞穴镇夜景</h3><p>Aydınkırağı / Sunset Point 先看日落；日落后继续停留 30–45 分钟，看镇区与洞穴酒店逐渐亮灯。只沿主路下山，天黑后不进入山谷小径。</p><div class="authority-links"><a class="authority-link" href="https://www.goreme.bel.tr/tr/seyir-alani-1758439471" target="_blank" rel="noopener noreferrer">格雷梅市政府 · 官方观景点说明 ↗</a></div></div></div>
               </div>
               <p class="why"><strong>这样安排：</strong>上午航班已确认，下午立即进入最有辨识度的全景线；约 20:00 前回酒店，既保留蓝调夜景，也不影响次日约 04:45 的地面追球接人。</p>
@@ -494,12 +504,14 @@
           <article class="day">
             <header class="day-head"><div><div class="date">09.27</div><div class="weekday">周日 · Day 4</div></div><div class="sleep">住：格雷梅<br>镇中心住宿 · 已订</div></header>
             <div class="day-body">
-              <div class="slots">
-                <div class="slot attraction-card"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚地面观看成群热气球升空"><div class="slot-text"><span class="slot-time">日出前接车 · 暂按04:45–07:45占位</span><h3>地面追热气球</h3><p>房东称价格 €80、可供2人，但没有确认是否为整车两人总价，老爷车尚未预订；先在 Airbnb 订单聊天确认计价单位、酒店往返、实际接送时段、先到起飞区看充气，再到 Love Valley（爱情谷）或其他按实际风向选择的至少两个后续观景点，以及全部停飞退款。条件不全就订 Rush 共享车；都不订则在住宿露台看远景，清晨开放时间及是否收费也要先确认。</p><div class="authority-links"><a class="authority-link" href="https://www.getyourguide.com/goreme-l984/cappadocia-private-sunrise-hot-air-balloon-watching-tour-t526609/" target="_blank" rel="noopener noreferrer">Rush 共享追球 ↗</a><a class="authority-link" href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">官方飞行旗 ↗</a><a class="authority-link" href="#book-balloon-viewing">住宿方确认话术与下单规则 ↓</a></div></div></div>
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:00–15:30</span><h3>早餐＋补觉</h3><p>回酒店吃早餐并睡 2–3 小时。地面追球约 1.5–2 小时，比乘球恢复更快；午餐后再决定徒步强度。</p></div></div>
+              <div class="slots slots-five">
+                <div class="slot attraction-card"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚老爷车地面观看成群热气球升空"><div class="slot-text"><span class="slot-time">日出前接车 · 暂按04:45–07:45占位</span><h3>老爷车地面追球</h3><p>不乘热气球，也不再比较共享追球队。直接通过已订住宿的 Airbnb 订单聊天预约老爷车：€80须书面确认为<strong>一辆车供两人的整车总价</strong>，包含酒店往返、起飞区和按风向选择的至少两个后续观景点，不要摄影师、礼服或无人机加价。<strong>若官方红旗停飞：</strong>老爷车取消且不收费，08:00–10:30改去 Göreme Open Air Museum。</p><div class="authority-links"><a class="authority-link" href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">官方飞行旗 ↗</a><a class="authority-link" href="https://muze.gov.tr/muze-detay?DistId=grm&amp;SectionId=grm01" target="_blank" rel="noopener noreferrer">露天博物馆官方页 ↗</a><a class="authority-link" href="#book-balloon-viewing">老爷车确认话术 ↓</a></div></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:00–14:25</span><h3>早餐＋补觉</h3><p>回酒店吃早餐并睡 2–3 小时；午餐后再决定徒步强度，不把清晨与下午排成连续赶场。</p></div></div>
+                <div class="slot attraction-card"><img src="guide-images/turkish-coffee.jpg" alt="土耳其咖啡与传统咖啡杯"><div class="slot-text"><span class="slot-time">14:40–15:15</span><h3>Hopper Coffee 咖啡停靠</h3><p>徒步前在 Göreme 镇内喝 Turkish coffee、V60 或 flat white，控制在 35 分钟；不点大份甜品，避免带着饱腹感走山谷。15:15 准时离店。</p><div class="authority-links"><a class="authority-link" href="https://hoppercoffee.com.tr/en/" target="_blank" rel="noopener noreferrer">官网与菜单 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hopper+Coffee+House+Goreme" target="_blank" rel="noopener noreferrer">地图 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/red-valley.jpg" alt="卡帕多奇亚红谷与玫瑰谷地貌"><div class="slot-text"><span class="slot-time">15:30–日落</span><h3>红谷＋玫瑰谷徒步</h3><p>安排 2.5–3 小时自然线，选择短环线并在 Kızılçukur 看颜色变化；体力不足则缩为观景台。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/zh/central/touch" target="_blank" rel="noopener noreferrer">GoTürkiye · 红／玫瑰谷官方介绍 ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/hookah-shisha.jpg" alt="格雷梅夜间水烟与咖啡座"><div class="slot-text"><span class="slot-time">20:30–21:30 · 可选</span><h3>Göreme Discount Coffee 水烟</h3><p>徒步后先吃晚饭，再回镇中心坐一小时；可点 hookah、茶或甜品。即使 9/24 已经抽过也可以保留；若徒步结束太晚、腿累或次日想早睡，就删这一项。</p><div class="authority-links"><a class="authority-link" href="https://www.goremecoffee.com/" target="_blank" rel="noopener noreferrer">官网 ↗</a><a class="authority-link" href="https://goremecoffee.com/contact.html" target="_blank" rel="noopener noreferrer">地址与时间 ↗</a></div></div></div>
               </div>
-              <p class="why"><strong>方案取舍：</strong>如果房东最终确认 €80 是一辆车供两人的整车总价，它会和共享追球总价重叠，且沟通留在既有 Airbnb 订单内，比另找陌生司机更省心。老爷车仍要确认起飞区＋两个后续点和停飞全退；Rush 按公开产品执行起飞区＋一个后续点（总共至少2点）；住宿露台机位固定、距离受风向影响，清晨开放与收费尚未确认。</p>
+              <p class="why"><strong>当天主线已确定：</strong>老爷车地面追球，不乘球、不找共享团。Hopper 是徒步前的固定咖啡；Discount Coffee 是晚饭后的可选第二场水烟。当天优先级为老爷车追球＞补觉＞山谷徒步＞咖啡＞水烟。</p>
             </div>
           </article>
 
@@ -523,7 +535,7 @@
               <div class="slots">
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:30–10:30</span><h3>C Suites退房＋AYT取车</h3><p>订单截图未确认含早餐，早餐自理；退房后前往机场，10:30 办理取车。完整拍摄车身、轮胎、玻璃、油量与里程后再出发。</p></div></div>
                 <div class="slot attraction-card"><img src="guide-images/lower-duden-waterfall.jpg" alt="下杜登瀑布从海崖落入地中海"><div class="slot-text"><span class="slot-time">11:10–12:10</span><h3>下杜登瀑布</h3><p>距机场约 14 km，只走 Gençlik Parkı 陆地观景台，不坐船。11:15仍未取到车就跳过瀑布。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/antalya/listen" target="_blank" rel="noopener noreferrer">GoTürkiye · 下杜登官方介绍 ↗</a></div></div></div>
-                <div class="slot attraction-card"><img src="guide-images/kas-theatre.jpg" alt="卡什古剧场面向地中海"><div class="slot-text"><span class="slot-time">约16:30入住 · 日落前45–60分钟</span><h3>D400 转场＋卡什古剧场日落</h3><p>下杜登后约 189 km，午餐和服务区合计最多 35 分钟。入住已确认的 Kaş Old Town Hotel &amp; Beach 后不再开车，步行去古剧场；停车方式须提前在订单消息内确认。</p><div class="authority-links"><a class="authority-link" href="https://antalya.ktb.gov.tr/TR-312262/antiphellos-kas.html" target="_blank" rel="noopener noreferrer">文化与旅游部 · Antiphellos ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/kas-theatre.jpg" alt="卡什古剧场面向地中海"><div class="slot-text"><span class="slot-time">约16:30入住 · 日落前45–60分钟</span><h3>先问 Kekova 船班 → 古剧场日落</h3><p>入住 Kaş Old Town 后先去码头确认次日<strong>从 Kaş Harbour 10:00 出发</strong>的共享 Kekova 船、09:45集合、约18:00回港、两人总价、午餐、Kaleköy上岸和取消规则；不要被改订成 Üçağız 出发而没有接送。确认后步行去古剧场。</p><div class="authority-links"><a class="authority-link" href="https://kasboattrip.com/tr" target="_blank" rel="noopener noreferrer">Kaş 出发运营方 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kas+Harbour" target="_blank" rel="noopener noreferrer">Kaş 港地图 ↗</a><a class="authority-link" href="https://antalya.ktb.gov.tr/TR-312262/antiphellos-kas.html" target="_blank" rel="noopener noreferrer">古剧场官方介绍 ↗</a></div></div></div>
               </div>
               <p class="why"><strong>执行门槛：</strong>12:15 前离开下杜登；若 11:15 仍未取到车，直接驶往卡什。9/29 是古剧场日落主机会，9/30 是天气或取车延误后的备份。</p>
             </div>
@@ -533,11 +545,11 @@
             <header class="day-head"><div><div class="date">09.30</div><div class="weekday">周三 · Day 7</div></div><div class="sleep">住：卡什<br>Kaş Old Town · 第2晚</div></header>
             <div class="day-body">
               <div class="slots">
-                <div class="slot attraction-card"><img src="guide-images/kas-harbor.jpg" alt="卡什港口、游船与临山老城"><div class="slot-text"><span class="slot-time">08:30–10:00</span><h3>卡什港口＋老城</h3><p>沿港口、Uzun Çarşı 和小巷短逛；狮子墓只顺路看，不把建筑当主角。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/antalya/touch" target="_blank" rel="noopener noreferrer">GoTürkiye · 卡什海湾官方指南 ↗</a></div></div></div>
-                <div class="slot attraction-card"><img src="guide-images/limanagzi.jpg" alt="Limanağzı 海湾清澈水面与游泳区"><div class="slot-text"><span class="slot-time">10:15–15:30</span><h3>Limanağzı 游泳＋浮潜</h3><p>前一晚确认季节性水上巴士；通常从卡什港乘小船约 15–20 分钟。带泳镜和水鞋，在海湾午餐。</p><div class="authority-links"><a class="authority-link" href="https://www.kas.bel.tr/cardDetay/limanagz%C4%B1-plaj%C4%B1-3619" target="_blank" rel="noopener noreferrer">卡什市政府 · 交通与设施 ↗</a><a class="authority-link" href="#book-limanagzi">预约方法与话术 ↓</a></div></div></div>
-                <div class="slot attraction-card"><img src="guide-images/buyuk-cakil.jpg" alt="卡什 Büyük Çakıl 鹅卵石海湾"><div class="slot-text"><span class="slot-time">16:30–日落 · 轻量</span><h3>Büyük Çakıl 海湾</h3><p>从 Limanağzı 回港后先回房休息；体力仍好再去大卵石海滩看傍晚，若 9/29 剧场失败则用这段时间补剧场。</p><div class="authority-links"><a class="authority-link" href="https://www.kas.bel.tr/mekanlar/deniz" target="_blank" rel="noopener noreferrer">卡什市政府 · 官方海滩目录 ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/kas-harbor.jpg" alt="卡什港口、游船与临山老城"><div class="slot-text"><span class="slot-time">08:30–09:35 · 09:45集合</span><h3>卡什港口＋老城短逛</h3><p>早餐后沿港口、Uzun Çarşı 和狮子墓顺路走一圈；09:35回到码头，按书面确认的柜台或船名办理登船，不临时在港口碰运气找船。</p><div class="authority-links"><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kas+Harbour" target="_blank" rel="noopener noreferrer">Kaş Harbour 导航 ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/kekova-sunken-city.jpg" alt="Kekova 沉没之城遗迹与碧蓝海水"><div class="slot-text"><span class="slot-time">10:00–18:00 · 全天船游</span><h3>Kaş → Kekova 沉没之城＋Kaleköy</h3><p>从 Kaş 港出发，沿 Kekova 沉没之城慢速观看，在 Simena／Kaleköy 上岸，并在海湾安排游泳停靠；午餐随船。Kaş 出发经营方公开班次为<strong>10:00–18:00</strong>，不要按表格里未经核实的17:00回港安排行程。</p><div class="authority-links"><a class="authority-link" href="https://kasboattrip.com/tr" target="_blank" rel="noopener noreferrer">Kaş 出发运营方路线 ↗</a><a class="authority-link" href="#book-kekova">预约方法与话术 ↓</a></div></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">18:00回港后</span><h3>回酒店休息＋Bi Lokma 晚餐</h3><p>回港后直接步行回 Kaş Old Town 洗澡休息，晚餐选已列入餐厅区的 Bi Lokma。次日06:45退房，不再追加海滩或古剧场；若9/29古剧场因延误没去成，也不挤占Kekova回港后的休息。</p><div class="authority-links"><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Bi+Lokma+Kas" target="_blank" rel="noopener noreferrer">Bi Lokma 导航 ↗</a></div></div></div>
               </div>
-              <p class="why"><strong>为什么这样玩：</strong>这一天不赶路，上午认识小镇、白天真正下海、傍晚留给休息或第二处海湾。若更喜欢活动，可用 2.5～4 小时体验潜水替换 Limanağzı；9/29 剧场没完成时，16:30 后优先补剧场。</p>
+              <p class="why"><strong>当天只做一件大事：</strong>Kekova 本身就是约8小时的完整海上日。付款前必须拿到 Kaş 港集合点、船名、两人总价、Kaleköy 上岸、午餐与取消规则；若卖家实际是 Üçağız 出发，只有明确包含 Kaş 往返接送才接受。</p>
             </div>
           </article>
 
@@ -570,13 +582,14 @@
           <article class="day">
             <header class="day-head"><div><div class="date">10.03</div><div class="weekday">周六 · Day 10</div></div><div class="sleep">住：Villa Blanche<br>已确认 · ¥724 · Gayrettepe</div></header>
             <div class="day-body">
-              <div class="slots slots-four">
+              <div class="slots slots-five">
                 <div class="slot attraction-card"><img src="guide-images/oludeniz.jpg" alt="清晨的厄吕代尼兹蓝色泻湖"><div class="slot-text"><span class="slot-time">08:00–08:50 · 09:00前离店</span><h3>Turquoise全包早餐＋退房</h3><p>从厄吕代尼兹离开后直接去 DLM，不再加景点；08:50–09:00 带两件行李离店。前一晚结清额外消费，并确认早餐开放、停车出口和无需等待的早退房方式。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/fethiye" target="_blank" rel="noopener noreferrer">GoTürkiye · Ölüdeniz ↗</a></div></div></div>
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">09:00–15:00 · VF3135订单已确认</span><h3>Ölüdeniz → DLM → SAW（DLM还车）</h3><p>厄吕代尼兹到 DLM 约 66 km／约 70 分钟；10:15 左右到机场路补油，<strong>10:30–10:50 OPET 还车</strong>、验车拍照并乘接驳，目标 <strong>11:10 到航站楼办理值机</strong>。VF3135 为 13:40–15:00，纯2小时的航站楼到达基准是11:40；多出的30分钟覆盖异地还车和接驳。订单截图显示已付 ¥684、两位乘客，行李额度仍待确认。<a href="https://ajet.com/tr/hizmetlerimiz/ucretsiz-check-in" target="_blank" rel="noopener noreferrer">AJet 官方值机说明 ↗</a></p></div></div>
-                <div class="slot attraction-card"><img src="guide-images/moda-coast.jpg" alt="Moda 海岸的绿地、海面与黄昏"><div class="slot-text"><span class="slot-time">15:00落地 · 预计16:55–17:30完成寄存</span><h3>寄存行李 → Moda海滨 → Kadıköy市场</h3><p>VF3135 准点 15:00 落地后，M4 从 SAW 车程约 52 分钟，落地到 Kadıköy 仍按 100–130 分钟；再预留 15–20 分钟交件。Radical Storage 页面当前显示已验证合作商户 09:30–20:30 营业；<strong>必须提前网上预订，不接受现场直接寄存，具体门店地址在预订后显示</strong>。只选码头／市场步行 5–10 分钟且至少营业到 20:30 的点。17:30 前完成寄存才乘 T3 或短程出租去 Moda 海边；18:45 返回市场快速晚饭，19:45–20:00 取件。</p><div class="authority-links"><a class="authority-link" href="https://radicalstorage.com/luggage-storage/istanbul/haydarpasa/luggage-storage-kadikoy" target="_blank" rel="noopener noreferrer">Radical Storage · Kadıköy 寄存 ↗</a><a class="authority-link" href="https://www.metro.istanbul/en/Hatlarimiz/HatDetay?hat=M4" target="_blank" rel="noopener noreferrer">Metro İstanbul · M4 ↗</a><a class="authority-link" href="https://istanbul.goturkiye.com/zh/kadikoy" target="_blank" rel="noopener noreferrer">GoTürkiye · Kadıköy–Moda ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/moda-coast.jpg" alt="Moda 海岸的绿地、海面与黄昏"><div class="slot-text"><span class="slot-time">15:00落地 · 预计16:55–17:30完成寄存</span><h3>寄存行李 → Moda海滨</h3><p>VF3135 准点落地后乘 M4，到 Kadıköy 连取箱、候车、出站和交件按 115–150 分钟。<strong>必须提前网上预订寄存，不接受现场直接寄存</strong>。17:30 前完成才去 Moda 海边，18:25 左右乘 T3 返回市场。</p><div class="authority-links"><a class="authority-link" href="https://radicalstorage.com/luggage-storage/istanbul/haydarpasa/luggage-storage-kadikoy" target="_blank" rel="noopener noreferrer">Radical Storage · Kadıköy ↗</a><a class="authority-link" href="https://istanbul.goturkiye.com/zh/kadikoy" target="_blank" rel="noopener noreferrer">Kadıköy–Moda ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/turkish-coffee.jpg" alt="土耳其咖啡与传统咖啡杯"><div class="slot-text"><span class="slot-time">18:45–19:15</span><h3>Fazıl Bey 土耳其咖啡</h3><p>在 Kadıköy 市场老店喝一杯现磨土耳其咖啡，30 分钟后离店；随后在市场快速晚饭，19:45–20:00 取回行李。若 17:30 后才寄存，直接删 Moda，咖啡仍保留；18:15 后才到则连咖啡一起删，带箱吃饭。</p><div class="authority-links"><a class="authority-link" href="https://www.fazilbey.com.tr/konum?lang=en" target="_blank" rel="noopener noreferrer">官方地址 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Fazil+Bey+Turk+Kahvesi+Kadikoy" target="_blank" rel="noopener noreferrer">地图 ↗</a></div></div></div>
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">取回行李后 · 20:45渡轮为主目标</span><h3>Kadıköy 渡轮 → 欧洲侧酒店</h3><p>19:45–20:00 取回行李箱后前往码头；只有 20:00 前已到码头才尝试 20:15，<strong>20:45 是更稳妥的计划班次</strong>。乘 Kadıköy→Beşiktaş 官方渡轮，抵达后短程打车到 Gayrettepe，入住步行 5–10 分钟可达<strong>实际 M11 入口</strong>的酒店。10月班次须临行复核。</p><div class="authority-links"><a class="authority-link" href="https://sehirhatlari.istanbul/tr/seferler/ic-hatlar/istanbul-ici-hatlar/kadikoybesiktas-165" target="_blank" rel="noopener noreferrer">Şehir Hatları · 官方班次 ↗</a></div></div></div>
               </div>
-              <p class="why"><strong>当天基调：</strong>VF3135 准点时主方案刚好成立，任何延误都按“完成寄存的时间”降级。<strong>17:30 前完成寄存</strong>去 Moda 海滨＋市场；17:31–18:15 才完成就删除 Moda，只留码头海边＋市场；<strong>18:15 后</strong>才到 Kadıköy 就<strong>不再寄存</strong>，带箱快速吃饭后乘 20:45 渡轮。预计赶不上 20:45 就取消亚洲区停留，从 SAW 直接去酒店。</p>
+              <p class="why"><strong>当天基调：</strong>VF3135 准点时主方案刚好成立，任何延误都按“完成寄存的时间”降级。<strong>17:30 前完成寄存</strong>去 Moda＋Fazıl Bey；17:31–18:15 才完成就删除 Moda，保留咖啡＋市场；<strong>18:15 后</strong>才到 Kadıköy 就不再寄存也不喝咖啡，带箱快速吃饭后乘 20:45 渡轮。预计赶不上 20:45 就取消亚洲区停留，从 SAW 直接去酒店。</p>
             </div>
           </article>
 
@@ -586,7 +599,7 @@
               <div class="slots">
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:30–09:00</span><h3>Villa Blanche退房＋轻食</h3><p>订单未显示早餐，前一晚准备面包、水或能量棒；退房后步行约400米到 Gayrettepe M11 实际2号口，不横穿城区，也不依赖机场酒店接送。</p></div></div>
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">09:00–约10:00</span><h3>M11 → IST</h3><p>乘 M11 前往伊斯坦布尔机场，连进站、候车和航站楼步行按约 1 小时预留，目标 10:00 前抵达。</p><div class="authority-links"><a class="authority-link" href="https://www.dhmi.gov.tr/sayfalar/havalimani/istanbul/Ulasim.aspx" target="_blank" rel="noopener noreferrer">IST 机场官方交通 ↗</a></div></div></div>
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">13:20</span><h3>飞往北京</h3><p>国际航班起飞，次日抵达北京；返程卡不再用热气球图片冒充当天景点。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">13:20</span><h3>飞往北京</h3><p>国际航班起飞，次日抵达北京。</p></div></div>
               </div>
             </div>
           </article>
@@ -600,71 +613,43 @@
         <h2>5 项需要提前联系的活动</h2>
         <p class="lead">这里写的是可直接执行的预约方法，不是泛泛的“建议提前订”。日期、人数、关键问题和可复制英文都已按本次行程填好；价格与班次仍以经营方书面回复为准。</p>
         <div class="activity-booking-list">
-          <article class="panel activity-booking-card" id="book-limanagzi">
+          <article class="panel activity-booking-card" id="book-kekova">
             <div>
               <span class="booking-kicker">09.30 · 卡什</span>
-              <h3>1. Limanağzı 游泳＋浮潜</h3>
-              <p><strong>建议先订 Nuri’s Beach 的日间使用。</strong>Limanağzı 只能乘船到达，而且船会按经营点下客；直接告诉船家去 Nuri’s Beach，不要只说“Limanağzı”。</p>
+              <h3>1. Kaş 出发 Kekova 一日船游</h3>
+              <p><strong>只订从 Kaş Harbour 直接出发的共享船。</strong>公开路线包括 Kekova 沉没之城、Simena／Kaleköy、5处海湾停靠与午餐，经营方标注时段为10:00–18:00。</p>
               <ul class="booking-facts">
-                <li>Kaş 市政府介绍：港口小船约每 30 分钟一班、09:00 起、船程 15–20 分钟、末班约 19:00；这不是 9 月底的保证时刻表，前一晚仍须确认。</li>
-                <li>经营方建议提前预约；达到指定消费门槛可享接送船，最低消费及准确上下船点需书面确认，不把接送理解成无条件免费。</li>
-                <li>WhatsApp：<strong>+90 538 899 32 72</strong>。自己游泳不需要另订“浮潜项目”；官网没有承诺提供装备，面镜和呼吸管最好自带。</li>
-                <li>建议 15:30–16:00 返回，为午休、Büyük Çakıl 或补卡什古剧场日落留出时间。</li>
+                <li>集合按09:45预留；必须写明 Kaş 港的准确柜台／定位、船名与最大载客量。</li>
+                <li>确认 Simena／Kaleköy 是<strong>上岸停留</strong>而非远眺，并写明午餐内容、饮料是否另付。</li>
+                <li>表格中的 ₺1,200–1,500／人只能作为预算占位，并非锁价；付款前取得两人含税总价、付款方式和取消条款。</li>
+                <li>WhatsApp：<strong>+90 539 694 41 60</strong>。若对方改成 Üçağız 出发，必须包含 Kaş 酒店往返接送，否则不订。</li>
               </ul>
-              <div class="booking-actions"><a class="authority-link" href="https://www.baynuris.com/" target="_blank" rel="noopener noreferrer">Nuri’s Beach 官方预约 ↗</a><a class="authority-link" href="https://www.kas.bel.tr/cardDetay/limanagz%C4%B1-plaj%C4%B1-3619" target="_blank" rel="noopener noreferrer">Kaş 市政府交通说明 ↗</a><a class="authority-link" href="https://www.nurisbeachbungalow.com.tr/tr/Pages/Index/2" target="_blank" rel="noopener noreferrer">日间使用与接送说明 ↗</a></div>
+              <div class="booking-actions"><a class="authority-link" href="https://kasboattrip.com/tr" target="_blank" rel="noopener noreferrer">Kaş Boat Trip 官方路线 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kas+Harbour" target="_blank" rel="noopener noreferrer">集合港口地图 ↗</a></div>
             </div>
             <aside class="booking-template">
               <strong>复制后发 WhatsApp</strong>
-              <blockquote>Hello, we are 2 adults and would like to reserve day-use beach access on 30 September 2026. Is your boat transfer from Kaş Harbour operating that day? Please confirm the meeting point, minimum spend or entrance fee, and whether we can reserve a return boat at 15:30 or 16:00. Do you provide snorkel masks?</blockquote>
-              <div class="booking-actions"><a class="authority-link" href="https://wa.me/905388993272?text=Hello%2C%20we%20are%202%20adults%20and%20would%20like%20to%20reserve%20day-use%20beach%20access%20on%2030%20September%202026.%20Is%20your%20boat%20transfer%20from%20Ka%C5%9F%20Harbour%20operating%20that%20day%3F%20Please%20confirm%20the%20meeting%20point%2C%20minimum%20spend%20or%20entrance%20fee%2C%20and%20whether%20we%20can%20reserve%20a%20return%20boat%20at%2015%3A30%20or%2016%3A00.%20Do%20you%20provide%20snorkel%20masks%3F" target="_blank" rel="noopener noreferrer">一键带入 Nuri’s 询价话术 ↗</a></div>
+              <blockquote>Hello, we are 2 adults and would like to join the shared full-day Kaş–Kekova boat tour on 30 September 2026. Please confirm: (1) departure is from Kaş Harbour at 10:00 and return around 18:00; (2) exact meeting point and check-in time; (3) boat name and maximum group size; (4) Sunken City, Simena/Kaleköy landing and five swimming stops are included; (5) lunch and drinks; (6) total price for 2 adults, payment method and cancellation/weather policy. We are staying in Kaş Old Town and do not want a Üçağız departure unless round-trip transfer from Kaş is included.</blockquote>
+              <div class="booking-actions"><a class="authority-link" href="https://wa.me/905396944160?text=Hello%2C%20we%20are%202%20adults%20and%20would%20like%20to%20join%20the%20shared%20full-day%20Ka%C5%9F%E2%80%93Kekova%20boat%20tour%20on%2030%20September%202026.%20Please%20confirm%3A%20departure%20from%20Ka%C5%9F%20Harbour%20at%2010%3A00%20and%20return%20around%2018%3A00%3B%20the%20exact%20meeting%20point%20and%20check-in%20time%3B%20boat%20name%20and%20maximum%20group%20size%3B%20Sunken%20City%2C%20Simena%2FKalek%C3%B6y%20landing%20and%20five%20swimming%20stops%3B%20lunch%20and%20drinks%3B%20and%20the%20total%20price%20for%202%20adults%2C%20payment%20method%20and%20cancellation%2Fweather%20policy.%20We%20do%20not%20want%20a%20%C3%9C%C3%A7a%C4%9F%C4%B1z%20departure%20unless%20round-trip%20transfer%20from%20Ka%C5%9F%20is%20included." target="_blank" rel="noopener noreferrer">一键带入 Kekova 询价话术 ↗</a></div>
             </aside>
           </article>
 
           <article class="panel activity-booking-card" id="book-balloon-viewing">
             <div>
               <span class="booking-kicker">09.27 · 格雷梅</span>
-              <h3>2. 地面追热气球</h3>
-              <p><strong>不用再找陌生私人司机。</strong>共享追球约 US$29–51/人；房东只说老爷车价格 €80、可供2人，没有确认计价单位，老爷车也尚未预订。只有当 €80 被书面确认是一辆车供两人的整车总价时，它才与共享方案的两人总价重叠；同级比价看的是能否真正按风向追球、是否包含至少两个后续观景点，以及停飞是否退款，而不是车型。</p>
-              <div class="booking-decision"><strong>我替你定好的选择规则</strong>只在 Airbnb 订单聊天中让住宿方书面确认：€80 是一辆车供两人的整车总价、酒店往返、实际接送时段、先到起飞区再按风向去至少两个后续观景点、不含摄影等加价、SHM 全部停飞老爷车也可 100% 退款。停飞退款不是明确回复 Yes、路线含糊或要求额外转账，就直接订 Rush 共享追球；若不想再付费，就先确认住客清晨能否使用住宿露台以及是否收费。</div>
-              <div class="booking-option-grid">
-                <section class="booking-option">
-                  <h4>共享追球：直接下单</h4>
-                  <p><strong>Rush Travel / GetYourGuide</strong><br>1.5–2小时；酒店接送；起飞准备区＋1个后续观景点，总共至少2点；产品页明确当天停飞全退。</p>
-                  <ol>
-                    <li>点下面按钮，人数选 <strong>Adult × 2</strong>。</li>
-                    <li>日期选 <strong>27 September 2026</strong>，语言选 English，点 Check availability。</li>
-                    <li>选 Shared / Small group，不要误选 Private。</li>
-                    <li>填格雷梅住宿名称与地址，优先 Reserve now &amp; pay later。</li>
-                    <li>付款后保存订单号、取消截止时间，并在订单聊天再次确认接人时间。</li>
-                  </ol>
-                  <div class="booking-actions"><a class="authority-link" href="https://www.getyourguide.com/goreme-l984/cappadocia-private-sunrise-hot-air-balloon-watching-tour-t526609/" target="_blank" rel="noopener noreferrer">打开 Rush 直订页 ↗</a></div>
-                </section>
-                <section class="booking-option">
-                  <h4>老爷车：直接询价（已订住宿的经营方）</h4>
-                  <p><strong>房东回复：价格 €80，可供2人；计价单位未写清。</strong><br>这比自己找陌生司机更可控，但“€80是否为整车两人总价、接送时段、追球路线和停飞退款”还没有确认，不能仅凭一句报价付款。</p>
-                  <ol>
-                    <li>回到已订住宿的 <strong>Airbnb 平台消息／订单聊天</strong>，发送右侧完整话术；不把房东电话放进公开攻略。</li>
-                    <li>必须确认 <strong>€80 是一辆车供两人的两人总价</strong>，不是每人价格，并写明接人时间、时长和酒店往返。</li>
-                    <li>路线至少包括起飞区＋两个按实际风向选择的后续观景点；不要摄影师、礼服、无人机或其他加价。</li>
-                    <li>住宿方明确回复全部停飞可全退、无需私人转账，才保留 9/27；优先服务后在酒店付款并索取确认。</li>
-                  </ol>
-                  <p class="small muted">这里不提供房东姓名、电话和门牌；直接使用自己的 Airbnb 已订订单联系，证据链最完整。</p>
-                </section>
-              </div>
+              <h3>2. 老爷车地面追球</h3>
+              <p><strong>方案已经确定，不再保留共享团或乘球比较。</strong>只在已订住宿的 Airbnb 订单聊天中预约老爷车；房东回复€80、可供2人，但尚未写清是否为整车总价，因此付款前仍要一次性确认下面五项。</p>
+              <div class="booking-decision"><strong>付款门槛</strong>€80是一辆车供两人的整车总价；酒店往返和准确接送时间；起飞区＋至少两个按实际风向选择的后续观景点；无摄影师、礼服、无人机等附加费；SHM全部停飞时100%退款或不收费。</div>
               <ul class="booking-facts">
-                <li><strong>为什么先问住宿经营方：</strong>如果 €80 确认为整车两人总价，约 ¥620，与共享团接近，沟通又留在已有住宿订单内；但住宿方只是协调方，老爷车尚未预订，计价单位、时段、路线和退款仍必须逐项写清。</li>
-                <li><strong>为什么保留 Rush：</strong>它公开写明起飞准备区＋1个后续观景点（总共至少2点）、酒店接送和当天停飞全退；住宿方老爷车目前还没有这些公开承诺，所以仍以书面回复作为否决门槛。不要把老爷车的“两个后续点”要求套在 Rush 上。</li>
-                <li><strong>住宿露台兜底：</strong>房东回复可以看球和拍照，但尚未确认住客清晨开放时间、具体位置及是否收费。机位固定、距离完全受风向和当天起飞区影响，适合看全景，不等于近距离看充气和追球。</li>
+                <li>回到自己的 Airbnb 已订订单发送右侧话术，不通过陌生私人链接或私下转账。</li>
+                <li>优先到店付款；获得书面确认后保存截图，前一晚再核对实际接车时间。</li>
                 <li>前一晚查官方 SHM 状态；无论坐什么地面车，只要全部停飞，天空就没有群球。</li>
               </ul>
-              <div class="booking-actions"><a class="authority-link" href="https://www.goreme.bel.tr/en" target="_blank" rel="noopener noreferrer">格雷梅官方观景区 ↗</a><a class="authority-link" href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">官方飞行旗 ↗</a></div>
+              <div class="booking-actions"><a class="authority-link" href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">官方飞行旗 ↗</a></div>
             </div>
             <aside class="booking-template">
-              <strong>共享团订单聊天备用话术</strong>
-              <blockquote>For 27 September 2026, we are 2 adults staying in Göreme and would like to book a shared ground balloon watching and chasing tour, not a balloon flight. Please confirm the total price, hotel pickup time, whether the tour includes the inflation/take-off area and at least one additional viewpoint after take-off, and whether we receive a 100% refund if SHM cancels all balloon flights that morning.</blockquote>
-              <strong style="margin-top:18px">复制到 Airbnb 订单聊天：住宿方老爷车话术</strong>
+              <strong>复制到 Airbnb 订单聊天</strong>
               <blockquote>Hello, we are 2 adults staying in Göreme and would like to book one private classic car sunrise balloon-watching tour on 27 September 2026. Please confirm that EUR 80 is the total price for one car for 2 adults, not per person, and confirm the exact hotel pickup and return time and total duration. The route should include the balloon inflation/take-off area and at least two viewpoints selected according to the actual wind and balloon direction. Please confirm that there is no professional photography, dress or drone surcharge; we only need the driver to help take a few phone photos. Please also confirm a 100% refund / no charge if SHM cancels all balloon flights that morning, and that we can pay at the hotel without an advance bank transfer. Please send the written booking confirmation here in Airbnb.</blockquote>
-              <p class="small muted">只看五个答案：€80整车两人总价、酒店往返与准确时段、起飞区＋至少两个追球点、无摄影加价、停飞全退。任一项不是明确 Yes，就点左侧 Rush 直订；都不想付费就先确认住宿露台的清晨开放与收费。</p>
+              <p class="small muted">只看五个答案：€80整车两人总价、酒店往返与准确时段、起飞区＋至少两个追球点、无摄影加价、停飞全退。回复不完整就继续追问，不切换到其他方案。</p>
             </aside>
           </article>
 
@@ -764,7 +749,7 @@
         <div class="restaurant-grid">
           <h3 class="restaurant-area">伊斯坦布尔老城 · 家常午餐或一顿正式奥斯曼菜</h3>
           <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-beans.jpg" alt="土耳其白豆炖菜配米饭"><figcaption>代表菜：白豆炖菜＋米饭</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">主选 · 快速实惠</span><div class="restaurant-loc">Sirkeci · 香料市场后顺路</div><h3>Balkan Lokantası</h3><p>柜台看菜直接点，适合扁豆汤、白豆饭和当天蔬菜；不需要把时间耗在排队或仪式感上。</p><div class="restaurant-tags"><span>家常菜</span><span>非烤肉</span><span>出餐快</span></div><div class="restaurant-footer"><strong>两人约 ₺900–1,400</strong><span><a href="https://www.sirkecibalkanlokantasi.com.tr/sirkeci-balkan-menu/" target="_blank" rel="noopener">菜单</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Balkan+Lokantasi+Sirkeci" target="_blank" rel="noopener">地图</a></span></div></div></article>
-          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-meze.jpg" alt="土耳其凉菜拼盘"><figcaption>代表菜：奥斯曼风味冷前菜</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">备选 · 正式一餐</span><div class="restaurant-loc">Sultanahmet · 圣索菲亚附近</div><h3>Matbah Restaurant</h3><p>想在老城安排一顿有记忆点的晚餐时再选；主打奥斯曼宫廷菜，预算明显高于 Lokanta。</p><div class="restaurant-tags"><span>奥斯曼菜</span><span>正式晚餐</span><span>可订位</span></div><div class="restaurant-footer"><strong>价格档 ¥¥¥</strong><span><a href="https://www.matbahrestaurant.com/menu.php" target="_blank" rel="noopener">菜单</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Matbah+Restaurant+Istanbul" target="_blank" rel="noopener">地图</a></span></div></div></article>
+          <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-meze.jpg" alt="土耳其凉菜拼盘"><figcaption>代表菜：Meze＋海鲜</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">已排入 9/24 · 需订露台</span><div class="restaurant-loc">Sultanahmet · Tevkifhane Sk. No:8</div><h3>Seven Hills Restaurant</h3><p>18:15到店，露台同时看圣索菲亚、蓝色清真寺与海峡，约19:00看日落；餐后步行回广场看两座清真寺亮灯。</p><div class="restaurant-tags"><span>屋顶日落</span><span>圣索菲亚</span><span>必须订位</span></div><div class="restaurant-footer"><strong>价格档 ¥¥¥</strong><span><a href="https://sevenhillsrestaurant.com/Location.html" target="_blank" rel="noopener">官网订位</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Seven+Hills+Restaurant+Istanbul" target="_blank" rel="noopener">地图</a></span></div></div></article>
 
           <h3 class="restaurant-area">Kadıköy · 10/3 取行李前二选一</h3>
           <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-sarma.jpg" alt="葡萄叶包饭"><figcaption>代表菜：葡萄叶包饭与蔬菜小菜</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">主选 · 菜色最多</span><div class="restaurant-loc">Kadıköy 市场</div><h3>Çiya Sofrası</h3><p>现成蔬菜、豆类、汤和主菜可以共享。只在无需久等时进店，最迟 19:35 离店取行李。</p><div class="restaurant-tags"><span>安纳托利亚菜</span><span>蔬菜多</span><span>可共享</span></div><div class="restaurant-footer"><strong>两人约 ₺1,600–2,600</strong><span><a href="https://www.ciya.com.tr/index_en.php" target="_blank" rel="noopener">官网</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Ciya+Sofrasi+Kadikoy" target="_blank" rel="noopener">地图</a></span></div></div></article>
@@ -785,13 +770,25 @@
           <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-pide.jpg" alt="土耳其皮德饼"><figcaption>代表菜：Pide 或海边简餐</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">备选 · 海边氛围</span><div class="restaurant-loc">Belcekız 海滩</div><h3>Buzz Beach Bar</h3><p>只有明确想在海边看日落时才放弃一顿全包；点 Pide、沙拉或一份鱼即可，官网有 2026 菜单。</p><div class="restaurant-tags"><span>海景</span><span>Pide</span><span>素食可选</span></div><div class="restaurant-footer"><strong>两人约 ₺1,400–2,200</strong><span><a href="https://buzzbeachbar.com/menus.html" target="_blank" rel="noopener">菜单</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Buzz+Beach+Bar+Oludeniz" target="_blank" rel="noopener">地图</a></span></div></div></article>
         </div>
         <div class="callout"><strong>怎么选：</strong>平时从主选开始；排队超过 15 分钟、当天位置不顺或预算不合，就直接换同组备选。9/28 北线团和 10/2 船餐已含午餐；10/1–10/3 酒店是全包，除非特意想看海边日落，不需要再为晚餐付一次钱。</div>
+        <div class="cafe-guide">
+          <p class="eyebrow">Coffee &amp; nargile</p>
+          <h3>咖啡与水烟不是备忘录，已经写进当天时间轴</h3>
+          <p class="lead">主行程安排两晚水烟、两次风格不同的咖啡；下面补齐准确去法、点什么和什么时候放弃。水烟并非比香烟安全，不吸烟者可以在同一空间只点茶。</p>
+          <div class="cafe-grid">
+            <article class="cafe-stop"><img src="guide-images/hookah-shisha.jpg" alt="传统水烟壶"><div class="cafe-stop-body"><span class="cafe-stop-time">9/24 · 20:20–21:15 · 主水烟</span><h3>Çorlulu Ali Paşa Medresesi</h3><p>老城历史庭院，安排在屋顶晚餐之后。当前官网菜单列水烟 ₺450、土耳其咖啡 ₺100、茶 ₺30；以到店当日价为准。</p><div class="authority-links"><a class="authority-link" href="https://corlulumedrese.com/" target="_blank" rel="noopener noreferrer">官方菜单 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Corlulu+Ali+Pasa+Medresesi" target="_blank" rel="noopener noreferrer">地图 ↗</a></div></div></article>
+            <article class="cafe-stop"><img src="guide-images/turkish-coffee.jpg" alt="土耳其咖啡"><div class="cafe-stop-body"><span class="cafe-stop-time">9/27 · 14:40–15:15 · 主咖啡</span><h3>Hopper Coffee House</h3><p>徒步前明确留 35 分钟，点 Turkish coffee、V60 或 flat white。官网现列每日 05:00–24:00，但出发前仍复核。</p><div class="authority-links"><a class="authority-link" href="https://hoppercoffee.com.tr/en/" target="_blank" rel="noopener noreferrer">官网 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hopper+Coffee+House+Goreme" target="_blank" rel="noopener noreferrer">地图 ↗</a></div></div></article>
+            <article class="cafe-stop"><img src="guide-images/turkish-coffee.jpg" alt="传统土耳其咖啡杯"><div class="cafe-stop-body"><span class="cafe-stop-time">10/3 · 18:45–19:15 · 市场咖啡</span><h3>Fazıl Bey Türk Kahvesi</h3><p>选 Kadıköy Çarşı 的 Serasker Cad. No:1/A 门店，不要误去其他分店；一杯土耳其咖啡后继续快晚饭和取箱。</p><div class="authority-links"><a class="authority-link" href="https://www.fazilbey.com.tr/konum?lang=en" target="_blank" rel="noopener noreferrer">官方地址 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Fazil+Bey+Turk+Kahvesi+Kadikoy" target="_blank" rel="noopener noreferrer">地图 ↗</a></div></div></article>
+            <article class="cafe-stop"><img src="guide-images/hookah-shisha.jpg" alt="水烟与咖啡座"><div class="cafe-stop-body"><span class="cafe-stop-time">9/27 · 20:30–21:30 · 第二晚可选</span><h3>Göreme Discount Coffee</h3><p>位于 Göreme 镇内，官网列咖啡、甜品和 hookah。即使 9/24 已去过仍可保留；只有徒步拖晚、身体疲劳或想早睡时才删除。</p><div class="authority-links"><a class="authority-link" href="https://www.goremecoffee.com/" target="_blank" rel="noopener noreferrer">官网 ↗</a><a class="authority-link" href="https://goremecoffee.com/contact.html" target="_blank" rel="noopener noreferrer">地址与时间 ↗</a></div></div></article>
+          </div>
+          <div class="callout"><strong>水烟边界：</strong>WHO 明确指出水烟不是香烟的安全替代品，烟雾仍含一氧化碳和多种有害物；孕妇、心肺疾病人士和不吸烟者直接跳过。若体验，不共用咬嘴、要求一次性烟嘴，出现头痛、恶心、气促就立刻停止并到通风处。<a href="https://www.who.int/publications/i/item/fact-sheet-waterpipe-tobacco-smoking-and-health" target="_blank" rel="noopener noreferrer">WHO 水烟健康说明 ↗</a></div>
+        </div>
       </div>
     </section>
 
     <section class="section" id="budget">
       <div class="wrap">
         <p class="eyebrow">Budget for two</p>
-        <h2>两人全程约 3.15～3.78 万，建议以 3.8 万封顶</h2>
+        <h2>两人全程约 3.19～3.84 万，建议以 3.9 万封顶</h2>
         <div class="budget-wrap">
           <div class="panel table-scroll">
             <table class="budget-table">
@@ -802,8 +799,9 @@
                 <tr><td>土耳其境内 3 段飞机</td><td>暂按 ¥1,500～2,300<br><small>已知已付：VF3268 ¥588＋VF3135 ¥684＝¥1,272；另加 PC3503 实付及 VF3135 可能追加的行李费</small></td></tr>
                 <tr><td>4个日历日租车＋保险＋AYT→DLM异地还车</td><td>¥2,200～3,600</td></tr>
                 <tr><td>油费、停车与 HGS（约470～510 km）</td><td>¥470～710</td></tr>
-                <tr><td>地面追热气球（二选一）</td><td>¥420～740<br><small>共享追球 US$29–51/人；房东称老爷车 €80、可供2人（若确认为整车两人总价约¥620），老爷车尚未预订，确认计价单位、路线与停飞全退才订</small></td></tr>
+                <tr><td>老爷车地面追球</td><td>约 ¥620<br><small>按房东€80报价占位；必须确认是两人整车总价、路线与停飞全退后才付款</small></td></tr>
                 <tr><td>北线地貌 Red Tour＋Avanos陶艺小团</td><td>¥570～850<br><small>平台主方案约¥570～650；住宿方 Red Tour 备选为 €110/两人（约¥850），只有17:00前返回、行李寄存和送机全部确认才启用</small></td></tr>
+                <tr><td>Kaş 出发 Kekova 一日船游</td><td>¥400～550<br><small>按表格中的₺1,200～1,500/人暂估，尚非锁价；以经营方书面确认的两人含税总价为准</small></td></tr>
                 <tr><td>Babadağ 双人滑翔伞</td><td>¥2,000～2,300<br><small>按2026公开同类价₺7,000～7,600/人估算；ReAction最终价、Babadağ费用、保险与影像另付情况须书面确认</small></td></tr>
                 <tr><td>Dragon 海盗船</td><td>¥450～650<br><small>官网季节价£25～35/人；10/2具体档位、币种和两人总价待确认，午餐已含、饮料另付</small></td></tr>
                 <tr><td>博斯普鲁斯短线等小额门票</td><td>¥900～1,500</td></tr>
@@ -811,18 +809,18 @@
                 <tr><td>两人旅行保险</td><td>¥460～740</td></tr>
                 <tr><td>机场接送、城市交通与Kadıköy寄存（含M4、渡轮、短程出租、M11）</td><td>¥800～1,200<br><small>NAV→格雷梅已确认€15/人现金；格雷梅→ASR仅按同类共享车€15/人预留，实际报价与付款方式待确认。两人两程预算合计€60（约¥460）。另含Kadıköy两件寄存当前基础价约€7.80起</small></td></tr>
                 <tr><td>两人 eSIM</td><td>¥120～220</td></tr>
-                <tr class="budget-total"><td>两人基础全程预计</td><td>约 ¥31,500～37,800</td></tr>
+                <tr class="budget-total"><td>两人基础全程预计</td><td>约 ¥31,900～38,400</td></tr>
               </tbody>
             </table>
           </div>
           <aside class="panel">
             <p class="eyebrow">Recommended cap</p>
             <h3>建议控制线</h3>
-            <div class="big-number">¥38,000</div>
-            <p class="muted">这条控制线已包含博斯普鲁斯短线、老爷车或共享车地面追球（二选一）、9/28 北线小团＋Avanos陶艺、卡什古剧场、D400停靠、蝴蝶谷崖顶、两人滑翔伞、Dragon海盗船和10/3 Kadıköy寄存＋Moda海滨。滑翔伞专业影像、购物和酒精饮料不在内。</p>
+            <div class="big-number">¥39,000</div>
+            <p class="muted">这条控制线已包含博斯普鲁斯短线、老爷车地面追球、9/28 北线小团＋Avanos陶艺、Kekova一日船游、卡什古剧场、D400停靠、蝴蝶谷崖顶、两人滑翔伞、Dragon海盗船和10/3 Kadıköy寄存＋Moda海滨。滑翔伞专业影像、购物和酒精饮料不在内。</p>
             <span class="paid-note">目前可核已付至少 ¥13,900：国际 ¥12,628＋VF3268 ¥588＋VF3135 ¥684；另有四笔住宿共 ¥5,271 已确认，截图未统一显示是否已扣款</span>
-            <p style="margin-top:20px"><strong>若四笔住宿尚未扣款，预计尚待支付</strong><br><span class="price">约 ¥17,600～23,900</span></p>
-            <p class="small muted">若 ¥5,271 住宿已经全部扣款，则尚待支付约 ¥12,300～18,600。PC3503 的实付金额仍未录入，若已经扣款还应继续扣除。VF3135 截图确认两位乘客共付 ¥684，但未显示手提或托运行李额度；确认或加购后再回填境内航班实际总额。滑翔伞影像、购物、酒精饮料和大额纪念品未计入。</p>
+            <p style="margin-top:20px"><strong>若四笔住宿尚未扣款，预计尚待支付</strong><br><span class="price">约 ¥18,000～24,500</span></p>
+            <p class="small muted">若 ¥5,271 住宿已经全部扣款，则尚待支付约 ¥12,700～19,200。PC3503 的实付金额仍未录入，若已经扣款还应继续扣除。VF3135 截图确认两位乘客共付 ¥684，但未显示手提或托运行李额度；确认或加购后再回填境内航班实际总额。滑翔伞影像、购物、酒精饮料和大额纪念品未计入。</p>
           </aside>
         </div>
       </div>
@@ -861,7 +859,7 @@
             <div class="check-item"><input id="todo2" type="checkbox"><label for="todo2"><strong>2. 确认 9/27 地面追球</strong><br><span class="muted small">计价单位、两人总价、接送时段、观景点和停飞退款必须全部写清。</span></label></div>
             <div class="check-item"><input id="todo3" type="checkbox"><label for="todo3"><strong>3. 下单 9/28 北线团或陶艺备选</strong><br><span class="muted small">只有保证16:30前回住宿才选整日团，否则直接订室内陶艺。</span></label></div>
             <div class="check-item"><input id="todo4" type="checkbox"><label for="todo4"><strong>4. 完成 Çizgi 书面确认</strong><br><span class="muted small">总价、异地费、押金、免赔额、里程、两件行李空间和DLM接驳。</span></label></div>
-            <div class="check-item"><input id="todo5" type="checkbox"><label for="todo5"><strong>5. 下单 ReAction 滑翔伞＋Dragon 海盗船</strong><br><span class="muted small">分别确认两人总价、时间、集合点、天气改期或退款；天气冲突时二选一。</span></label></div>
+            <div class="check-item"><input id="todo5" type="checkbox"><label for="todo5"><strong>5. 下单 Kekova＋ReAction＋Dragon</strong><br><span class="muted small">Kekova确认Kaş港10:00出发、18:00回港、Kaleköy上岸和两人总价；另外两项分别确认时间、集合点与天气退款。</span></label></div>
             <div class="check-item"><input id="todo6" type="checkbox"><label for="todo6"><strong>6. 预订 Kadıköy 两件行李寄存</strong><br><span class="muted small">选码头／市场步行5–10分钟、至少营业到20:30的点，保存实际地址。</span></label></div>
             <div class="check-item"><input id="todo7" type="checkbox"><label for="todo7"><strong>7. 购买旅行保险并做出发前一周复核</strong><br><span class="muted small">覆盖医疗、行李、租车自负额和滑翔伞；复核天气、日落、停车、航班及取消条款。</span></label></div>
           </div>
@@ -875,9 +873,9 @@
       <strong>土耳其 11 日旅行手册</strong>
       <p class="small">行程日期：2026 年 9 月 24 日—10 月 4 日。除明确标注“已确认”的订单截图金额外，其余价格为两人规划区间，不等同于锁价；付款前请重新核对含税价格、行李、取消规则、餐厅营业时间和异地还车费用。</p>
       <p class="small">道路时间与预算是行前规划值；实际执行以当天导航、天气、订单和现场营业信息为准。餐厅优先参考官方资料与近期营业信息，但季节性营业可能调整。</p>
-      <p class="small">餐厅卡片中的食物照片仅用于说明代表菜式，并非对应餐厅实拍。图片来自 Wikimedia Commons：Kuru Fasulye、Mercimek çorbası、Turkish Meze Plate、Mantı of Kayseri、Vişneli Yaprak Sarma、Pide、Plated grilled fish 与 Falafel with Hummus，按各自 CC 或公有领域许可使用。</p>
+      <p class="small">餐厅卡片中的食物照片仅用于说明代表菜式，并非对应餐厅实拍。图片来自 Wikimedia Commons：Kuru Fasulye、Mercimek çorbası、Turkish Meze Plate、Mantı of Kayseri、Vişneli Yaprak Sarma、Pide、Plated grilled fish 与 Falafel with Hummus，按各自 CC 或公有领域许可使用。咖啡与水烟示意图同样来自 Wikimedia Commons：Turkish Coffee - Lavash 2023-12-13（CC0）与 Hookah Shisha（CC BY-SA 4.0）。</p>
       <p class="small">新增卡帕多奇亚照片来自 Wikimedia Commons：Goreme sunset（Cetintas555）、Cappadocia Red Valley（Kaan Kosemen）、Zelve, Cappadocia 16（Bernard Gagnon）、Valley of Love in Cappadocia（Emre Dokur），<a href="https://commons.wikimedia.org/wiki/File:In_pottery_shop_in_Avanos,_Cappadocia,_Turkey,_May,_2015.jpg" target="_blank" rel="noopener noreferrer">Avanos potter at work</a>（Alexey Komarov，<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>），以及 <a href="https://commons.wikimedia.org/wiki/File:%27Camel%27_in_Devrent_(1).JPG" target="_blank" rel="noopener noreferrer">Camel in Devrent</a>（José Luiz Bernardes Ribeiro，<a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a>），按各自 CC 许可使用。页面图片保存在同目录下的 guide-images 文件夹中。</p>
-      <p class="small">本次校正照片同样来自 Wikimedia Commons：Kaş–Kalkan road（Tutku Çetinel，CC BY 3.0）、Kaş harbour（Esginmurat，CC BY-SA 4.0）、Limanağzı（Tugceeakgunn91，CC BY-SA 4.0）、Büyük Çakıl（Dündar Termal Apart，CC BY 3.0）、Patara dunes（Angela Stefanoni，CC BY 3.0）、Kaş sunset（Alexkom000，CC BY 4.0）、Üsküdar sunset（Ezzeldin.Elbaksawy，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:Ka%C5%9F_panoramik.jpg" target="_blank" rel="noopener noreferrer">Kaş panoramik</a>（Cobija，CC0）、<a href="https://commons.wikimedia.org/wiki/File:Paragliding_over_%C3%96l%C3%BCdeniz_Beach_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Paragliding over Ölüdeniz</a>（rheins，CC BY 3.0）、<a href="https://commons.wikimedia.org/wiki/File:Kelebekler_vadisi.jpg" target="_blank" rel="noopener noreferrer">Kelebekler vadisi</a>（Rotadefterim，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:G%C3%B6reme_at_Night_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Göreme at Night</a>（rheins，CC BY 3.0）、<a href="https://commons.wikimedia.org/wiki/File:Sunset_of_Historical_Peninsula_from_Kad%C4%B1k%C3%B6y.jpg" target="_blank" rel="noopener noreferrer">Kadıköy sunset</a>（Scott Dexter，CC BY-SA 2.0）及 <a href="https://commons.wikimedia.org/wiki/File:Moda_Sahil.jpg" target="_blank" rel="noopener noreferrer">Moda Sahil</a>（Antoloji，CC BY-SA 3.0）。海盗船图为 <a href="https://dragonparagliding.com/en/tours/pirate-boat-trip/" target="_blank" rel="noopener noreferrer">© Dragon Paragliding 官方宣传图</a>；未标开放许可，仅用于本次私人旅行手册，若改作商业公开用途需另行获得授权。</p>
+      <p class="small">本次校正照片同样来自 Wikimedia Commons：Kaş–Kalkan road（Tutku Çetinel，CC BY 3.0）、Kaş harbour（Esginmurat，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:Sunken_City_Ruins_in_Kekova.jpg" target="_blank" rel="noopener noreferrer">Sunken City Ruins in Kekova</a>（CC BY-SA 4.0）、Patara dunes（Angela Stefanoni，CC BY 3.0）、Kaş sunset（Alexkom000，CC BY 4.0）、Üsküdar sunset（Ezzeldin.Elbaksawy，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:Ka%C5%9F_panoramik.jpg" target="_blank" rel="noopener noreferrer">Kaş panoramik</a>（Cobija，CC0）、<a href="https://commons.wikimedia.org/wiki/File:Paragliding_over_%C3%96l%C3%BCdeniz_Beach_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Paragliding over Ölüdeniz</a>（rheins，CC BY 3.0）、<a href="https://commons.wikimedia.org/wiki/File:Kelebekler_vadisi.jpg" target="_blank" rel="noopener noreferrer">Kelebekler vadisi</a>（Rotadefterim，CC BY-SA 4.0）、<a href="https://commons.wikimedia.org/wiki/File:G%C3%B6reme_at_Night_-_2014.10_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">Göreme at Night</a>（rheins，CC BY 3.0）、<a href="https://commons.wikimedia.org/wiki/File:Sunset_of_Historical_Peninsula_from_Kad%C4%B1k%C3%B6y.jpg" target="_blank" rel="noopener noreferrer">Kadıköy sunset</a>（Scott Dexter，CC BY-SA 2.0）及 <a href="https://commons.wikimedia.org/wiki/File:Moda_Sahil.jpg" target="_blank" rel="noopener noreferrer">Moda Sahil</a>（Antoloji，CC BY-SA 3.0）。海盗船图为 <a href="https://dragonparagliding.com/en/tours/pirate-boat-trip/" target="_blank" rel="noopener noreferrer">© Dragon Paragliding 官方宣传图</a>；未标开放许可，仅用于本次私人旅行手册，若改作商业公开用途需另行获得授权。</p>
     </div>
   </footer>
   <script>

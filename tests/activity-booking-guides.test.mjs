@@ -5,32 +5,18 @@ const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 
 assert.doesNotMatch(html, /id="map-oct3"|10\/3 三选一|Plan B — Dalyan|id="oct3-options"/, 'the mistakenly added October 3 A/B/C package should be removed');
 assert.match(html, /id="activity-bookings"/, 'the guide should have a dedicated activity-booking section');
-assert.match(html, /1\. Limanağzı 游泳＋浮潜/, 'booking guide 1 should cover Limanağzı');
-assert.match(html, /\+90 538 899 32 72/, 'Limanağzı guide should include the Bay Nuri WhatsApp number');
-assert.match(html, /wa\.me\/905388993272\?text=[^"']{180,}/, 'Limanağzı should open WhatsApp with its dated enquiry prefilled');
-assert.match(html, /30 September 2026[\s\S]{0,900}15:30 or 16:00/, 'Limanağzı guide should include a dated copyable enquiry and return-time request');
+assert.match(html, /1\. Kaş 出发 Kekova 一日船游/, 'booking guide 1 should cover the Kaş-departure Kekova day cruise');
+assert.match(html, /\+90 539 694 41 60/, 'Kekova guide should include the operator WhatsApp number');
+assert.match(html, /wa\.me\/905396944160\?text=[^"']{300,}/, 'Kekova should open WhatsApp with its dated enquiry prefilled');
+assert.match(html, /30 September 2026[\s\S]{0,1200}Kaş Harbour at 10:00[\s\S]{0,900}Simena\/Kaleköy landing/, 'Kekova guide should include the date, Kaş departure and Kaleköy landing request');
 
-assert.match(html, /2\. 地面追(?:热气球|球)/, 'booking guide 2 should cover ground balloon watching rather than a flight');
-assert.match(html, /getyourguide\.com[^"']*t526609/, 'the ground-watching guide should link the weather-refundable shared chase option');
-assert.match(html, /房东[^<]{0,100}€80[^<]{0,100}(?:可供\s*2人|可坐两人)[\s\S]{0,300}(?:计价单位|整车两人总价)[^<]{0,100}(?:待确认|未写清)/, 'the guide should record the ambiguous EUR 80 classic-car offer without inventing a per-car unit');
-assert.match(html, /Airbnb[^<]{0,60}(?:订单聊天|平台消息)[\s\S]{0,500}(?:整车|一辆车)[^<]{0,80}(?:两人总价|total price for one car)/i, 'the host-arranged classic car should be confirmed inside the accommodation order conversation');
-assert.match(html, /住宿露台[\s\S]{0,500}(?:开放时间|清晨开放)[\s\S]{0,200}(?:是否收费|收费尚未确认)/, 'the booked rooftop fallback should keep dawn access and its fee explicitly unconfirmed');
-assert.match(html, /住宿露台[\s\S]{0,1200}机位固定[^<]{0,120}风向/, 'the rooftop fallback should explain its fixed-view wind dependency');
-assert.match(html, /27 September 2026[\s\S]{0,1200}ground balloon watching and chasing[\s\S]{0,1200}not a balloon flight[\s\S]{0,1200}100% refund/i, 'the ground-watching guide should include a dated enquiry and weather-cancellation question');
-assert.match(html, /US\$29[–-]51\/人[\s\S]{0,900}(?:价格\s*)?€80[\s\S]{0,500}(?:计价单位|整车两人总价)/, 'the guide should distinguish the known shared price range from the ambiguous host-arranged classic-car offer');
-assert.match(html, /同级比价[\s\S]{0,900}(?:按风向|追随风向)[\s\S]{0,900}(?:至少两个|2[–-]3个).*观景点/s, 'the guide should compare shared and classic-car products by actual chasing capability, not label one as an automatic upgrade');
-assert.match(html, /共享追球[^<]{0,20}(?:直接下单|预订步骤)[\s\S]{0,1600}老爷车[^<]{0,20}(?:直接询价|预订步骤)/, 'both options should have an explicit booking path');
-assert.match(html, /停飞[^<]{0,80}(?:明确回复|书面回复).*Yes[\s\S]{0,600}(?:否则|不是|含糊)[\s\S]{0,300}Rush/, 'the guide should make the classic-car versus Rush decision for the user');
-assert.match(html, /Rush[\s\S]{0,900}起飞(?:准备)?区[^<]{0,80}(?:1个|一个)后续观景点[^<]{0,80}(?:总共|合计)[^<]{0,30}2点/, 'the Rush fallback should promise only the two total viewpoints published by the product');
-assert.doesNotMatch(html, /两种车都必须[^<]{0,120}起飞区[^<]{0,100}至少两个/, 'the guide should not impose the classic-car three-stop requirement on Rush');
+assert.match(html, /2\. 老爷车地面追球/, 'booking guide 2 should be the selected classic-car ground-watching plan');
+assert.match(html, /房东回复€80、可供2人[^<]{0,120}(?:整车总价|整车两人总价)[^<]{0,120}(?:确认|写清)/, 'the guide should record the ambiguous EUR 80 classic-car offer without inventing a per-car unit');
+assert.match(html, /Airbnb[^<]{0,80}订单聊天[\s\S]{0,900}€80[^<]{0,120}整车总价/i, 'the host-arranged classic car should be confirmed inside the accommodation order conversation');
 assert.match(html, /private classic car sunrise balloon-watching tour[\s\S]{0,1000}total price for one car[\s\S]{0,1000}professional photography[\s\S]{0,1000}100% refund/i, 'the classic-car option should include a dated copyable enquiry covering route, extras and cancellation');
-assert.doesNotMatch(html, /默认订共享追球车|老爷车只在想拍|老爷车[^<]{0,30}仅作为.*升级/, 'the guide should not automatically demote classic cars when the two-person totals overlap');
-assert.doesNotMatch(html, /9\/27 在格雷梅用共享追球车/, 'the trip summary should not contradict the classic-car-first decision rule');
-assert.doesNotMatch(html, /共享追球通常 1\.5[–-]2 小时|<strong>共享团酒店接送<\/strong>/, 'the itinerary timing should remain valid after either classic-car or shared selection');
-assert.match(html, /地面追(?:热气球|球)(?:（二选一）)?<\/td><td>¥420～740/, 'the trip budget should use a realistic two-person ground-watching range');
+assert.doesNotMatch(html, /Rush Travel|t526609|US\$29[–-]51\/人|共享团订单聊天备用话术/, 'abandoned shared-chase modules should be removed');
+assert.match(html, /老爷车地面追球<\/td><td>约 ¥620/, 'the budget should keep only the selected classic-car plan');
 assert.doesNotMatch(html, /<h3>2\. 热气球<\/h3>|Turquaz|First Ascent|€270\/人|€290\/人|¥4,500～5,000/, 'the abandoned flight product and price should be removed');
-
-assert.doesNotMatch(html, /Kekova|Simena|Bermuda|book-kekova/i, 'the cancelled Kekova day and booking guide should be removed everywhere');
 
 assert.match(html, /id="book-oludeniz-paragliding"/, 'the guide should provide a dedicated Ölüdeniz paragliding booking block');
 assert.match(html, /reaction-paragliding\.com/i, 'the selected paragliding option should link ReAction directly');
