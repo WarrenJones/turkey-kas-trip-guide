@@ -15,6 +15,10 @@ for (const coordinate of ['36.2168', '36.2294', '36.2639', '36.5002863']) {
   assert.match(html, new RegExp(coordinate.replace('.', '\\.')), `D400 guide should include ${coordinate}`);
 }
 assert.match(html, /D400 是公路名，不是一个可搜索的地址/, 'D400 guide should explain why individual addresses matter');
+assert.match(html, /05:30 抵达 IST/, 'day one should use the confirmed 05:30 arrival time');
+assert.doesNotMatch(html, /11:25 抵达 IST/, 'the obsolete day-one arrival time should be removed');
+assert.match(html, /苏丹艾哈迈德广场晨游[\s\S]{0,1200}午餐、入住、补觉[\s\S]{0,1200}居尔哈内公园＋Sarayburnu 海边[\s\S]{0,1200}屋顶晚餐＋老城夜景/, 'day one should have a realistic full-day sequence');
+assert.match(html, /航班延误超过 2 小时，先删海边/, 'day one should include an explicit delay fallback');
 
 const bookings = [
   ['C Suites Antalia Airport', '¥706'],
