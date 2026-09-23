@@ -74,6 +74,15 @@
     .decision-card .keep { color: var(--sea-dark); font-weight: 800; }
 
     .restaurant-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .meal-plan { margin: 0 0 30px; overflow-x: auto; border: 1px solid var(--line); border-radius: 20px; background: white; box-shadow: var(--shadow); }
+    .meal-plan table { width: 100%; min-width: 850px; border-collapse: collapse; font-size: 14px; }
+    .meal-plan th, .meal-plan td { padding: 12px 13px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .meal-plan th { color: var(--sea-dark); background: rgba(8,127,140,.08); white-space: nowrap; }
+    .meal-plan tr:last-child td { border-bottom: 0; }
+    .meal-plan td:first-child { white-space: nowrap; color: var(--sea-dark); font-weight: 850; }
+    .meal-plan small { display: block; margin-top: 3px; color: var(--muted); line-height: 1.4; }
+    .meal-plan a { color: var(--sea-dark); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    .meal-note { margin: -17px 0 26px; color: var(--muted); font-size: 13px; }
     .restaurant-area { grid-column: 1 / -1; margin: 18px 0 0; padding: 0 2px 8px; border-bottom: 1px solid var(--line); color: var(--sea-dark); font-size: 21px; }
     .restaurant-area:first-child { margin-top: 0; }
     .restaurant { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: 0 10px 28px rgba(18,57,64,.08); }
@@ -289,6 +298,17 @@
     }
     @media (max-width: 620px) {
       .wrap { width: min(100% - 22px, 1180px); }
+      .meal-plan table, .meal-plan tbody, .meal-plan tr, .meal-plan td { display: block; width: 100%; min-width: 0; }
+      .meal-plan thead { display: none; }
+      .meal-plan tr { padding: 0 0 8px; border-bottom: 1px solid var(--line); }
+      .meal-plan tr:last-child { border-bottom: 0; }
+      .meal-plan td { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 8px; padding: 8px 12px; border: 0; overflow-wrap: anywhere; }
+      .meal-plan td:first-child { display: block; padding: 9px 12px; background: rgba(8,127,140,.08); }
+      .meal-plan td:nth-child(2)::before { content: "早餐"; font-weight: 800; color: var(--sea-dark); }
+      .meal-plan td:nth-child(3)::before { content: "午餐"; font-weight: 800; color: var(--sea-dark); }
+      .meal-plan td:nth-child(4)::before { content: "晚餐"; font-weight: 800; color: var(--sea-dark); }
+      .meal-plan td:nth-child(5)::before { content: "咖啡/水烟"; font-weight: 800; color: var(--sea-dark); }
+      .meal-plan td small { grid-column: 2; }
       .hero { min-height: 78vh; }
       .hero-content { padding-bottom: 38px; }
       .slot-time, .leg-date { font-size: 16px; }
@@ -453,7 +473,7 @@
               <div class="slots slots-six">
                 <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">05:30–08:30</span><h3>抵达、进城、寄存行李</h3><p>05:30 抵达 IST；给入境与取行李预留 60–90 分钟。优先按两只行李选择接送或出租车直达 Sultanahmet；公共交通为 M11→M2→T1，换乘较多。须提前请房东书面确认清晨寄存行李。</p><div class="authority-links"><a class="authority-link" href="https://www.metro.istanbul/Content/assets/uploaded/%C4%B0stanbul%20Rayl%C4%B1%20Sistemler%20Haritas%C4%B1.pdf" target="_blank" rel="noopener noreferrer">Metro İstanbul · 官方轨道图 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/blue-mosque.jpg" alt="伊斯坦布尔蓝色清真寺"><div class="slot-text"><span class="slot-time">09:00–11:15</span><h3>苏丹艾哈迈德广场晨游</h3><p>早餐后依次走古竞技场、蓝色清真寺和圣索菲亚外观；都在步行范围内，不买限时门票。若清真寺因礼拜无法进入或想坐下休息，可在11:00左右去附近 Harab'be 喝茶；水烟留到晚上，不压缩午睡。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/zh/istanbul/blue-mosque" target="_blank" rel="noopener noreferrer">GoTürkiye · 蓝色清真寺 ↗</a><a class="authority-link" href="https://harabbe.com/" target="_blank" rel="noopener noreferrer">Harab'be 官网 ↗</a></div></div></div>
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">11:30–15:00</span><h3>午餐、入住、补觉</h3><p>在老城吃午餐，按房东确认的时间入住；至少留 90 分钟睡觉和洗澡。若仍明显疲劳，下午直接延后，不压缩晚餐。</p></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">11:30–15:00</span><h3>肉丸午餐、入住、补觉</h3><p>在 Sultanahmet 的 Meşhur Sultanahmet Köftecisi 吃肉丸、豆沙拉或扁豆汤；按当日里拉菜单结算，不以 €5–8 作为锁价。按房东确认的时间入住，至少留 90 分钟睡觉和洗澡。</p><div class="authority-links"><a class="authority-link" href="https://www.sultanahmet-koftecisi.com/contact" target="_blank" rel="noopener noreferrer">餐厅官网地址 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/gulhane-park.jpg" alt="伊斯坦布尔居尔哈内公园林荫步道"><div class="slot-text"><span class="slot-time">15:30–17:30</span><h3>居尔哈内公园＋Sarayburnu 海边</h3><p>从公园历史入口沿林荫道慢走，再向 Sarayburnu 海边收尾；这段以树荫、海风和休息为主，不再进入博物馆。体力不足时只走公园主路，随时返回住宿。</p><div class="authority-links"><a class="authority-link" href="https://istanbulseninhaber.ibb.istanbul/haber-detay/istanbulun-has-bahcesi" target="_blank" rel="noopener noreferrer">伊斯坦布尔市政府 · 公园介绍 ↗</a><a class="authority-link" href="https://commons.wikimedia.org/wiki/File:Gulhane_park_Istanbul_2007_002.jpg" target="_blank" rel="noopener noreferrer">图片来源 · Wikimedia Commons ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/istanbul-hagia-sophia.jpg" alt="傍晚的圣索菲亚外观"><div class="slot-text"><span class="slot-time">18:15–20:15 · 需订露台位</span><h3>Seven Hills 日落晚餐＋夜景＋水烟确认</h3><p>预订9/24 18:15、2人、rooftop terrace table；露台能同时看圣索菲亚、蓝色清真寺与海峡。官网未公开写有 nargile，订位时必须问清当晚露台是否提供；若确认有，就在这里一次完成日落、晚餐、水烟与亮灯夜景。</p><div class="authority-links"><a class="authority-link" href="https://sevenhillsrestaurant.com/Location.html" target="_blank" rel="noopener noreferrer">官网地址＋订位 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Seven+Hills+Restaurant+Istanbul" target="_blank" rel="noopener noreferrer">地图导航 ↗</a><a class="authority-link" href="https://wa.me/905345223793?text=Hello%2C%20I%20would%20like%20to%20reserve%20a%20rooftop%20terrace%20table%20for%202%20adults%20at%2018%3A15%20on%2024%20September%202026.%20We%20would%20like%20a%20table%20with%20views%20of%20Hagia%20Sophia%20and%20the%20Blue%20Mosque%20for%20sunset.%20Do%20you%20serve%20nargile%20on%20the%20rooftop%20terrace%20that%20evening%3F%20Please%20confirm%20the%20reservation%20and%20nargile%20availability." target="_blank" rel="noopener noreferrer">WhatsApp：订位＋问水烟 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/hookah-shisha.jpg" alt="传统水烟壶与休闲座位"><div class="slot-text"><span class="slot-time">20:20以后 · Seven Hills没有才启用</span><h3>Harab'be 水烟；Şerbethane 户外备选</h3><p>Seven Hills确认有水烟就删除本卡。若没有，首选步行约10分钟到 Harab'be（Ticarethane Çk. No:4B）；想坐Arasta市场户外则去 Şerbethane（Arasta Çarşısı Sk. No:98）。只选一家，不再跨城去 Çorlulu Ali Paşa。</p><div class="authority-links"><a class="authority-link" href="https://harabbe.com/" target="_blank" rel="noopener noreferrer">Harab'be 官网 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Harabbe+Cafe+Hookah+Lounge+Istanbul" target="_blank" rel="noopener noreferrer">Harab'be 导航 ↗</a><a class="authority-link" href="https://www.serbethane.com.tr/" target="_blank" rel="noopener noreferrer">Şerbethane 官网 ↗</a></div></div></div>
@@ -485,7 +505,7 @@
                 <div class="slot attraction-card"><img src="guide-images/uchisar-panorama.jpg" alt="乌奇萨与鸽子谷全景"><div class="slot-text"><span class="slot-time">12:30–16:00</span><h3>Saklı Konak 午餐＋乌奇萨＋鸽子谷</h3><p>先在乌奇萨 Saklı Konak 吃汤、Mantı 或蔬菜，约 13:30 开始城堡高点和鸽子谷短步行；不点耗时的完整套餐，16:00 前结束。</p><div class="authority-links"><a class="authority-link" href="https://saklikonakrooftop.com/" target="_blank" rel="noopener noreferrer">Saklı Konak 官网 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Sakli+Konak+Restaurant+Uchisar" target="_blank" rel="noopener noreferrer">餐厅地图 ↗</a><a class="authority-link" href="https://www.uchisar.bel.tr/uchisar-kalesi/" target="_blank" rel="noopener noreferrer">乌奇萨市政府 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/goreme-night.jpg" alt="格雷梅镇区与洞穴建筑亮灯夜景"><div class="slot-text"><span class="slot-time">17:30–19:30</span><h3>格雷梅日落观景台＋洞穴镇夜景</h3><p>Aydınkırağı / Sunset Point 先看日落；日落后继续停留 30–45 分钟，看镇区与洞穴酒店逐渐亮灯。只沿主路下山，天黑后不进入山谷小径。</p><div class="authority-links"><a class="authority-link" href="https://www.goreme.bel.tr/tr/seyir-alani-1758439471" target="_blank" rel="noopener noreferrer">格雷梅市政府 · 官方观景点说明 ↗</a></div></div></div>
               </div>
-              <p class="why"><strong>这样安排：</strong>上午航班已确认，下午立即进入最有辨识度的全景线；约 20:00 前回酒店，既保留蓝调夜景，也不影响次日约 04:45 的地面追球接人。</p>
+              <p class="why"><strong>当天吃饭：</strong>住处或附近早餐；Saklı Konak 午餐；看完夜景回 Göreme 吃 Seten，排队久则换 Pumpkin Göreme。约 20:00 前回酒店，不影响次日约 04:45 的地面追球接人。</p>
             </div>
           </article>
 
@@ -494,10 +514,10 @@
             <div class="day-body">
               <div class="slots slots-five">
                 <div class="slot attraction-card"><img src="guide-images/cappadocia-balloon.jpg" alt="卡帕多奇亚老爷车地面观看成群热气球升空"><div class="slot-text"><span class="slot-time">日出前接车 · 暂按04:45–07:45占位</span><h3>老爷车地面追球</h3><p>不乘热气球，也不再比较共享追球队。直接通过已订住宿的 Airbnb 订单聊天预约老爷车：€80须书面确认为<strong>一辆车供两人的整车总价</strong>，包含酒店往返、起飞区和按风向选择的至少两个后续观景点，不要摄影师、礼服或无人机加价。<strong>若官方红旗停飞：</strong>老爷车取消且不收费，08:00–10:30改去 Göreme Open Air Museum。</p><div class="authority-links"><a class="authority-link" href="https://shmkapadokya.kapadokya.edu.tr/" target="_blank" rel="noopener noreferrer">官方飞行旗 ↗</a><a class="authority-link" href="https://muze.gov.tr/muze-detay?DistId=grm&amp;SectionId=grm01" target="_blank" rel="noopener noreferrer">露天博物馆官方页 ↗</a><a class="authority-link" href="#book-balloon-viewing">老爷车确认话术 ↓</a></div></div></div>
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:00–14:25</span><h3>早餐＋补觉</h3><p>回酒店吃早餐并睡 2–3 小时；午餐后再决定徒步强度，不把清晨与下午排成连续赶场。</p></div></div>
-                <div class="slot attraction-card"><img src="guide-images/turkish-coffee.jpg" alt="土耳其咖啡与传统咖啡杯"><div class="slot-text"><span class="slot-time">14:40–15:15</span><h3>Hopper Coffee 咖啡停靠</h3><p>徒步前在 Göreme 镇内喝 Turkish coffee、V60 或 flat white，控制在 35 分钟；不点大份甜品，避免带着饱腹感走山谷。15:15 准时离店。</p><div class="authority-links"><a class="authority-link" href="https://hoppercoffee.com.tr/en/" target="_blank" rel="noopener noreferrer">官网与菜单 ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hopper+Coffee+House+Goreme" target="_blank" rel="noopener noreferrer">地图 ↗</a></div></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">08:00–14:25</span><h3>早餐＋补觉＋镇内午餐</h3><p>回酒店吃早餐并睡 2–3 小时；中午在 Göreme 镇内吃 Sofram 的汤或 Pide，再决定徒步强度。Topdeck Cave 傍晚才营业，不安排在午餐。</p></div></div>
+                <div class="slot attraction-card"><img src="guide-images/turkish-coffee.jpg" alt="土耳其咖啡与传统咖啡杯"><div class="slot-text"><span class="slot-time">14:40–15:15</span><h3>Hopper 或 King's Coffee</h3><p>徒步前只选一家，喝 Turkish coffee、V60 或 flat white，15:15 准时离店。King's 有露台，但下午不保证还能看到空中的热气球。</p><div class="authority-links"><a class="authority-link" href="https://hoppercoffee.com.tr/en/" target="_blank" rel="noopener noreferrer">Hopper ↗</a><a class="authority-link" href="https://kingscoffeecappadocia.com/en" target="_blank" rel="noopener noreferrer">King's ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/red-valley.jpg" alt="卡帕多奇亚红谷与玫瑰谷地貌"><div class="slot-text"><span class="slot-time">15:30–日落</span><h3>红谷＋玫瑰谷徒步</h3><p>安排 2.5–3 小时自然线，选择短环线并在 Kızılçukur 看颜色变化；体力不足则缩为观景台。</p><div class="authority-links"><a class="authority-link" href="https://goturkiye.com/zh/central/touch" target="_blank" rel="noopener noreferrer">GoTürkiye · 红／玫瑰谷官方介绍 ↗</a></div></div></div>
-                <div class="slot attraction-card"><img src="guide-images/hookah-shisha.jpg" alt="格雷梅夜间水烟与咖啡座"><div class="slot-text"><span class="slot-time">20:30–21:30 · 可选</span><h3>Göreme Discount Coffee 水烟</h3><p>徒步后先吃晚饭，再回镇中心坐一小时；可点 hookah、茶或甜品。即使 9/24 已经抽过也可以保留；若徒步结束太晚、腿累或次日想早睡，就删这一项。</p><div class="authority-links"><a class="authority-link" href="https://www.goremecoffee.com/" target="_blank" rel="noopener noreferrer">官网 ↗</a><a class="authority-link" href="https://goremecoffee.com/contact.html" target="_blank" rel="noopener noreferrer">地址与时间 ↗</a></div></div></div>
+                <div class="slot attraction-card"><img src="guide-images/hookah-shisha.jpg" alt="格雷梅夜间水烟与咖啡座"><div class="slot-text"><span class="slot-time">晚餐后 · 水烟可选</span><h3>Dibek 晚餐 → Göreme Discount Coffee</h3><p>徒步后在 Dibek 吃陶罐菜或 mantı；订不上则把 Topdeck Cave 作为晚餐备选，需提前问营业和座位。饭后想坐一小时再去 Göreme Discount Coffee 抽水烟；Fat Boys 是否提供水烟未核实，不当作必去店。</p><div class="authority-links"><a class="authority-link" href="https://dibek-kafe-restoran.eatbu.com/?lang=en" target="_blank" rel="noopener noreferrer">Dibek ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Topdeck+Cave+Restaurant+Goreme" target="_blank" rel="noopener noreferrer">Topdeck 地图 ↗</a><a class="authority-link" href="https://www.goremecoffee.com/" target="_blank" rel="noopener noreferrer">水烟店官网 ↗</a></div></div></div>
               </div>
             </div>
           </article>
@@ -534,7 +554,7 @@
               <div class="slots">
                 <div class="slot attraction-card"><img src="guide-images/kas-harbor.jpg" alt="卡什港口、游船与临山老城"><div class="slot-text"><span class="slot-time">08:30–09:35 · 09:45集合</span><h3>卡什港口＋老城短逛</h3><p>早餐后沿港口、Uzun Çarşı 和狮子墓顺路走一圈；09:35回到码头，按书面确认的柜台或船名办理登船，不临时在港口碰运气找船。</p><div class="authority-links"><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kas+Harbour" target="_blank" rel="noopener noreferrer">Kaş Harbour 导航 ↗</a></div></div></div>
                 <div class="slot attraction-card"><img src="guide-images/kekova-sunken-city.jpg" alt="Kekova 沉没之城遗迹与碧蓝海水"><div class="slot-text"><span class="slot-time">10:00–18:00 · 全天船游</span><h3>Kaş → Kekova 沉没之城＋Kaleköy</h3><p>从 Kaş 港出发，沿 Kekova 沉没之城慢速观看，在 Simena／Kaleköy 上岸，并在海湾安排游泳停靠；午餐随船。Kaş 出发经营方公开班次为<strong>10:00–18:00</strong>，不要按表格里未经核实的17:00回港安排行程。</p><div class="authority-links"><a class="authority-link" href="https://kasboattrip.com/tr" target="_blank" rel="noopener noreferrer">Kaş 出发运营方路线 ↗</a><a class="authority-link" href="#book-kekova">预约方法与话术 ↓</a></div></div></div>
-                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">18:00回港后</span><h3>回酒店休息＋Bi Lokma 晚餐</h3><p>回港后直接步行回 Kaş Old Town 洗澡休息，晚餐选已列入餐厅区的 Bi Lokma。次日06:45退房，不再追加海滩或古剧场；若9/29古剧场因延误没去成，也不挤占Kekova回港后的休息。</p><div class="authority-links"><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Bi+Lokma+Kas" target="_blank" rel="noopener noreferrer">Bi Lokma 导航 ↗</a></div></div></div>
+                <div class="slot slot-plain"><div class="slot-text"><span class="slot-time">18:00回港后</span><h3>回酒店休息＋Bi Lokma 晚餐</h3><p>回港后步行回 Kaş Old Town 洗澡休息，晚餐首选 Bi Lokma；若还想吃海鲜，可换 Keyf-i Dem，但进店前先看当日鱼价。次日06:45退房，不再追加海滩或古剧场。</p><div class="authority-links"><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Bi+Lokma+Kas" target="_blank" rel="noopener noreferrer">Bi Lokma ↗</a><a class="authority-link" href="https://www.google.com/maps/search/?api=1&amp;query=Keyf-i+Dem+Restaurant+Kas" target="_blank" rel="noopener noreferrer">Keyf-i Dem ↗</a></div></div></div>
               </div>
             </div>
           </article>
@@ -724,8 +744,29 @@
     <section class="section" id="restaurants">
       <div class="wrap">
         <p class="eyebrow">Eat along the route</p>
-        <h2>每到一站，都有主选和备选</h2>
-        <p class="lead">不再让一家餐厅承担整座城市。下面按当天位置给出主选、备选和适合场景；菜图是对应菜式的代表图，不冒充餐厅实拍。价格为两人、不喝酒的规划区间，进店前仍以当日菜单为准。</p>
+        <h2>11 天三餐速查</h2>
+        <p class="lead">先看当天这一行，详细餐厅、菜图和导航在下方。早餐没有订单凭证就不标“酒店含早”；备选店只在顺路、开门且不影响硬时间时启用。</p>
+        <div class="meal-plan" role="region" aria-label="十一天三餐与咖啡水烟安排" tabindex="0">
+          <table>
+            <thead><tr><th>日期</th><th>早餐</th><th>午餐</th><th>晚餐</th><th>咖啡 / 水烟</th></tr></thead>
+            <tbody>
+              <tr><td>9/24 老城</td><td>机上或抵达后简餐</td><td><a href="https://www.sultanahmet-koftecisi.com/contact" target="_blank" rel="noopener noreferrer">Meşhur Sultanahmet Köftecisi</a><small>肉丸＋豆沙拉；按 TRY 菜单结算</small></td><td>Seven Hills 屋顶<small>18:15 订位，看日落与夜景</small></td><td>Seven Hills 水烟须先确认；没有则 Harab'be / Şerbethane 二选一</td></tr>
+              <tr><td>9/25 老城→亚洲区</td><td>住处附近 simit＋茶</td><td>Eminönü 鱼三明治<small>11:15 码头快餐，不拖延游船</small></td><td>Çiya Sofrası<small>排队久换 Yanyalı Fehmi；Kıyı 在 Tarabya，不在 Üsküdar</small></td><td>Şark Kahvesi 热沙咖啡；晚饭后 Fazıl Bey / ReCafe 视时间二选一</td></tr>
+              <tr><td>9/26 格雷梅</td><td>SAW 机场或机上自理</td><td>Saklı Konak<small>乌奇萨顺路</small></td><td>Seten<small>排队久换 <a href="https://www.google.com/maps/search/?api=1&amp;query=Pumpkin+Goreme+Restaurant" target="_blank" rel="noopener noreferrer">Pumpkin Göreme</a></small></td><td>不另加站；次日很早接车</td></tr>
+              <tr><td>9/27 追球</td><td>回住宿吃早饭</td><td>Sofram<small>镇内汤或 Pide；Topdeck 不做午餐</small></td><td><a href="https://dibek-kafe-restoran.eatbu.com/?lang=en" target="_blank" rel="noopener noreferrer">Dibek</a><small>备选 Topdeck Cave，需确认晚间座位</small></td><td>Hopper / <a href="https://kingscoffeecappadocia.com/en" target="_blank" rel="noopener noreferrer">King's Coffee</a> 二选一；晚餐后 Göreme Discount Coffee 水烟可选</td></tr>
+              <tr><td>9/28 北线→机场</td><td>住宿早餐<small>若未含则附近简餐</small></td><td>Red Tour 团餐<small>下单时确认是否包含</small></td><td>回 Göreme 后 Sofram 等简餐<small>时间紧就改机场内</small></td><td>不单独安排</td></tr>
+              <tr><td>9/29 安塔利亚→卡什</td><td>C Suites 自理<small>订单未证实含早</small></td><td>路上简餐或到 Kaş 后 Bi Lokma<small>不绕去 Kalkan</small></td><td>古剧场日落后 Ruhi Bey<small>先确认鱼价；不想吃海鲜换 Bi Lokma</small></td><td>不单独安排</td></tr>
+              <tr><td>9/30 Kekova</td><td>住处或港口自理</td><td>船餐<small>预订时确认包含内容</small></td><td>Bi Lokma<small>海鲜备选 <a href="https://www.google.com/maps/search/?api=1&amp;query=Keyf-i+Dem+Restaurant+Kas" target="_blank" rel="noopener noreferrer">Keyf-i Dem</a></small></td><td>不单独安排</td></tr>
+              <tr><td>10/1 D400＋滑翔伞</td><td>早退房前简餐</td><td>车上备水、三明治<small>Kaputaş 不安排正式午餐</small></td><td>Turquoise 全包晚餐</td><td>不加停靠，先保证滑翔伞报到</td></tr>
+              <tr><td>10/2 海盗船</td><td>Turquoise 全包</td><td>Dragon 船餐<small>订票时确认包含</small></td><td>Turquoise 全包<small>想看海可自费换 Buzz Beach Bar</small></td><td>海边休息，不额外跨城</td></tr>
+              <tr><td>10/3 还车→Kadıköy</td><td>Turquoise 全包</td><td>DLM / SAW 机场简餐</td><td>Çiya Sofrası<small>赶时间换 Yanyalı Fehmi</small></td><td>9/25 未喝才去 Fazıl Bey；ReCafe / Künefe 仅在取箱、渡轮时间允许时加</td></tr>
+              <tr><td>10/4 返程</td><td>前夜备好的轻食＋咖啡<small>09:00 前出发，Mado Gayrettepe 门店未核实，不依赖它</small></td><td>机场或机上</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="meal-note">Fat Boys 是否提供水烟、Mado 在 Gayrettepe 是否有适合当日时段的门店均未核实，不作为导航目的地；Köftecisi 的旧欧元价格、Pumpkin 的旧评分也不当作现价或订位依据。</p>
+        <h3 class="restaurant-area">想换餐厅时看这里</h3>
+        <p class="lead">下面按地点列出主选、备选和代表菜图；图片只代表菜式，不冒充餐厅实拍。价格为两人、不喝酒的规划区间，进店前以当日菜单为准。</p>
         <div class="restaurant-grid">
           <h3 class="restaurant-area">伊斯坦布尔老城 · 家常午餐或一顿正式奥斯曼菜</h3>
           <article class="restaurant"><figure class="restaurant-photo"><img src="guide-images/food-beans.jpg" alt="土耳其白豆炖菜配米饭"><figcaption>代表菜：白豆炖菜＋米饭</figcaption></figure><div class="restaurant-body"><span class="restaurant-choice">主选 · 快速实惠</span><div class="restaurant-loc">Sirkeci · 香料市场后顺路</div><h3>Balkan Lokantası</h3><p>柜台看菜直接点，适合扁豆汤、白豆饭和当天蔬菜；不需要把时间耗在排队或仪式感上。</p><div class="restaurant-tags"><span>家常菜</span><span>非烤肉</span><span>出餐快</span></div><div class="restaurant-footer"><strong>两人约 ₺900–1,400</strong><span><a href="https://www.sirkecibalkanlokantasi.com.tr/sirkeci-balkan-menu/" target="_blank" rel="noopener">菜单</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Balkan+Lokantasi+Sirkeci" target="_blank" rel="noopener">地图</a></span></div></div></article>
