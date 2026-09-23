@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+const enhancement = readFileSync(new URL('../guide-enhancements.js', import.meta.url), 'utf8');
 
 assert.match(html, /全局预案速查/, 'contingency section should be a compact cross-day quick reference');
 assert.equal((html.match(/<article class="decision-card">/g) || []).length, 3, 'only three cross-day contingency decisions should remain');
@@ -24,31 +25,23 @@ assert.match(html, /航班延误超过\s*2小时先删海边/, 'day one should i
 assert.doesNotMatch(html, /id="stays"|id="transport"|href="#stays"|href="#transport"/, 'redundant lodging and transport summaries should be removed');
 assert.doesNotMatch(html, /secure\.booking\.cn|[?&](?:sid|tid|aid|label)=/i, 'private Booking parameters must not be published');
 
-const restaurants = ['Balkan Lokantası', 'Seven Hills Restaurant', 'Çiya Sofrası', 'Yanyalı Fehmi Lokantası', 'Seten Restaurant', 'Saklı Konak', 'Sofram', 'Bi Lokma', 'Oburus Momus', 'Ruhi Bey Meyhanesi', '酒店主餐厅', 'Buzz Beach Bar'];
-for (const restaurant of restaurants) assert.match(html, new RegExp(restaurant), `${restaurant} should be available as a practical choice`);
-assert.equal((html.match(/<article class="restaurant">/g) || []).length, 12, 'restaurant guide should provide twelve choices');
-assert.equal((html.match(/<figure class="restaurant-photo">/g) || []).length, 12, 'every restaurant choice should show a dish photo');
-assert.match(html, /图片只代表菜式，不冒充餐厅实拍/, 'dish photos must be clearly labelled as representative rather than restaurant photography');
-const mealTable = html.match(/<div class="meal-plan"[\s\S]*?<\/table>/)?.[0] || '';
-assert.equal((mealTable.match(/<tr><td>/g) || []).length, 11, 'all eleven days should have breakfast, lunch, dinner and coffee or hookah coverage');
-for (const venue of ['Meşhur Sultanahmet Köftecisi', 'Pumpkin Göreme', 'Dibek', 'King\'s Coffee', 'Keyf-i Dem']) assert.match(mealTable, new RegExp(venue), `${venue} should be placed in the meal plan`);
-assert.match(mealTable, /Topdeck 不做午餐/, 'Topdeck should not be misrepresented as a lunch venue');
-assert.match(mealTable, /Kıyı 在 Tarabya，不在 Üsküdar/, 'Kıyı should not be mislocated in Üsküdar');
-assert.match(mealTable, /Mado Gayrettepe 门店未核实/, 'the unverified Mado branch should not be a required departure-day stop');
-
-const cafeStops = ['Seven Hills 屋顶＋水烟确认', "Harab'be；Şerbethane 备选", 'Şark Kahvesi 热沙咖啡', 'Fazıl Bey Türk Kahvesi', 'ReCafe', 'Hopper Coffee House', 'Göreme Discount Coffee', 'Mandabatmaz 可选绕路'];
-for (const stop of cafeStops) assert.match(html, new RegExp(stop), `${stop} should be included in the coffee and nargile plan`);
-assert.equal((html.match(/<article class="cafe-stop">/g) || []).length, 8, 'coffee and nargile guide should distinguish planned stops from optional backups');
+const restaurants = ['Seven Hills', 'Çiya Sofrası', 'Yanyalı Fehmi', 'Seten', 'Saklı Konak', 'Ankara Sofrası', 'Bi Lokma', 'Ruhi Bey', 'Turquoise', 'Buzz Beach Bar'];
+for (const restaurant of restaurants) assert.match(enhancement, new RegExp(restaurant), `${restaurant} should remain in the illustrated daily table`);
+assert.match(html, /菜图只作菜式／场景示意，不冒充餐厅实拍/, 'dish photos must be clearly labelled as representative');
+assert.match(html, /<table class="illustrated-meals">/, 'daily meals should use a single illustrated table');
+assert.doesNotMatch(html, /<article class="restaurant">|<article class="cafe-stop">/, 'separate duplicate card lists should be gone');
+for (const venue of ['Meşhur Sultanahmet Köftecisi', 'Dibek', 'Keyf-i Dem']) assert.match(enhancement, new RegExp(venue), `${venue} should be placed in the meal plan`);
+assert.match(enhancement, /Topdeck 不做午餐/, 'Topdeck should not be misrepresented as a lunch venue');
+assert.match(enhancement, /不依赖未核实的 Mado/, 'the unverified Mado branch should not be a required departure-day stop');
+for (const stop of ['Harab', 'Şark Kahvesi', 'Fazıl Bey', 'ReCafe', 'Hopper', 'Göreme Discount Coffee']) assert.match(enhancement, new RegExp(stop), `${stop} should remain in the coffee and nargile plan`);
 assert.match(html, /09\.24[\s\S]{0,5000}Seven Hills 日落晚餐＋夜景＋水烟确认[\s\S]{0,2500}Harab'be 水烟；Şerbethane 户外备选/, 'day one should ask Seven Hills about nargile and provide one nearby fallback');
 assert.match(html, /09\.25[\s\S]{0,5000}Eminönü Balık Ekmek[\s\S]{0,2500}Şark Kahvesi 热沙咖啡[\s\S]{0,5000}Çiya → Fazıl Bey[\s\S]{0,2500}ReCafe 水烟备选/, 'day two should include fish sandwich, hot-sand coffee, Kadikoy coffee, and an optional hookah stop');
 assert.match(html, /ReCafe[\s\S]{0,500}营业状态有冲突/, 'ReCafe must be marked as unconfirmed rather than a guaranteed stop');
 assert.match(html, /09\.27[\s\S]{0,6000}14:40–15:15[\s\S]{0,500}Hopper 或 King/, 'the Göreme coffee stop should sit before the valley walk');
 assert.match(html, /09\.27[\s\S]{0,10000}晚餐后 · 水烟可选[\s\S]{0,500}Göreme Discount Coffee/, 'the Göreme nargile stop should remain available after dinner');
 assert.match(html, /10\.03[\s\S]{0,7000}18:45–19:15[\s\S]{0,500}Fazıl Bey/, 'the Kadıköy coffee stop should occupy a concrete pre-luggage-collection slot');
-assert.match(html, /甜点统一选<strong>Künefe<\/strong>[\s\S]{0,80}不再推荐Baklava/, 'dessert guidance should consistently prefer kunefe over baklava');
-assert.match(html, /Mandabatmaz[\s\S]{0,500}不为这杯咖啡单独跨城/, 'Mandabatmaz should remain an optional Taksim detour rather than changing the route');
-assert.match(html, /水烟不是香烟的安全替代品/, 'the waterpipe plan should retain a clear health boundary');
-for (const area of ['伊斯坦布尔老城', 'Kadıköy', '卡帕多奇亚', '卡什', '厄吕代尼兹']) assert.match(html, new RegExp(area), `${area} should have its own choice group`);
+assert.match(html, /甜点优先选热的 Künefe/, 'dessert guidance should consistently prefer kunefe');
+assert.match(html, /水烟不是安全替代品/, 'the waterpipe plan should retain a clear health boundary');
 assert.match(html, /酒店已订完，现在只剩 7 件事/, 'checklist should only contain open actions');
 for (let i = 1; i <= 7; i += 1) assert.match(html, new RegExp(`id="todo${i}"`), `pending item ${i} should exist`);
 assert.match(html, /具体询价话术在“活动预约”/, 'open items should point to the booking section instead of repeating scripts');
