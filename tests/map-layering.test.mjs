@@ -7,9 +7,9 @@ assert.match(html, /data-route-board/, 'route navigator should render without an
 for (const panel of ['route-all', 'route-cappadocia', 'route-coast', 'route-return']) {
   assert.match(html, new RegExp(`id="${panel}"`), `route navigator should include ${panel}`);
 }
-assert.match(html, /路线一眼看懂：日期、交通和落脚点/, 'route navigator should explain its purpose clearly');
-assert.match(html, /9\/28–10\/4住宿已确认[\s\S]{0,160}¥5,271/, 'overview should include the confirmed six-night total');
-assert.match(html, /18:15后不寄存、不去Moda/, 'return panel should expose the luggage fallback');
+assert.match(html, /<h2>路线地图<\/h2>/, 'route navigator should stay compact');
+assert.doesNotMatch(html, /route-facts|本路线板完全随网页本地加载|VF3268＋住2晚/, 'route navigator should not duplicate day-by-day summaries or technical notes');
+assert.doesNotMatch(html, /<div class="route-stop">[\s\S]{0,180}<small>/, 'route stops should contain only date and place labels');
 assert.doesNotMatch(html, /<script src="vendor\/(?:leaflet|topojson)/, 'the route board must not depend on old map libraries');
 assert.match(html, /data-route-target="route-coast"/, 'route tabs should expose the coast view');
 assert.match(html, /button\.dataset\.routeTarget/, 'route tabs should switch panels locally');

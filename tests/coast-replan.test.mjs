@@ -41,7 +41,7 @@ assert.match(html, /滑翔伞[^<]{0,100}<\/td><td>¥2,000～2,300/, 'the budget 
 assert.match(html, /海盗船[^<]{0,100}<\/td><td>¥450～650/, 'the budget should include a realistic two-person pirate-boat range');
 
 assert.match(html, /4个日历日[^<]{0,100}约500 km自驾|约500 km自驾[^<]{0,100}4个日历日/, 'the hero should use the exact four-day rental window');
-assert.match(html, /9\/29[^<]{0,120}10:30[^<]{0,120}(?:取车|主方案)/, 'the rental plan should use the 10:30 pickup aligned with the return time');
+assert.match(html, /08:30[–-]10:30[\s\S]{0,160}C Suites退房＋AYT取车/, 'the daily execution card should use the 10:30 pickup aligned with the return time');
 assert.doesNotMatch(html, /五日海岸自驾|5个日历日租车/, 'the old five-calendar-day rental wording should be removed');
 
 console.log('Coast replan regression test passed');

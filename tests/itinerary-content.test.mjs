@@ -3,13 +3,14 @@ import { readFileSync } from 'node:fs';
 
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 
-assert.match(html, /晚点或天气变化时，只看这 6 条/, 'contingency section should be concise');
+assert.match(html, /全局预案速查/, 'contingency section should be a compact cross-day quick reference');
+assert.equal((html.match(/<article class="decision-card">/g) || []).length, 3, 'only three cross-day contingency decisions should remain');
 assert.doesNotMatch(html, /id="overview"|Trip at a glance|id="durations"|时间与路程矩阵/, 'duplicated overview and duration sections should stay removed');
 assert.doesNotMatch(html, /Plan B|方案 B|hidden aria-hidden/, 'legacy alternate-plan labels and hidden duplicate content should stay removed');
 assert.match(html, /每日行程 · 9月24日—10月4日/, 'the itinerary should be presented as the single day-by-day plan');
 assert.match(html, /查看剩余待办/, 'the hero should link directly to the remaining action list');
-assert.match(html, /10:15 未离开 Patara[\s\S]{0,240}12:30 未到蝴蝶谷/, 'D400 fallback should use explicit gates');
-assert.match(html, /17:31–18:15[\s\S]{0,120}只留市场/, 'return fallback should use explicit arrival windows');
+assert.match(html, /Patara是首个可删[\s\S]{0,160}12:30未到蝴蝶谷/, 'D400 fallback should use explicit gates');
+assert.match(html, /17:31–18:15[\s\S]{0,120}(?:保留市场|删 Moda)/, 'return fallback should use explicit arrival windows');
 assert.match(html, /一键导航整段/, 'D400 section should provide a multi-stop route');
 for (const coordinate of ['36.2168', '36.2294', '36.2639', '36.5002863']) {
   assert.match(html, new RegExp(coordinate.replace('.', '\\.')), `D400 guide should include ${coordinate}`);
@@ -44,7 +45,11 @@ assert.match(html, /水烟不是香烟的安全替代品/, 'the waterpipe plan s
 for (const area of ['伊斯坦布尔老城', 'Kadıköy', '卡帕多奇亚', '卡什', '厄吕代尼兹']) assert.match(html, new RegExp(area), `${area} should have its own choice group`);
 assert.match(html, /酒店已订完，现在只剩 7 件事/, 'checklist should only contain open actions');
 for (let i = 1; i <= 7; i += 1) assert.match(html, new RegExp(`id="todo${i}"`), `pending item ${i} should exist`);
-assert.match(html, /两人全程约 3\.19～3\.84 万/, 'budget headline should include the Kekova cruise');
+assert.match(html, /具体询价话术在“活动预约”/, 'open items should point to the booking section instead of repeating scripts');
+assert.match(html, /<h2>预算表与控制线<\/h2>/, 'budget numbers should live in the table and control line only');
+assert.equal((html.match(/31,900～38,400/g) || []).length, 1, 'the full-trip range should appear only in the budget table');
 assert.match(html, /两人基础全程预计<\/td><td>约 ¥31,900～38,400/, 'budget table should match headline');
+assert.match(html, /当前可核已扣款 ¥13,900；尚待支付约 ¥18,000～24,500/, 'payment status should be one concise line');
+assert.doesNotMatch(html, /为什么这样改|当天主线已确定|当天只做一件大事|返程卡不再用热气球图片冒充/, 'design-history and self-commentary should stay removed from the execution guide');
 
 console.log('Itinerary content regression test passed');

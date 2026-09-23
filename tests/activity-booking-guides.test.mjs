@@ -11,10 +11,9 @@ assert.match(html, /wa\.me\/905396944160\?text=[^"']{300,}/, 'Kekova should open
 assert.match(html, /30 September 2026[\s\S]{0,1200}Kaş Harbour at 10:00[\s\S]{0,900}Simena\/Kaleköy landing/, 'Kekova guide should include the date, Kaş departure and Kaleköy landing request');
 
 assert.match(html, /2\. 老爷车地面追球/, 'booking guide 2 should be the selected classic-car ground-watching plan');
-assert.match(html, /房东回复€80、可供2人[^<]{0,120}(?:整车总价|整车两人总价)[^<]{0,120}(?:确认|写清)/, 'the guide should record the ambiguous EUR 80 classic-car offer without inventing a per-car unit');
-assert.match(html, /Airbnb[^<]{0,80}订单聊天[\s\S]{0,900}€80[^<]{0,120}整车总价/i, 'the host-arranged classic car should be confirmed inside the accommodation order conversation');
+assert.match(html, /唯一选择规则[\s\S]{0,80}€80五项全部书面确认才订住宿方老爷车，否则订 Rush/, 'the classic-car guide should use one concise selection rule');
 assert.match(html, /private classic car sunrise balloon-watching tour[\s\S]{0,1000}total price for one car[\s\S]{0,1000}professional photography[\s\S]{0,1000}100% refund/i, 'the classic-car option should include a dated copyable enquiry covering route, extras and cancellation');
-assert.doesNotMatch(html, /Rush Travel|t526609|US\$29[–-]51\/人|共享团订单聊天备用话术/, 'abandoned shared-chase modules should be removed');
+assert.doesNotMatch(html, /Rush Travel|t526609|US\$29[–-]51\/人|共享团订单聊天备用话术/, 'the old Rush comparison module and price should stay removed');
 assert.match(html, /老爷车地面追球<\/td><td>约 ¥620/, 'the budget should keep only the selected classic-car plan');
 assert.doesNotMatch(html, /<h3>2\. 热气球<\/h3>|Turquaz|First Ascent|€270\/人|€290\/人|¥4,500～5,000/, 'the abandoned flight product and price should be removed');
 
